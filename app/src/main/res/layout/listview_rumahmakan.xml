@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/jarak_antar_gridview"
+    android:background="@color/white">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/isi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" >
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/ivFotorm"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_launcher"
+                android:layout_marginTop="@dimen/margin_rm"
+                android:layout_marginRight="@dimen/margin_rm"
+                android:layout_marginLeft="@dimen/margin_rm"/>
+            <LinearLayout
+                android:alpha="0.80"
+                android:background="@color/red"
+                android:orientation="horizontal"
+                android:layout_marginRight="@dimen/margin_rm"
+                android:layout_marginTop="@dimen/margin_rm"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dp">
+                <ImageView
+                    android:layout_marginRight="3dp"
+                    android:src="@mipmap/ic_launcher"
+                    android:layout_width="19dp"
+                    android:layout_height="19dp" />
+                <TextView
+                    android:text="80"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <TextView
+            android:textColor="@color/radablack"
+            android:textSize="@dimen/font_namerm_size"
+            android:id="@+id/tvNamarm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_rm"
+            android:layout_marginRight="@dimen/margin_rm"/>
+        <TextView
+            android:textSize="@dimen/font_kategori_rm"
+            android:text="tes"
+
+            android:textColor="@color/green"
+            android:id="@+id/tvKategoriRm"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/jarak_katgorike_lamat"
+            android:layout_marginLeft="@dimen/margin_rm"
+            android:layout_marginRight="@dimen/margin_rm"/>
+
+
+    </LinearLayout>
+        <LinearLayout
+            android:layout_below="@+id/isi"
+            android:id="@+id/alamat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tvKecamatan"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/margin_rm"
+                android:textSize="@dimen/font_alamat_size"/>
+            <TextView
+                android:id="@+id/tvAlamat"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/margin_rm"
+                android:textSize="@dimen/font_alamat_size"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_below="@+id/alamat"
+            android:id="@+id/fasilitas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_marginLeft="@dimen/fasility"
+                android:layout_marginRight="@dimen/fasiltytwo"
+                android:layout_marginBottom="@dimen/fasility"
+                android:id="@+id/ivFasilitas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY" />
+
+
+            <ImageView
+                android:layout_marginLeft="@dimen/fasiltytwo"
+                android:layout_marginRight="@dimen/fasiltytwo"
+                android:layout_marginBottom="@dimen/fasility"
+                android:id="@+id/ivFSatu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:layout_marginLeft="@dimen/fasiltytwo"
+                android:layout_marginRight="@dimen/fasiltytwo"
+                android:layout_marginBottom="@dimen/fasility"
+                android:id="@+id/ivFTiga"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:layout_marginLeft="@dimen/fasiltytwo"
+                android:layout_marginRight="@dimen/fasiltytwo"
+                android:layout_marginBottom="@dimen/fasility"
+                android:id="@+id/ivFEmpat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY" />
+            <ImageView
+                android:layout_marginLeft="@dimen/fasiltytwo"
+                android:layout_marginRight="@dimen/fasiltytwo"
+                android:layout_marginBottom="@dimen/fasility"
+                android:id="@+id/ivFLima"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</LinearLayout>

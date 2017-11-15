@@ -1,0 +1,23 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <!-- size for rumah makan -->
+    <dimen name="fasility">5dp</dimen>
+    <dimen name="fasiltytwo">1.5dp</dimen>
+    <dimen name="fasilitysize">20dp</dimen>
+    <dimen name="font_pricesize">20dp</dimen>
+    <dimen name="jarak_antar_gridview">1dp</dimen>
+    <dimen name="font_namerm_size">17dp</dimen>
+    <dimen name="font_kategori_rm">14dp</dimen>
+    <dimen name="jarak_katgorike_lamat">30dp</dimen>
+    <dimen name="margin_rm">7dp</dimen>
+    <dimen name="font_alamat_size">12dp</dimen>
+    <dimen name="jarak_fasilitas">2dp</dimen>
+    <dimen name="font_judul_fasilitas">15dp</dimen>
+    <dimen name="jarak_namahari">15dp</dimen>
+    <dimen name="font_judul_menu">20dp</dimen>
+    <dimen name="font_isi_menu">15dp</dimen>
+    <dimen name="font_judul_profil">17dp</dimen>
+</resources>

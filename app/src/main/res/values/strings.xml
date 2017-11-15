@@ -1,0 +1,104 @@
+<resources>
+    <string name="app_name">Trafood</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Vaforit</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_activity_home_view_pager__fragment">HomeViewPager_Fragment</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="like">Likes</string>
+    <string name="title_activity_maps">Map</string>
+
+    <!-- Info rumah makan -->
+    <string name="waktu_buka">WAKTU BUKA</string>
+    <string name="sunday">Ahad</string>
+    <string name="monday">Senin</string>
+    <string name="teusday">Selasa</string>
+    <string name="wednesday">Rabu</string>
+    <string name="thursday">Kamis</string>
+    <string name="friday">Jumat</string>
+    <string name="saturday">Sabtu</string>
+    <string name="dash"> - </string>
+    <string name="fasilty">FASILITAS</string>
+    <string name="mosque">Mosque</string>
+    <string name="parking">Parking Area</string>
+    <string name="toilet">Toilet</string>
+    <string name="wifi">Wifi</string>
+    <string name="music">Live Music</string>
+    <string name="smoking">Smoking Area</string>
+    <string name="contact">CONTACT</string>
+    <string name="catgory">KATEGORI</string>
+    <string name="ulasn">Ulasan</string>
+    <string name="menandai">Menandai</string>
+    <string name="description">DESKRIPSI</string>
+
+    <!-- info menu -->
+    <string name="rekomendasi">Rekomendasi</string>
+    <string name="kunjungi">Kunjungi Kedai</string>
+    <string name="lokasi">location</string>
+    <string name="kategori">Kategori Kedai</string>
+    <string name="tag">Tags :</string>
+    <string name="dilihat">Dilihat</string>
+
+    <!-- User -->
+    <string name="point">Trapoint</string>
+    <string name="kunjungan">Visit</string>
+    <string name="review">Review</string>
+    <string name="article">Article</string>
+    <string name="total">Total</string>
+    <string name="artikel">Artikel</string>
+    <string name="pengaturan">Setting</string>
+    <string name="hubungi_trf">Hubungi Trafood</string>
+    <string name="othermenus">Menu Lain</string>
+    <string name="spasi">  </string>
+
+    <!-- Filter -->
+    <string name="lokasi_filter">Lokasi</string>
+    <string name="kaku">Kata kunci</string>
+    <string name="harga">Harga</string>
+    <string name="sort">Urut Berdasarkan</string>
+    <string name="jarak">Jarak</string>
+    <string name="penilaian">Penilaian</string>
+    <string name="kategori_filter">Kategori</string>
+    <string name="fasilitas">Fasilitas</string>
+
+    <!-- harga -->
+    <string-array name="mulai_harga">
+    <item>Mulai harga</item>
+    <item>0</item>
+    <item>5000</item>
+    <item>10000</item>
+    <item>15000</item>
+    <item>20000</item>
+    <item>30000</item>
+    <item>40000</item>
+    <item>50000</item>
+    <item>60000</item>
+    <item>70000</item>
+    <item>80000</item>
+    <item>90000</item>
+    <item>100000</item>
+    <item>150000</item>
+    </string-array>
+    <string-array name="sampai_harga">
+        <item>Sampai harga</item>
+        <item>5000</item>
+        <item>10000</item>
+        <item>15000</item>
+        <item>20000</item>
+        <item>30000</item>
+        <item>40000</item>
+        <item>50000</item>
+        <item>60000</item>
+        <item>70000</item>
+        <item>80000</item>
+        <item>90000</item>
+        <item>100000</item>
+        <item>150000</item>
+        <item>200000</item>
+    </string-array>
+
+
+</resources>
