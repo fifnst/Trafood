@@ -39,15 +39,19 @@
                 android:layout_height="wrap_content"
                 android:padding="2dp">
                 <ImageView
-                    android:layout_marginRight="3dp"
-                    android:src="@mipmap/ic_launcher"
+                    android:layout_marginLeft="@dimen/margin_rm"
+                    android:src="@drawable/ic_star"
                     android:layout_width="19dp"
                     android:layout_height="19dp" />
                 <TextView
                     android:text="80"
+                    android:layout_marginTop="@dimen/margin_logo_kecil"
+                    android:layout_marginLeft="@dimen/margin_logo_kecil"
+                    android:layout_marginRight="@dimen/margin_rm"
                     android:textColor="@color/white"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:textSize="13dp"/>
             </LinearLayout>
 
 
