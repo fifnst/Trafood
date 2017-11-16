@@ -37,7 +37,7 @@ public class DetailMenu extends AppCompatActivity {
     String menuid,harga,fotomenu,namamenu;
     TextView tvHarga;
     ImageView ivFoto;
-
+//
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
