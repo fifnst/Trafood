@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity /*implements GoogleApiClient
         longitude.setText("107.740753");
 
         sendBundle();
-       // setUpGoogleApi();
+       // setUpGoogleApi(); d
     }
 
   /*  private void setUpGoogleApi() {
