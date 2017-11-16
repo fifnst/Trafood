@@ -34,10 +34,11 @@
                 android:layout_marginRight="@dimen/margin_rm"
                 android:layout_marginTop="@dimen/margin_rm">
                 <ImageView
-                    android:layout_marginRight="3dp"
-                    android:src="@mipmap/ic_launcher"
+                    android:layout_marginRight="5dp"
+                    app:srcCompat="@drawable/ic_before_recomended"
                     android:layout_width="19dp"
-                    android:layout_height="19dp" />
+                    android:layout_height="19dp"
+                    />
                 <TextView
                     android:text="80"
                     android:id="@+id/tvLikeHomeMenu"
