@@ -1,15 +1,10 @@
 package id.trafood.trafood;
 
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.location.Location;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -18,13 +13,10 @@ import android.support.v7.widget.Toolbar;
 
 import android.view.View;
 
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationListener;
-import com.google.android.gms.location.LocationServices;
 
 
 import java.util.ArrayList;
@@ -173,10 +165,17 @@ public class HomeActivity extends AppCompatActivity /* implements GoogleApiClien
             fragments.add(homresto);
             fragments.add(homart);
 
+
             ArrayList<String> titles = new ArrayList<>();
             titles.add("MENU");
             titles.add("RESTAURANT");
             titles.add("ARTICLE");
+
+            /*ArrayList<ImageView> logo = new ArrayList<>();
+            logo.add(R.drawable.ic_search_kedai);
+            logo.add(R.drawable.ic_search_kedai);
+            logo.add(R.drawable.ic_search_kedai);*/
+
 
             HomePagerAdapater adapater = new HomePagerAdapater(getSupportFragmentManager(), fragments, titles);
 

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class HomePagerAdapater extends FragmentStatePagerAdapter {
     ArrayList<Fragment> fragmentArrayList;
     ArrayList<String> titles;
+    //ArrayList<Integer> logo;
 
     public HomePagerAdapater(FragmentManager fm, ArrayList<Fragment> fragmentArrayList, ArrayList<String> titles) {
         super(fm);
@@ -34,4 +35,5 @@ public class HomePagerAdapater extends FragmentStatePagerAdapter {
     public CharSequence getPageTitle(int position) {
         return titles.get(position);
     }
+
 }

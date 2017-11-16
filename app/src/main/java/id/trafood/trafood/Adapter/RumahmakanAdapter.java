@@ -56,27 +56,25 @@ public class RumahmakanAdapter extends RecyclerView.Adapter<RumahmakanAdapter.My
         int fTiga = mRumahmakanList.get(position).getFtiga() ;
         int fEmpat = mRumahmakanList.get(position).getFempat() ;
         int fLima = mRumahmakanList.get(position).getFlima() ;
-
+        holder.imageViewFasilitas.setVisibility(View.GONE);
+        holder.imageViewFSatu.setVisibility(View.GONE);
+        holder.imageViewFTiga.setVisibility(View.GONE);
+        holder.imageViewFEmpat.setVisibility(View.GONE);
+        holder.imageViewFlima.setVisibility(View.GONE);
         if (fasilitas == 1){
-            Picasso.with(holder.imageViewFasilitas.getContext())
-                    .load(Connect.IMAGE_ASSET+"signal.png").resize(70,70)
-                    .into(holder.imageViewFasilitas);
+            holder.imageViewFasilitas.setVisibility(View.VISIBLE);
         }
         if (fSatu ==1 ){
-            Picasso.with(holder.imageViewFSatu.getContext()).load(Connect.IMAGE_ASSET+"parkir.png").resize(70,70)
-                    .into(holder.imageViewFSatu);
+            holder.imageViewFSatu.setVisibility(View.VISIBLE);
         }
         if (fTiga ==1){
-            Picasso.with(holder.imageViewFTiga.getContext()).load(Connect.IMAGE_ASSET+"mushola.png").resize(70,70)
-                    .into(holder.imageViewFTiga);
+            holder.imageViewFTiga.setVisibility(View.VISIBLE);
         }
         if (fEmpat ==1){
-            Picasso.with(holder.imageViewFEmpat.getContext()).load(Connect.IMAGE_ASSET+"wc.png").resize(70,70)
-                    .into(holder.imageViewFEmpat);
+            holder.imageViewFEmpat.setVisibility(View.VISIBLE);
         }
         if (fLima ==1){
-            Picasso.with(holder.imageViewFlima.getContext()).load(Connect.IMAGE_ASSET+"smoking.png").resize(70,70)
-                    .into(holder.imageViewFlima);
+            holder.imageViewFlima.setVisibility(View.VISIBLE);
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
