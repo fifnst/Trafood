@@ -100,7 +100,7 @@ public class HomeActivity extends AppCompatActivity /* implements GoogleApiClien
 
     @Override
     public void onLocationChanged(Location location) {
-
+ s
     } */
 
     private void dataLatLng() {
