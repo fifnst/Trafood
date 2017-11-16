@@ -40,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     String location;
     private TextView mTextMessage,latitude, longitude;
 
+    //qqq
+
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
