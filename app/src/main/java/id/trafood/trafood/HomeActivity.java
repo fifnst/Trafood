@@ -31,7 +31,7 @@ import java.util.ArrayList;
 
 import id.trafood.trafood.Home.HomePagerAdapater;
 
-public class HomeActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
+public class HomeActivity extends AppCompatActivity /* implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener */ {
 
     private Location mLastlocation;
     private GoogleApiClient googleApiClient;
@@ -52,12 +52,12 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.C
         longitude = (TextView) findViewById(R.id.lngHome);
         location = (TextView) findViewById(R.id.tvLocation);
 
+        dataLatLng();
 
-
-        setUpGoogleApi();
+      //  setUpGoogleApi();
     }
 
-    private void setUpGoogleApi() {
+   /* private void setUpGoogleApi() {
         googleApiClient = new GoogleApiClient.Builder(this)
                 .addApi(LocationServices.API)
                 .addConnectionCallbacks(this)
@@ -101,14 +101,13 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.C
     @Override
     public void onLocationChanged(Location location) {
 
-    }
+    } */
 
     private void dataLatLng() {
         double latt = mLastlocation.getLatitude();
         double lngg = mLastlocation.getLongitude();
         final String lats = Double.toString(latt);
         final String longs = Double.toString(lngg);
-
 
         String message = getIntent().getStringExtra("MESSAGE");
         final String lat = getIntent().getStringExtra("LATS");
