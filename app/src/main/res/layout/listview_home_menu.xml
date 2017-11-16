@@ -35,7 +35,7 @@
                 android:layout_marginTop="@dimen/margin_rm">
                 <ImageView
                     android:layout_marginRight="5dp"
-                    app:srcCompat="@drawable/ic_before_recomended"
+                    app:srcCompat="@drawable/ic_recomended"
                     android:layout_width="19dp"
                     android:layout_height="19dp"
                     />
