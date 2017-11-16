@@ -104,10 +104,10 @@ public class HomeActivity extends AppCompatActivity /* implements GoogleApiClien
     } */
 
     private void dataLatLng() {
-        double latt = mLastlocation.getLatitude();
-        double lngg = mLastlocation.getLongitude();
-        final String lats = Double.toString(latt);
-        final String longs = Double.toString(lngg);
+       // double latt = mLastlocation.getLatitude();
+       // double lngg = mLastlocation.getLongitude();
+       // final String lats = Double.toString(latt);
+       // final String longs = Double.toString(lngg);
 
         String message = getIntent().getStringExtra("MESSAGE");
         final String lat = getIntent().getStringExtra("LATS");
@@ -130,19 +130,19 @@ public class HomeActivity extends AppCompatActivity /* implements GoogleApiClien
 
         Bundle bundle = new Bundle();
         location.setText(name);
-        latitude.setText(lats);
-        longitude.setText(longs);
+       // latitude.setText(lats);
+       // longitude.setText(longs);
         editText.setText(message);
         String key = editText.getText().toString();
 
-        if (getIntent().getStringExtra("NEAR") != null) {
+       /* if (getIntent().getStringExtra("NEAR") != null) {
             bundle.putString("LNGS", longitude.getText().toString());
             bundle.putString("LATS", latitude.getText().toString());
             bundle.putString("NAMES", "Nearest");
             bundle.putString("SEARCH", key);
             bundle.putString("LIKES", likes);
 
-        } else {
+        } else { */
             bundle.putString("SEARCH", key);
             bundle.putString("LATS", lat);
             bundle.putString("LNGS", lng);
@@ -160,7 +160,7 @@ public class HomeActivity extends AppCompatActivity /* implements GoogleApiClien
             bundle.putString("SMOKING", smoking);
             bundle.putString("WC", wc);
 
-        }
+       // }
             Home_menu_fragment homemenu = new Home_menu_fragment();
             Home_Restaurant_Fragment homresto = new Home_Restaurant_Fragment();
             Home_Article_Fragment homart = new Home_Article_Fragment();
@@ -192,13 +192,13 @@ public class HomeActivity extends AppCompatActivity /* implements GoogleApiClien
                 public void onClick(View view) {
                     String search = editText.getText().toString();
                     Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
-                    if (getIntent().getStringExtra("NEAR") != null) {
+                    /*if (getIntent().getStringExtra("NEAR") != null) {
                         intent.putExtra("LAT", latitude.getText().toString());
                         intent.putExtra("LNG", longitude.getText().toString());
-                    } else {
+                    } else { */
                         intent.putExtra("LAT", lat);
                         intent.putExtra("LNG", lng);
-                    }
+                   // }
                     intent.putExtra("SEARCH", search);
                     intent.putExtra("NAME", name);
                     HomeActivity.this.startActivity(intent);
@@ -223,13 +223,13 @@ public class HomeActivity extends AppCompatActivity /* implements GoogleApiClien
 
         String search = editText.getText().toString();
         Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
-        if (getIntent().getStringExtra("NEAR") != null) {
+       /* if (getIntent().getStringExtra("NEAR") != null) {
             intent.putExtra("LAT", latitude.getText().toString());
             intent.putExtra("LNG", longitude.getText().toString());
-        } else {
+        } else { */
             intent.putExtra("LAT", lat);
             intent.putExtra("LNG", lng);
-        }
+        // }
         intent.putExtra("SEARCH", search);
         intent.putExtra("NAME", name);
         HomeActivity.this.startActivity(intent);
@@ -263,7 +263,7 @@ public class HomeActivity extends AppCompatActivity /* implements GoogleApiClien
 
         String search = editText.getText().toString();
         Intent mIntent = new Intent(HomeActivity.this, FilterActivity.class);
-        if (getIntent().getStringExtra("NEAR") != null) {
+       /* if (getIntent().getStringExtra("NEAR") != null) {
             mIntent.putExtra("LAT", latitude.getText().toString());
             mIntent.putExtra("LNG", longitude.getText().toString());
             //sort
@@ -279,7 +279,7 @@ public class HomeActivity extends AppCompatActivity /* implements GoogleApiClien
             mIntent.putExtra("PARKIR", parkir);
             mIntent.putExtra("SMOKING", smoking);
             mIntent.putExtra("WC", wc);
-        } else {
+        } else { */
             mIntent.putExtra("LAT", lat);
             mIntent.putExtra("LNG", lng);
             //sort
@@ -295,7 +295,7 @@ public class HomeActivity extends AppCompatActivity /* implements GoogleApiClien
             mIntent.putExtra("PARKIR", parkir);
             mIntent.putExtra("SMOKING", smoking);
             mIntent.putExtra("WC", wc);
-        }
+        //}
         mIntent.putExtra("SEARCH", search);
         mIntent.putExtra("NAME", name);
         HomeActivity.this.startActivity(mIntent);
