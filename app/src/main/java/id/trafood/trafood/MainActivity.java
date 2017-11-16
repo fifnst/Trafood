@@ -27,7 +27,7 @@ import com.google.android.gms.location.LocationServices;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
+public class MainActivity extends AppCompatActivity /*implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener*/ {
 
     private Location mLastlocation;
     private GoogleApiClient googleApiClient;
@@ -47,12 +47,14 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
         latitude = (TextView) findViewById(R.id.tvLat);
         longitude = (TextView) findViewById(R.id.tvLng);
+        latitude.setText("-6.939008");
+        longitude.setText("107.740753");
 
-
-        setUpGoogleApi();
+        sendBundle();
+       // setUpGoogleApi();
     }
 
-    private void setUpGoogleApi() {
+  /*  private void setUpGoogleApi() {
         googleApiClient = new GoogleApiClient.Builder(this)
                 .addApi(LocationServices.API)
                 .addConnectionCallbacks(this)
@@ -92,8 +94,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         latitude.setText(lats);
         longitude.setText(longs);
 
-        sendBundle();
-    }
+
+    } */
 
     private void sendBundle() {
         String lats = latitude.getText().toString();
@@ -158,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         });
     }
 
-    @Override
+   /* @Override
     public void onConnectionSuspended(int i) {
 
     }
@@ -171,7 +173,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     @Override
     public void onLocationChanged(Location location) {
 
-    }
+    } */
 
     @Override
     public void onBackPressed() {
