@@ -5,7 +5,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
-
+import android.location.LocationListener;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -21,17 +21,14 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationListener;
-import com.google.android.gms.location.LocationServices;
 
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.ArrayList;
 
 import id.trafood.trafood.Home.HomePagerAdapater;
 
-public class HomeActivity extends AppCompatActivity /* implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener */ {
+public class HomeActivity extends AppCompatActivity  implements LocationListener  {
 
     private Location mLastlocation;
     private GoogleApiClient googleApiClient;
@@ -53,61 +50,30 @@ public class HomeActivity extends AppCompatActivity /* implements GoogleApiClien
         location = (TextView) findViewById(R.id.tvLocation);
 
         dataLatLng();
-
-      //  setUpGoogleApi();
-    }
-
-   /* private void setUpGoogleApi() {
-        googleApiClient = new GoogleApiClient.Builder(this)
-                .addApi(LocationServices.API)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .build();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        googleApiClient.connect();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        googleApiClient.disconnect();
-    }
-
-    @Override
-    public void onConnected(@Nullable Bundle bundle) {
-        if (mLastlocation == null ){
-            if (ActivityCompat.checkSelfPermission(
-                    this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
-                mLastlocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
-                dataLatLng();
-            }
-        }
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
+//d
     }
 
     @Override
     public void onLocationChanged(Location location) {
 
-    } */
+    }
+
+    @Override
+    public void onStatusChanged(String s, int i, Bundle bundle) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String s) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String s) {
+
+    }
 
     private void dataLatLng() {
-       // double latt = mLastlocation.getLatitude();
-       // double lngg = mLastlocation.getLongitude();
-       // final String lats = Double.toString(latt);uu
-       // final String longs = Double.toString(lngg);
 
         String message = getIntent().getStringExtra("MESSAGE");
         final String lat = getIntent().getStringExtra("LATS");
@@ -135,14 +101,14 @@ public class HomeActivity extends AppCompatActivity /* implements GoogleApiClien
         editText.setText(message);
         String key = editText.getText().toString();
 
-       /* if (getIntent().getStringExtra("NEAR") != null) {
+        if (getIntent().getStringExtra("NEAR") != null) {
             bundle.putString("LNGS", longitude.getText().toString());
             bundle.putString("LATS", latitude.getText().toString());
             bundle.putString("NAMES", "Nearest");
             bundle.putString("SEARCH", key);
             bundle.putString("LIKES", likes);
 
-        } else { */
+        } else {
             bundle.putString("SEARCH", key);
             bundle.putString("LATS", lat);
             bundle.putString("LNGS", lng);
@@ -160,7 +126,7 @@ public class HomeActivity extends AppCompatActivity /* implements GoogleApiClien
             bundle.putString("SMOKING", smoking);
             bundle.putString("WC", wc);
 
-       // }
+        }
             Home_menu_fragment homemenu = new Home_menu_fragment();
             Home_Restaurant_Fragment homresto = new Home_Restaurant_Fragment();
             Home_Article_Fragment homart = new Home_Article_Fragment();
@@ -192,13 +158,13 @@ public class HomeActivity extends AppCompatActivity /* implements GoogleApiClien
                 public void onClick(View view) {
                     String search = editText.getText().toString();
                     Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
-                    /*if (getIntent().getStringExtra("NEAR") != null) {
+                    if (getIntent().getStringExtra("NEAR") != null) {
                         intent.putExtra("LAT", latitude.getText().toString());
                         intent.putExtra("LNG", longitude.getText().toString());
-                    } else { */
+                    } else {
                         intent.putExtra("LAT", lat);
                         intent.putExtra("LNG", lng);
-                   // }
+                    }
                     intent.putExtra("SEARCH", search);
                     intent.putExtra("NAME", name);
                     HomeActivity.this.startActivity(intent);
@@ -223,13 +189,13 @@ public class HomeActivity extends AppCompatActivity /* implements GoogleApiClien
 
         String search = editText.getText().toString();
         Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
-       /* if (getIntent().getStringExtra("NEAR") != null) {
+        if (getIntent().getStringExtra("NEAR") != null) {
             intent.putExtra("LAT", latitude.getText().toString());
             intent.putExtra("LNG", longitude.getText().toString());
-        } else { */
+        } else {
             intent.putExtra("LAT", lat);
             intent.putExtra("LNG", lng);
-        // }
+         }
         intent.putExtra("SEARCH", search);
         intent.putExtra("NAME", name);
         HomeActivity.this.startActivity(intent);
@@ -307,4 +273,7 @@ public class HomeActivity extends AppCompatActivity /* implements GoogleApiClien
         Intent intent = new Intent(HomeActivity.this, MainActivity.class);
         HomeActivity.this.startActivity(intent);
     }
+
+
+
 }
