@@ -28,6 +28,7 @@ public class LocationActivity extends AppCompatActivity {
     public static LocationActivity la;
     ApiInterface apiInterface;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -16,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
+import android.view.LayoutInflater;
 import android.view.View;
 
 import android.widget.ImageView;
@@ -36,6 +37,13 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
     TextView editText,latitude, longitude,location;
     LocationManager locationManager;
 
+    private int[] tabIcons = {
+            R.drawable.ic_search_menu,
+            R.drawable.ic_search_kedai2,
+            R.drawable.ic_search_article
+    };
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,10 +61,32 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
         }
         if (getIntent().getStringExtra("NEAR") == null){
             dataLatLng();
+
+            //tabLayout = (TabLayout) findViewById(R.id.tlHome);
+            //tableLayout.setupWithViewPager(viewPager);
+            setupTabIcons();
         }
 
 
     }
+
+    private void setupTabIcons() {
+        tableLayout.getTabAt(0).setIcon(tabIcons[0]);
+        tableLayout.getTabAt(1).setIcon(tabIcons[1]);
+        tableLayout.getTabAt(2).setIcon(tabIcons[2]);
+    }
+
+    /*public void setupTabLayout(TabLayout tabLayout) {
+        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
+        //tabLayout.setupWithViewPager(ViewPager);
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_tabbar_library);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_tabbar_recents);
+        tabLayout.getTabAt(2).setIcon(R.drawable.ic_tabbar_favorites);
+        tabLayout.getTabAt(3).setIcon(R.drawable.ic_tabbar_notifications);
+        tabLayout.getTabAt(4).setIcon(R.drawable.ic_tabbar_settings);
+    }*/
+
 
     void getLocation() {
         try {
@@ -175,8 +205,8 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
 
             ArrayList<String> titles = new ArrayList<>();
             titles.add("MENU");
-            titles.add("RESTAURANT");
-            titles.add("ARTICLE");
+            titles.add("KEDAI");
+            titles.add("ARTIKEL");
 
             HomePagerAdapater adapater = new HomePagerAdapater(getSupportFragmentManager(), fragments, titles);
 
