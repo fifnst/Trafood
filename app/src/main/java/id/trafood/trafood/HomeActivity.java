@@ -263,7 +263,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
 
         String search = editText.getText().toString();
         Intent mIntent = new Intent(HomeActivity.this, FilterActivity.class);
-       /* if (getIntent().getStringExtra("NEAR") != null) {
+        if (getIntent().getStringExtra("NEAR") != null) {
             mIntent.putExtra("LAT", latitude.getText().toString());
             mIntent.putExtra("LNG", longitude.getText().toString());
             //sort
@@ -279,7 +279,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
             mIntent.putExtra("PARKIR", parkir);
             mIntent.putExtra("SMOKING", smoking);
             mIntent.putExtra("WC", wc);
-        } else { */
+        } else {
             mIntent.putExtra("LAT", lat);
             mIntent.putExtra("LNG", lng);
             //sort
@@ -295,7 +295,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
             mIntent.putExtra("PARKIR", parkir);
             mIntent.putExtra("SMOKING", smoking);
             mIntent.putExtra("WC", wc);
-        //}
+        }
         mIntent.putExtra("SEARCH", search);
         mIntent.putExtra("NAME", name);
         HomeActivity.this.startActivity(mIntent);
