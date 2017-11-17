@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Trafood</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Vaforit</string>
+    <string name="title_dashboard">Vaforite</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_profile">Profile</string>
     <string name="title_activity_home_view_pager__fragment">HomeViewPager_Fragment</string>
@@ -53,6 +53,13 @@
     <string name="hubungi_trf">Hubungi Trafood</string>
     <string name="othermenus">Menu Lain</string>
     <string name="spasi">  </string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="tidakpunyaakun">Dont have Account?</string>
+    <string name="signin">Sign in</string>
+    <string name="signout">Sign Out</string>
+    <string name="alreadyhaveaccount">Already Have Accoun?t</string>
 
     <!-- Filter -->
     <string name="lokasi_filter">Lokasi</string>
@@ -64,23 +71,24 @@
     <string name="kategori_filter">Kategori</string>
     <string name="fasilitas">Fasilitas</string>
 
+
     <!-- harga -->
     <string-array name="mulai_harga">
-    <item>Mulai harga</item>
-    <item>0</item>
-    <item>5000</item>
-    <item>10000</item>
-    <item>15000</item>
-    <item>20000</item>
-    <item>30000</item>
-    <item>40000</item>
-    <item>50000</item>
-    <item>60000</item>
-    <item>70000</item>
-    <item>80000</item>
-    <item>90000</item>
-    <item>100000</item>
-    <item>150000</item>
+        <item>Mulai harga</item>
+        <item>0</item>
+        <item>5000</item>
+        <item>10000</item>
+        <item>15000</item>
+        <item>20000</item>
+        <item>30000</item>
+        <item>40000</item>
+        <item>50000</item>
+        <item>60000</item>
+        <item>70000</item>
+        <item>80000</item>
+        <item>90000</item>
+        <item>100000</item>
+        <item>150000</item>
     </string-array>
     <string-array name="sampai_harga">
         <item>Sampai harga</item>

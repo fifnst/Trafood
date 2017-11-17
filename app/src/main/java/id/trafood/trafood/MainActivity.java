@@ -26,6 +26,9 @@ import android.widget.Toast;
 import java.util.List;
 import java.util.Locale;
 
+import id.trafood.trafood.Home.Fragment_Profil;
+import id.trafood.trafood.Home.Fragment_Vaforite;
+
 public class MainActivity extends AppCompatActivity  implements LocationListener {
 
 
@@ -159,11 +162,11 @@ public class MainActivity extends AppCompatActivity  implements LocationListener
                     case R.id.navigation_home:
                         fragment = fraghom;
                         break;
-                    case R.id.navigation_dashboard:
-                        fragment = new Home_Restaurant_Fragment();
+                    case R.id.navigation_favorite:
+                        fragment = new Fragment_Vaforite();
                         break;
-                    case R.id.navigation_notifications:
-                        fragment = new Home_Article_Fragment();
+                    case R.id.navigation_profil:
+                        fragment = new Fragment_Profil();
                         break;
                 }
                 final FragmentTransaction transaction = fragmentManager.beginTransaction();
