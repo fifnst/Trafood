@@ -37,7 +37,7 @@
     <!-- info menu -->
     <string name="rekomendasi">Rekomendasi</string>
     <string name="kunjungi">Kunjungi Kedai</string>
-    <string name="lokasi">location</string>
+    <string name="lokasi">Lokasi</string>
     <string name="kategori">Kategori Kedai</string>
     <string name="tag">Tags :</string>
     <string name="dilihat">Dilihat</string>
