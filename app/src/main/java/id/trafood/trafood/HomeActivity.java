@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 import id.trafood.trafood.Home.HomePagerAdapater;
 
-public class HomeActivity extends AppCompatActivity /* implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener */ {
+public class HomeActivity extends AppCompatActivity /* implqements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener */ {
 
     private Location mLastlocation;
     private GoogleApiClient googleApiClient;
