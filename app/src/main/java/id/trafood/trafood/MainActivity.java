@@ -1,44 +1,41 @@
 package id.trafood.trafood;
 
 import android.Manifest;
-import android.content.Intent;
+import android.content.Context;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Window;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationListener;
-import com.google.android.gms.location.LocationServices;
+import java.util.List;
+import java.util.Locale;
 
-import java.util.ArrayList;
+public class MainActivity extends AppCompatActivity  implements LocationListener {
 
-public class MainActivity extends AppCompatActivity /*implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener*/ {
 
-    private Location mLastlocation;
-    private GoogleApiClient googleApiClient;
-    private TextView getmTextMessage;
-    ViewPager myviewPagerHome;
-    TabLayout mytabLayoutHome;
     private BottomNavigationView bottomNavigationView;
     private Fragment fragment;
     private FragmentManager fragmentManager;
-    String location;
-    private TextView mTextMessage,latitude, longitude;
+    private TextView latitude, longitude, address, wait;
+    LocationManager locationManager;
+    String locations;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
@@ -47,67 +44,84 @@ public class MainActivity extends AppCompatActivity /*implements GoogleApiClient
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
         latitude = (TextView) findViewById(R.id.tvLat);
         longitude = (TextView) findViewById(R.id.tvLng);
-        latitude.setText("-6.939008");
-        longitude.setText("107.740753");
+        address = (TextView) findViewById(R.id.tvgoogleaddress);
+        wait = (TextView) findViewById(R.id.waiting);
+        progressBar = (ProgressBar) findViewById(R.id.pbPrgress);
 
-        sendBundle();
-       // setUpGoogleApi(); dm
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, 101);
+
+        }
+        if (getIntent().getStringExtra("LNGS") == null){
+            getLocation();
+        }
+        if (getIntent().getStringExtra("LNGS") != null){
+            sendBundle();
+        }
+
+
     }
 
-  /*  private void setUpGoogleApi() {
-        googleApiClient = new GoogleApiClient.Builder(this)
-                .addApi(LocationServices.API)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .build();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        googleApiClient.connect();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        googleApiClient.disconnect();
-    }
-
-    @Override
-    public void onConnected(@Nullable Bundle bundle) {
-        if (mLastlocation == null ){
-            if (ActivityCompat.checkSelfPermission(
-                    this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
-                mLastlocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
-                dataLatLng();
-
-            }
+    void getLocation() {
+        try {
+            locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 5, this);
+        }
+        catch(SecurityException e) {
+            e.printStackTrace();
         }
     }
 
-    private void dataLatLng() {
-        double latt = mLastlocation.getLatitude();
-        double lngg = mLastlocation.getLongitude();
+    @Override
+    public void onLocationChanged(Location location) {
+        double latt = location.getLatitude();
+        double lngg = location.getLongitude();
         String lats = Double.toString(latt);
         String longs = Double.toString(lngg);
         latitude.setText(lats);
         longitude.setText(longs);
 
+        //latitude.setText("Latitude: " + location.getLatitude() + "\n Longitude: " + location.getLongitude());
+        //longitude.setText("107.740753");
+        try {
+            Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+            List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+            address.setText(addresses.get(0).getAddressLine(0));
+        } catch (Exception e) {
+        }
+        sendBundle();
+    }
 
-    } */
+    @Override
+    public void onStatusChanged(String s, int i, Bundle bundle) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String s) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String s) {
+        Toast.makeText(MainActivity.this, "Please Enable GPS and Internet", Toast.LENGTH_SHORT).show();
+    }
 
     private void sendBundle() {
+        wait.setVisibility(View.GONE);
+        progressBar.setVisibility(View.GONE);
         String lats = latitude.getText().toString();
         String lngs = longitude.getText().toString();
+        String road = address.getText().toString();
 
         Bundle bundle = new Bundle();
 
-        if (getIntent().getStringExtra("NEAR") != null){
+       /* if (getIntent().getStringExtra("NEAR") != null){
             bundle.putString("LNG", lngs);
             bundle.putString("LAT", lats );
-            bundle.putString("NAME", "Nearest");
-        }
+            bundle.putString("NAME", road);
+        } */
 
         if (getIntent().getStringExtra("LNGS") != null){
             String lng = getIntent().getStringExtra("LNGS");
@@ -126,16 +140,15 @@ public class MainActivity extends AppCompatActivity /*implements GoogleApiClient
             bundle.putString("LAT", lats );
         }
         if (getIntent().getStringExtra("NAME") != null){
-            location = getIntent().getStringExtra("NAME");
-            bundle.putString("NAME", location);
+            locations = getIntent().getStringExtra("NAME");
+            bundle.putString("NAME", locations);
         }
         if (getIntent().getStringExtra("NAME") == null){
-            bundle.putString("NAME", "Nearest");
+            bundle.putString("NAME", "lah");
         }
 
         final Home_fragmet fraghom = new Home_fragmet();
         fraghom.setArguments(bundle);
-        //bottomNavigationView.inflateMenu(R.menu.navigation);
         fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content, fraghom).commit();
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -160,24 +173,11 @@ public class MainActivity extends AppCompatActivity /*implements GoogleApiClient
         });
     }
 
-   /* @Override
-    public void onConnectionSuspended(int i) {
-
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
-    }
-
-    @Override
-    public void onLocationChanged(Location location) {
-
-    } */
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         finishAffinity();
     }
+
+
 }
