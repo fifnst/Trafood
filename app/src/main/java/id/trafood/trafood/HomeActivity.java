@@ -56,7 +56,6 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
         }
 
 
-      //  setUpGoogleApi();
     }
 
     void getLocation() {
