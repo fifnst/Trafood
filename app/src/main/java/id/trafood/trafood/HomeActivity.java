@@ -106,7 +106,7 @@ public class HomeActivity extends AppCompatActivity /* implements GoogleApiClien
     private void dataLatLng() {
        // double latt = mLastlocation.getLatitude();
        // double lngg = mLastlocation.getLongitude();
-       // final String lats = Double.toString(latt);
+       // final String lats = Double.toString(latt);u
        // final String longs = Double.toString(lngg);
 
         String message = getIntent().getStringExtra("MESSAGE");
