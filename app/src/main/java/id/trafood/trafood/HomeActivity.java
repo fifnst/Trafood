@@ -1,9 +1,14 @@
 package id.trafood.trafood;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -15,22 +20,21 @@ import android.view.View;
 
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.google.android.gms.common.api.GoogleApiClient;
+import android.widget.Toast;
 
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 import id.trafood.trafood.Home.HomePagerAdapater;
 
-public class HomeActivity extends AppCompatActivity /* implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener */ {
+public class HomeActivity extends AppCompatActivity implements LocationListener {
 
-    private Location mLastlocation;
-    private GoogleApiClient googleApiClient;
     ViewPager viewPager;
     TabLayout tableLayout;
     TextView editText,latitude, longitude,location;
-    Toolbar toolbar;
+    LocationManager locationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,56 +48,60 @@ public class HomeActivity extends AppCompatActivity /* implements GoogleApiClien
         longitude = (TextView) findViewById(R.id.lngHome);
         location = (TextView) findViewById(R.id.tvLocation);
 
-        dataLatLng();
+        if (getIntent().getStringExtra("NEAR") != null) {
+            getLocation();
+        }
+        if (getIntent().getStringExtra("NEAR") == null){
+            dataLatLng();
+        }
+
 
       //  setUpGoogleApi();
     }
 
-   /* private void setUpGoogleApi() {
-        googleApiClient = new GoogleApiClient.Builder(this)
-                .addApi(LocationServices.API)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .build();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        googleApiClient.connect();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        googleApiClient.disconnect();
-    }
-
-    @Override
-    public void onConnected(@Nullable Bundle bundle) {
-        if (mLastlocation == null ){
-            if (ActivityCompat.checkSelfPermission(
-                    this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
-                mLastlocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
-                dataLatLng();
-            }
+    void getLocation() {
+        try {
+            locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 5, this);
+        }
+        catch(SecurityException e) {
+            e.printStackTrace();
         }
     }
 
     @Override
-    public void onConnectionSuspended(int i) {
-
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
-    }
-
-    @Override
     public void onLocationChanged(Location location) {
+        double latt = location.getLatitude();
+        double lngg = location.getLongitude();
+        String lats = Double.toString(latt);
+        String longs = Double.toString(lngg);
+        latitude.setText(lats);
+        longitude.setText(longs);
 
-    } */
+        //latitude.setText("Latitude: " + location.getLatitude() + "\n Longitude: " + location.getLongitude());
+        //longitude.setText("107.740753");
+        try {
+            Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+            List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+        } catch (Exception e) {
+        }
+        dataLatLng();
+    }
+
+    @Override
+    public void onStatusChanged(String s, int i, Bundle bundle) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String s) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String s) {
+        Toast.makeText(HomeActivity.this, "Please Enable GPS and Internet", Toast.LENGTH_SHORT).show();
+    }
 
     private void dataLatLng() {
        // double latt = mLastlocation.getLatitude();
@@ -127,14 +135,14 @@ public class HomeActivity extends AppCompatActivity /* implements GoogleApiClien
         editText.setText(message);
         String key = editText.getText().toString();
 
-       /* if (getIntent().getStringExtra("NEAR") != null) {
+        if (getIntent().getStringExtra("NEAR") != null) {
             bundle.putString("LNGS", longitude.getText().toString());
             bundle.putString("LATS", latitude.getText().toString());
             bundle.putString("NAMES", "Nearest");
             bundle.putString("SEARCH", key);
             bundle.putString("LIKES", likes);
 
-        } else { */
+        } else {
             bundle.putString("SEARCH", key);
             bundle.putString("LATS", lat);
             bundle.putString("LNGS", lng);
@@ -152,7 +160,7 @@ public class HomeActivity extends AppCompatActivity /* implements GoogleApiClien
             bundle.putString("SMOKING", smoking);
             bundle.putString("WC", wc);
 
-       // }
+        }
             Home_menu_fragment homemenu = new Home_menu_fragment();
             Home_Restaurant_Fragment homresto = new Home_Restaurant_Fragment();
             Home_Article_Fragment homart = new Home_Article_Fragment();
@@ -171,12 +179,6 @@ public class HomeActivity extends AppCompatActivity /* implements GoogleApiClien
             titles.add("RESTAURANT");
             titles.add("ARTICLE");
 
-            /*ArrayList<ImageView> logo = new ArrayList<>();
-            logo.add(R.drawable.ic_search_kedai);
-            logo.add(R.drawable.ic_search_kedai);
-            logo.add(R.drawable.ic_search_kedai);*/
-
-
             HomePagerAdapater adapater = new HomePagerAdapater(getSupportFragmentManager(), fragments, titles);
 
             viewPager.setAdapter(adapater);
@@ -191,13 +193,13 @@ public class HomeActivity extends AppCompatActivity /* implements GoogleApiClien
                 public void onClick(View view) {
                     String search = editText.getText().toString();
                     Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
-                    /*if (getIntent().getStringExtra("NEAR") != null) {
+                    if (getIntent().getStringExtra("NEAR") != null) {
                         intent.putExtra("LAT", latitude.getText().toString());
                         intent.putExtra("LNG", longitude.getText().toString());
-                    } else { */
+                    } else {
                         intent.putExtra("LAT", lat);
                         intent.putExtra("LNG", lng);
-                   // }
+                   }
                     intent.putExtra("SEARCH", search);
                     intent.putExtra("NAME", name);
                     HomeActivity.this.startActivity(intent);
@@ -222,13 +224,13 @@ public class HomeActivity extends AppCompatActivity /* implements GoogleApiClien
 
         String search = editText.getText().toString();
         Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
-       /* if (getIntent().getStringExtra("NEAR") != null) {
+        if (getIntent().getStringExtra("NEAR") != null) {
             intent.putExtra("LAT", latitude.getText().toString());
             intent.putExtra("LNG", longitude.getText().toString());
-        } else { */
+        } else {
             intent.putExtra("LAT", lat);
             intent.putExtra("LNG", lng);
-        // }
+         }
         intent.putExtra("SEARCH", search);
         intent.putExtra("NAME", name);
         HomeActivity.this.startActivity(intent);
@@ -306,4 +308,6 @@ public class HomeActivity extends AppCompatActivity /* implements GoogleApiClien
         Intent intent = new Intent(HomeActivity.this, MainActivity.class);
         HomeActivity.this.startActivity(intent);
     }
+
+
 }
