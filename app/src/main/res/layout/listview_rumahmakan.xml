@@ -39,15 +39,19 @@
                 android:layout_height="wrap_content"
                 android:padding="2dp">
                 <ImageView
-                    android:layout_marginRight="3dp"
-                    android:src="@mipmap/ic_launcher"
+                    android:layout_marginLeft="@dimen/margin_rm"
+                    android:src="@drawable/ic_star"
                     android:layout_width="19dp"
                     android:layout_height="19dp" />
                 <TextView
                     android:text="80"
+                    android:layout_marginTop="@dimen/margin_logo_kecil"
+                    android:layout_marginLeft="@dimen/margin_logo_kecil"
+                    android:layout_marginRight="@dimen/margin_rm"
                     android:textColor="@color/white"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:textSize="13dp"/>
             </LinearLayout>
 
 
@@ -99,50 +103,57 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <ImageView
+                android:id="@+id/ivFasilitas"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginBottom="@dimen/fasility"
                 android:layout_marginLeft="@dimen/fasility"
                 android:layout_marginRight="@dimen/fasiltytwo"
-                android:layout_marginBottom="@dimen/fasility"
-                android:id="@+id/ivFasilitas"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="fitXY" />
+                android:scaleType="fitXY"
+                android:src="@drawable/wifi" />
 
 
             <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginLeft="@dimen/fasiltytwo"
                 android:layout_marginRight="@dimen/fasiltytwo"
                 android:layout_marginBottom="@dimen/fasility"
                 android:id="@+id/ivFSatu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="fitXY" />
+                android:scaleType="fitXY"
+                android:src="@drawable/parking_area"/>
 
             <ImageView
                 android:layout_marginLeft="@dimen/fasiltytwo"
                 android:layout_marginRight="@dimen/fasiltytwo"
                 android:layout_marginBottom="@dimen/fasility"
                 android:id="@+id/ivFTiga"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="fitXY" />
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/mosque"/>
 
             <ImageView
                 android:layout_marginLeft="@dimen/fasiltytwo"
                 android:layout_marginRight="@dimen/fasiltytwo"
                 android:layout_marginBottom="@dimen/fasility"
                 android:id="@+id/ivFEmpat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="fitXY" />
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/toilet"/>
+
             <ImageView
                 android:layout_marginLeft="@dimen/fasiltytwo"
                 android:layout_marginRight="@dimen/fasiltytwo"
                 android:layout_marginBottom="@dimen/fasility"
                 android:id="@+id/ivFLima"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="fitXY" />
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/smoking_area"/>
 
         </LinearLayout>
 

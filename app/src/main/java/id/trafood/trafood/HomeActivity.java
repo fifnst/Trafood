@@ -2,15 +2,10 @@ package id.trafood.trafood;
 
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -26,21 +21,24 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationServices;
 
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 
 import id.trafood.trafood.Home.HomePagerAdapater;
 
-public class HomeActivity extends AppCompatActivity  implements LocationListener {
+public class HomeActivity extends AppCompatActivity /* implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener */ {
 
-    LocationManager locationManager;
+    private Location mLastlocation;
+    private GoogleApiClient googleApiClient;
     ViewPager viewPager;
     TabLayout tableLayout;
     TextView editText,latitude, longitude,location;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,62 +51,63 @@ public class HomeActivity extends AppCompatActivity  implements LocationListener
         latitude = (TextView) findViewById(R.id.latHome);
         longitude = (TextView) findViewById(R.id.lngHome);
         location = (TextView) findViewById(R.id.tvLocation);
-        if (getIntent().getStringExtra("NEAR") != null){
-            getLocation();
+
+        dataLatLng();
+
+      //  setUpGoogleApi();
+    }
+
+   /* private void setUpGoogleApi() {
+        googleApiClient = new GoogleApiClient.Builder(this)
+                .addApi(LocationServices.API)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .build();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        googleApiClient.connect();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        googleApiClient.disconnect();
+    }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+        if (mLastlocation == null ){
+            if (ActivityCompat.checkSelfPermission(
+                    this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+                mLastlocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
+                dataLatLng();
+            }
         }
-        if (getIntent().getStringExtra("NEAR") == null){
-            dataLatLng();
-        }
+    }
 
-
-
+    @Override
+    public void onConnectionSuspended(int i) {
 
     }
 
-    void getLocation() {
-        try {
-            locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 5, this);
-        }
-        catch(SecurityException e) {
-            e.printStackTrace();
-        }
-    }
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
+    }
 
     @Override
     public void onLocationChanged(Location location) {
-        double latt = location.getLatitude();
-        double lngg = location.getLongitude();
-        String lats = Double.toString(latt);
-        String longs = Double.toString(lngg);
-        latitude.setText(lats);
-        longitude.setText(longs);
 
-        try {
-            Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-            List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-        } catch (Exception e) {
-        }
-        dataLatLng();
-    }
-
-    @Override
-    public void onStatusChanged(String s, int i, Bundle bundle) {
-
-    }
-
-    @Override
-    public void onProviderEnabled(String s) {
-
-    }
-
-    @Override
-    public void onProviderDisabled(String s) {
-
-    }
+    } */
 
     private void dataLatLng() {
+       // double latt = mLastlocation.getLatitude();
+       // double lngg = mLastlocation.getLongitude();
+       // final String lats = Double.toString(latt);
+       // final String longs = Double.toString(lngg);
 
         String message = getIntent().getStringExtra("MESSAGE");
         final String lat = getIntent().getStringExtra("LATS");
@@ -136,14 +135,14 @@ public class HomeActivity extends AppCompatActivity  implements LocationListener
         editText.setText(message);
         String key = editText.getText().toString();
 
-        if (getIntent().getStringExtra("NEAR") != null) {
+       /* if (getIntent().getStringExtra("NEAR") != null) {
             bundle.putString("LNGS", longitude.getText().toString());
             bundle.putString("LATS", latitude.getText().toString());
             bundle.putString("NAMES", "Nearest");
             bundle.putString("SEARCH", key);
             bundle.putString("LIKES", likes);
 
-        } else {
+        } else { */
             bundle.putString("SEARCH", key);
             bundle.putString("LATS", lat);
             bundle.putString("LNGS", lng);
@@ -161,7 +160,7 @@ public class HomeActivity extends AppCompatActivity  implements LocationListener
             bundle.putString("SMOKING", smoking);
             bundle.putString("WC", wc);
 
-        }
+       // }
             Home_menu_fragment homemenu = new Home_menu_fragment();
             Home_Restaurant_Fragment homresto = new Home_Restaurant_Fragment();
             Home_Article_Fragment homart = new Home_Article_Fragment();
@@ -224,13 +223,13 @@ public class HomeActivity extends AppCompatActivity  implements LocationListener
 
         String search = editText.getText().toString();
         Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
-        if (getIntent().getStringExtra("NEAR") != null) {
+       /* if (getIntent().getStringExtra("NEAR") != null) {
             intent.putExtra("LAT", latitude.getText().toString());
             intent.putExtra("LNG", longitude.getText().toString());
-        } else {
+        } else { */
             intent.putExtra("LAT", lat);
             intent.putExtra("LNG", lng);
-         }
+        // }
         intent.putExtra("SEARCH", search);
         intent.putExtra("NAME", name);
         HomeActivity.this.startActivity(intent);
@@ -264,7 +263,7 @@ public class HomeActivity extends AppCompatActivity  implements LocationListener
 
         String search = editText.getText().toString();
         Intent mIntent = new Intent(HomeActivity.this, FilterActivity.class);
-        if (getIntent().getStringExtra("NEAR") != null) {
+       /* if (getIntent().getStringExtra("NEAR") != null) {
             mIntent.putExtra("LAT", latitude.getText().toString());
             mIntent.putExtra("LNG", longitude.getText().toString());
             //sort
@@ -280,7 +279,7 @@ public class HomeActivity extends AppCompatActivity  implements LocationListener
             mIntent.putExtra("PARKIR", parkir);
             mIntent.putExtra("SMOKING", smoking);
             mIntent.putExtra("WC", wc);
-        } else {
+        } else { */
             mIntent.putExtra("LAT", lat);
             mIntent.putExtra("LNG", lng);
             //sort
@@ -296,7 +295,7 @@ public class HomeActivity extends AppCompatActivity  implements LocationListener
             mIntent.putExtra("PARKIR", parkir);
             mIntent.putExtra("SMOKING", smoking);
             mIntent.putExtra("WC", wc);
-        }
+        //}
         mIntent.putExtra("SEARCH", search);
         mIntent.putExtra("NAME", name);
         HomeActivity.this.startActivity(mIntent);
@@ -308,6 +307,4 @@ public class HomeActivity extends AppCompatActivity  implements LocationListener
         Intent intent = new Intent(HomeActivity.this, MainActivity.class);
         HomeActivity.this.startActivity(intent);
     }
-
-
 }

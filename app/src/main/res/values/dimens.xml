@@ -7,7 +7,7 @@
     <dimen name="fasility">5dp</dimen>
     <dimen name="fasiltytwo">1.5dp</dimen>
     <dimen name="fasilitysize">20dp</dimen>
-    <dimen name="font_pricesize">20dp</dimen>
+    <dimen name="font_pricesize">18dp</dimen>
     <dimen name="jarak_antar_gridview">1dp</dimen>
     <dimen name="font_namerm_size">14dp</dimen>
     <dimen name="font_kategori_rm">14dp</dimen>
