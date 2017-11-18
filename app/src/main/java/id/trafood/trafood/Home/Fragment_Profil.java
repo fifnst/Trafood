@@ -19,7 +19,7 @@ public class Fragment_Profil extends Fragment {
 
     Button login;
     public Fragment_Profil() {
-        // Required empty public constructor
+        // Required empty public constructor.
     }
 
 
