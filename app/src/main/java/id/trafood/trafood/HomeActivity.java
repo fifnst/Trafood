@@ -266,8 +266,22 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
     }
 
     public void back(View view) {
-        Intent mIntent = new Intent(HomeActivity.this, MainActivity.class);
-        HomeActivity.this.startActivity(mIntent);
+        String lat = getIntent().getStringExtra("LATS");
+        String lng = getIntent().getStringExtra("LNGS");
+        String name = getIntent().getStringExtra("NAMES");
+
+        String search = editText.getText().toString();
+        Intent intent = new Intent(HomeActivity.this, MainActivity.class);
+        if (getIntent().getStringExtra("NEAR") != null) {
+            intent.putExtra("LATS", latitude.getText().toString());
+            intent.putExtra("LNGS", longitude.getText().toString());
+        } else {
+            intent.putExtra("LATS", lat);
+            intent.putExtra("LNGS", lng);
+        }
+        intent.putExtra("SEARCH", search);
+        intent.putExtra("NAME", name);
+        HomeActivity.this.startActivity(intent);
 
     }
 
@@ -334,7 +348,21 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        String lat = getIntent().getStringExtra("LATS");
+        String lng = getIntent().getStringExtra("LNGS");
+        String name = getIntent().getStringExtra("NAMES");
+
+        String search = editText.getText().toString();
         Intent intent = new Intent(HomeActivity.this, MainActivity.class);
+        if (getIntent().getStringExtra("NEAR") != null) {
+            intent.putExtra("LATS", latitude.getText().toString());
+            intent.putExtra("LNGS", longitude.getText().toString());
+        } else {
+            intent.putExtra("LATS", lat);
+            intent.putExtra("LNGS", lng);
+        }
+        intent.putExtra("SEARCH", search);
+        intent.putExtra("NAME", name);
         HomeActivity.this.startActivity(intent);
     }
 

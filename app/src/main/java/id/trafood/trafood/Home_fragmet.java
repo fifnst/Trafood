@@ -101,17 +101,19 @@ public class Home_fragmet extends Fragment {
         final String lngs = bundle.getString("LNG");
         final String lats = bundle.getString("LAT");
         location.setText(name);
+        lat.setText(lats);
+        lng.setText(lngs);
         progressBar = (ProgressBar) view.findViewById(R.id.pbHomeMenu);
         searchbar = (ImageView) view.findViewById(R.id.barseacrh);
         searchbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), LocationSearch.class);
-                /*intent.putExtra("SEARCH", "");
-                intent.putExtra("LAT", lngs);
-                intent.putExtra("LNG", lats);
-                intent.putExtra("NAME", "Select Location");*/
-                Toast.makeText(view.getContext(), "Select location first", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(view.getContext(), SearchActivity.class);
+                intent.putExtra("SEARCH", "");
+                intent.putExtra("LAT", lat.getText().toString());
+                intent.putExtra("LNG", lng.getText().toString());
+                intent.putExtra("NAME", location.getText().toString());
+               // Toast.makeText(view.getContext(), "Select location first", Toast.LENGTH_LONG).show();
                 view.getContext().startActivity(intent);
             }
         });

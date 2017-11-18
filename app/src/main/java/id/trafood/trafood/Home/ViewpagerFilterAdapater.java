@@ -12,12 +12,12 @@ import java.util.ArrayList;
 
 public class ViewpagerFilterAdapater extends FragmentStatePagerAdapter {
     ArrayList<Fragment> fragmentArrayList;
-    ArrayList<String> title;
+   // ArrayList<String> title;
 
-    public ViewpagerFilterAdapater(FragmentManager fm, ArrayList<Fragment> fragmentArrayList, ArrayList<String> title) {
+    public ViewpagerFilterAdapater(FragmentManager fm, ArrayList<Fragment> fragmentArrayList/*, ArrayList<String> title*/) {
         super(fm);
         this.fragmentArrayList = fragmentArrayList;
-        this.title = title;
+       // this.title = title;
     }
 
     @Override
@@ -30,8 +30,8 @@ public class ViewpagerFilterAdapater extends FragmentStatePagerAdapter {
         return fragmentArrayList.size();
     }
 
-    @Override
+  /*  @Override
     public CharSequence getPageTitle(int position) {
         return title.get(position);
-    }
+    }*/
 }

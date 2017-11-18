@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity  implements LocationListener
             bundle.putString("NAME", locations);
         }
         if (getIntent().getStringExtra("NAME") == null){
-            bundle.putString("NAME", "lah");
+            bundle.putString("NAME", "Nearest");
         }
 
         final Home_fragmet fraghom = new Home_fragmet();

@@ -101,12 +101,12 @@ public class FilterMenu extends Fragment {
             cbMushola.setTextColor(getResources().getColor(R.color.green));
         }
         if (parkir != null){
-            cbParkir.setChecked(true);
-            cbParkir.setTextColor(getResources().getColor(R.color.green));
-        }
-        if (music != null){
             cbMusic.setChecked(true);
             cbMusic.setTextColor(getResources().getColor(R.color.green));
+        }
+        if (music != null){
+            cbParkir.setChecked(true);
+            cbParkir.setTextColor(getResources().getColor(R.color.green));
         }
         if (smoking != null){
             cbSmoking.setChecked(true);

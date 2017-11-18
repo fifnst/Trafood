@@ -16,7 +16,7 @@ import id.trafood.trafood.Rumahmakan.Adapter.RmViewPagerAdapter;
 
 public class FilterActivity extends AppCompatActivity {
 
-    TabLayout tabLayout;
+   // TabLayout tabLayout;
     ViewPager viewPager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +25,7 @@ public class FilterActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Filter");
 
-        tabLayout = (TabLayout) findViewById(R.id.tlFilter);
+       // tabLayout = (TabLayout) findViewById(R.id.tlFilter);
         viewPager = (ViewPager) findViewById(R.id.vpFilter);
         String lats = getIntent().getStringExtra("LAT");
         String lngs = getIntent().getStringExtra("LNG");
@@ -75,14 +75,14 @@ public class FilterActivity extends AppCompatActivity {
         fragments.add(filnu);
         //fragments.add(filrm);
 
-        ArrayList<String> title = new ArrayList<>();
-        title.add("Menu & rumhamakan");
+      //  ArrayList<String> title = new ArrayList<>();
+      //  title.add("Menu & rumhamakan");
         //title.add("Rumah Makan");
 
-        ViewpagerFilterAdapater adapater = new ViewpagerFilterAdapater(getSupportFragmentManager(), fragments, title);
+        ViewpagerFilterAdapater adapater = new ViewpagerFilterAdapater(getSupportFragmentManager(), fragments/*, title*/);
 
         viewPager.setAdapter(adapater);
-        tabLayout.setupWithViewPager(viewPager);
+       // tabLayout.setupWithViewPager(viewPager);
 
     }
 
