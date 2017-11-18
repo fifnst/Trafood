@@ -39,16 +39,16 @@ public class DetailMenuAdapter extends RecyclerView.Adapter<DetailMenuAdapter.My
         holder.tvNamaRm.setText(mMenu.get(position).getNamarm());
         holder.tvAlamat.setText(mMenu.get(position).getAlamat());
         holder.tvKategoriRm.setText(mMenu.get(position).getKategorirm());
-        //holder.tvTagMenu.setText(mMenu.get(position).getTag());
+        holder.tvTagMenu.setText(mMenu.get(position).getTag());
         holder.tvDilihat.setText(mMenu.get(position).getDilihat());
 
-        String tag = mMenu.get(position).getTag();
+        /*String tag = mMenu.get(position).getTag();
         ArrayList<String> StringArray = new ArrayList<String>();
         String[] kata = tag.split(" ");
 
         for(int i=0; i< kata.length; i++){
             holder.textViewArray[i].setText(kata[i]);
-        }
+        }*/
 
     }
 
@@ -58,8 +58,8 @@ public class DetailMenuAdapter extends RecyclerView.Adapter<DetailMenuAdapter.My
     }
 
     public class MyHolder extends RecyclerView.ViewHolder {
-        public TextView tvNamamenu, tvDeskrispisMenu, tvLike, tvNamaRm, tvAlamat,tvTagMenu, tvKategoriRm, tvDilihat;
-        public TextView[] textViewArray = new TextView[10];
+        public TextView tvNamamenu, tvDeskrispisMenu, tvLike, tvNamaRm, tvAlamat,tvTagMenu,tvKategoriRm, tvDilihat;
+        //public TextView[] textViewArray = new TextView[10];
 
         public MyHolder(View itemView) {
             super(itemView);
@@ -73,12 +73,12 @@ public class DetailMenuAdapter extends RecyclerView.Adapter<DetailMenuAdapter.My
             tvDilihat = (TextView) itemView.findViewById(R.id.tvdilihatDetail);
 
 
-            int textViewCount = 10;
-            TextView[] textViewArray = new TextView[10];
+            /*int textViewCount = 10;
+            //TextView[] textViewArray = new TextView[10];
 
             for(int i = 0; i < textViewCount; i++) {
                 textViewArray[i] = itemView.findViewById(R.id.tvTagMenu);
-            }
+            }*/
 
         }
     }
