@@ -64,7 +64,7 @@ public interface ApiInterface {
     @GET("index.php/menudirm")
     Call<GetMenu> getMenu (@Query("rmid") String rmid);
 
-   // @GET("index.php/menurm")
+   // @GET("index.php/menurm")s
    // Call<GetMenu> menu();
 
     @GET("index.php/galery")
