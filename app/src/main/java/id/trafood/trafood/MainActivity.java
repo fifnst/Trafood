@@ -2,6 +2,7 @@ package id.trafood.trafood;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity  implements LocationListener
     LocationManager locationManager;
     String locations;
     ProgressBar progressBar;
+    SharedPrefManager sharedPrefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
@@ -56,13 +58,14 @@ public class MainActivity extends AppCompatActivity  implements LocationListener
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, 101);
 
         }
-        if (getIntent().getStringExtra("LNGS") == null){
-            getLocation();
-        }
-        if (getIntent().getStringExtra("LNGS") != null){
+            if (getIntent().getStringExtra("LNGS") == null){
+                latitude.setText("-6.939008");
+                longitude.setText("107.740753");
             sendBundle();
-        }
-
+            }
+            if (getIntent().getStringExtra("LNGS") != null){
+                sendBundle();
+            }
 
     }
 
@@ -93,7 +96,7 @@ public class MainActivity extends AppCompatActivity  implements LocationListener
             address.setText(addresses.get(0).getAddressLine(0));
         } catch (Exception e) {
         }
-        sendBundle();
+
     }
 
     @Override

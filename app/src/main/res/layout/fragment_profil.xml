@@ -1,6 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="id.trafood.trafood.Home.Fragment_Profil">
@@ -8,14 +9,49 @@
     <!-- TODO: Update blank fragment layout -->
 
 
+    <LinearLayout
+        android:id="@+id/linearLogin"
+        android:layout_margin="30dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <TextView
+            android:textAlignment="center"
+            android:text="@string/segera"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_centerInParent="true"
+                android:id="@+id/btnLoginView"
+                android:textColor="@color/white"
+                android:background="@color/green"
+                android:text="@string/login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </LinearLayout>
     <Button
-        android:id="@+id/btnLoginView"
+        android:id="@+id/btnLogoutView"
         android:textColor="@color/white"
         android:background="@color/green"
-        android:text="@string/login"
+        android:text="@string/logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvProfil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </ScrollView>
+
+
 
 
 </LinearLayout>

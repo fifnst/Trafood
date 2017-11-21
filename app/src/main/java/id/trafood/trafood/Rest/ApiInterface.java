@@ -13,7 +13,7 @@ import id.trafood.trafood.Models.GetRumahmakan;
 import id.trafood.trafood.Models.GetUserView;
 import id.trafood.trafood.Models.GetUserVote;
 import id.trafood.trafood.Models.PostPutDelRumahmakan;
-import id.trafood.trafood.Models.UserView;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -28,7 +28,12 @@ import retrofit2.http.Query;
  */
 
 public interface ApiInterface {
-     @GET("index.php/rm/rmbydistance")
+
+    @GET("LoginSystem")
+    Call<ResponseBody> loginRequest(@Query("email") String email,
+                                    @Query("password") String password);
+
+    @GET("index.php/rm/rmbydistance")
      Call<GetRumahmakan> getRumahmakan(@Query("lat") String lat,
                                        @Query("lng") String lng,
                                        @Query("cari") String cari,
@@ -109,5 +114,6 @@ public interface ApiInterface {
 
     @GET("index.php/location")
     Call<GetLocation> getLocation();
+
 
 }

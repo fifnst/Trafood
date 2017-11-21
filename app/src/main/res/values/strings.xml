@@ -49,6 +49,9 @@
     <string name="article">Article</string>
     <string name="total">Total</string>
     <string name="artikel">Artikel</string>
+    <string name="tambahmenu">Tambah Menu</string>
+    <string name="lihatkedai">Lihat Kedai</string>
+    <string name="ringkasankedai">Ringkasan Kedai</string>
     <string name="pengaturan">Setting</string>
     <string name="hubungi_trf">Hubungi Trafood</string>
     <string name="othermenus">Menu Lain</string>
@@ -56,10 +59,13 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
+    <string name="logout">Logout</string>
     <string name="tidakpunyaakun">Dont have Account?</string>
     <string name="signin">Sign in</string>
     <string name="signout">Sign Out</string>
     <string name="alreadyhaveaccount">Already Have Accoun?t</string>
+    <string name="segera">Segara login di aplikasi Trafood agar kamu dapat mengatur akun mu,
+        dan berbagi penegtahuan tenantang makanana</string>
 
     <!-- Filter -->
     <string name="lokasi_filter">Lokasi</string>

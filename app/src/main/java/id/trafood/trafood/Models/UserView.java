@@ -34,8 +34,11 @@ public class UserView {
     @SerializedName("tentang")
     private String tentang;
 
+    @SerializedName("rumahmakan")
+    private String rumahmakan;
 
-    public UserView(String review, String article, String visit, String userid, String nama, String email, String fotouser, String kota, String tentang) {
+
+    public UserView(String review, String article, String visit, String userid, String nama, String email, String fotouser, String kota, String tentang, String rumahmakan) {
         this.review = review;
         this.article = article;
         this.visit = visit;
@@ -45,6 +48,7 @@ public class UserView {
         this.fotouser = fotouser;
         this.kota = kota;
         this.tentang = tentang;
+        this.rumahmakan = rumahmakan;
     }
 
     public String getReview() {
@@ -117,5 +121,13 @@ public class UserView {
 
     public void setTentang(String tentang) {
         this.tentang = tentang;
+    }
+
+    public String getRumahmakan() {
+        return rumahmakan;
+    }
+
+    public void setRumahmakan(String rumahmakan) {
+        this.rumahmakan = rumahmakan;
     }
 }
