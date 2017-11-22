@@ -1,5 +1,6 @@
 package id.trafood.trafood.Rest;
 
+import id.trafood.trafood.Home.GetModelMenu;
 import id.trafood.trafood.Models.GetMenu;
 import id.trafood.trafood.Models.Menu;
 import id.trafood.trafood.Models.PostPutDelMenu;
@@ -8,6 +9,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 /**
  * Created by kulinerin 1 on 16/10/2017.
@@ -25,4 +27,7 @@ public interface RestApi {
                                   @Field("fotofile") String fotofile,
                                   @Field("userid") String userid,
                                   @Field("rmid") String rmid);
+
+    @GET("index.php/menus/menuKedai")
+    Call<GetModelMenu> getMenudiRm(@Query("rmid") String rmid);
 }

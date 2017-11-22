@@ -101,6 +101,9 @@ public interface ApiInterface {
     @GET("Nomorotomatis/nomormenu")
     Call<ResponseBody> nomormenu();
 
+    @GET("rm/rumahmakanRingkasan")
+    Call<ResponseBody> ringkasanRm(@Query("rmid") String rmid);
+
 
 
 }

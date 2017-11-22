@@ -11,9 +11,7 @@
         android:layout_height="wrap_content">
         <LinearLayout
             android:orientation="vertical"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
+            android:layout_margin="@dimen/margin_activity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <EditText
@@ -116,8 +114,7 @@
                 android:text="@string/tambah"
                 android:id="@+id/btnTambahMenu"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"/>
+                android:layout_height="wrap_content"/>
 
         </LinearLayout>
     </ScrollView>

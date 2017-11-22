@@ -4,6 +4,349 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context="id.trafood.trafood.RingkasanKedaiActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_margin="@dimen/margin_activity"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tvNamaKedai"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tvKategoriKedai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tvRatingKedai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tvOrangRatingKedai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tvAlamatKedai"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tvKecamatanKedai"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tvKotaKedai"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Button
+            android:background="@drawable/bg_rectangle_edittext"
+            android:text="Lihat Peta"
+            android:id="@+id/btLihatPeta"
+            android:textSize="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="15dp" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textStyle="bold"
+                android:textColor="@color/radablack"
+                android:textSize="@dimen/font_judul_fasilitas"
+                android:text="@string/fasilty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginRight="5dp"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/ivFasilitasKedai"
+                        android:src="@drawable/wifi"
+                        android:layout_width="@dimen/fasilitysize"
+                        android:layout_height="@dimen/fasilitysize"
+                        android:scaleType="fitXY" />
+                    <ImageView
+                        android:src="@drawable/parking_area"
+                        android:id="@+id/ivFDuaKedai"
+                        android:layout_width="@dimen/fasilitysize"
+                        android:layout_height="@dimen/fasilitysize"
+                        android:scaleType="fitXY" />
+                    <ImageView
+                        android:src="@drawable/toilet"
+                        android:id="@+id/ivFEmpatKedai"
+                        android:layout_width="@dimen/fasilitysize"
+                        android:layout_height="@dimen/fasilitysize"
+                        android:scaleType="fitXY" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginRight="30dp"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tvFasilitasKedai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/tvFEmpatKedai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/tvFDuaKedai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginRight="5dp"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:src="@drawable/parking_area"
+                        android:id="@+id/ivFSatuKedai"
+                        android:layout_width="@dimen/fasilitysize"
+                        android:layout_height="@dimen/fasilitysize"
+                        android:scaleType="fitXY" />
+                    <ImageView
+                        android:src="@drawable/mosque"
+                        android:id="@+id/ivFTigaKedai"
+                        android:layout_width="@dimen/fasilitysize"
+                        android:layout_height="@dimen/fasilitysize"
+                        android:scaleType="fitXY" />
+                    <ImageView
+                        android:src="@drawable/smoking_area"
+                        android:id="@+id/ivFLimaKedai"
+                        android:layout_width="@dimen/fasilitysize"
+                        android:layout_height="@dimen/fasilitysize"
+                        android:scaleType="fitXY" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginRight="30dp"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tvFSatuKedai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/tvFTigaKedai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/tvFLimaKedai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:textStyle="bold"
+                android:textColor="@color/radablack"
+                android:textSize="@dimen/font_judul_fasilitas"
+                android:text="@string/waktu_buka"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <!-- this is for Hari -->
+                <LinearLayout
+                    android:layout_marginRight="@dimen/jarak_namahari"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="@string/sunday"
+                        android:id="@+id/tvSundayKedai"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="@string/monday"
+                        android:id="@+id/tvMondayKedai"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="@string/teusday"
+                        android:id="@+id/tvSelasaKedai"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="@string/wednesday"
+                        android:id="@+id/tvWednesdayKedai"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="@string/thursday"
+                        android:id="@+id/tvThursdayKedai"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="@string/friday"
+                        android:id="@+id/tvFridayKedai"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="@string/saturday"
+                        android:id="@+id/tvSaturdayKedai"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <!-- this is for jam Buka -->
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="sdd"
+                        android:id="@+id/tvBukaSundayKedai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/tvBukaMondayKedai"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/tvBukaTuesdayKedai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/tvBukaWednesdayKedai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/tvBukaThursdayKedai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/tvBukaFridayKedai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/tvBukaSaturdayKedai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <!-- this is for jam Tutup -->
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tvTutupSundayKedai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/tvTutupMondayKedai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/tvTutupTuesdayKedai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/tvTutupWednesdayKedai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/tvTutupThursdayKedai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/tvTutupFridayKedai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/tvTutupSaturdayKedai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textStyle="bold"
+                android:textSize="@dimen/font_judul_fasilitas"
+                android:textColor="@color/radablack"
+                android:text="@string/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/tvDeskripsiKedai"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_marginRight="5dp"
+                    android:id="@+id/tvUlasanKedai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_marginRight="30dp"
+                    android:text="@string/ulasn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/tvVisitKedai"
+                    android:layout_marginRight="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:text="@string/menandai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </LinearLayout>
 
+        <View
+            android:layout_marginTop="10dp"
+            android:background="@color/grey"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginBottom="10dp"/>
+        <RelativeLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_centerInParent="true"
+                android:textStyle="bold"
+                android:textSize="@dimen/font_judul_fasilitas"
+                android:textColor="@color/radablack"
+                android:text="Menu Terbaru"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvMenuKedai"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    </ScrollView>
 </android.support.constraint.ConstraintLayout>
