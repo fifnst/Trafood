@@ -63,6 +63,7 @@ public class ProfilUserAdapter extends RecyclerView.Adapter<ProfilUserAdapter.My
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), TambahMenuActivity.class);
                 intent.putExtra("USERID",user.get(position).getUserid());
+                intent.putExtra("RMID", user.get(position).getRmid());
                 view.getContext().startActivity(intent);
             }
         });

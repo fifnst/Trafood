@@ -49,7 +49,7 @@ public class RumahmakanAdapter extends RecyclerView.Adapter<RumahmakanAdapter.My
         holder.textViewAlamat.setText(mRumahmakanList.get(position).getKota());
         holder.textViewKecamatan.setText(mRumahmakanList.get(position).getKecamatan() + ",");
         Glide.with(holder.imageViewfotoRm.getContext())
-                .load(Connect.IMAGE_RM_URL+mRumahmakanList.get(position).getFotorm())
+                .load(Connect.IMAGE_RM_URL+mRumahmakanList.get(position).getFotosampul())
                .error(R.mipmap.ic_launcher).into(holder.imageViewfotoRm);
         int fasilitas = mRumahmakanList.get(position).getFasilitas() ;
         int fSatu = mRumahmakanList.get(position).getFsatu() ;

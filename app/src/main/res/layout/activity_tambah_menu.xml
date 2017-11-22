@@ -24,6 +24,10 @@
                 android:id="@+id/etUserIdMenuInput"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/etRmIDMenuInput"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
             <ImageView
                 android:src="@drawable/fotoupload"
                 android:background="@drawable/bg_edittext_grey"
@@ -94,7 +98,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <EditText
-                android:digits="0,1,2,3,4,5,6,7,8,9,qwertyuiopasdfghjklzxcvbnm"
+                android:digits="012345678 qwertyuiopasdfghjklzxcvbnm"
                 android:inputType="text"
                 android:id="@+id/etTagMenuInput"
                 android:layout_marginTop="8dp"
@@ -110,7 +114,7 @@
                 android:textColor="@color/white"
                 android:background="@drawable/bg_rectangle_button"
                 android:text="@string/tambah"
-                android:id="@+id/btnLogin"
+                android:id="@+id/btnTambahMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"/>

@@ -1,7 +1,5 @@
 package id.trafood.trafood.Rest;
 
-import java.util.List;
-
 import id.trafood.trafood.Home.GetModelMenu;
 import id.trafood.trafood.Models.GetArticle;
 import id.trafood.trafood.Models.GetComment;
@@ -12,15 +10,13 @@ import id.trafood.trafood.Models.GetMenuDetail;
 import id.trafood.trafood.Models.GetRumahmakan;
 import id.trafood.trafood.Models.GetUserView;
 import id.trafood.trafood.Models.GetUserVote;
-import id.trafood.trafood.Models.PostPutDelRumahmakan;
+import id.trafood.trafood.Models.PostPutDelMenu;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.HTTP;
 import retrofit2.http.POST;
-import retrofit2.http.PUT;
 import retrofit2.http.Query;
 
 /**
@@ -43,20 +39,7 @@ public interface ApiInterface {
                                        @Query("ftiga") String ftiga,
                                        @Query("fempat") String fempat,
                                        @Query("flima") String flima);
-    @FormUrlEncoded
-    @POST("kontak")
-    Call<PostPutDelRumahmakan> postRumahmakan(@Field("rmid") String nama,
-                                          @Field("namarm") String nomor);
-    @FormUrlEncoded
-    @PUT("kontak")
-    Call<PostPutDelRumahmakan> putRumahmakan(@Field("id") String id,
-                                     @Field("nama") String nama,
-                                     @Field("nomor") String nomor);
-    @FormUrlEncoded
-    @HTTP(method = "DELETE", path = "kontak", hasBody = true)
-    Call<PostPutDelRumahmakan> deleteKontak(@Field("id") String id);
 
-    //@FormUrlEncoded
     @GET("index.php/rumahmakan")
     Call<GetRumahmakan> by(@Query("rmid") String rmid);
 
@@ -117,6 +100,7 @@ public interface ApiInterface {
 
     @GET("Nomorotomatis/nomormenu")
     Call<ResponseBody> nomormenu();
+
 
 
 }

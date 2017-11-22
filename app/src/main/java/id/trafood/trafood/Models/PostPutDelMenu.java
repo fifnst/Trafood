@@ -3,16 +3,15 @@ package id.trafood.trafood.Models;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by kulinerin 1 on 13/10/2017.
+ * Created by kulinerin 1 on 22/11/2017.
  */
 
-public class PostPutDelRumahmakan {
-
+public class PostPutDelMenu {
     @SerializedName("status")
     String status;
 
     @SerializedName("result")
-    String mRumahmakan;
+    Menu mMenu;
 
     @SerializedName("message")
     String message;
@@ -25,12 +24,12 @@ public class PostPutDelRumahmakan {
         this.status = status;
     }
 
-    public String getmRumahmakan() {
-        return mRumahmakan;
+    public Menu getmMenu() {
+        return mMenu;
     }
 
-    public void setmRumahmakan(String mRumahmakan) {
-        this.mRumahmakan = mRumahmakan;
+    public void setmMenu(Menu mMenu) {
+        this.mMenu = mMenu;
     }
 
     public String getMessage() {

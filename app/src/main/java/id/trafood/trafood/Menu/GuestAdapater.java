@@ -45,10 +45,8 @@ public class GuestAdapater extends RecyclerView.Adapter<GuestAdapater.MyHolder> 
                 .error(R.mipmap.ic_launcher).into(holder.ivFoto);
         holder.tvKota.setText(mUser.get(position).getKota());
         holder.tvAbout.setText(mUser.get(position).getTentang());
-        holder.tvPoint.setText(R.string.point);
         holder.tvUlasan.setText(mUser.get(position).getVisit());
         holder.tvArtikel.setText(mUser.get(position).getArticle());
-        holder.tvPengaturan.setText(R.string.pengaturan );
 
         holder.ivReview.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,9 +78,8 @@ public class GuestAdapater extends RecyclerView.Adapter<GuestAdapater.MyHolder> 
 
         public TextView tvUlasan;
         public TextView tvArtikel;
-        public TextView tvPengaturan;
         public CircleImageView ivFoto,ivReview, ivArticle;
-        public TextView tvPoint,tvKota,tvAbout;
+        public TextView tvKota,tvAbout;
         public MyHolder(View itemView) {
             super(itemView);
             ivFoto = (CircleImageView) itemView.findViewById(R.id.ivFotoUserGuest);
@@ -90,8 +87,6 @@ public class GuestAdapater extends RecyclerView.Adapter<GuestAdapater.MyHolder> 
             tvAbout  = (TextView) itemView.findViewById(R.id.tvAboutUserguest);
             tvUlasan = (TextView) itemView.findViewById(R.id.tvulasan);
             tvArtikel  = (TextView) itemView.findViewById(R.id.tvArtikel);
-            tvPengaturan  = (TextView) itemView.findViewById(R.id.tvPengaturan);
-            tvPoint = (TextView) itemView.findViewById(R.id.kumhassia);
             ivReview = (CircleImageView) itemView.findViewById(R.id.btnReview);
             ivArticle = (CircleImageView) itemView.findViewById(R.id.btnArticle);
 
