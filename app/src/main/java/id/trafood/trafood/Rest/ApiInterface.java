@@ -115,5 +115,8 @@ public interface ApiInterface {
     @GET("index.php/location")
     Call<GetLocation> getLocation();
 
+    @GET("Nomorotomatis/nomormenu")
+    Call<ResponseBody> nomormenu();
+
 
 }

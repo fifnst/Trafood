@@ -39,8 +39,13 @@
     <string name="kunjungi">Kunjungi Kedai</string>
     <string name="lokasi">Lokasi</string>
     <string name="kategori">Kategori Kedai</string>
-    <string name="tag">Tags :</string>
+    <string name="tag">Tags </string>
     <string name="dilihat">Dilihat</string>
+    <string name="namamenu">Nama Menu</string>
+    <string name="deksripsimenu">Deskripsi Menu</string>
+    <string name="tambah">tambah</string>
+
+
 
     <!-- User -->
     <string name="point">Trapoint</string>
@@ -66,6 +71,8 @@
     <string name="alreadyhaveaccount">Already Have Accoun?t</string>
     <string name="segera">Segara login di aplikasi Trafood agar kamu dapat mengatur akun mu,
         dan berbagi penegtahuan tenantang makanana</string>
+    <string name="settingakun">Edit Akun</string>
+    <string name="settingkedai">Edit Kedai</string>
 
     <!-- Filter -->
     <string name="lokasi_filter">Lokasi</string>

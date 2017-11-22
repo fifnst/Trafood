@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="id.trafood.trafood.TambahMenuActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/tvKodeMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/etUserIdMenuInput"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:src="@drawable/fotoupload"
+                android:background="@drawable/bg_edittext_grey"
+                android:scaleType="centerCrop"
+                android:id="@+id/ivMenuInput"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+            <EditText
+                android:id="@+id/tvPathMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text="@string/namamenu"
+                android:textColor="@color/grey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/etNamaMenuInput"
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:hint="@string/namamenu"
+                android:textColorHint="@color/grey"
+                android:padding="8dp"
+                android:background="@drawable/bg_edittext_grey"
+                android:textColor="@color/radablack" />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text="@string/deksripsimenu"
+                android:textColor="@color/grey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <EditText
+
+                android:inputType="textMultiLine"
+                android:id="@+id/etDeskripsiMenuInput"
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/deksripsimenu"
+                android:textColorHint="@color/grey"
+                android:padding="8dp"
+                android:background="@drawable/bg_edittext_grey"
+                android:textColor="@color/radablack" />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text="@string/harga"
+                android:textColor="@color/grey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:inputType="numberDecimal"
+                android:id="@+id/etHargaMenuInput"
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/harga"
+                android:textColorHint="@color/grey"
+                android:padding="8dp"
+                android:background="@drawable/bg_edittext_grey"
+                android:textColor="@color/radablack" />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text="@string/tag"
+                android:textColor="@color/grey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:digits="0,1,2,3,4,5,6,7,8,9,qwertyuiopasdfghjklzxcvbnm"
+                android:inputType="text"
+                android:id="@+id/etTagMenuInput"
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="pisahkan tag dengan spasi"
+                android:textColorHint="@color/grey"
+                android:padding="8dp"
+                android:background="@drawable/bg_edittext_grey"
+                android:textColor="@color/radablack" />
+            <Button
+                android:layout_marginTop="16dp"
+                android:textColor="@color/white"
+                android:background="@drawable/bg_rectangle_button"
+                android:text="@string/tambah"
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

@@ -50,7 +50,6 @@ import retrofit2.Response;
 public class Fragment_Profil extends Fragment {
 
     Button login;
-    Button logout;
     LinearLayout linearLayoutlogin;
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
@@ -64,6 +63,7 @@ public class Fragment_Profil extends Fragment {
 
     SharedPrefManager sharedPrefManager;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              final Bundle savedInstanceState) {
@@ -73,7 +73,6 @@ public class Fragment_Profil extends Fragment {
 
 
         login = (Button) view.findViewById(R.id.btnLoginView);
-        logout = (Button) view.findViewById(R.id.btnLogoutView);
         linearLayoutlogin = (LinearLayout) view.findViewById(R.id.linearLogin);
         recyclerView = (RecyclerView) view.findViewById(R.id.rvProfil);
 
@@ -83,13 +82,11 @@ public class Fragment_Profil extends Fragment {
         fp = this;
 
         if (sharedPrefManager.getSPSudahLogin()){
-            logout.setVisibility(View.VISIBLE);
             linearLayoutlogin.setVisibility(View.GONE);
             setTulisan();
 
             }
         if (!sharedPrefManager.getSPSudahLogin()){
-            logout.setVisibility(View.GONE);
             recyclerView.setVisibility(View.GONE);
         }
 
@@ -100,16 +97,22 @@ public class Fragment_Profil extends Fragment {
                 view.getContext().startActivity(intent);
             }
         });
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, false);
-                startActivity(new Intent(view.getContext(), LoginActivity.class));
-            }
-        });
+
 
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        setTulisan();
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        setTulisan();
+        super.onPause();
     }
 
     private void setTulisan() {

@@ -38,6 +38,7 @@ public class DetailRm extends AppCompatActivity {
     TabLayout mytabLayout;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

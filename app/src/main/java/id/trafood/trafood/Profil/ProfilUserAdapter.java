@@ -1,5 +1,6 @@
 package id.trafood.trafood.Profil;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,9 +15,15 @@ import java.util.List;
 import java.util.zip.Inflater;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import id.trafood.trafood.DetailRm;
 import id.trafood.trafood.Models.UserView;
+import id.trafood.trafood.ProfilVote;
 import id.trafood.trafood.R;
 import id.trafood.trafood.Rest.Connect;
+import id.trafood.trafood.RingkasanKedaiActivity;
+import id.trafood.trafood.SettingProfilActivity;
+import id.trafood.trafood.TambahMenuActivity;
+import id.trafood.trafood.UserArticle;
 
 /**
  * Created by kulinerin 1 on 21/11/2017.
@@ -37,7 +44,7 @@ public class ProfilUserAdapter extends RecyclerView.Adapter<ProfilUserAdapter.My
     }
 
     @Override
-    public void onBindViewHolder(MyHolders holder, int position) {
+    public void onBindViewHolder(MyHolders holder, final int position) {
         String rumahmakan = user.get(position).getRumahmakan();
         holder.linearPengaturanKedai.setVisibility(View.GONE);
         if (rumahmakan.equals("1") ){
@@ -54,20 +61,32 @@ public class ProfilUserAdapter extends RecyclerView.Adapter<ProfilUserAdapter.My
         holder.btnTambahMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(view.getContext(), TambahMenuActivity.class);
+                intent.putExtra("USERID",user.get(position).getUserid());
+                view.getContext().startActivity(intent);
             }
         });
 
         holder.btneditkedai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent mIntent = new Intent(view.getContext(), DetailRm.class);
+                mIntent.putExtra("RMID", user.get(position).getRmid());
+                mIntent.putExtra("NAMARM", user.get(position).getNamarm());
+                mIntent.putExtra("KATEGORI", user.get(position).getKategorirm());
+                mIntent.putExtra("ALAMAT", user.get(position).getAlamatrm());
+                mIntent.putExtra("FOTO", user.get(position).getFotorm());
+                mIntent.putExtra("LAT", user.get(position).getLatitude());
+                mIntent.putExtra("LONG", user.get(position).getLongitude());
+                view.getContext().startActivity(mIntent);
             }
         });
 
         holder.btnRingkasankedai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), RingkasanKedaiActivity.class);
+                view.getContext().startActivity(intent);
 
             }
         });
@@ -75,21 +94,26 @@ public class ProfilUserAdapter extends RecyclerView.Adapter<ProfilUserAdapter.My
         holder.btnReviewProfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(view.getContext(), ProfilVote.class);
+                intent.putExtra("USERID",user.get(position).getUserid());
+                view.getContext().startActivity(intent);
             }
         });
 
         holder.btnArticleProfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(view.getContext(), UserArticle.class);
+                intent.putExtra("USERID", user.get(position).getUserid());
+                view.getContext().startActivity(intent);
             }
         });
 
         holder.btnPengaturanProfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(view.getContext(), SettingProfilActivity.class);
+                view.getContext().startActivity(intent);
             }
         });
 

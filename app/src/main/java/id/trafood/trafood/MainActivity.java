@@ -2,6 +2,7 @@ package id.trafood.trafood;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -17,6 +18,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
@@ -181,8 +183,9 @@ public class MainActivity extends AppCompatActivity  implements LocationListener
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+
         finishAffinity();
+        super.onBackPressed();
     }
 
 
