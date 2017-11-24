@@ -13,12 +13,12 @@ import java.util.ArrayList;
 
 public class RmViewPagerAdapter extends FragmentStatePagerAdapter {
     ArrayList<Fragment> fragmentArrayList;
-    ArrayList<String> titles;
+    //ArrayList<String> titles;
     Bundle fragmentBundle;
-    public RmViewPagerAdapter(FragmentManager fm, ArrayList<Fragment> fragmentArrayList, ArrayList<String> titles) {
+    public RmViewPagerAdapter(FragmentManager fm, ArrayList<Fragment> fragmentArrayList) {
         super(fm);
         this.fragmentArrayList = fragmentArrayList;
-        this.titles = titles;
+        //this.titles = titles;
 
     }
 
@@ -34,8 +34,8 @@ public class RmViewPagerAdapter extends FragmentStatePagerAdapter {
         return fragmentArrayList.size();
     }
 
-    @Override
+    /*@Override
     public CharSequence getPageTitle(int position) {
         return titles.get(position);
-    }
+    }*/
 }

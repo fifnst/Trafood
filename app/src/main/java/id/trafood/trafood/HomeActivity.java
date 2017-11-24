@@ -38,9 +38,9 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
     LocationManager locationManager;
 
     private int[] tabIcons = {
-            R.drawable.ic_search_menu,
-            R.drawable.ic_search_kedai2,
-            R.drawable.ic_search_article
+            R.layout.search_menu,
+            R.layout.search_kedai,
+            R.layout.search_article
     };
 
 
@@ -71,9 +71,9 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
     }
 
     private void setupTabIcons() {
-        tableLayout.getTabAt(0).setIcon(tabIcons[0]);
-        tableLayout.getTabAt(1).setIcon(tabIcons[1]);
-        tableLayout.getTabAt(2).setIcon(tabIcons[2]);
+        tableLayout.getTabAt(0).setCustomView(tabIcons[0]);
+        tableLayout.getTabAt(1).setCustomView(tabIcons[1]);
+        tableLayout.getTabAt(2).setCustomView(tabIcons[2]);
     }
 
     /*public void setupTabLayout(TabLayout tabLayout) {
