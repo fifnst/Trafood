@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="id.trafood.trafood.KedaiEditPetaActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_margin="@dimen/margin_activity"
+         android:orientation="vertical"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content">
+        <TextView
+            android:text="@string/kecamatan"
+            android:textColor="@color/grey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+         <EditText
+             android:paddingLeft="5dp"
+             android:paddingRight="5dp"
+             android:inputType="text"
+             android:id="@+id/etKecamatanKedaiEdit"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:textColorHint="@color/grey"
+             android:background="@drawable/bg_edittext_grey"
+             android:textColor="@color/radablack" />
+         <TextView
+             android:layout_marginTop="10dp"
+             android:text="@string/kota"
+             android:textColor="@color/grey"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content" />
+         <EditText
+             android:paddingLeft="5dp"
+             android:paddingRight="5dp"
+             android:inputType="text"
+             android:id="@+id/etKotaKedaiEdit"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:textColorHint="@color/grey"
+             android:background="@drawable/bg_edittext_grey"
+             android:textColor="@color/radablack" />
+         <TextView
+             android:layout_marginTop="10dp"
+             android:text="@string/alamat"
+             android:textColor="@color/grey"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content" />
+         <EditText
+             android:paddingLeft="5dp"
+             android:paddingRight="5dp"
+             android:inputType="textMultiLine"
+             android:id="@+id/etNamaAlamatKedaiEdit"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:textColorHint="@color/grey"
+             android:background="@drawable/bg_edittext_grey"
+             android:textColor="@color/radablack" />
+        <Button
+            android:layout_marginTop="10dp"
+            android:text="SAVE"
+            android:textColor="@color/white"
+            android:id="@+id/btnEditKedaiMap"
+            android:background="@drawable/bg_rectangle_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+</LinearLayout>
+
+    </ScrollView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:map="http://schemas.android.com/apk/res-auto"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/map2"
+            android:layout_marginTop="10dp"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            tools:context="id.trafood.trafood.MapsActivity"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        <Button
+            android:layout_alignParentBottom="true"
+            android:text="change location"
+            android:textColor="@color/white"
+            android:background="#7000a693"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+
+</LinearLayout>

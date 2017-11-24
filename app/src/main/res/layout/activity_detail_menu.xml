@@ -47,19 +47,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/tvHargaMenuDetail"/>
-                <TextView
-                    android:textAlignment="center"
-                    android:textSize="@dimen/font_kategori_rm"
-                    android:textColor="@color/blue"
-                    android:id="@+id/tvKategoriRms"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:textColor="@color/grey"
-                    android:textAlignment="center"
-                    android:id="@+id/tvAlamatrms"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+
 
             </LinearLayout>
             <android.support.v7.widget.Toolbar
@@ -77,6 +65,17 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <TextView
+            android:text="Edit Menu"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:background="@color/yellow"
+            android:padding="7dp"
+            android:textSize="@dimen/font_pricesize"
+            android:textColor="@color/radablack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvEditMenu" />
         <ProgressBar
             android:id="@+id/pbDetailMenu"
             android:layout_width="wrap_content"

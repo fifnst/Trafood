@@ -48,6 +48,7 @@ public class SearchMenuAdapater extends RecyclerView.Adapter<SearchMenuAdapater.
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), DetailMenu.class);
+                intent.putExtra("USERID", mMenu.get(position).getUserid());
                 intent.putExtra("MENUID", mMenu.get(position).getMenuid());
                 intent.putExtra("FOTOMENU", mMenu.get(position).getFoto());
                 intent.putExtra("HARGA", mMenu.get(position).getHarga());

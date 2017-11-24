@@ -41,7 +41,10 @@ public class SettingProfilActivity extends AppCompatActivity {
         linearKedai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SettingProfilActivity.this, EditKedaiActivity.class);
+                Intent intent = new Intent(SettingProfilActivity.this, RingkasanKedaiActivity.class);
+                intent.putExtra("TITLE", "Edit Kedai");
+                intent.putExtra("RMID", getIntent().getStringExtra("RMID"));
+                intent.putExtra("USERID",getIntent().getStringExtra("USERID"));
                 SettingProfilActivity.this.startActivity(intent);
             }
         });

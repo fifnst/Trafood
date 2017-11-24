@@ -42,7 +42,7 @@ public class HomeMenuAdapter extends RecyclerView.Adapter<HomeMenuAdapter.MyView
                 .error(R.mipmap.ic_launcher).into(holder.ivHomeMenu);
         holder.tvLike.setText(modelMenus.get(position).getLikes());
         holder.tvHarga.setText("Rp. " + modelMenus.get(position).getHarga());
-        holder.tvNamaMenu.setText(modelMenus.get(position).getNamamenu());
+        holder.tvNamaMenu.setText(modelMenus.get(position).getNamarm());
         holder.tvnamaRm.setText(modelMenus.get(position).getNamarm());
         holder.tvKecamatan.setText(modelMenus.get(position).getKecamatan()+", ");
         holder.tvKota.setText(modelMenus.get(position).getKota());
@@ -50,6 +50,7 @@ public class HomeMenuAdapter extends RecyclerView.Adapter<HomeMenuAdapter.MyView
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), DetailMenu.class);
+                intent.putExtra("USERID", modelMenus.get(position).getUserid());
                 intent.putExtra("MENUID", modelMenus.get(position).getMenuid());
                 intent.putExtra("FOTOMENU", modelMenus.get(position).getFoto());
                 intent.putExtra("HARGA", modelMenus.get(position).getHarga());

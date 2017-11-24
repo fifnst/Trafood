@@ -11,8 +11,11 @@
     <string name="like">Likes</string>
     <string name="title_activity_maps">Map</string>
 
-    <!-- Info rumah makan -->
-    <string name="waktu_buka">WAKTU BUKA</string>
+    <!-- Info rumah makan -->.
+    <string name="notelp">No Telepon</string>
+    <string name="namarm">Nama Kedai</string>
+    <string name="url">url</string>
+    <string name="waktu_buka">Waktu Buka</string>
     <string name="sunday">Ahad</string>
     <string name="monday">Senin</string>
     <string name="teusday">Selasa</string>
@@ -21,18 +24,21 @@
     <string name="friday">Jumat</string>
     <string name="saturday">Sabtu</string>
     <string name="dash"> - </string>
-    <string name="fasilty">FASILITAS</string>
+    <string name="fasilty">Fasilitas</string>
     <string name="mosque">Mosque</string>
     <string name="parking">Parking Area</string>
     <string name="toilet">Toilet</string>
     <string name="wifi">Wifi</string>
     <string name="music">Live Music</string>
     <string name="smoking">Smoking Area</string>
-    <string name="contact">CONTACT</string>
-    <string name="catgory">KATEGORI</string>
+    <string name="contact">Contact</string>
+    <string name="catgory">Kategori</string>
     <string name="ulasn">Ulasan</string>
     <string name="menandai">Menandai</string>
-    <string name="description">DESKRIPSI</string>
+    <string name="description">Deskripsi</string>
+    <string name="alamat">Alamat</string>
+    <string name="kecamatan">Kecamatan</string>
+    <string name="kota">Kota</string>
 
     <!-- info menu -->
     <string name="rekomendasi">Rekomendasi</string>
@@ -44,7 +50,6 @@
     <string name="namamenu">Nama Menu</string>
     <string name="deksripsimenu">Deskripsi Menu</string>
     <string name="tambah">tambah</string>
-
 
 
     <!-- User -->

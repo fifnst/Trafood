@@ -1,6 +1,7 @@
 package id.trafood.trafood.Rest;
 
 import id.trafood.trafood.Home.GetModelMenu;
+import id.trafood.trafood.Home.ModelMenu;
 import id.trafood.trafood.Models.GetArticle;
 import id.trafood.trafood.Models.GetComment;
 import id.trafood.trafood.Models.GetGalery;
@@ -25,7 +26,7 @@ import retrofit2.http.Query;
 
 public interface ApiInterface {
 
-    @GET("LoginSystem")
+    @GET("index.php/LoginSystem")
     Call<ResponseBody> loginRequest(@Query("email") String email,
                                     @Query("password") String password);
 
@@ -98,11 +99,14 @@ public interface ApiInterface {
     @GET("index.php/location")
     Call<GetLocation> getLocation();
 
-    @GET("Nomorotomatis/nomormenu")
+    @GET("index.php/Nomorotomatis/nomormenu")
     Call<ResponseBody> nomormenu();
 
-    @GET("rm/rumahmakanRingkasan")
+    @GET("index.php/rm/rumahmakanRingkasan")
     Call<ResponseBody> ringkasanRm(@Query("rmid") String rmid);
+
+    @GET("index.php/Menudetail/detailmenu")
+    Call<ResponseBody> menuDetail(@Query("menuid") String menuid);
 
 
 

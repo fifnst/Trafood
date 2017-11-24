@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="id.trafood.trafood.EditMenuActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginBottom="@dimen/margin_activity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:background="@drawable/bg_edittext_grey"
+                    android:scaleType="centerCrop"
+                    android:id="@+id/ivMenuEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+                <TextView
+                    android:textAlignment="center"
+                    android:text="Edit Foto"
+                    android:layout_alignParentBottom="true"
+                    android:textColor="@color/white"
+                    android:background="#7500a693"
+                    android:id="@+id/tvFotoMenuEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_marginRight="@dimen/margin_activity"
+                android:layout_marginLeft="@dimen/margin_activity"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:text="@string/namamenu"
+                    android:textColor="@color/grey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:id="@+id/etNamaMenuEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:hint="@string/namamenu"
+                    android:textColorHint="@color/grey"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:background="@drawable/bg_edittext_grey"
+                    android:textColor="@color/radablack" />
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:text="@string/deksripsimenu"
+                    android:textColor="@color/grey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <EditText
+
+                    android:inputType="textMultiLine"
+                    android:id="@+id/etDeskripsiMenuEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/deksripsimenu"
+                    android:textColorHint="@color/grey"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:background="@drawable/bg_edittext_grey"
+                    android:textColor="@color/radablack" />
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:text="@string/harga"
+                    android:textColor="@color/grey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:inputType="numberDecimal"
+                    android:id="@+id/etHargaMenuEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/harga"
+                    android:textColorHint="@color/grey"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:background="@drawable/bg_edittext_grey"
+                    android:textColor="@color/radablack" />
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:text="@string/tag"
+                    android:textColor="@color/grey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:digits="012345678 qwertyuiopasdfghjklzxcvbnm"
+                    android:inputType="text"
+                    android:id="@+id/etTagMenuEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="pisahkan tag dengan spasi"
+                    android:textColorHint="@color/grey"
+                    android:background="@drawable/bg_edittext_grey"
+                    android:textColor="@color/radablack" />
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginTop="16dp"
+                        android:textColor="@color/white"
+                        android:background="@drawable/bg_rectangle_button"
+                        android:text="Edit"
+                        android:id="@+id/btnEditMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <Button
+                            android:background="@color/yellow"
+                            android:id="@+id/btnSetnonActive"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

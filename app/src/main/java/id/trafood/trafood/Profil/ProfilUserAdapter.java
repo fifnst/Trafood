@@ -89,6 +89,7 @@ public class ProfilUserAdapter extends RecyclerView.Adapter<ProfilUserAdapter.My
                 Intent intent = new Intent(view.getContext(), RingkasanKedaiActivity.class);
                 intent.putExtra("RMID", user.get(position).getRmid());
                 intent.putExtra("USERID",user.get(position).getUserid());
+                intent.putExtra("TITLE", "Ringkasan Kedai");
                 view.getContext().startActivity(intent);
 
             }
@@ -116,6 +117,8 @@ public class ProfilUserAdapter extends RecyclerView.Adapter<ProfilUserAdapter.My
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), SettingProfilActivity.class);
+                intent.putExtra("RMID", user.get(position).getRmid());
+                intent.putExtra("USERID",user.get(position).getUserid());
                 view.getContext().startActivity(intent);
             }
         });

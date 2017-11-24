@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,46 +11,90 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     <LinearLayout
-        android:layout_margin="@dimen/margin_activity"
+        android:layout_marginBottom="@dimen/margin_activity"
+        android:layout_marginTop="@dimen/margin_activity"
+
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/tvNamaKedai"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:id="@+id/tvKategoriKedai"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:id="@+id/tvRatingKedai"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:id="@+id/tvOrangRatingKedai"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:id="@+id/tvAlamatKedai"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:id="@+id/tvKecamatanKedai"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:id="@+id/tvKotaKedai"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <Button
-            android:background="@drawable/bg_rectangle_edittext"
-            android:text="Lihat Peta"
-            android:id="@+id/btLihatPeta"
-            android:textSize="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="15dp" />
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/ivFotoKedai"
+                android:layout_width="match_parent"
+                android:layout_height="100dp" />
+            <TextView
+                android:text="Ganti foto"
+                android:textAlignment="center"
+                android:id="@+id/tvEditFoto"
+                android:textColor="@color/radablack"
+                android:background="#7500a693"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
         <LinearLayout
+            android:layout_marginLeft="@dimen/margin_activity"
+            android:layout_marginRight="@dimen/margin_activity"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tvNamaKedai"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tvKategoriKedai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tvtelpKedai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tvRatingKedai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tvOrangRatingKedai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/tvAlamatKedai"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tvKecamatanKedai"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tvKotaKedai"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <Button
+                    android:background="@drawable/bg_rectangle_edittext"
+                    android:text="Lihat Peta"
+                    android:id="@+id/btLihatPeta"
+                    android:textSize="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginLeft="@dimen/margin_activity"
+            android:layout_marginRight="@dimen/margin_activity"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -155,6 +200,8 @@
             </LinearLayout>
         </LinearLayout>
         <LinearLayout
+            android:layout_marginLeft="@dimen/margin_activity"
+            android:layout_marginRight="@dimen/margin_activity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -213,6 +260,7 @@
                 </LinearLayout>
                 <!-- this is for jam Buka -->
                 <LinearLayout
+
                     android:orientation="vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
@@ -281,8 +329,17 @@
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
             </LinearLayout>
+            <Button
+                android:background="@drawable/bg_rectangle_edittext"
+                android:text="edit kedai"
+                android:id="@+id/bteditkedai"
+                android:textSize="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp" />
         </LinearLayout>
         <LinearLayout
+            android:layout_marginLeft="@dimen/margin_activity"
+            android:layout_marginRight="@dimen/margin_activity"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -322,12 +379,11 @@
                     android:layout_height="wrap_content"/>
             </LinearLayout>
         </LinearLayout>
-
         <View
             android:layout_marginTop="10dp"
-            android:background="@color/grey"
+            android:background="@color/cloud"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="7dp"
             android:layout_marginBottom="10dp"/>
         <RelativeLayout
 
@@ -349,4 +405,4 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
     </ScrollView>
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

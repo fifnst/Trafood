@@ -1,9 +1,330 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent"
     tools:context="id.trafood.trafood.EditKedaiActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_marginTop="@dimen/margin_activity"
+            android:layout_marginBottom="@dimen/margin_activity"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/margin_activity"
+                android:layout_marginRight="@dimen/margin_activity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="@string/namarm"
+                    android:textColor="@color/grey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:inputType="text"
+                    android:id="@+id/etNamaKedaiEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/grey"
+                    android:background="@drawable/bg_edittext_grey"
+                    android:textColor="@color/radablack" />
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:text="@string/url"
+                    android:textColor="@color/grey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:inputType="text"
+                    android:id="@+id/eturlKedaiEdit"
+                    android:digits="012345678qwertyuiopasdfghjklzxcvbnm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/grey"
+                    android:background="@drawable/bg_edittext_grey"
+                    android:textColor="@color/radablack" />
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:text="@string/description"
+                    android:textColor="@color/grey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:inputType="textMultiLine"
+                    android:id="@+id/etDeskripsiKedaiEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/grey"
+                    android:background="@drawable/bg_edittext_grey"
+                    android:textColor="@color/radablack" />
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:text="@string/notelp"
+                    android:textColor="@color/grey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:inputType="phone"
+                    android:id="@+id/etNoTelpKedaiEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/grey"
+                    android:background="@drawable/bg_edittext_grey"
+                    android:textColor="@color/radablack" />
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:text="@string/catgory"
+                    android:textColor="@color/grey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <Spinner
+                    android:id="@+id/spCategoryEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
-</android.support.constraint.ConstraintLayout>
+
+            </LinearLayout>
+            <View
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="@color/cloud"/>
+            <LinearLayout
+                android:layout_marginLeft="@dimen/margin_activity"
+                android:layout_marginRight="@dimen/margin_activity"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="@string/waktu_buka"
+                    android:textColor="@color/grey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <Spinner
+                        android:layout_marginRight="10dp"
+                        android:id="@+id/spJambukaEdit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/grey"
+                        android:textColor="@color/radablack" />
+                    <TextView
+                        android:text="-"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <Spinner
+                        android:layout_marginLeft="10dp"
+                        android:inputType="text"
+                        android:id="@+id/spJamTutupEdit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/grey"
+                        android:textColor="@color/radablack" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <CheckBox
+                                android:text="@string/monday"
+                                android:id="@+id/cbSeninEdit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <CheckBox
+                                android:id="@+id/cbKamisEdit"
+                                android:text="@string/thursday"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                        <CheckBox
+                            android:id="@+id/cbSundayEdit"
+                            android:text="@string/sunday"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="20dp"
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <CheckBox
+                                android:id="@+id/cbSelasaEdit"
+                                android:text="@string/teusday"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <CheckBox
+                                android:id="@+id/cbJumatEdit"
+                                android:text="@string/friday"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_alignParentRight="true"
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <CheckBox
+                                android:id="@+id/cbRabuEdit"
+                                android:text="@string/wednesday"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <CheckBox
+                                android:id="@+id/cbSabtuEdit"
+                                android:text="@string/saturday"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+            <View
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="@color/cloud"/>
+            <LinearLayout
+                android:layout_marginRight="@dimen/margin_activity"
+                android:layout_marginLeft="@dimen/margin_activity"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="@string/fasilitas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <RelativeLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <CheckBox
+                                android:text="@string/wifi"
+                                android:id="@+id/cbFasilitasEdit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <CheckBox
+                                android:id="@+id/cbFSatuEdit"
+                                android:text="@string/parking"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="20dp"
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <CheckBox
+                                android:id="@+id/cbcbFDuaEdit"
+                                android:text="@string/music"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <CheckBox
+                                android:id="@+id/cbFLimauEdit"
+                                android:text="@string/smoking"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_alignParentRight="true"
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <CheckBox
+                                android:id="@+id/cbFTigaEdit"
+                                android:text="@string/mosque"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <CheckBox
+                                android:id="@+id/cbFEmpatEdit"
+                                android:text="@string/toilet"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+            <Button
+                android:layout_margin="@dimen/margin_activity"
+                android:textColor="@color/white"
+                android:text="SAVE"
+                android:id="@+id/btnEditKedai"
+                android:background="@color/green"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -35,9 +35,9 @@ public class DetailMenu extends AppCompatActivity {
     ProgressBar progressBar;
 
     String menuid,harga,fotomenu,namamenu;
-    TextView tvHarga;
+    TextView tvHarga, tvEditmenu;
     ImageView ivFoto;
-
+    SharedPrefManager sharedPrefManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,11 +45,16 @@ public class DetailMenu extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarMenu);
         tvHarga = (TextView) findViewById(R.id.tvHargaMenuDetail);
         ivFoto =(ImageView) findViewById(R.id.ivFotoMenuDetail);
+        tvEditmenu = (TextView) findViewById(R.id.tvEditMenu);
         Intent mIntent = getIntent();
         namamenu = mIntent.getStringExtra("NAMAMENU");
         menuid = mIntent.getStringExtra("MENUID");
         harga = mIntent.getStringExtra("HARGA");
         fotomenu = mIntent.getStringExtra("FOTOMENU");
+        sharedPrefManager = new SharedPrefManager(this);
+        final String useridMenu = getIntent().getStringExtra("USERID");
+        String useridUser = sharedPrefManager.getSpUserid();
+
         tvHarga.setText("Rp. " + harga);
         Picasso.with(this).load(Connect.IMAGE_MENU_URL+fotomenu).error(R.mipmap.ic_launcher).into(ivFoto);
 
@@ -79,6 +84,24 @@ public class DetailMenu extends AppCompatActivity {
             }
         });
 
+        tvEditmenu.setVisibility(View.GONE);
+
+
+        if (sharedPrefManager.getSPSudahLogin()){
+            if (useridUser.equals(useridMenu)){
+                tvEditmenu.setVisibility(View.VISIBLE);
+                tvEditmenu.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String menuids=  getIntent().getStringExtra("MENUID");
+                        Intent intent = new Intent(DetailMenu.this, EditMenuActivity.class);
+                        intent.putExtra("MENUID",menuid);
+                        intent.putExtra("USERID",useridMenu);
+                        DetailMenu.this.startActivity(intent);
+                    }
+                });
+            }
+        }
 
     }
 

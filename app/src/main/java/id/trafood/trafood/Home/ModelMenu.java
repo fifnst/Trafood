@@ -25,8 +25,10 @@ public class ModelMenu {
     private String kota;
     @SerializedName("kecamatan")
     private String kecamatan;
+    @SerializedName("userid")
+    private String userid;
 
-    public ModelMenu(String menuid, String namamenu, String harga, String rmid, String foto, String likes, String namarm, String kota, String kecamatan) {
+    public ModelMenu(String menuid, String namamenu, String harga, String rmid, String foto, String likes, String namarm, String kota, String kecamatan, String userid) {
         this.menuid = menuid;
         this.namamenu = namamenu;
         this.harga = harga;
@@ -36,6 +38,7 @@ public class ModelMenu {
         this.namarm = namarm;
         this.kota = kota;
         this.kecamatan = kecamatan;
+        this.userid = userid;
     }
 
     public String getMenuid() {
@@ -108,5 +111,13 @@ public class ModelMenu {
 
     public void setKecamatan(String kecamatan) {
         this.kecamatan = kecamatan;
+    }
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
     }
 }
