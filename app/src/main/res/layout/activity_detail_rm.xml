@@ -88,15 +88,7 @@
                 android:textSize="@dimen/font_namerm_size"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/tvKategoriRms"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textColor="@color/blue"
-                android:textSize="@dimen/font_kategori_rm" />
-
-            <TextView
+                    <TextView
                 android:id="@+id/tvAlamatrms"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -120,17 +112,27 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
-            <android.support.v4.widget.Space
+
+            <TextView
+                android:id="@+id/tvKategoriRms"
                 android:layout_width="match_parent"
-                android:layout_height="3dp" />
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/font_kategori_rm" />
+
             <android.support.design.widget.TabLayout
                 android:id="@+id/tlListMenuRM"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
-                app:tabIndicatorColor="@color/green"
-                app:tabSelectedTextColor="@color/green"
-                app:tabTextColor="@color/grey" />
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                style="@style/CustomTabLayoutStyle"/>
+
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="3dp" />
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/vpMenuRM"

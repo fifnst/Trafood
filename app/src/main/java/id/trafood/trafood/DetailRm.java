@@ -36,11 +36,20 @@ public class DetailRm extends AppCompatActivity {
     ImageView iVfotoRm;
     ViewPager myViewPager;
     TabLayout mytabLayout;
+    TabLayout tableLayout;
+    private int[] tabIcons = {
+            R.drawable.ic_menu,
+            R.drawable.ic_location2,
+            R.drawable.ic_galery,
+            R.drawable.ic_review,
+            R.drawable.ic_info
+    };
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
        // this.supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_detail_rm);
@@ -49,6 +58,7 @@ public class DetailRm extends AppCompatActivity {
         textViewkategori = (TextView) findViewById(R.id.tvKategoriRms);
         textViewAlamat = (TextView) findViewById(R.id.tvAlamatrms);
         iVfotoRm = (ImageView) findViewById(R.id.ivFotoRmDetails);
+        tableLayout = (TabLayout) findViewById(R.id.tlListMenuRM);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -103,20 +113,32 @@ public class DetailRm extends AppCompatActivity {
         fragments.add(fragview);
         fragments.add(fragfo);
 
-        ArrayList<String> titles = new ArrayList<>();
+        /*ArrayList<String> titles = new ArrayList<>();
         titles.add("Menu");
         titles.add("Map");
-        titles.add("Gallery");
+        titles.add("Galeri");
         titles.add("Review");
-        titles.add("Info");
+        titles.add("Info");*/
 
 
-        RmViewPagerAdapter adapter = new RmViewPagerAdapter(getSupportFragmentManager(), fragments,titles);
+        RmViewPagerAdapter adapter = new RmViewPagerAdapter(getSupportFragmentManager(), fragments);
 
         myViewPager.setAdapter(adapter);
+        //setupTabIcons();
         mytabLayout.setupWithViewPager(myViewPager);
+        setupTabIcons();
 
 
+
+
+    }
+
+    private void setupTabIcons() {
+        tableLayout.getTabAt(0).setIcon(tabIcons[0]);
+        tableLayout.getTabAt(1).setIcon(tabIcons[1]);
+        tableLayout.getTabAt(2).setIcon(tabIcons[2]);
+        tableLayout.getTabAt(3).setIcon(tabIcons[3]);
+        tableLayout.getTabAt(4).setIcon(tabIcons[4]);
 
 
     }
