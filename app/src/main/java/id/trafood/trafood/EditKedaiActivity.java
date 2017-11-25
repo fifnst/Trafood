@@ -23,6 +23,7 @@ public class EditKedaiActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_kedai);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Edit Kedai");
+        
 
         setView();
 
