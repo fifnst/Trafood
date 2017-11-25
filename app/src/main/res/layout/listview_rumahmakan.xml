@@ -123,7 +123,7 @@
                 android:layout_marginBottom="@dimen/fasility"
                 android:id="@+id/ivFSatu"
                 android:scaleType="fitXY"
-                android:src="@drawable/live_music"/>
+                android:src="@drawable/mosque"/>
             <ImageView
                 android:layout_marginLeft="@dimen/fasiltytwo"
                 android:layout_marginRight="@dimen/fasiltytwo"
@@ -142,7 +142,7 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/mosque"/>
+                android:src="@drawable/live_music"/>
 
             <ImageView
                 android:layout_marginLeft="@dimen/fasiltytwo"
