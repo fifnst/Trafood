@@ -106,8 +106,8 @@
 
             <ImageView
                 android:id="@+id/ivFasilitas"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_marginBottom="@dimen/fasility"
                 android:layout_marginLeft="@dimen/fasility"
                 android:layout_marginRight="@dimen/fasiltytwo"
@@ -116,12 +116,21 @@
 
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_marginLeft="@dimen/fasiltytwo"
                 android:layout_marginRight="@dimen/fasiltytwo"
                 android:layout_marginBottom="@dimen/fasility"
                 android:id="@+id/ivFSatu"
+                android:scaleType="fitXY"
+                android:src="@drawable/live_music"/>
+            <ImageView
+                android:layout_marginLeft="@dimen/fasiltytwo"
+                android:layout_marginRight="@dimen/fasiltytwo"
+                android:layout_marginBottom="@dimen/fasility"
+                android:id="@+id/ivFDua"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/parking_area"/>
 
@@ -130,8 +139,8 @@
                 android:layout_marginRight="@dimen/fasiltytwo"
                 android:layout_marginBottom="@dimen/fasility"
                 android:id="@+id/ivFTiga"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/mosque"/>
 
@@ -140,8 +149,8 @@
                 android:layout_marginRight="@dimen/fasiltytwo"
                 android:layout_marginBottom="@dimen/fasility"
                 android:id="@+id/ivFEmpat"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/toilet"/>
 
@@ -150,10 +159,11 @@
                 android:layout_marginRight="@dimen/fasiltytwo"
                 android:layout_marginBottom="@dimen/fasility"
                 android:id="@+id/ivFLima"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/smoking_area"/>
+
 
         </LinearLayout>
 

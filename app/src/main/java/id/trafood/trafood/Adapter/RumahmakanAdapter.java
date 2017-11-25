@@ -53,10 +53,12 @@ public class RumahmakanAdapter extends RecyclerView.Adapter<RumahmakanAdapter.My
                .error(R.mipmap.ic_launcher).into(holder.imageViewfotoRm);
         int fasilitas = mRumahmakanList.get(position).getFasilitas() ;
         int fSatu = mRumahmakanList.get(position).getFsatu() ;
+        int fDua = mRumahmakanList.get(position).getFdua() ;
         int fTiga = mRumahmakanList.get(position).getFtiga() ;
         int fEmpat = mRumahmakanList.get(position).getFempat() ;
         int fLima = mRumahmakanList.get(position).getFlima() ;
         holder.imageViewFasilitas.setVisibility(View.GONE);
+        holder.imageViewFDua.setVisibility(View.GONE);
         holder.imageViewFSatu.setVisibility(View.GONE);
         holder.imageViewFTiga.setVisibility(View.GONE);
         holder.imageViewFEmpat.setVisibility(View.GONE);
@@ -66,6 +68,9 @@ public class RumahmakanAdapter extends RecyclerView.Adapter<RumahmakanAdapter.My
         }
         if (fSatu ==1 ){
             holder.imageViewFSatu.setVisibility(View.VISIBLE);
+        }
+        if (fDua ==1 ){
+            holder.imageViewFDua.setVisibility(View.VISIBLE);
         }
         if (fTiga ==1){
             holder.imageViewFTiga.setVisibility(View.VISIBLE);
@@ -103,7 +108,7 @@ public class RumahmakanAdapter extends RecyclerView.Adapter<RumahmakanAdapter.My
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView  textViewNamarm, textViewAlamat,textViewKecamatan,textViewKategori;
         public ImageView imageViewfotoRm, imageViewFasilitas, imageViewFSatu, imageViewFTiga;
-        public  ImageView imageViewFEmpat, imageViewFlima;
+        public  ImageView imageViewFEmpat, imageViewFlima, imageViewFDua;
         public MyViewHolder(View itemView) {
             super(itemView);
 
@@ -117,6 +122,7 @@ public class RumahmakanAdapter extends RecyclerView.Adapter<RumahmakanAdapter.My
             imageViewFTiga = (ImageView) itemView.findViewById(R.id.ivFTiga);
             imageViewFEmpat = (ImageView) itemView.findViewById(R.id.ivFEmpat);
             imageViewFlima = (ImageView) itemView.findViewById(R.id.ivFLima);
+            imageViewFDua = (ImageView) itemView.findViewById(R.id.ivFDua);
          }
     }
 }

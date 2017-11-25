@@ -25,12 +25,12 @@
     <string name="saturday">Sabtu</string>
     <string name="dash"> - </string>
     <string name="fasilty">Fasilitas</string>
-    <string name="mosque">Mosque</string>
-    <string name="parking">Parking Area</string>
+    <string name="mosque">Ruang Sholat</string>
+    <string name="parking">Tempat Parkir</string>
     <string name="toilet">Toilet</string>
     <string name="wifi">Wifi</string>
-    <string name="music">Live Music</string>
-    <string name="smoking">Smoking Area</string>
+    <string name="music">Pertunjukan Musik</string>
+    <string name="smoking">Ruang Merokok</string>
     <string name="contact">Contact</string>
     <string name="catgory">Kategori</string>
     <string name="ulasn">Ulasan</string>
