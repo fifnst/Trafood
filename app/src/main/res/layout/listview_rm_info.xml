@@ -183,7 +183,7 @@
                         android:layout_width="@dimen/fasilitysize"
                         android:layout_height="@dimen/fasilitysize"
                         android:scaleType="fitXY"
-                        android:src="@drawable/live_music" />
+                        android:src="@drawable/mosque" />
 
                     <ImageView
 
@@ -233,7 +233,7 @@
                         android:layout_width="@dimen/fasilitysize"
                         android:layout_height="@dimen/fasilitysize"
                         android:scaleType="fitXY"
-                        android:src="@drawable/mosque" />
+                        android:src="@drawable/live_music" />
 
                     <ImageView
 
