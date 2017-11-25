@@ -4,6 +4,165 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="id.trafood.trafood.EditProfilActivity">
-
+    tools:context="id.trafood.trafood.EditProfilActivity"
+    android:background="@color/white">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_marginTop="@dimen/margin_activity"
+            android:layout_marginBottom="@dimen/margin_activity"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/ivFotoUserEdit"
+                    android:scaleType="centerCrop"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/bg_edittext_grey"
+                    android:layout_width="150dp"
+                    android:layout_height="200dp" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:textColor="@color/white"
+                    android:text="Ganti FOTO"
+                    android:layout_centerInParent="true"
+                    android:background="@color/green"
+                    android:layout_width="150dp"
+                    android:layout_height="20dp" />
+            </RelativeLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_marginRight="@dimen/margin_activity"
+                android:layout_marginLeft="@dimen/margin_activity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:text="@string/nama"
+                    android:textColor="@color/grey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:inputType="text"
+                    android:id="@+id/etNamaUserEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/grey"
+                    android:padding="5dp"
+                    android:background="@drawable/bg_edittext_grey"
+                    android:textColor="@color/radablack" />
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:text="@string/jk"
+                    android:textColor="@color/grey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <Spinner
+                    android:entries="@array/jeniskelamin"
+                    android:id="@+id/spJkEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:text="@string/dob"
+                    android:textColor="@color/grey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:padding="5dp"
+                    android:inputType="date"
+                    android:id="@+id/etDOBEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/grey"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:background="@drawable/bg_edittext_grey"
+                    android:textColor="@color/radablack" />
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:text="@string/notelp"
+                    android:textColor="@color/grey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:padding="5dp"
+                    android:inputType="phone"
+                    android:id="@+id/etNoTelpUserEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/grey"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:background="@drawable/bg_edittext_grey"
+                    android:textColor="@color/radablack" />
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:text="@string/kota"
+                    android:textColor="@color/grey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:padding="5dp"
+                    android:inputType="text"
+                    android:id="@+id/etKotaUserEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/grey"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:background="@drawable/bg_edittext_grey"
+                    android:textColor="@color/radablack" />
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:text="@string/alamat"
+                    android:textColor="@color/grey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:padding="5dp"
+                    android:inputType="textMultiLine"
+                    android:id="@+id/etAlamatUserEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/grey"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:background="@drawable/bg_edittext_grey"
+                    android:textColor="@color/radablack" />
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:text="@string/tentang"
+                    android:textColor="@color/grey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:padding="5dp"
+                    android:inputType="textMultiLine"
+                    android:id="@+id/etTentangUserEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/grey"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:hint="Ceritakan sesuatu tentang anda"
+                    android:background="@drawable/bg_edittext_grey"
+                    android:textColor="@color/radablack" />
+                <Button
+                    android:layout_marginTop="10dp"
+                    android:text="save"
+                    android:textColor="@color/white"
+                    android:background="@drawable/bg_rectangle_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </android.support.constraint.ConstraintLayout>

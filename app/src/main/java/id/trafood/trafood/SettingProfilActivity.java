@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 public class SettingProfilActivity extends AppCompatActivity {
 
     SharedPrefManager sharedPrefManager;
-    LinearLayout linearProfil, linearKedai, linearLogout;
+    LinearLayout linearProfil, linearKedai, linearLogout,linearPassword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +25,7 @@ public class SettingProfilActivity extends AppCompatActivity {
         linearProfil = (LinearLayout) findViewById(R.id.linearProfil);
         linearKedai = (LinearLayout) findViewById(R.id.linearKedai);
         linearLogout = (LinearLayout) findViewById(R.id.linearLogout);
+        linearPassword = (LinearLayout) findViewById(R.id.linearGantiPassword);
 
         if (!sharedPrefManager.getSPSudahLogin()){
             startActivity(new Intent(SettingProfilActivity.this,LoginActivity.class)
@@ -53,6 +54,16 @@ public class SettingProfilActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(SettingProfilActivity.this, EditProfilActivity.class);
+                intent.putExtra("USERID", sharedPrefManager.getSpUserid());
+                SettingProfilActivity.this.startActivity(intent);
+            }
+        });
+
+        linearPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SettingProfilActivity.this, ChangePasswordActivity.class);
+                intent.putExtra("USERID", sharedPrefManager.getSpUserid());
                 SettingProfilActivity.this.startActivity(intent);
             }
         });
@@ -74,8 +85,6 @@ public class SettingProfilActivity extends AppCompatActivity {
                         .show();
             }
         });
-
-
 
     }
 

@@ -46,7 +46,42 @@
             android:layout_marginLeft="60dp"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/radablack"/>
+            android:background="@color/grey"/>
+        <LinearLayout
+            android:id="@+id/linearGantiPassword"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@mipmap/ic_launcher"/>
+            <TextView
+                android:textColor="@color/radablack"
+                android:textSize="@dimen/font_judul_profil"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:text="@string/gantipasswor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_alignParentRight="true"
+                    android:textSize="@dimen/font_judul_menu"
+                    android:layout_marginTop="13dp"
+                    android:text=">"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+        </LinearLayout>
+        <View
+            android:layout_marginLeft="60dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey"/>
         <LinearLayout
             android:id="@+id/linearKedai"
             android:orientation="horizontal"
@@ -81,7 +116,7 @@
             android:layout_marginLeft="60dp"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/radablack"/>
+            android:background="@color/grey"/>
         <LinearLayout
             android:id="@+id/linearLogout"
             android:orientation="horizontal"
@@ -116,6 +151,6 @@
             android:layout_marginLeft="60dp"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/radablack"/>
+            android:background="@color/grey"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

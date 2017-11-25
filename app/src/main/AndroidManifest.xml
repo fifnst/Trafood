@@ -107,9 +107,11 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".KedaiEditPetaActivity"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".EditPetaActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ChangePasswordActivity"
             android:theme="@style/AppTheme"/>
     </application>
 
