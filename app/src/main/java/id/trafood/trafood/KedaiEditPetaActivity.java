@@ -1,5 +1,6 @@
 package id.trafood.trafood;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -40,11 +41,10 @@ public class KedaiEditPetaActivity extends AppCompatActivity implements OnMapRea
         kecamatan = getIntent().getStringExtra("KECAMATAN");
         kota = getIntent().getStringExtra("KOTA");
         alamat = getIntent().getStringExtra("ALAMAT");
-
-        etkecamatan.setText("kecamatab");
-        tvkota.setText("kota");
-        tvalamat.setText("alamata");
-
+        String rmid = getIntent().getStringExtra("RMID");
+        etkecamatan.setText(kecamatan);
+        tvkota.setText(kota);
+        tvalamat.setText(alamat);
 
     }
 
@@ -58,38 +58,33 @@ public class KedaiEditPetaActivity extends AppCompatActivity implements OnMapRea
         return super.onOptionsItemSelected(item);
     }
 
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
-        String lat = getIntent().getStringExtra("LATITUDE");
-        String lng = getIntent().getStringExtra("LONGITUDE");
+        final String rmid = getIntent().getStringExtra("RMID");
+        final String lat = getIntent().getStringExtra("LATITUDE");
+        final String lng = getIntent().getStringExtra("LONGITUDE");
 
-        Double doublelat = Double.parseDouble("-6.932729");
-        Double doublelong = Double.parseDouble("107.753443");
+        Double doublelat = Double.parseDouble(lat);
+        Double doublelong = Double.parseDouble(lng);
 
         LatLng pp = new LatLng(doublelat, doublelong);
         MarkerOptions options = new MarkerOptions();
         options.position(pp).title("Map");
-        //map.addMarker(options);
-        //marker = map.moveCamera(CameraUpdateFactory.newLatLngZoom(pp,15));
         marker = map.addMarker(new MarkerOptions().position(pp));
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(pp, 15));
 
         map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
-                if (marker != null){
-                    marker.remove();
-                }
-               marker = map.addMarker(new MarkerOptions().position(latLng));
-                Toast.makeText(KedaiEditPetaActivity.this, "Lat"+latLng.latitude
-                        +"long"+latLng.longitude, Toast.LENGTH_SHORT).show();
 
+                Intent intent = new Intent(KedaiEditPetaActivity.this, EditPetaActivity.class);
+                intent.putExtra("LAT",lat);
+                intent.putExtra("LNG",lng);
+                intent.putExtra("RMID", rmid);
+                KedaiEditPetaActivity.this.startActivity(intent);
             }
         });
-
-
     }
 
     @Override

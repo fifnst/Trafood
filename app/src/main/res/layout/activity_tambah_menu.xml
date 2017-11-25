@@ -44,6 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <EditText
+                android:padding="5dp"
                 android:id="@+id/etNamaMenuInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -59,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <EditText
-
+                android:padding="5dp"
                 android:inputType="textMultiLine"
                 android:id="@+id/etDeskripsiMenuInput"
                 android:layout_width="match_parent"
@@ -75,6 +76,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <EditText
+                android:padding="5dp"
                 android:inputType="numberDecimal"
                 android:id="@+id/etHargaMenuInput"
                 android:layout_width="match_parent"
@@ -90,6 +92,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <EditText
+                android:padding="5dp"
                 android:digits="012345678 qwertyuiopasdfghjklzxcvbnm"
                 android:inputType="text"
                 android:id="@+id/etTagMenuInput"
