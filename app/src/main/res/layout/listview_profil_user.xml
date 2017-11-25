@@ -82,7 +82,7 @@
                         android:gravity="center">
                         <ImageView
                             android:id="@+id/btnTambahMenuProfil"
-                            android:src="@drawable/Add_Menu"
+                            android:src="@drawable/add_menu"
                             android:layout_width="90dp"
                             android:layout_height="90dp" />
                         <RelativeLayout
@@ -104,7 +104,7 @@
                         android:gravity="center">
                         <ImageView
                             android:id="@+id/btnLihatProfil"
-                            android:src="@drawable/View_Kedai"
+                            android:src="@drawable/view_kedai"
                             android:layout_width="90dp"
                             android:layout_height="90dp" />
                         <RelativeLayout
@@ -160,7 +160,7 @@
                         >
                         <ImageView
                             android:id="@+id/btnReviewProfil"
-                            android:src="@drawable/Review"
+                            android:src="@drawable/review"
                             android:layout_width="90dp"
                             android:layout_height="90dp" />
                         <LinearLayout
@@ -188,7 +188,7 @@
                         android:gravity="center">
                         <ImageView
                             android:id="@+id/btnArticleProfil"
-                            android:src="@drawable/Article"
+                            android:src="@drawable/article"
                             android:layout_width="90dp"
                             android:layout_height="90dp" />
                         <LinearLayout
@@ -216,7 +216,7 @@
                         android:layout_height="wrap_content">
                         <ImageView
                             android:id="@+id/btnPengaturanProfil"
-                            android:src="@drawable/Setting"
+                            android:src="@drawable/setting"
                             android:layout_width="90dp"
                             android:layout_height="90dp" />
                         <TextView
