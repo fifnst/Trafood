@@ -93,37 +93,43 @@ public class RmInfoAdapter extends RecyclerView.Adapter<RmInfoAdapter.MyHolder> 
             holder.tvTutupSaturday.setText(" - " + tutup);
         }
 
+        holder.ivFasilitas.setVisibility(View.GONE);
+        holder.tvFasilitas.setVisibility(View.GONE);
+        holder.ivFSatu.setVisibility(View.GONE);
+        holder.tvFSatu.setVisibility(View.GONE);
+        holder.ivFDua.setVisibility(View.GONE);
+        holder.tvFDua.setVisibility(View.GONE);
+        holder.ivFtiga.setVisibility(View.GONE);
+        holder.tvFTiga.setVisibility(View.GONE);
+        holder.ivFEmpat.setVisibility(View.GONE);
+        holder.tvFEmpat.setVisibility(View.GONE);
+        holder.ivFLima.setVisibility(View.GONE);
+        holder.tvFlima.setVisibility(View.GONE);
+
         if (fasilitas == 1){
-            Picasso.with(holder.ivFasilitas.getContext())
-                    .load(Connect.IMAGE_ASSET+"signal.png").resize(70,70)
-                    .into(holder.ivFasilitas);
-            holder.tvFasilitas.setText(R.string.wifi);
+            holder.ivFasilitas.setVisibility(View.VISIBLE);
+            holder.tvFasilitas.setVisibility(View.VISIBLE);
         }
         if (fSatu ==1 ){
-            Picasso.with(holder.ivFSatu.getContext()).load(Connect.IMAGE_ASSET+"parkir.png").resize(70,70)
-                    .into(holder.ivFSatu);
-            holder.tvFSatu.setText(R.string.parking);
+            holder.ivFSatu.setVisibility(View.VISIBLE);
+            holder.tvFSatu.setVisibility(View.VISIBLE);
 
         }
         if (fDua ==1 ){
-            Picasso.with(holder.ivFDua.getContext()).load(Connect.IMAGE_ASSET+"parkir.png").resize(70,70)
-                    .into(holder.ivFDua);
-            holder.tvFDua.setText(R.string.music);
+            holder.ivFDua.setVisibility(View.VISIBLE);
+            holder.tvFDua.setVisibility(View.VISIBLE);
         }
         if (fTiga ==1){
-            Picasso.with(holder.ivFtiga.getContext()).load(Connect.IMAGE_ASSET+"mushola.png").resize(70,70)
-                    .into(holder.ivFtiga);
-            holder.tvFTiga.setText(R.string.mosque);
+            holder.ivFtiga.setVisibility(View.VISIBLE);
+            holder.tvFTiga.setVisibility(View.VISIBLE);
         }
         if (fEmpat ==1){
-            Picasso.with(holder.ivFEmpat.getContext()).load(Connect.IMAGE_ASSET+"wc.png").resize(70,70)
-                    .into(holder.ivFEmpat);
-            holder.tvFEmpat.setText(R.string.toilet);
+            holder.ivFEmpat.setVisibility(View.VISIBLE);
+            holder.tvFEmpat.setVisibility(View.VISIBLE);
         }
         if (fLima ==1){
-            Picasso.with(holder.ivFLima.getContext()).load(Connect.IMAGE_ASSET+"smoking.png").resize(70,70)
-                    .into(holder.ivFLima);
-            holder.tvFlima.setText(R.string.smoking);
+            holder.ivFLima.setVisibility(View.VISIBLE);
+            holder.tvFlima.setVisibility(View.VISIBLE);
         }
 
 

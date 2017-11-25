@@ -9,7 +9,7 @@
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="230dp"
+        android:layout_height="240dp"
         android:fitsSystemWindows="true"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
@@ -52,18 +52,19 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_alignParentTop="true"
-                        android:layout_marginRight="@dimen/margin_rm"
-                        android:layout_marginLeft="160dp"
+                        android:layout_gravity="center"
                         android:alpha="0.80"
                         android:background="@color/red"
                         android:orientation="horizontal"
-                        android:padding="2dp">
+                        android:padding="2dp"
+                        android:textAlignment="center">
 
                         <ImageView
                             android:layout_width="19dp"
                             android:layout_height="19dp"
                             android:layout_marginLeft="@dimen/margin_rm"
-                            android:src="@drawable/ic_star" />
+                            android:src="@drawable/ic_star"
+                            />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -86,9 +87,18 @@
                 android:textAlignment="center"
                 android:textColor="@color/radablack"
                 android:textSize="@dimen/font_namerm_size"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"/>
 
-                    <TextView
+            <TextView
+                android:id="@+id/tvKategoriRms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/font_kategori_rm" />
+
+            <TextView
                 android:id="@+id/tvAlamatrms"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -113,20 +123,14 @@
             android:orientation="vertical"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <TextView
-                android:id="@+id/tvKategoriRms"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textColor="@color/blue"
-                android:textSize="@dimen/font_kategori_rm" />
+
 
             <android.support.design.widget.TabLayout
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:id="@+id/tlListMenuRM"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="12dp"
-                android:paddingBottom="12dp"
                 style="@style/CustomTabLayoutStyle"/>
 
 
