@@ -62,14 +62,7 @@
              android:textColorHint="@color/grey"
              android:background="@drawable/bg_edittext_grey"
              android:textColor="@color/radablack" />
-        <Button
-            android:layout_marginTop="10dp"
-            android:text="SAVE"
-            android:textColor="@color/white"
-            android:id="@+id/btnEditKedaiMap"
-            android:background="@drawable/bg_rectangle_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+
 
 </LinearLayout>
 
@@ -85,17 +78,18 @@
             android:layout_marginTop="10dp"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="100dp"
             tools:context="id.trafood.trafood.MapsActivity"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-        <Button
-            android:layout_alignParentBottom="true"
-            android:text="change location"
-            android:textColor="@color/white"
-            android:background="#7000a693"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
     </RelativeLayout>
+    <Button
+        android:layout_marginTop="10dp"
+        android:text="SAVE"
+        android:textColor="@color/white"
+        android:id="@+id/btnEditKedaiMap"
+        android:background="@drawable/bg_rectangle_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 
 </LinearLayout>

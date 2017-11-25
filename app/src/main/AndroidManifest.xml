@@ -105,10 +105,12 @@
         <activity
             android:name=".KedaiEditFotoActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".KedaiEditPetaActivity"
-            android:theme="@style/AppTheme">
-
-        </activity>
+        <activity
+            android:name=".KedaiEditPetaActivity"
+            android:theme="@style/AppTheme"/>
+        <activity
+            android:name=".EditPetaActivity"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>
