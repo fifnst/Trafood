@@ -105,6 +105,120 @@ public class EditKedaiActivity extends AppCompatActivity {
             cbFLima.setChecked(true);
         }
 
+        //utnuk katgori
+        if (category.equals("Kafe")){
+            spCategory.setSelection(0,false);
+        }if (category.equals("Resto")){
+            spCategory.setSelection(1,false);
+        }if (category.equals("Food Court")){
+            spCategory.setSelection(2,false);
+        }if (category.equals("Kedai")){
+            spCategory.setSelection(3,false);
+        }if (category.equals("Warung")){
+            spCategory.setSelection(4,false);
+        }if (category.equals("Kaki Lima")){
+            spCategory.setSelection(5,false);
+        }
+
+        //untuk jam buka
+        if (buka.equals("06.00")){
+            spWaktuBuka.setSelection(0, false);
+        }if (buka.equals("06.30")){
+            spWaktuBuka.setSelection(1,false);
+        }if (buka.equals("07.00")){
+            spWaktuBuka.setSelection(2, false);
+        }if (buka.equals("07.30")){
+            spWaktuBuka.setSelection(3,false);
+        }if (buka.equals("08.00")){
+            spWaktuBuka.setSelection(4, false);
+        }if (buka.equals("08.30")){
+            spWaktuBuka.setSelection(5,false);
+        }if (buka.equals("09.00")){
+            spWaktuBuka.setSelection(6, false);
+        }if (buka.equals("09.30")){
+            spWaktuBuka.setSelection(7,false);
+        }if (buka.equals("10.00")){
+            spWaktuBuka.setSelection(8, false);
+        }if (buka.equals("10.30")){
+            spWaktuBuka.setSelection(9,false);
+        }if (buka.equals("11.00")){
+            spWaktuBuka.setSelection(10, false);
+        }if (buka.equals("11.30")){
+            spWaktuBuka.setSelection(11,false);
+        }if (buka.equals("12.00")){
+            spWaktuBuka.setSelection(12, false);
+        }if (buka.equals("12.30")){
+            spWaktuBuka.setSelection(13,false);
+        }if (buka.equals("13.00")){
+            spWaktuBuka.setSelection(14, false);
+        }if (buka.equals("13.30")){
+            spWaktuBuka.setSelection(15,false);
+        }if (buka.equals("14.00")){
+            spWaktuBuka.setSelection(16, false);
+        }if (buka.equals("14.30")){
+            spWaktuBuka.setSelection(17,false);
+        }if (buka.equals("15.00")){
+            spWaktuBuka.setSelection(18, false);
+        }if (buka.equals("15.30")){
+            spWaktuBuka.setSelection(19,false);
+        }if (buka.equals("17.00")){
+            spWaktuBuka.setSelection(20, false);
+        }if (buka.equals("17.30")){
+            spWaktuBuka.setSelection(21,false);
+        }if (buka.equals("18.00")){
+            spWaktuBuka.setSelection(22, false);
+        }if (buka.equals("18.30")){
+            spWaktuBuka.setSelection(23,false);
+        }if (buka.equals("19.00")){
+            spWaktuBuka.setSelection(24, false);
+        }if (buka.equals("19.30")){
+            spWaktuBuka.setSelection(25,false);
+        }if (buka.equals("20.00")){
+            spWaktuBuka.setSelection(26, false);
+        }if (buka.equals("20.30")){
+            spWaktuBuka.setSelection(27,false);
+        }if (buka.equals("21.00")){
+            spWaktuBuka.setSelection(28,false);
+        }if (buka.equals("22.00")){
+            spWaktuBuka.setSelection(39, false);
+        }if (buka.equals("23.00")){
+            spWaktuBuka.setSelection(30,false);
+        }if (buka.equals("24.00")){
+            spWaktuBuka.setSelection(31,false);
+        }
+        //untuk jam tutup
+        if (tutup.equals("18.00")){
+            spWaktututup.setSelection(0, false);
+        }if (tutup.equals("18.30")){
+            spWaktututup.setSelection(1,false);
+        }if (tutup.equals("19.00")){
+            spWaktututup.setSelection(2, false);
+        }if (tutup.equals("19.30")){
+            spWaktututup.setSelection(3,false);
+        }if (tutup.equals("20.00")){
+            spWaktututup.setSelection(4, false);
+        }if (tutup.equals("20.30")){
+            spWaktututup.setSelection(5,false);
+        }if (tutup.equals("21.00")){
+            spWaktututup.setSelection(6, false);
+        }if (tutup.equals("22.00")){
+            spWaktututup.setSelection(7,false);
+        }if (tutup.equals("23.00")){
+            spWaktututup.setSelection(8, false);
+        }if (tutup.equals("24.00")){
+            spWaktututup.setSelection(9,false);
+        }if (tutup.equals("01.00")){
+            spWaktututup.setSelection(10, false);
+        }if (tutup.equals("02.00")){
+            spWaktututup.setSelection(11,false);
+        }if (tutup.equals("03.00")){
+            spWaktututup.setSelection(12, false);
+        }if (tutup.equals("04.00")){
+            spWaktututup.setSelection(13,false);
+        }if (tutup.equals("05.00")){
+            spWaktututup.setSelection(14, false);
+        }
+
     }
 
     private void setView() {

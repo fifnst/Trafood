@@ -92,6 +92,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <Spinner
+                    android:entries="@array/kategori"
                     android:id="@+id/spCategoryEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
@@ -120,6 +121,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <Spinner
+                        android:entries="@array/buka"
                         android:layout_marginRight="10dp"
                         android:id="@+id/spJambukaEdit"
                         android:layout_width="wrap_content"
@@ -131,6 +133,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <Spinner
+                        android:entries="@array/tutup"
                         android:layout_marginLeft="10dp"
                         android:inputType="text"
                         android:id="@+id/spJamTutupEdit"

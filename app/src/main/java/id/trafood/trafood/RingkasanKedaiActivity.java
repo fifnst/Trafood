@@ -141,6 +141,7 @@ public class RingkasanKedaiActivity extends AppCompatActivity  {
                     tvKota.setText(kota);
                     tvTutupSunday.setText(sunday);
                     tvVisit.setText(visit);
+                    tvUlasan.setText(review);
                     tvOrangRating.setText(" /"+visit + " orang");
                     tvnoTelp.setText(telepon);
                     Picasso.with(RingkasanKedaiActivity.this).load(Connect.IMAGE_RM_URL+fotoSampul).into(ivFoto);

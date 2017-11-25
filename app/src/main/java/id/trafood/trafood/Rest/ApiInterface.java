@@ -108,6 +108,7 @@ public interface ApiInterface {
     @GET("index.php/Menudetail/detailmenu")
     Call<ResponseBody> menuDetail(@Query("menuid") String menuid);
 
-
+    @GET("index.php/profil/getuser")
+    Call<ResponseBody> userGet(@Query("userid") String userid);
 
 }
