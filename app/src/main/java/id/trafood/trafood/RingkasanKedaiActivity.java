@@ -126,7 +126,7 @@ public class RingkasanKedaiActivity extends AppCompatActivity  {
                     final String telepon = jsonObject.getJSONObject("result").getString("notelp");
                     String review = jsonObject.getJSONObject("result").getString("review");
                     String visit = jsonObject.getJSONObject("result").getString("visit");
-                    String rating1 = jsonObject.getJSONObject("result").getString("visit");
+                    String rating1 = jsonObject.getJSONObject("result").getString("rating1");
                     String rating2 =  jsonObject.getJSONObject("result").getString("rating2");
                     String rating3 = jsonObject.getJSONObject("result").getString("rating3");
                     String rating4 = jsonObject.getJSONObject("result").getString("rating4");
@@ -141,7 +141,7 @@ public class RingkasanKedaiActivity extends AppCompatActivity  {
                     tvKota.setText(kota);
                     tvTutupSunday.setText(sunday);
                     tvVisit.setText(visit);
-                    tvOrangRating.setText(visit + "orang");
+                    tvOrangRating.setText(" /"+visit + " orang");
                     tvnoTelp.setText(telepon);
                     Picasso.with(RingkasanKedaiActivity.this).load(Connect.IMAGE_RM_URL+fotoSampul).into(ivFoto);
                    // tvUlasan.setText(df.format(review));
@@ -155,13 +155,28 @@ public class RingkasanKedaiActivity extends AppCompatActivity  {
                             RingkasanKedaiActivity.this.startActivity(intent);
                         }
                     });
-                    Double rating1d = Double.parseDouble(rating1);
-                    Double rating2d = Double.parseDouble(rating2);
-                    Double rating3d = Double.parseDouble(rating3);
-                    Double rating4d = Double.parseDouble(rating4);
-                    Double total = rating1d+rating2d+rating3d+rating4d;
 
-                    tvRating.setText(Double.toString(total));
+                    if (rating1.equals("null") && rating2 .equals("null") && rating3 .equals("null") && rating4 .equals("null") ){
+                        tvRating.setText("");
+                    }
+                   else if (rating1 != null && rating2 != null && rating3 != null && rating4 != null ) {
+                       Double rating1d;
+                        Double rating2d;
+                        Double rating3d;
+                        Double rating4d;
+
+                        rating1d = Double.parseDouble(rating1);
+                        rating2d = Double.parseDouble(rating2);
+                        rating3d = Double.parseDouble(rating3);
+                        rating4d = Double.parseDouble(rating4);
+                        Double total = rating1d+rating2d+rating3d+rating4d;
+                        tvRating.setText(Double.toString(total));
+                      //  tvRating.setText("ss");
+                    }
+
+
+
+
 
                     btnEditkedai.setOnClickListener(new View.OnClickListener() {
                         @Override
