@@ -77,10 +77,11 @@
                         android:layout_marginLeft="10dp"
                         android:orientation="vertical"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
                         <ImageView
                             android:id="@+id/btnTambahMenuProfil"
-                            android:src="@mipmap/ic_launcher"
+                            android:src="@drawable/Add_Menu"
                             android:layout_width="90dp"
                             android:layout_height="90dp" />
                         <RelativeLayout
@@ -98,10 +99,11 @@
                         android:layout_centerInParent="true"
                         android:orientation="vertical"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
                         <ImageView
                             android:id="@+id/btnLihatProfil"
-                            android:src="@mipmap/ic_launcher"
+                            android:src="@drawable/View_Kedai"
                             android:layout_width="90dp"
                             android:layout_height="90dp" />
                         <RelativeLayout
@@ -119,10 +121,11 @@
                         android:layout_alignParentRight="true"
                         android:orientation="vertical"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
                         <ImageView
                             android:id="@+id/btnRingkasankedai"
-                            android:src="@mipmap/ic_launcher"
+                            android:src="@drawable/summary"
                             android:layout_width="90dp"
                             android:layout_height="90dp" />
                         <RelativeLayout
@@ -142,7 +145,8 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:gravity="center">
                 <RelativeLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
@@ -151,10 +155,11 @@
                         android:layout_marginLeft="10dp"
                         android:orientation="vertical"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        >
                         <ImageView
                             android:id="@+id/btnReviewProfil"
-                            android:src="@mipmap/ic_launcher"
+                            android:src="@drawable/Review"
                             android:layout_width="90dp"
                             android:layout_height="90dp" />
                         <LinearLayout
@@ -178,10 +183,11 @@
                         android:layout_centerInParent="true"
                         android:orientation="vertical"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
                         <ImageView
                             android:id="@+id/btnArticleProfil"
-                            android:src="@mipmap/ic_launcher"
+                            android:src="@drawable/Article"
                             android:layout_width="90dp"
                             android:layout_height="90dp" />
                         <LinearLayout
@@ -209,7 +215,7 @@
                         android:layout_height="wrap_content">
                         <ImageView
                             android:id="@+id/btnPengaturanProfil"
-                            android:src="@mipmap/ic_launcher"
+                            android:src="@drawable/Setting"
                             android:layout_width="90dp"
                             android:layout_height="90dp" />
                         <TextView
