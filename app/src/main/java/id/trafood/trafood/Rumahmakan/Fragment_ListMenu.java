@@ -16,12 +16,14 @@ import android.widget.TextView;
 import java.util.List;
 
 import id.trafood.trafood.DetailRm;
+import id.trafood.trafood.Models.Galery;
 import id.trafood.trafood.Models.GetMenu;
 import id.trafood.trafood.Models.Menu;
 import id.trafood.trafood.R;
 import id.trafood.trafood.Rest.ApiClient;
 import id.trafood.trafood.Rest.ApiInterface;
 import id.trafood.trafood.Rumahmakan.Adapter.MenuListAdapter;
+import id.trafood.trafood.Rumahmakan.Adapter.RmGaleryAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -31,7 +33,7 @@ import retrofit2.Response;
  */
 public class Fragment_ListMenu extends Fragment {
 
-    TextView tvContoh;
+    TextView tvContoh,pengumuman;
     String rmid;
     ApiInterface apiInterface;
     private RecyclerView recyclerView;
@@ -58,8 +60,7 @@ public class Fragment_ListMenu extends Fragment {
         tvContoh = (TextView) view.findViewById(R.id.tvjh);
         Bundle bundle = this.getArguments();
         rmid = bundle.getString("rmid");
-        tvContoh.setText(rmid);
-
+        pengumuman = (TextView) view.findViewById(R.id.pengumumanMenu);
         recyclerView = (RecyclerView) view.findViewById(R.id.rvListMenuBuatRM);
         progressBar = (ProgressBar) view.findViewById(R.id.pbRMListmenu);
         layoutManager = new GridLayoutManager(this.getActivity(),2);
@@ -71,10 +72,17 @@ public class Fragment_ListMenu extends Fragment {
         menuCall.enqueue(new Callback<GetMenu>() {
             @Override
             public void onResponse(Call<GetMenu> call, Response<GetMenu> response) {
-                progressBar.setVisibility(View.GONE);
-                List<Menu> Menulist = response.body().getListDataMenu();
-                adapter = new MenuListAdapter(Menulist);
-                recyclerView.setAdapter(adapter);
+                if (response.body().getStatus().equals("200")) {
+                    progressBar.setVisibility(View.GONE);
+                    recyclerView.setVisibility(View.VISIBLE);
+                    pengumuman.setVisibility(View.GONE);
+                    List<Menu> Menulist = response.body().getListDataMenu();
+                    adapter = new MenuListAdapter(Menulist);
+                    recyclerView.setAdapter(adapter);
+                }else {
+                    progressBar.setVisibility(View.GONE);
+                    pengumuman.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override

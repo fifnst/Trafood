@@ -48,7 +48,7 @@ public class RingkasanKedaiActivity extends AppCompatActivity  {
 
     SharedPrefManager sharedPrefManager;
     TextView tvAlamat, tvKategori, tvDeskripsi, tvNamaRM, tvKecamatan, tvKota,tvRating,tvUlasan, tvOrangRating, tvVisit, tvnoTelp;
-    TextView tvSunday, tvBukaSunday, tvTutupSunday;
+    TextView tvSunday, tvBukaSunday, tvTutupSunday,pengumuman;
     TextView tvMonday, tvBukaMonday, tvTutupMonday;
     TextView tvTuesday, tvBukaTuesday, tvTutupTuesday;
     TextView tvWednesday, tvBukaWednesday, tvTutupWednesday;
@@ -57,7 +57,7 @@ public class RingkasanKedaiActivity extends AppCompatActivity  {
     TextView tvSaturday, tvBukaSaturday, tvTutupSaturday;
     ImageView ivFasilitas, ivFSatu, ivFDua, ivFtiga, ivFEmpat, ivFLima, ivFoto;
     TextView tvFasilitas, tvFSatu, tvFDua, tvFTiga, tvFEmpat, tvFlima;
-    Button btnEditkedai, btnPeta;
+    Button btnEditkedai, btnPeta,btnTambahMenu;
 
 
     @Override
@@ -346,6 +346,7 @@ public class RingkasanKedaiActivity extends AppCompatActivity  {
         tvKecamatan = (TextView) findViewById(R.id.tvKecamatanKedai);
         tvKota = (TextView) findViewById(R.id.tvKotaKedai);
         tvnoTelp = (TextView) findViewById(R.id.tvtelpKedai);
+        pengumuman = (TextView) findViewById(R.id.pengumumanMenuRinkasan);
 
         tvSunday = (TextView) findViewById(R.id.tvSundayKedai);
         tvBukaSunday = (TextView) findViewById(R.id.tvBukaSundayKedai);
@@ -353,6 +354,7 @@ public class RingkasanKedaiActivity extends AppCompatActivity  {
 
         btnEditkedai = (Button) findViewById(R.id.bteditkedai);
         btnPeta = (Button) findViewById(R.id.btLihatPeta);
+        btnTambahMenu = (Button) findViewById(R.id.btnTambahMenuRinkasan);
 
         tvMonday = (TextView) findViewById(R.id.tvMondayKedai);
         tvBukaMonday = (TextView) findViewById(R.id.tvBukaMondayKedai);
@@ -437,9 +439,16 @@ public class RingkasanKedaiActivity extends AppCompatActivity  {
         getMenuCall.enqueue(new Callback<GetModelMenu>() {
             @Override
             public void onResponse(Call<GetModelMenu> call, Response<GetModelMenu> response) {
-                List<ModelMenu> modelMenuList = response.body().getLisModelmenu();
-                adapter = new SearchMenuAdapater(modelMenuList);
-                recyclerView.setAdapter(adapter);
+                if (response.body().getStatus().equals("200")) {
+                    pengumuman.setVisibility(View.GONE);
+                    btnTambahMenu.setVisibility(View.GONE);
+                    List<ModelMenu> modelMenuList = response.body().getLisModelmenu();
+                    adapter = new SearchMenuAdapater(modelMenuList);
+                    recyclerView.setAdapter(adapter);
+                }else {
+                    pengumuman.setVisibility(View.VISIBLE);
+                    btnTambahMenu.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
@@ -460,4 +469,10 @@ public class RingkasanKedaiActivity extends AppCompatActivity  {
     }
 
 
+    public void tambahmenu(View view) {
+        Intent intent = new Intent(mContext, TambahMenuActivity.class);
+        intent.putExtra("RMID", getIntent().getStringExtra("RMID"));
+        intent.putExtra("USERID",sharedPrefManager.getSpUserid());
+        mContext.startActivity(intent);
+    }
 }

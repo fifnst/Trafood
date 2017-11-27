@@ -93,6 +93,22 @@ public interface ApiInterface {
                                @Query("fempat") String fempat,
                                @Query("flima") String flima);
 
+    @GET("index.php/searchmenu/searchlike")
+    Call<GetModelMenu> getMenuLike(@Query("lat") String lat,
+                               @Query("lng") String lng,
+                               @Query("cari") String cari,
+                               @Query("like") String like,
+                               @Query("jarak") String jarak,
+                               @Query("termurah") String termurah,
+                               @Query("mulaiharga") String mulaiharga,
+                               @Query("sampaiharga") String sampaiharga,
+                               @Query("fasilitas") String fasilitas,
+                               @Query("fsatu") String fsatu,
+                               @Query("fdua") String fdua,
+                               @Query("ftiga") String ftiga,
+                               @Query("fempat") String fempat,
+                               @Query("flima") String flima);
+
     @GET("index.php/artcile")
     Call<GetArticle> getArticle();
 

@@ -398,7 +398,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </RelativeLayout>
-
+        <TextView
+            android:id="@+id/pengumumanMenuRinkasan"
+            android:text="Belum ada menu di rumah makan ini"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:onClick="tambahmenu"
+            android:background="@drawable/bg_rectangle_edittext"
+            android:id="@+id/btnTambahMenuRinkasan"
+            android:text="Tambah menu"
+            android:layout_width="wrap_content"
+            android:textSize="10dp"
+            android:layout_height="15dp" />
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rvMenuKedai"
             android:layout_width="match_parent"

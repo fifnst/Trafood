@@ -42,7 +42,7 @@ public class HomeMenuAdapter extends RecyclerView.Adapter<HomeMenuAdapter.MyView
                 .error(R.mipmap.ic_launcher).into(holder.ivHomeMenu);
         holder.tvLike.setText(modelMenus.get(position).getLikes());
         holder.tvHarga.setText("Rp. " + modelMenus.get(position).getHarga());
-        holder.tvNamaMenu.setText(modelMenus.get(position).getNamarm());
+        holder.tvNamaMenu.setText(modelMenus.get(position).getNamamenu());
         holder.tvnamaRm.setText(modelMenus.get(position).getNamarm());
         holder.tvKecamatan.setText(modelMenus.get(position).getKecamatan()+", ");
         holder.tvKota.setText(modelMenus.get(position).getKota());

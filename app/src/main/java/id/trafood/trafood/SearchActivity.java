@@ -25,6 +25,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import id.trafood.trafood.Home.GetModelMenu;
+import id.trafood.trafood.Home.HomeMenuAdapter;
 import id.trafood.trafood.Home.HomePagerAdapater;
 import id.trafood.trafood.Home.ModelMenu;
 import id.trafood.trafood.Home.SearchMenuAdapater;
@@ -113,14 +114,21 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int i, int i1, int i2) {
                 String search = editText.getText().toString();
-                Call<GetModelMenu> modelMenuCall = apiInterface.getMenu(lats,lngs,search,likes,distance,price,cheapest,expensive,wifi,parkir,music,mushola,wc,smoking);
+                Call<GetModelMenu> modelMenuCall = apiInterface.getMenuLike(lats,lngs,search,likes,distance,price,cheapest,expensive,wifi,parkir,music,mushola,wc,smoking);
                 modelMenuCall.enqueue(new Callback<GetModelMenu>() {
                     @Override
                     public void onResponse(Call<GetModelMenu> call, Response<GetModelMenu> response) {
-                    textas.setVisibility(View.VISIBLE);
-                    List<ModelMenu> modelMenuList = response.body().getLisModelmenu();
-                    adapterMenu = new SearchMenuAdapater(modelMenuList);
-                    recyclerViewMenu.setAdapter(adapterMenu);
+                        if (response.body().getStatus().equals("200")){
+                            textas.setVisibility(View.VISIBLE);
+                            recyclerViewMenu.setVisibility(View.VISIBLE);
+                            List<ModelMenu> modelMenuList = response.body().getLisModelmenu();
+                            adapterMenu = new SearchMenuAdapater(modelMenuList);
+                            recyclerViewMenu.setAdapter(adapterMenu);
+                        }else{
+                            textas.setVisibility(View.GONE);
+                            recyclerViewMenu.setVisibility(View.GONE);
+                        }
+
                     }
 
                     @Override
@@ -133,10 +141,16 @@ public class SearchActivity extends AppCompatActivity {
                 getRumahmakanCall.enqueue(new Callback<GetRumahmakan>() {
                     @Override
                     public void onResponse(Call<GetRumahmakan> call, Response<GetRumahmakan> response) {
-                        kedai.setVisibility(View.VISIBLE);
-                        List<Rumahmakan> rumahmakanList = response.body().getListDataRumahmakan();
-                        adapterRm = new SearchRmAdapter(rumahmakanList);
-                        recyclerViewRm.setAdapter(adapterRm);
+                        if (response.body().getStatus().equals("200")) {
+                            kedai.setVisibility(View.VISIBLE);
+                            recyclerViewRm.setVisibility(View.VISIBLE);
+                            List<Rumahmakan> rumahmakanList = response.body().getListDataRumahmakan();
+                            adapterRm = new SearchRmAdapter(rumahmakanList);
+                            recyclerViewRm.setAdapter(adapterRm);
+                        }else {
+                            kedai.setVisibility(View.GONE);
+                            recyclerViewRm.setVisibility(View.GONE);
+                        }
                     }
 
                     @Override

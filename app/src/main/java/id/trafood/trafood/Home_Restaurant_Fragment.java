@@ -88,10 +88,14 @@ public class Home_Restaurant_Fragment extends Fragment {
             rumahmakanCall.enqueue(new Callback<GetRumahmakan>() {
                 @Override
                 public void onResponse(Call<GetRumahmakan> call, Response<GetRumahmakan> response) {
-                    progressBar.setVisibility(View.GONE);
-                    List<Rumahmakan> RumahmakanList = response.body().getListDataRumahmakan();
-                    mAdapter = new RumahmakanAdapter(RumahmakanList);
-                    mRecyclerView.setAdapter(mAdapter);
+                    if (response.body().getStatus().equals("200")) {
+                        progressBar.setVisibility(View.GONE);
+                        List<Rumahmakan> RumahmakanList = response.body().getListDataRumahmakan();
+                        mAdapter = new RumahmakanAdapter(RumahmakanList);
+                        mRecyclerView.setAdapter(mAdapter);
+                    }else {
+                        progressBar.setVisibility(View.VISIBLE);
+                    }
                 }
 
                 @Override

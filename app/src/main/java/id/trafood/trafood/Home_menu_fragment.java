@@ -12,6 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.List;
 
 import butterknife.BindView;
@@ -96,10 +100,16 @@ public class Home_menu_fragment extends Fragment {
         modelMenuCall.enqueue(new Callback<GetModelMenu>() {
             @Override
             public void onResponse(Call<GetModelMenu> call, Response<GetModelMenu> response) {
-                progressBar.setVisibility(View.GONE);
-                List<ModelMenu> modelMenuList = response.body().getLisModelmenu();
-                adapter = new HomeMenuAdapter(modelMenuList);
-                recyclerView.setAdapter(adapter);
+
+                    if (response.body().getStatus().equals("200")){
+                        progressBar.setVisibility(View.GONE);
+                        List<ModelMenu> modelMenuList = response.body().getLisModelmenu();
+                        adapter = new HomeMenuAdapter(modelMenuList);
+                        recyclerView.setAdapter(adapter);
+                    }else{
+                        progressBar.setVisibility(View.VISIBLE);
+                    }
+
             }
 
             @Override

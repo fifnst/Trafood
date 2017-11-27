@@ -1,10 +1,13 @@
 package id.trafood.trafood;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -15,6 +18,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 import id.trafood.trafood.Rest.ApiInterface;
 import id.trafood.trafood.Rest.Connect;
@@ -32,6 +38,8 @@ public class EditProfilActivity extends AppCompatActivity {
     Spinner spJk;
     ApiInterface apiInterface;
     Context mContext;
+    DatePickerDialog datePickerDialog;
+    SimpleDateFormat simpleDateFormat;
   //  String[] jkada = getResources().getStringArray(R.array.jeniskelamin);
 
     @Override
@@ -56,7 +64,35 @@ public class EditProfilActivity extends AppCompatActivity {
         apiInterface = UtilsApi.getApiServive();
         sharedPrefManager = new SharedPrefManager(this);
 
+        simpleDateFormat = new SimpleDateFormat("dd-mm-yyyy", Locale.US);
+
+        etTgLahir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDateDialog();
+            }
+        });
+
         ambiluser();
+    }
+
+    private void showDateDialog() {
+        //untuk get tanggal sekarang
+        Calendar calendar = Calendar.getInstance();
+
+        //inisilisasi date picker
+        datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int day) {
+                //set calender untuk menampung tanggal yang dipilih
+                Calendar newDate = Calendar.getInstance();
+                newDate.set(year, month, day);
+
+                etTgLahir.setText(simpleDateFormat.format(newDate.getTime()));
+            }
+        }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+
+        datePickerDialog.show();
     }
 
     private void ambiluser() {

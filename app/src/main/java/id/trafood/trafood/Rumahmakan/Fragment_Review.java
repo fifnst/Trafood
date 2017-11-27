@@ -15,9 +15,11 @@ import java.util.List;
 
 import id.trafood.trafood.Models.Comment;
 import id.trafood.trafood.Models.GetComment;
+import id.trafood.trafood.Models.Menu;
 import id.trafood.trafood.R;
 import id.trafood.trafood.Rest.ApiClient;
 import id.trafood.trafood.Rest.ApiInterface;
+import id.trafood.trafood.Rumahmakan.Adapter.MenuListAdapter;
 import id.trafood.trafood.Rumahmakan.Adapter.RmCommentAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -65,11 +67,18 @@ public class Fragment_Review extends Fragment {
         commentCall.enqueue(new Callback<GetComment>() {
             @Override
             public void onResponse(Call<GetComment> call, Response<GetComment> response) {
-                progressBar.setVisibility(View.GONE);
-                textView.setVisibility(View.GONE);
-                List<Comment> CommentList = response.body().getListDataComment();
-                adapter = new RmCommentAdapter(CommentList);
-                recyclerView.setAdapter(adapter);
+                if (response.body().getStatus().equals("200")) {
+                    progressBar.setVisibility(View.GONE);
+                    textView.setVisibility(View.GONE);
+                    recyclerView.setVisibility(View.VISIBLE);
+                    List<Comment> CommentList = response.body().getListDataComment();
+                    adapter = new RmCommentAdapter(CommentList);
+                    recyclerView.setAdapter(adapter);
+                }else {
+                    progressBar.setVisibility(View.GONE);
+                    textView.setVisibility(View.VISIBLE);
+                    recyclerView.setVisibility(View.GONE);
+                }
             }
 
             @Override
