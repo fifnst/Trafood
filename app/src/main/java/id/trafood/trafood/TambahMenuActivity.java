@@ -162,6 +162,7 @@ public class TambahMenuActivity extends AppCompatActivity {
             String foto = path.getText().toString();
 
             //BitmapDrawable drawable = (BitmapDrawable) fotomenu.getDrawable();
+        //convert dulu gambarnya ke base 64
             fotomenu.buildDrawingCache();
             Bitmap bitmap = fotomenu.getDrawingCache();
             ByteArrayOutputStream bos = new ByteArrayOutputStream();

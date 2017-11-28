@@ -18,9 +18,11 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import id.trafood.trafood.Models.PostPutDelMenu;
 import id.trafood.trafood.Rest.ApiClient;
 import id.trafood.trafood.Rest.ApiInterface;
 import id.trafood.trafood.Rest.Connect;
+import id.trafood.trafood.Rest.RestApi;
 import id.trafood.trafood.Rest.UtilsApi;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -30,6 +32,7 @@ import retrofit2.Response;
 public class EditMenuActivity extends AppCompatActivity {
     Context mContext;
     ApiInterface apiInterface;
+    RestApi restApi;
 
     SharedPrefManager sharedPrefManager;
 
@@ -66,22 +69,19 @@ public class EditMenuActivity extends AppCompatActivity {
         }
 
         //cek if your userid is same with menu userid
-       /* if (sharedPrefManager.getSPSudahLogin()){
+       if (sharedPrefManager.getSPSudahLogin()){
             if (!useriduser.equals(useridmenu)){
                 Intent intent = new Intent(EditMenuActivity.this, MainActivity.class);
                 EditMenuActivity.this.startActivity(intent);
                 Toast.makeText(mContext, "You dont have permission to enter this page", Toast.LENGTH_SHORT).show();
             }
-        } */
-        //tvnamamenu.setText(menuid);
-        //tvdeskrpsi.setText(useridmenu);
-        //method untuk mengeset isi
+        }
 
         mContext = this;
         apiInterface = UtilsApi.getApiServive();
+        restApi = ApiClient.getClient().create(RestApi.class);
 
-
-
+        //method untuk mengeset isi
         SetIsi();
     }
 
@@ -112,10 +112,49 @@ public class EditMenuActivity extends AppCompatActivity {
                             Intent intent = new Intent(EditMenuActivity.this, EditFotoMenuActivity.class);
                             intent.putExtra("FOTO", fotomenu);
                             intent.putExtra("MENUID", menuid);
+                            intent.putExtra("USERID", sharedPrefManager.getSpUserid());
                             EditMenuActivity.this.startActivity(intent);
+
                         }
                     });
 
+                    btnEditMenu.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Call<PostPutDelMenu> updateMenu = restApi.putMenu(
+                                    getIntent().getStringExtra("MENUID"),
+                                    tvnamamenu.getText().toString(),tvdeskrpsi.getText().toString(),tvharga.getText().toString(),
+                                    tvtag.getText().toString(),sharedPrefManager.getSpUserid());
+                            updateMenu.enqueue(new Callback<PostPutDelMenu>() {
+                                @Override
+                                public void onResponse(Call<PostPutDelMenu> call, Response<PostPutDelMenu> response) {
+                                    finish();
+                                    Toast.makeText(mContext, "Sukses update menu", Toast.LENGTH_SHORT).show();
+
+                                    Intent intent = new Intent(mContext, DetailMenu.class);
+                                    intent.putExtra("NAMAMENU",tvnamamenu.getText().toString());
+                                    intent.putExtra("MENUID",getIntent().getStringExtra("MENUID"));
+                                    intent.putExtra("HARGA",tvharga.getText().toString());
+                                    intent.putExtra("FOTOMENU",fotomenu);
+                                    intent.putExtra("USERID",sharedPrefManager.getSpUserid());
+                                    mContext.startActivity(intent);
+                                }
+
+                                @Override
+                                public void onFailure(Call<PostPutDelMenu> call, Throwable t) {
+                                    Intent intent = new Intent(mContext, DetailMenu.class);
+                                    intent.putExtra("NAMAMENU",tvnamamenu.getText().toString());
+                                    intent.putExtra("MENUID",getIntent().getStringExtra("MENUID"));
+                                    intent.putExtra("HARGA",tvharga.getText().toString());
+                                    intent.putExtra("FOTOMENU",fotomenu);
+                                    intent.putExtra("USERID",sharedPrefManager.getSpUserid());
+                                    mContext.startActivity(intent);
+
+                                    Toast.makeText(mContext, "Sukses update menu", Toast.LENGTH_LONG).show();
+                                }
+                            });
+                        }
+                    });
                 }catch (JSONException e){
                     e.printStackTrace();
                 } catch (IOException e){
@@ -141,4 +180,5 @@ public class EditMenuActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

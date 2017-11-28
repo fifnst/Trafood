@@ -1,9 +1,15 @@
 package id.trafood.trafood;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -11,35 +17,51 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+import id.trafood.trafood.Models.PostPutDelUser;
+import id.trafood.trafood.Rest.ApiClient;
 import id.trafood.trafood.Rest.ApiInterface;
 import id.trafood.trafood.Rest.Connect;
+import id.trafood.trafood.Rest.RestApi;
 import id.trafood.trafood.Rest.UtilsApi;
 import okhttp3.ResponseBody;
+import pl.aprilapps.easyphotopicker.DefaultCallback;
+import pl.aprilapps.easyphotopicker.EasyImage;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class EditProfilActivity extends AppCompatActivity {
 
+
     SharedPrefManager sharedPrefManager;
     ImageView ivFoto;
+    TextView path;
     EditText etNamauser,etTgLahir, etTelepon, etKota, etAlamat, etTentang;
     Spinner spJk;
     ApiInterface apiInterface;
     Context mContext;
     DatePickerDialog datePickerDialog;
     SimpleDateFormat simpleDateFormat;
+    RestApi restApi;
+    Button simpan;
+    ProgressDialog loading;
   //  String[] jkada = getResources().getStringArray(R.array.jeniskelamin);
 
     @Override
@@ -59,9 +81,12 @@ public class EditProfilActivity extends AppCompatActivity {
         etAlamat = (EditText) findViewById(R.id.etAlamatUserEdit);
         etTentang = (EditText) findViewById(R.id.etTentangUserEdit);
         spJk = (Spinner) findViewById(R.id.spJkEdit);
+        path = (TextView) findViewById(R.id.path);
+        simpan = (Button) findViewById(R.id.btnSimpan);
 
         mContext =this;
         apiInterface = UtilsApi.getApiServive();
+        restApi = ApiClient.getClient().create(RestApi.class);
         sharedPrefManager = new SharedPrefManager(this);
 
         simpleDateFormat = new SimpleDateFormat("dd-mm-yyyy", Locale.US);
@@ -74,7 +99,45 @@ public class EditProfilActivity extends AppCompatActivity {
         });
 
         ambiluser();
+        path.setVisibility(View.GONE);
+
+
+
+        simpan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loading = ProgressDialog.show(mContext, null, "Please wait....", true, false);
+                simpantanpagambar();
+            }
+        });
     }
+
+    private void simpantanpagambar() {
+        final String userid = sharedPrefManager.getSpUserid();
+        String nama = etNamauser.getText().toString();
+        String alamat = etAlamat.getText().toString();
+        String kota = etKota.getText().toString();
+        String telepon = etTelepon.getText().toString();
+        String tentang = etTentang.getText().toString();
+        String tglLahit = etTgLahir.getText().toString();
+        String jk = spJk.getSelectedItem().toString();
+
+        Call<PostPutDelUser> putUser = restApi.Putuser(nama,jk,tglLahit,telepon,kota,alamat,tentang,userid);
+        putUser.enqueue(new Callback<PostPutDelUser>() {
+            @Override
+            public void onResponse(Call<PostPutDelUser> call, Response<PostPutDelUser> response) {
+                loading.dismiss();
+                Toast.makeText(mContext, "Berhasil tanpa foto", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<PostPutDelUser> call, Throwable t) {
+                loading.dismiss();
+                Toast.makeText(mContext, "gagal tanpa foto", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 
     private void showDateDialog() {
         //untuk get tanggal sekarang
@@ -107,7 +170,7 @@ public class EditProfilActivity extends AppCompatActivity {
                     String tgllahir = jsonObject.getJSONObject("result").getString("tgllahir");
                     String noTelp = jsonObject.getJSONObject("result").getString("telp");
                     String jk = jsonObject.getJSONObject("result").getString("jk");
-                    String fotouser = jsonObject.getJSONObject("result").getString("fotouser");
+                    final String fotouser = jsonObject.getJSONObject("result").getString("fotouser");
                     String alamat = jsonObject.getJSONObject("result").getString("alamat");
                     String tentang = jsonObject.getJSONObject("result").getString("tentang");
                     String kota = jsonObject.getJSONObject("result").getString("kota");
@@ -119,7 +182,14 @@ public class EditProfilActivity extends AppCompatActivity {
                     etAlamat.setText(alamat);
                     etTentang.setText(tentang);
                     Picasso.with(mContext).load(Connect.IMAGE_USER+fotouser).into(ivFoto);
-
+                    ivFoto.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(mContext, EditFotoUser.class);
+                            intent.putExtra("FOTO", fotouser);
+                            mContext.startActivity(intent);
+                        }
+                    });
                    if (jk.equals("Pria") ){
                         spJk.setSelection(0,false);
                     }

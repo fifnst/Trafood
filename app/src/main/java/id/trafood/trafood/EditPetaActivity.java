@@ -1,6 +1,8 @@
 package id.trafood.trafood;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -28,23 +30,36 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.io.IOException;
 import java.util.List;
 
+import id.trafood.trafood.Models.PostPutDelRm;
+import id.trafood.trafood.Rest.ApiClient;
+import id.trafood.trafood.Rest.RestApi;
+import id.trafood.trafood.Rest.UtilsApi;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class EditPetaActivity extends AppCompatActivity implements OnMapReadyCallback, SearchView.OnQueryTextListener{
 
     private GoogleMap map;
-    private Button save;
     private Button submit;
-    private EditText etSearch;
     private Marker marker;
+    RestApi restApi;
+    Context mContext;
+    SharedPrefManager sharedPrefManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_peta);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Ganti Lokasi");
-        //Button submit = (Button) findViewById(R.id.search_buttonEditKedai);
-       // etSearch = (EditText) findViewById(R.id.etSearchMapEditKedai);
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map3);
         mapFragment.getMapAsync(this);
+        sharedPrefManager = new SharedPrefManager(this);
+
+        submit = (Button) findViewById(R.id.btnSavePetaEdit);
+        mContext = this;
+        restApi = ApiClient.getClient().create(RestApi.class);
     }
 
     @Override
@@ -52,10 +67,11 @@ public class EditPetaActivity extends AppCompatActivity implements OnMapReadyCal
         map = googleMap;
         String lat = getIntent().getStringExtra("LAT");
         String lng = getIntent().getStringExtra("LNG");
+        final String rmid = getIntent().getStringExtra("RMID");
 
         Double doublelat = Double.parseDouble(lat);
         Double doublelong = Double.parseDouble(lng);
-
+        
         LatLng pp = new LatLng(doublelat, doublelong);
         MarkerOptions options = new MarkerOptions();
         options.position(pp).title("Map");
@@ -68,13 +84,53 @@ public class EditPetaActivity extends AppCompatActivity implements OnMapReadyCal
         map.setMyLocationEnabled(true);
         map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
-            public void onMapClick(LatLng latLng) {
+            public void onMapClick(final LatLng latLng) {
                 if (marker != null){
                     marker.remove();
                 }
                 marker = map.addMarker(new MarkerOptions().position(latLng));
                 Toast.makeText(EditPetaActivity.this, "Lat"+latLng.latitude
                         +"long"+latLng.longitude, Toast.LENGTH_SHORT).show();
+
+                submit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        final double lng = latLng.longitude;
+                        final double lat = latLng.latitude;
+                        final String lats = String.valueOf(lat);
+                        final String lngs = String.valueOf(lng);
+                        String userid = sharedPrefManager.getSpUserid();
+                        Call<PostPutDelRm> putRmCall = restApi.putLatLngRm(lats,lngs,userid,rmid);
+                        putRmCall.enqueue(new Callback<PostPutDelRm>() {
+                            @Override
+                            public void onResponse(Call<PostPutDelRm> call, Response<PostPutDelRm> response) {
+                                Toast.makeText(EditPetaActivity.this, "Sukses Update Lokasi", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(EditPetaActivity.this, KedaiEditPetaActivity.class);
+                                intent.putExtra("LATITUDE",lats);
+                                intent.putExtra("LONGITUDE",lngs);
+                                intent.putExtra("RMID", rmid);
+                                intent.putExtra("KECAMATAN", getIntent().getStringExtra("KECAMATAN"));
+                                intent.putExtra("KOTA", getIntent().getStringExtra("KOTA"));
+                                intent.putExtra("ALAMAT", getIntent().getStringExtra("ALAMAT"));
+                                EditPetaActivity.this.startActivity(intent);
+                            }
+
+                            @Override
+                            public void onFailure(Call<PostPutDelRm> call, Throwable t) {
+                                Toast.makeText(EditPetaActivity.this, "Sukses Update Lokasi", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(EditPetaActivity.this, KedaiEditPetaActivity.class);
+                                intent.putExtra("LATITUDE",lats);
+                                intent.putExtra("LONGITUDE",lngs);
+                                intent.putExtra("RMID", rmid);
+                                intent.putExtra("KECAMATAN", getIntent().getStringExtra("KECAMATAN"));
+                                intent.putExtra("KOTA", getIntent().getStringExtra("KOTA"));
+                                intent.putExtra("ALAMAT", getIntent().getStringExtra("ALAMAT"));
+                                EditPetaActivity.this.startActivity(intent);
+
+                            }
+                        });
+                    }
+                });
 
             }
         });

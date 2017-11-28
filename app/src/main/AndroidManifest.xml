@@ -111,7 +111,11 @@
         <activity
             android:name=".EditPetaActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".ChangePasswordActivity"
+        <activity
+            android:name=".ChangePasswordActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".EditFotoUser"
             android:theme="@style/AppTheme"/>
     </application>
 

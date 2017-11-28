@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="id.trafood.trafood.KedaiEditFotoActivity">
+    tools:context="id.trafood.trafood.EditFotoUser">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -13,24 +13,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
-                android:id="@+id/ivFotoKedaiEdit"
+                android:id="@+id/ivFotoUserEditnyal"
                 android:scaleType="centerCrop"
+                android:background="@drawable/bg_edittext_grey"
                 android:layout_width="match_parent"
-                android:layout_height="200dp" />
+                android:layout_height="400dp" />
             <Button
-                android:id="@+id/btnSelecImageFotoEdit"
                 android:text="Select Image"
+                android:id="@+id/select"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
+
         <Button
-            android:layout_marginBottom="@dimen/margin_activity"
-            android:layout_alignParentBottom="true"
-            android:id="@+id/btnSaveEditFotoKedai"
-            android:text="SAVE"
+            android:id="@+id/btnSaveFotoUserEdit"
             android:textColor="@color/white"
-            android:background="@drawable/bg_rectangle_button"
+            android:text="Ganti FOTO"
+            android:layout_alignParentBottom="true"
+            android:background="@color/green"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </RelativeLayout>
