@@ -1,5 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:orientation="vertical"
     android:background="@color/white"
     android:layout_width="match_parent"
@@ -15,7 +16,12 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
+        <ImageView
+            android:layout_centerInParent="true"
+            android:src="@drawable/logofont"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginBottom="@dimen/margin_activity"/>
         <TextView
             android:textAlignment="center"
             android:text="@string/segera"

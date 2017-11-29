@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/white"
     android:layout_height="match_parent"
-    tools:context="id.trafood.trafood.EditKedaiActivity">
+    android:background="@color/white"
+    tools:context="id.trafood.trafood.DaftarKedaiInfo">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -16,84 +15,22 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/logofont"
+                    android:layout_width="200dp"
+                    android:layout_height="50dp" />
+            </RelativeLayout>
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_marginLeft="@dimen/margin_activity"
                 android:layout_marginRight="@dimen/margin_activity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <TextView
-                    android:text="@string/namarm"
-                    android:textColor="@color/grey"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <EditText
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    android:inputType="text"
-                    android:id="@+id/etNamaKedaiEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColorHint="@color/grey"
-                    android:background="@drawable/bg_edittext_grey"
-                    android:textColor="@color/radablack" />
-                <TextView
-                    android:layout_marginTop="10dp"
-                    android:text="@string/url"
-                    android:textColor="@color/grey"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <EditText
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    android:inputType="text"
-                    android:id="@+id/eturlKedaiEdit"
-                    android:digits="012345678qwertyuiopasdfghjklzxcvbnm"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColorHint="@color/grey"
-                    android:background="@drawable/bg_edittext_grey"
-                    android:textColor="@color/radablack" />
-                <TextView
-                    android:id="@+id/WarningUrlEdit"
-                    android:text="Url sudah ada yang make"
-                    android:textColor="@color/red"
-                    android:textSize="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
 
-                <TextView
-                    android:layout_marginTop="10dp"
-                    android:text="@string/description"
-                    android:textColor="@color/grey"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <EditText
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    android:inputType="textMultiLine"
-                    android:id="@+id/etDeskripsiKedaiEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColorHint="@color/grey"
-                    android:background="@drawable/bg_edittext_grey"
-                    android:textColor="@color/radablack" />
-                <TextView
-                    android:layout_marginTop="10dp"
-                    android:text="@string/notelp"
-                    android:textColor="@color/grey"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <EditText
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    android:inputType="phone"
-                    android:id="@+id/etNoTelpKedaiEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColorHint="@color/grey"
-                    android:background="@drawable/bg_edittext_grey"
-                    android:textColor="@color/radablack" />
                 <TextView
                     android:layout_marginTop="10dp"
                     android:text="@string/catgory"
@@ -102,7 +39,7 @@
                     android:layout_height="wrap_content" />
                 <Spinner
                     android:entries="@array/kategori"
-                    android:id="@+id/spCategoryEdit"
+                    android:id="@+id/spCategoryTambah"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
@@ -132,7 +69,7 @@
                     <Spinner
                         android:entries="@array/buka"
                         android:layout_marginRight="10dp"
-                        android:id="@+id/spJambukaEdit"
+                        android:id="@+id/spJambukaTambah"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColorHint="@color/grey"
@@ -145,7 +82,7 @@
                         android:entries="@array/tutup"
                         android:layout_marginLeft="10dp"
                         android:inputType="text"
-                        android:id="@+id/spJamTutupEdit"
+                        android:id="@+id/spJamTutupTambah"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColorHint="@color/grey"
@@ -165,7 +102,7 @@
                             android:layout_height="wrap_content">
                             <CheckBox
                                 android:text="@string/monday"
-                                android:id="@+id/cbSeninEdit"
+                                android:id="@+id/cbSeninTambah"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
                         </LinearLayout>
@@ -173,13 +110,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <CheckBox
-                                android:id="@+id/cbKamisEdit"
+                                android:id="@+id/cbKamisTambah"
                                 android:text="@string/thursday"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
                         </LinearLayout>
                         <CheckBox
-                            android:id="@+id/cbSundayEdit"
+                            android:id="@+id/cbSundayTambah"
                             android:text="@string/sunday"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
@@ -194,7 +131,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <CheckBox
-                                android:id="@+id/cbSelasaEdit"
+                                android:id="@+id/cbSelasaTambah"
                                 android:text="@string/teusday"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
@@ -203,7 +140,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <CheckBox
-                                android:id="@+id/cbJumatEdit"
+                                android:id="@+id/cbJumatTambah"
                                 android:text="@string/friday"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
@@ -218,7 +155,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <CheckBox
-                                android:id="@+id/cbRabuEdit"
+                                android:id="@+id/cbRabuTambah"
                                 android:text="@string/wednesday"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
@@ -227,7 +164,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <CheckBox
-                                android:id="@+id/cbSabtuEdit"
+                                android:id="@+id/cbSabtuTambah"
                                 android:text="@string/saturday"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
@@ -264,7 +201,7 @@
                             android:layout_height="wrap_content">
                             <CheckBox
                                 android:text="@string/wifi"
-                                android:id="@+id/cbFasilitasEdit"
+                                android:id="@+id/cbFasilitasTambah"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
                         </LinearLayout>
@@ -272,7 +209,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <CheckBox
-                                android:id="@+id/cbFSatuEdit"
+                                android:id="@+id/cbFSatuTambah"
                                 android:text="@string/parking"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
@@ -288,7 +225,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <CheckBox
-                                android:id="@+id/cbcbFDuaEdit"
+                                android:id="@+id/cbcbFDuaTambah"
                                 android:text="@string/music"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
@@ -297,7 +234,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <CheckBox
-                                android:id="@+id/cbFLimauEdit"
+                                android:id="@+id/cbFLimauTambah"
                                 android:text="@string/smoking"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
@@ -312,7 +249,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <CheckBox
-                                android:id="@+id/cbFTigaEdit"
+                                android:id="@+id/cbFTigaTambah"
                                 android:text="@string/mosque"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
@@ -321,7 +258,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <CheckBox
-                                android:id="@+id/cbFEmpatEdit"
+                                android:id="@+id/cbFEmpatTambah"
                                 android:text="@string/toilet"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
@@ -333,69 +270,67 @@
                 android:layout_margin="@dimen/margin_activity"
                 android:textColor="@color/white"
                 android:text="SAVE"
-                android:id="@+id/btnEditKedai"
+                android:id="@+id/btnTambahKedai"
                 android:background="@color/green"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
     </ScrollView>
     <RelativeLayout
-        android:id="@+id/relatifFasilitas"
+        android:id="@+id/relatifFasilitasTambah"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <TextView
-            android:id="@+id/etFasilitas"
+            android:id="@+id/etFasilitasTambah"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:id="@+id/etF1"
+            android:id="@+id/etF1Tambah"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:id="@+id/etF2"
+            android:id="@+id/etF2Tambah"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:id="@+id/etF3"
+            android:id="@+id/etF3Tambah"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:id="@+id/etF4"
+            android:id="@+id/etF4Tambah"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:id="@+id/etF5"
+            android:id="@+id/etF5Tambah"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:id="@+id/etsunday"
+            android:id="@+id/etsundayTambah"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:id="@+id/etMonday"
+            android:id="@+id/etMondayTambah"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:id="@+id/etTuesday"
+            android:id="@+id/etTuesdayTambah"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:id="@+id/etWednesday"
+            android:id="@+id/etWednesdayTambah"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:id="@+id/etFriday"
+            android:id="@+id/etFridayTambah"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:id="@+id/ettrusday"
+            android:id="@+id/ettrusdayTambah"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:id="@+id/etsaturday"
+            android:id="@+id/etsaturdayTambah"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </RelativeLayout>
-
-
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>

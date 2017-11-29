@@ -39,6 +39,7 @@
     <string name="alamat">Alamat</string>
     <string name="kecamatan">Kecamatan</string>
     <string name="kota">Kota</string>
+    <string name="segeradaftar">Segera Daftarkan Kedai anda di trafood sekarang</string>
 
     <!-- info menu -->
     <string name="rekomendasi">Rekomendasi</string>
@@ -70,7 +71,7 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="logout">Logout</string>
-    <string name="tidakpunyaakun">Dont have Account?</string>
+    <string name="tidakpunyaakun">Tidak punya akun?</string>
     <string name="signin">Sign in</string>
     <string name="signout">Sign Out</string>
     <string name="alreadyhaveaccount">Already Have Accoun?t</string>
@@ -83,7 +84,11 @@
     <string name="dob">Tanggal lahir</string>
     <string name="jk">Jenis Kelamin</string>
     <string name="tentang">Tentang</string>
-
+    <string name="loginfb">Login dengan Facebook</string>
+    <string name="lupasadi">Lupa Sandi?</string>
+    <string name="pulihkan">Pulihkan</string>
+    <string name="atau">Atau</string>
+    <string name="buatakun">Buat akun</string>
 
     <!-- Filter -->
     <string name="lokasi_filter">Lokasi</string>

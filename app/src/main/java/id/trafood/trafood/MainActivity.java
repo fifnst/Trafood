@@ -156,7 +156,9 @@ public class MainActivity extends AppCompatActivity  implements LocationListener
         }
 
         final Home_fragmet fraghom = new Home_fragmet();
+        final Fragment_Vaforite fragrit = new Fragment_Vaforite();
         fraghom.setArguments(bundle);
+        fragrit.setArguments(bundle);
         fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content, fraghom).commit();
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -168,7 +170,7 @@ public class MainActivity extends AppCompatActivity  implements LocationListener
                         fragment = fraghom;
                         break;
                     case R.id.navigation_favorite:
-                        fragment = new Fragment_Vaforite();
+                        fragment = fragrit;
                         break;
                     case R.id.navigation_profil:
                         fragment = new Fragment_Profil();

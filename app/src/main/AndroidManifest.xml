@@ -80,7 +80,7 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SettingProfilActivity"
             android:theme="@style/AppTheme" />
@@ -116,6 +116,21 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".EditFotoUser"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".DaftarKedaiActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".DaftarKedaiInfo"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".DaftarKedaiAlamat"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".DaftarKedaiFoto"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".DaftarKedaiPeta"
             android:theme="@style/AppTheme"/>
     </application>
 

@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -15,10 +17,17 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
 import id.trafood.trafood.Models.PostPutDelRm;
 import id.trafood.trafood.Rest.ApiClient;
+import id.trafood.trafood.Rest.ApiInterface;
 import id.trafood.trafood.Rest.RestApi;
 import id.trafood.trafood.Rest.UtilsApi;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -32,7 +41,8 @@ public class EditKedaiActivity extends AppCompatActivity {
     Button buttonSave;
     RestApi restApi;
     Context mContext;
-    TextView tvSunday, tvMondday, tvTuesday, tvWednesday, tvThrusday, tvFriday, tvSaturday;
+    ApiInterface apiInterface;
+    TextView tvSunday, tvMondday, tvTuesday, tvWednesday, tvThrusday, tvFriday, tvSaturday,warningurl;
     TextView tvFasilitas, tvF1, tvF2, tvF3, tvF4, tvF5;
     RelativeLayout relativeLayout;
     SharedPrefManager sharedPrefManager;
@@ -46,7 +56,7 @@ public class EditKedaiActivity extends AppCompatActivity {
         sharedPrefManager = new SharedPrefManager(this);
         mContext = this;
         restApi = ApiClient.getClient().create(RestApi.class);
-
+        apiInterface = ApiClient.getClient().create(ApiInterface.class);
         setView();
 
         fill();
@@ -58,6 +68,8 @@ public class EditKedaiActivity extends AppCompatActivity {
                 save();
             }
         });
+
+
     }
 
 
@@ -67,7 +79,7 @@ public class EditKedaiActivity extends AppCompatActivity {
         String rmid = intent.getStringExtra("RMID");
 
         String namakedai = intent.getStringExtra("NAMAKEDAI");
-        String uurl = intent.getStringExtra("URL");
+        final String uurl = intent.getStringExtra("URL");
         String deskripsi = intent.getStringExtra("DESKRIPSI ");
         String notelp = intent.getStringExtra("NOTELP");
 
@@ -251,6 +263,52 @@ public class EditKedaiActivity extends AppCompatActivity {
             spWaktututup.setSelection(14, false);
         }
 
+        eturl.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                warningurl.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                apiInterface.cekUrl(eturl.getText().toString()).enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response.body().string());
+                            String uuurl = jsonObject.getString("status");
+                            if (uuurl.equals("200")){
+                                warningurl.setVisibility(View.GONE);
+                                buttonSave.setEnabled(true);
+                            }else{
+                                if (eturl.getText().toString().equals(uurl)){
+                                    warningurl.setVisibility(View.GONE);
+                                    buttonSave.setEnabled(true);
+                                }else {
+                                    warningurl.setVisibility(View.VISIBLE);
+                                    buttonSave.setEnabled(false);
+                                }
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                    }
+                });
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
     }
 
     private void setView() {
@@ -278,6 +336,8 @@ public class EditKedaiActivity extends AppCompatActivity {
         cbFLima = (CheckBox) findViewById(R.id.cbFLimauEdit);
 
         buttonSave = (Button) findViewById(R.id.btnEditKedai);
+        warningurl = (TextView) findViewById(R.id.WarningUrlEdit);
+        warningurl.setVisibility(View.GONE);
 
         tvFasilitas = (TextView) findViewById(R.id.etFasilitas);
         tvF1 = (TextView) findViewById(R.id.etF1);

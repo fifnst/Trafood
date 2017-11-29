@@ -108,4 +108,52 @@ public interface RestApi {
     Call<PostPutDelUser> putImageUser(@Field("fotofile") String fotofile,
                                       @Field("userid") String userid);
 
+    @FormUrlEncoded
+    @POST("index.php/rm/daftar_rm")
+    Call<PostPutDelRm> postKedai(@Field("namarm") String namarm,
+                                   @Field("url") String url,
+                                   @Field("deskripsirm") String deskripsirm,
+                                   @Field("notelp") String notelp,
+                                   @Field("userid") String userid);
+
+    @FormUrlEncoded
+    @PUT("index.php/rm/daftar_rm/updatephoto")
+    Call<PostPutDelRm> postFotoRM(@Field("fotofile") String fotofile,
+                                 @Field("userid") String userid);
+
+    @FormUrlEncoded
+    @PUT("index.php/rm/daftar_rm/alamat")
+    Call<PostPutDelRm> postalamatRM(@Field("kecamatan") String kecamatan,
+                                   @Field("kota") String kota,
+                                   @Field("alamat") String alamat,
+                                   @Field("userid") String userid);
+    @FormUrlEncoded
+    @PUT("index.php/rm/daftar_rm/latlng")
+    Call<PostPutDelRm> postLatLngRm(@Field("latitude") String latitude,
+                                   @Field("longitude") String longitude,
+                                   @Field("userid") String userid);
+
+    @FormUrlEncoded
+    @PUT("index.php/daftar_rm/info")
+    Call<PostPutDelRm> postInfoRm(@Field("kategorirm") String kategorirm,
+                             @Field("buka") String buka,
+                             @Field("tutup") String tutup,
+                             @Field("sunday") String sunday,
+                             @Field("monday") String monday,
+                             @Field("tuesday") String tusday,
+                             @Field("wednesday") String wednesday,
+                             @Field("thursday") String thrusday,
+                             @Field("friday") String friday,
+                             @Field("saturday") String saturday,
+                             @Field("fasilitas") String fasilitas,
+                             @Field("fsatu") String fastu,
+                             @Field("fdua") String fdua,
+                             @Field("ftiga") String ftiga,
+                             @Field("fempat") String fempat,
+                             @Field("flima") String flima,
+                             @Field("userid") String userid);
+
+
+
+
 }

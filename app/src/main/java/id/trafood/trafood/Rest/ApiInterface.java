@@ -5,6 +5,7 @@ import id.trafood.trafood.Home.ModelMenu;
 import id.trafood.trafood.Models.GetArticle;
 import id.trafood.trafood.Models.GetComment;
 import id.trafood.trafood.Models.GetGalery;
+import id.trafood.trafood.Models.GetLike;
 import id.trafood.trafood.Models.GetLocation;
 import id.trafood.trafood.Models.GetMenu;
 import id.trafood.trafood.Models.GetMenuDetail;
@@ -126,5 +127,11 @@ public interface ApiInterface {
 
     @GET("index.php/profil/getuser")
     Call<ResponseBody> userGet(@Query("userid") String userid);
+
+    @GET("index.php/like")
+    Call<GetModelMenu> userLike(@Query("userid") String userid);
+
+    @GET("index.php/is_duplicate/url")
+    Call<ResponseBody> cekUrl(@Query("url") String url);
 
 }

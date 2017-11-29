@@ -1,5 +1,6 @@
 package id.trafood.trafood.Menu;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import id.trafood.trafood.DetailMenu;
+import id.trafood.trafood.DetailRm;
 import id.trafood.trafood.Models.MenuDetail;
 import id.trafood.trafood.R;
 
@@ -32,7 +34,7 @@ public class DetailMenuAdapter extends RecyclerView.Adapter<DetailMenuAdapter.My
     }
 
     @Override
-    public void onBindViewHolder(MyHolder holder, int position) {
+    public void onBindViewHolder(MyHolder holder, final int position) {
         holder.tvNamamenu.setText(mMenu.get(position).getNamamenu());
         holder.tvDeskrispisMenu.setText(mMenu.get(position).getDeskripsi());
         holder.tvLike.setText(mMenu.get(position).getLikes());
@@ -49,6 +51,22 @@ public class DetailMenuAdapter extends RecyclerView.Adapter<DetailMenuAdapter.My
         for(int i=0; i< kata.length; i++){
             holder.tvTagMenu.setText(kata[i]);
         }
+
+        holder.tvNamaRm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent mIntent = new Intent(view.getContext(), DetailRm.class);
+                mIntent.putExtra("RMID", mMenu.get(position).getRmid());
+                mIntent.putExtra("NAMARM", mMenu.get(position).getNamarm());
+                mIntent.putExtra("KATEGORI", mMenu.get(position).getKategorirm());
+                mIntent.putExtra("ALAMAT", mMenu.get(position).getAlamat());
+                mIntent.putExtra("FOTO", mMenu.get(position).getFotosampul());
+                mIntent.putExtra("LAT", mMenu.get(position).getLatitude());
+                mIntent.putExtra("LONG", mMenu.get(position).getLongitude());
+
+                view.getContext().startActivity(mIntent);
+            }
+        });
 
     }
 

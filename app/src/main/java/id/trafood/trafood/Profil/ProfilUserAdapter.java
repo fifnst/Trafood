@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.zip.Inflater;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import id.trafood.trafood.DaftarKedaiActivity;
 import id.trafood.trafood.DetailRm;
 import id.trafood.trafood.Models.UserView;
 import id.trafood.trafood.ProfilVote;
@@ -47,8 +48,12 @@ public class ProfilUserAdapter extends RecyclerView.Adapter<ProfilUserAdapter.My
     public void onBindViewHolder(MyHolders holder, final int position) {
         String rumahmakan = user.get(position).getRumahmakan();
         holder.linearPengaturanKedai.setVisibility(View.GONE);
+        holder.lineardaftarkedai.setVisibility(View.GONE);
         if (rumahmakan.equals("1") ){
             holder.linearPengaturanKedai.setVisibility(View.VISIBLE);
+        }
+        if (!rumahmakan.equals("1")){
+            holder.lineardaftarkedai.setVisibility(View.VISIBLE);
         }
         holder.nama.setText(user.get(position).getNama());
         holder.tvkota.setText(user.get(position).getKota());
@@ -56,7 +61,7 @@ public class ProfilUserAdapter extends RecyclerView.Adapter<ProfilUserAdapter.My
         holder.tvartikel.setText("("+user.get(position).getArticle()+")");
         holder.tvulasan.setText("("+user.get(position).getReview()+")");
         Picasso.with(holder.fotoprofil.getContext()).load(Connect.IMAGE_USER+user.get(position).getFotouser())
-                .into(holder.fotoprofil);
+                .error(R.drawable.user_circle).into(holder.fotoprofil);
 
         holder.btnTambahMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,6 +128,14 @@ public class ProfilUserAdapter extends RecyclerView.Adapter<ProfilUserAdapter.My
             }
         });
 
+        holder.btnTambahKedai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), DaftarKedaiActivity.class);
+                view.getContext().startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -131,11 +144,11 @@ public class ProfilUserAdapter extends RecyclerView.Adapter<ProfilUserAdapter.My
     }
 
     public class MyHolders extends RecyclerView.ViewHolder {
-        LinearLayout linearsudahlogin,linearPengaturanKedai;
+        LinearLayout linearsudahlogin,linearPengaturanKedai,lineardaftarkedai;
         TextView nama,tvkota, tvabout, tvpoint,tvartikel, tvulasan;
         CircleImageView fotoprofil;
 
-        ImageView btnTambahMenu,btneditkedai,btnRingkasankedai,btnReviewProfil, btnArticleProfil, btnPengaturanProfil;
+        ImageView btnTambahMenu,btneditkedai,btnRingkasankedai,btnReviewProfil, btnArticleProfil, btnPengaturanProfil,btnTambahKedai;
 
         public MyHolders(View itemView) {
             super(itemView);
@@ -156,6 +169,10 @@ public class ProfilUserAdapter extends RecyclerView.Adapter<ProfilUserAdapter.My
             btnReviewProfil = (ImageView) itemView.findViewById(R.id.btnReviewProfil);
             btnArticleProfil = (ImageView) itemView.findViewById(R.id.btnArticleProfil);
             btnPengaturanProfil = (ImageView) itemView.findViewById(R.id.btnPengaturanProfil);
+
+            btnTambahKedai = (ImageView) itemView.findViewById(R.id.btnBuatKedai);
+            lineardaftarkedai = (LinearLayout) itemView.findViewById(R.id.linearTambahKedai);
+
         }
     }
 }

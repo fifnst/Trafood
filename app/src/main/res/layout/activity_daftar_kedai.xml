@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="id.trafood.trafood.DaftarKedaiActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/margin_activity">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/logofont"
+                    android:layout_width="200dp"
+                    android:layout_height="50dp" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="@dimen/margin_activity"
+                    android:textColor="@color/blue"
+                    android:layout_centerInParent="true"
+                    android:textAlignment="center"
+                    android:text="@string/segeradaftar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text="@string/namarm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:padding="5dp"
+                android:inputType="text"
+                android:id="@+id/etNamaKEdaiTambah"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/grey"
+                android:background="@drawable/bg_edittext_grey"
+                android:textColor="@color/green" />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text="@string/url"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:padding="5dp"
+                android:inputType="text"
+                android:digits="012345678qwertyuiopasdfghjklzxcvbnm"
+                android:id="@+id/etUurlKEdaiTambah"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/grey"
+                android:background="@drawable/bg_edittext_grey"
+                android:textColor="@color/green" />
+            <TextView
+                android:id="@+id/WarningUrlTambah"
+                android:text="Url sudah ada yang make"
+                android:textColor="@color/red"
+                android:textSize="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text="@string/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:padding="5dp"
+                android:inputType="textMultiLine"
+                android:id="@+id/etDeskripsiKEdaiTambah"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/grey"
+                android:background="@drawable/bg_edittext_grey"
+                android:textColor="@color/green" />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text="@string/notelp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:padding="5dp"
+                android:inputType="phone"
+                android:id="@+id/etTelpKEdaiTambah"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/grey"
+                android:background="@drawable/bg_edittext_grey"
+                android:textColor="@color/green" />
+            <Button
+                android:layout_marginTop="20dp"
+                android:id="@+id/btnSaveTambahKedai"
+                android:textColor="@color/white"
+                android:text="Save"
+                android:background="@drawable/bg_rectangle_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </ScrollView>
+
+
+</android.support.constraint.ConstraintLayout>

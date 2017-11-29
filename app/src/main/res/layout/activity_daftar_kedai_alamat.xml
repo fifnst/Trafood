@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="id.trafood.trafood.DaftarKedaiAlamat">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_margin="@dimen/margin_activity"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/logofont"
+                    android:layout_width="200dp"
+                    android:layout_height="50dp" />
+            </RelativeLayout>
+            <TextView
+                android:text="@string/kecamatan"
+                android:textColor="@color/grey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:padding="5dp"
+                android:inputType="text"
+                android:id="@+id/etKecamatanKedaiTambah"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/grey"
+                android:background="@drawable/bg_edittext_grey"
+                android:textColor="@color/green" />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text="@string/kota"
+                android:textColor="@color/grey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:padding="5dp"
+                android:inputType="text"
+                android:id="@+id/etKotaKedaiTambah"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/grey"
+                android:background="@drawable/bg_edittext_grey"
+                android:textColor="@color/green" />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text="@string/alamat"
+                android:textColor="@color/grey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:padding="5dp"
+                android:inputType="textMultiLine"
+                android:id="@+id/etNamaAlamatKedaiTambah"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/grey"
+                android:background="@drawable/bg_edittext_grey"
+                android:textColor="@color/green" />
+
+            <Button
+                android:layout_marginTop="10dp"
+                android:text="SAVE"
+                android:textColor="@color/white"
+                android:id="@+id/btnTambahKedaiMap"
+                android:background="@drawable/bg_rectangle_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</LinearLayout>

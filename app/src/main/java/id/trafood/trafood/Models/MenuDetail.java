@@ -44,6 +44,10 @@ public class MenuDetail {
     @SerializedName("longitude")
     private String longitude;
 
+    @SerializedName("deskripsirm")
+    private String deskripsirm;
+
+
     public MenuDetail(String menuid, String namamenu, String harga, String foto, String likes, String tag, String dilihat, String deskripsi, String rmid, String namarm, String alamat, String fotosampul, String kategorirm, String latitude, String longitude) {
         this.menuid = menuid;
         this.namamenu = namamenu;
