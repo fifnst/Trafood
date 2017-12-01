@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "27768825373",
+    "project_id": "trafood-1508744363403"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:27768825373:android:6fd49786f44d7721",
+        "android_client_info": {
+          "package_name": "id.trafood.trafood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "27768825373-gttjnocuc3vhrljtp0jbgqo4iu7q9q9g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.trafood.trafood",
+            "certificate_hash": "c5ea7d061f26a44caf0c4278f2449c13c4e427ed"
+          }
+        },
+        {
+          "client_id": "27768825373-72usg25p0sgjjpeavroggicqeu9fbd0p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWLCFrLWp_38TM9LqF0jfszVNE45sFfEc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

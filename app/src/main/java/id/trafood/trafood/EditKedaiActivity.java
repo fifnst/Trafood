@@ -278,14 +278,23 @@ public class EditKedaiActivity extends AppCompatActivity {
                             JSONObject jsonObject = new JSONObject(response.body().string());
                             String uuurl = jsonObject.getString("status");
                             if (uuurl.equals("200")){
-                                warningurl.setVisibility(View.GONE);
-                                buttonSave.setEnabled(true);
+                                if (eturl.getText().toString().equals("")){
+                                    warningurl.setVisibility(View.GONE);
+                                    buttonSave.setEnabled(false);
+                                }else{
+                                    warningurl.setVisibility(View.VISIBLE);
+                                    warningurl.setText("Url "+eturl.getText().toString()+" tersedia");
+                                    warningurl.setTextColor(getResources().getColor(R.color.green));
+                                    buttonSave.setEnabled(true);
+                                }
                             }else{
                                 if (eturl.getText().toString().equals(uurl)){
                                     warningurl.setVisibility(View.GONE);
                                     buttonSave.setEnabled(true);
                                 }else {
                                     warningurl.setVisibility(View.VISIBLE);
+                                    warningurl.setText("Url "+eturl.getText().toString()+" sudah ada yang pake");
+                                    warningurl.setTextColor(getResources().getColor(R.color.red));
                                     buttonSave.setEnabled(false);
                                 }
                             }

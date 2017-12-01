@@ -2,6 +2,7 @@ package id.trafood.trafood;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,10 +10,30 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
-public class SettingProfilActivity extends AppCompatActivity {
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import id.trafood.trafood.Rest.ApiClient;
+import id.trafood.trafood.Rest.ApiInterface;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class SettingProfilActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
+    GoogleApiClient googleApiClient;
     SharedPrefManager sharedPrefManager;
     LinearLayout linearProfil, linearKedai, linearLogout,linearPassword;
+    ApiInterface apiInterface;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +59,19 @@ public class SettingProfilActivity extends AppCompatActivity {
         if (rumahmakan.equals("1")){
             linearKedai.setVisibility(View.VISIBLE);
         }
+
+        apiInterface = ApiClient.getClient().create(ApiInterface.class);
+
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        googleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this, this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
+
 
         linearKedai.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,8 +111,38 @@ public class SettingProfilActivity extends AppCompatActivity {
                         .setPositiveButton("yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, false);
-                                startActivity(new Intent(view.getContext(), MainActivity.class));
+                                String email = sharedPrefManager.getSPEmail();
+                                apiInterface.cekProvider(email).enqueue(new Callback<ResponseBody>() {
+                                    @Override
+                                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                        try {
+                                            JSONObject jsonObject = new JSONObject(response.body().string());
+                                            if (jsonObject.getString("status").equals("google")){
+                                                Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(
+                                                        new ResultCallback<Status>() {
+                                                            @Override
+                                                            public void onResult(@NonNull Status status) {
+                                                                sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, false);
+                                                                startActivity(new Intent(view.getContext(), MainActivity.class));
+                                                            }
+                                                        }
+                                                );
+                                            }else {
+                                                sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, false);
+                                                startActivity(new Intent(view.getContext(), MainActivity.class));
+                                            }
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                                    }
+                                });
                             }
                         })
                         .setNegativeButton("No", null)
@@ -86,6 +150,9 @@ public class SettingProfilActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void logout() {
     }
 
     @Override
@@ -96,5 +163,10 @@ public class SettingProfilActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
     }
 }

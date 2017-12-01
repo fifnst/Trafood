@@ -134,4 +134,20 @@ public interface ApiInterface {
     @GET("index.php/is_duplicate/url")
     Call<ResponseBody> cekUrl(@Query("url") String url);
 
+    //@FormUrlEncoded
+    @GET("index.php/loginSystem/ceklogin")
+    Call<ResponseBody> loginGoogle(@Query("email") String email,
+                                   @Query("nama") String nama);
+
+    @GET("index.php/is_duplicate/provider")
+    Call<ResponseBody> cekProvider(@Query("email") String namamenu);
+
+    @GET("index.php/like/ceklikes")
+    Call<ResponseBody> cekLike(@Query("menuid") String menuid,
+                               @Query("userid") String userid);
+
+    @GET("index.php/like/savelikes")
+    Call<ResponseBody> saveLike(@Query("menuid") String menuid,
+                               @Query("userid") String userid);
+
 }

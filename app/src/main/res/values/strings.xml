@@ -11,6 +11,10 @@
     <string name="like">Likes</string>
     <string name="title_activity_maps">Map</string>
 
+    <string name="facebook_app_id">996826973826196</string>
+    <string name="fb_login_protocol_scheme">fb996826973826196</string>
+
+
     <!-- Info rumah makan -->.
     <string name="notelp">No Telepon</string>
     <string name="namarm">Nama Kedai</string>

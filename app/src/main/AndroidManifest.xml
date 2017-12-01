@@ -131,7 +131,10 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".DaftarKedaiPeta"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".TesLoginGoogle"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
