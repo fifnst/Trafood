@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -39,6 +40,8 @@ public class Home_Restaurant_Fragment extends Fragment {
     public static Home_Restaurant_Fragment ma;
     ProgressBar progressBar;
     TextView lat,lng;
+    LinearLayout linearLayout;
+    TextView warning;
 
     public Home_Restaurant_Fragment() {
         // Required empty public constructor
@@ -56,6 +59,10 @@ public class Home_Restaurant_Fragment extends Fragment {
         View mView = inflater.inflate(R.layout.fragment_home__restaurant_,container,false);
         mRecyclerView = (RecyclerView) mView.findViewById(R.id.rvRumahmakan);
         progressBar = (ProgressBar) mView.findViewById(R.id.progressbarRm);
+        linearLayout = (LinearLayout) mView.findViewById(R.id.linearWarningRm);
+        warning = (TextView) mView.findViewById(R.id.warningRm);
+        linearLayout.setVisibility(View.GONE);
+
         mLayoutManager = new GridLayoutManager(this.getActivity(),2);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mApiInterface = ApiClient.getClient().create(ApiInterface.class);
@@ -72,7 +79,7 @@ public class Home_Restaurant_Fragment extends Fragment {
         Bundle bundle = this.getArguments();
             String lats = bundle.getString("LATS");
             String lngsa = bundle.getString("LNGS");
-            String cari = bundle.getString("SEARCH");
+            final String cari = bundle.getString("SEARCH");
 
             String wifi = bundle.getString("WIFI");
         String mushola = bundle.getString("MUSHOLA");
@@ -94,7 +101,9 @@ public class Home_Restaurant_Fragment extends Fragment {
                         mAdapter = new RumahmakanAdapter(RumahmakanList);
                         mRecyclerView.setAdapter(mAdapter);
                     }else {
-                        progressBar.setVisibility(View.VISIBLE);
+                        progressBar.setVisibility(View.GONE);
+                        linearLayout.setVisibility(View.VISIBLE);
+                        warning.setText("Pencarian '"+cari+ "' tidak ditemukan");
                     }
                 }
 

@@ -17,12 +17,14 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 
 import id.trafood.trafood.Models.PostPutDelUser;
 import id.trafood.trafood.Rest.ApiClient;
+import id.trafood.trafood.Rest.Connect;
 import id.trafood.trafood.Rest.RestApi;
 import pl.aprilapps.easyphotopicker.DefaultCallback;
 import pl.aprilapps.easyphotopicker.EasyImage;
@@ -74,6 +76,8 @@ public class EditFotoUser extends AppCompatActivity {
                 simpandengangambar();
             }
         });
+
+        Picasso.with(this).load(Connect.IMAGE_USER+getIntent().getStringExtra("FOTO")).into(ivFoto);
     }
 
 

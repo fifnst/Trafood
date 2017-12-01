@@ -19,19 +19,23 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
 import java.util.List;
 
+import id.trafood.trafood.Adapter.LocationAdapaterSearch;
 import id.trafood.trafood.Home.GetModelMenu;
 import id.trafood.trafood.Home.HomeMenuAdapter;
 import id.trafood.trafood.Home.HomePagerAdapater;
 import id.trafood.trafood.Home.ModelMenu;
 import id.trafood.trafood.Home.SearchMenuAdapater;
 import id.trafood.trafood.Home.SearchRmAdapter;
+import id.trafood.trafood.Models.GetLocation;
 import id.trafood.trafood.Models.GetMenuDetail;
 import id.trafood.trafood.Models.GetRumahmakan;
+import id.trafood.trafood.Models.Location;
 import id.trafood.trafood.Models.Rumahmakan;
 import id.trafood.trafood.Rest.ApiClient;
 import id.trafood.trafood.Rest.ApiInterface;
@@ -43,12 +47,13 @@ public class SearchActivity extends AppCompatActivity {
     EditText editText;
     Toolbar toolbar;
     TextView lat,lng,textas,kedai;
-    private RecyclerView recyclerViewMenu,recyclerViewRm;
-    private RecyclerView.Adapter adapterMenu,adapterRm;
-    private RecyclerView.LayoutManager layoutManager, layoutManagerRm;
+    private RecyclerView recyclerViewMenu,recyclerViewRm,recyclerViewLocation;
+    private RecyclerView.Adapter adapterMenu,adapterRm,adapterLocation;
+    private RecyclerView.LayoutManager layoutManager, layoutManagerRm, layoutManagerLocation;
     public static SearchActivity sa;
     ApiInterface apiInterface;
     String likes,distance,price,cheapest,expensive,wifi,parkir,music,mushola,wc,smoking;
+    LinearLayout location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +66,13 @@ public class SearchActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbarSearch);
         recyclerViewMenu = (RecyclerView) findViewById(R.id.rvSearchMenu);
         recyclerViewRm = (RecyclerView) findViewById(R.id.rvSearchKedai);
+        recyclerViewLocation = (RecyclerView) findViewById(R.id.rvSearchLocation);
+        location = (LinearLayout) findViewById(R.id.linearLocation);
+
         textas = (TextView) findViewById(R.id.textas);
         kedai = (TextView) findViewById(R.id.textKedai);
+
+        location.setVisibility(View.GONE);
         textas.setVisibility(View.GONE);
         kedai.setVisibility(View.GONE);
         final String lats = getIntent().getStringExtra("LAT");
@@ -100,8 +110,11 @@ public class SearchActivity extends AppCompatActivity {
 
         layoutManager = new LinearLayoutManager(this);
         layoutManagerRm = new LinearLayoutManager(this);
+        layoutManagerLocation = new LinearLayoutManager(this);
         recyclerViewMenu.setLayoutManager(layoutManager);
         recyclerViewRm.setLayoutManager(layoutManagerRm);
+        recyclerViewLocation.setLayoutManager(layoutManagerLocation);
+
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
         sa = this;
 
@@ -119,11 +132,16 @@ public class SearchActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<GetModelMenu> call, Response<GetModelMenu> response) {
                         if (response.body().getStatus().equals("200")){
-                            textas.setVisibility(View.VISIBLE);
-                            recyclerViewMenu.setVisibility(View.VISIBLE);
-                            List<ModelMenu> modelMenuList = response.body().getLisModelmenu();
-                            adapterMenu = new SearchMenuAdapater(modelMenuList);
-                            recyclerViewMenu.setAdapter(adapterMenu);
+                            if (editText.getText().toString().equals("")){
+                                recyclerViewMenu.setVisibility(View.GONE);
+                            }else {
+                                textas.setVisibility(View.VISIBLE);
+                                recyclerViewMenu.setVisibility(View.VISIBLE);
+                                List<ModelMenu> modelMenuList = response.body().getLisModelmenu();
+                                adapterMenu = new SearchMenuAdapater(modelMenuList);
+                                recyclerViewMenu.setAdapter(adapterMenu);
+                            }
+
                         }else{
                             textas.setVisibility(View.GONE);
                             recyclerViewMenu.setVisibility(View.GONE);
@@ -142,11 +160,16 @@ public class SearchActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<GetRumahmakan> call, Response<GetRumahmakan> response) {
                         if (response.body().getStatus().equals("200")) {
-                            kedai.setVisibility(View.VISIBLE);
-                            recyclerViewRm.setVisibility(View.VISIBLE);
-                            List<Rumahmakan> rumahmakanList = response.body().getListDataRumahmakan();
-                            adapterRm = new SearchRmAdapter(rumahmakanList);
-                            recyclerViewRm.setAdapter(adapterRm);
+                            if (editText.getText().toString().equals("")){
+                                recyclerViewRm.setVisibility(View.GONE);
+                            }else {
+                                kedai.setVisibility(View.VISIBLE);
+                                recyclerViewRm.setVisibility(View.VISIBLE);
+                                List<Rumahmakan> rumahmakanList = response.body().getListDataRumahmakan();
+                                adapterRm = new SearchRmAdapter(rumahmakanList);
+                                recyclerViewRm.setAdapter(adapterRm);
+                            }
+
                         }else {
                             kedai.setVisibility(View.GONE);
                             recyclerViewRm.setVisibility(View.GONE);
@@ -159,9 +182,30 @@ public class SearchActivity extends AppCompatActivity {
                     }
                 });
 
-                if (editText == null){
-                    recyclerViewMenu.setVisibility(View.GONE);
-                }
+                Call<GetLocation> getLocationCall = apiInterface.getLocationSearch(search);
+                getLocationCall.enqueue(new Callback<GetLocation>() {
+                    @Override
+                    public void onResponse(Call<GetLocation> call, Response<GetLocation> response) {
+                        if (response.body().getStatus().equals("200")){
+                            if (editText.getText().toString().equals("")){
+                                location.setVisibility(View.GONE);
+                            }else {
+                                location.setVisibility(View.VISIBLE);
+                                List<Location> locations = response.body().getLisLocation();
+                                adapterLocation = new LocationAdapaterSearch(locations);
+                                recyclerViewLocation.setAdapter(adapterLocation);
+                            }
+
+                        }else {
+                            location.setVisibility(View.GONE);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<GetLocation> call, Throwable t) {
+
+                    }
+                });
 
             }
 
@@ -183,17 +227,6 @@ public class SearchActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
-  /*  @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_search, menu);
-        final  MenuItem item = menu.findItem(R.id.action_search);
-        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
-        searchView.setQueryHint("Search... ");
-        searchView.setIconified(false);
-        //searchView.setOnQueryTextListener(this);
-        return true;
-    } */
 
 
 }

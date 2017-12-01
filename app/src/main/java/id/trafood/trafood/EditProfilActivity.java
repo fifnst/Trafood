@@ -127,13 +127,13 @@ public class EditProfilActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<PostPutDelUser> call, Response<PostPutDelUser> response) {
                 loading.dismiss();
-                Toast.makeText(mContext, "Berhasil tanpa foto", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "Berhasil.. ", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(Call<PostPutDelUser> call, Throwable t) {
                 loading.dismiss();
-                Toast.makeText(mContext, "gagal tanpa foto", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "Berhasil..", Toast.LENGTH_SHORT).show();
             }
         });
     }

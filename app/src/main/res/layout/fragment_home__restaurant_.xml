@@ -1,19 +1,20 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context="id.trafood.trafood.Home_Restaurant_Fragment">
-    <!--<TextView
-        android:textSize="0.5dp"
-        android:id="@+id/tvcpnh"
+    <LinearLayout
+        android:layout_margin="@dimen/margin_activity"
+        android:orientation="vertical"
+        android:id="@+id/linearWarningRm"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:textSize="0.5dp"
-        android:id="@+id/tvsdsd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" /> -->
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/warningRm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,4 +28,4 @@
         android:layout_height="match_parent"
         android:id="@+id/rvRumahmakan" />
 
-</RelativeLayout>
+</LinearLayout>

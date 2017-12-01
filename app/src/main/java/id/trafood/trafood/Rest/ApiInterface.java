@@ -113,8 +113,14 @@ public interface ApiInterface {
     @GET("index.php/artcile")
     Call<GetArticle> getArticle();
 
+    @GET("index.php/artcile/articleuser")
+    Call<GetArticle> getArticleUser(@Query("userid") String userid);
+
     @GET("index.php/location")
     Call<GetLocation> getLocation();
+
+    @GET("index.php/location")
+    Call<GetLocation> getLocationSearch(@Query("keyword") String keyword);
 
     @GET("index.php/Nomorotomatis/nomormenu")
     Call<ResponseBody> nomormenu();

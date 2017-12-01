@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <ImageView
-                android:src="@drawable/fotoupload"
+                android:src="@drawable/add_pict_menu"
                 android:background="@drawable/bg_edittext_grey"
                 android:scaleType="centerCrop"
                 android:id="@+id/ivMenuInput"

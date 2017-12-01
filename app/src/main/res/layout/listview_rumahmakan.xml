@@ -44,6 +44,7 @@
                     android:layout_width="19dp"
                     android:layout_height="19dp" />
                 <TextView
+                    android:id="@+id/tvRatingRmIni"
                     android:text="80"
                     android:layout_marginTop="@dimen/margin_logo_kecil"
                     android:layout_marginLeft="@dimen/margin_logo_kecil"

@@ -67,7 +67,7 @@ public class RmInfoAdapter extends RecyclerView.Adapter<RmInfoAdapter.MyHolder> 
             holder.tvBukaMonday.setText(" : " + buka);
             holder.tvTutupMonday.setText(" - " + tutup);
         }
-        if (tuesday ==1){
+        if (monday ==1){
             holder.tvTuesday.setText(R.string.teusday);
             holder.tvBukaTuesday.setText(" : " + buka);
             holder.tvTutupTuesday.setText(" - " + tutup);

@@ -10,7 +10,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 
 import org.json.JSONException;
@@ -50,6 +52,8 @@ public class Home_menu_fragment extends Fragment {
     private ProgressBar progressBar;
     ApiInterface apiInterface;
     public static Home_menu_fragment hmf;
+    LinearLayout linearLayout;
+    TextView warning;
     public Home_menu_fragment() {
         // Required empty public constructor
     }
@@ -67,6 +71,9 @@ public class Home_menu_fragment extends Fragment {
         View mView = inflater.inflate(R.layout.fragment_home_menu_fragment, container, false);
         recyclerView = (RecyclerView) mView.findViewById(R.id.rvMenu);
         progressBar = (ProgressBar) mView.findViewById(R.id.pbMenus);
+        linearLayout = (LinearLayout) mView.findViewById(R.id.linearWarningMenu);
+        warning = (TextView) mView.findViewById(R.id.warningMenu);
+        linearLayout.setVisibility(View.GONE);
 
         layoutManager = new GridLayoutManager(this.getActivity(), 2);
         recyclerView.setLayoutManager(layoutManager);
@@ -82,7 +89,7 @@ public class Home_menu_fragment extends Fragment {
         Bundle bundle = this.getArguments();
         String lats = bundle.getString("LATS");
         String lngsa = bundle.getString("LNGS");
-        String cari = bundle.getString("SEARCH");
+        final String cari = bundle.getString("SEARCH");
         String likes = bundle.getString("LIKES");
         String price = bundle.getString("PRICES");
         String distance = bundle.getString("DISTANCES");
@@ -107,7 +114,9 @@ public class Home_menu_fragment extends Fragment {
                         adapter = new HomeMenuAdapter(modelMenuList);
                         recyclerView.setAdapter(adapter);
                     }else{
-                        progressBar.setVisibility(View.VISIBLE);
+                        progressBar.setVisibility(View.GONE);
+                       linearLayout.setVisibility(View.VISIBLE);
+                       warning.setText("Pencarian '"+cari+ "' tidak ditemukan");
                     }
 
             }

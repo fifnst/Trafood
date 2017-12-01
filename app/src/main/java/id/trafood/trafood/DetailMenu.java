@@ -2,6 +2,7 @@ package id.trafood.trafood;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -34,7 +36,7 @@ public class DetailMenu extends AppCompatActivity {
     public TextView tvNamamenu, tvDeskrispisMenu, tvLike, tvNamaRm, tvAlamat,tvTagMenu,tvKategoriRm, tvDilihat;
     String menuid,fotomenu,namamenu;
     TextView tvHarga, tvEditmenu;
-    ImageView ivFoto;
+    ImageView ivFoto,ivLike;
     SharedPrefManager sharedPrefManager;
 
     @Override
@@ -53,6 +55,7 @@ public class DetailMenu extends AppCompatActivity {
         tvKategoriRm = (TextView) findViewById(R.id.tvKategoriRmMenuDetail);
         tvTagMenu = (TextView) findViewById(R.id.tvTagMenu);
         tvDilihat = (TextView) findViewById(R.id.tvdilihatDetail);
+        ivLike = (ImageView) findViewById(R.id.ivLike);
 
 
         Intent mIntent = getIntent();
@@ -61,7 +64,7 @@ public class DetailMenu extends AppCompatActivity {
         fotomenu = mIntent.getStringExtra("FOTOMENU");
         sharedPrefManager = new SharedPrefManager(this);
         final String useridMenu = getIntent().getStringExtra("USERID");
-        String useridUser = sharedPrefManager.getSpUserid();
+        final String useridUser = sharedPrefManager.getSpUserid();
 
         Picasso.with(this).load(Connect.IMAGE_MENU_URL+fotomenu).error(R.mipmap.ic_launcher).into(ivFoto);
 
@@ -76,11 +79,19 @@ public class DetailMenu extends AppCompatActivity {
 
         setisi(menuid);
 
+
         tvEditmenu.setVisibility(View.GONE);
 
 
         if (sharedPrefManager.getSPSudahLogin()){
-            if (useridUser.equals(useridMenu)){
+            cekPernahLike(menuid, useridUser); // cek pernah like atau belum
+            ivLike.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    saveLike(menuid,useridUser);
+                }
+            });
+            if (useridUser.equals(useridMenu)){ // cek apakah useriduser dan useridmenu sama, jika sama maka bisa edit menu
                 tvEditmenu.setVisibility(View.VISIBLE);
                 tvEditmenu.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -93,10 +104,53 @@ public class DetailMenu extends AppCompatActivity {
                     }
                 });
             }
+        }else {
+            final Drawable likebelumlike = getResources().getDrawable(R.drawable.before_recommended);
+            ivLike.setImageDrawable(likebelumlike);
+            ivLike.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(dm, "Anda harus login dulu untuk merekomendasikan menu ini", Toast.LENGTH_LONG).show();
+                }
+            });
         }
 
 
     }
+
+    private void saveLike(String menuid, String useridUser) {
+        final Drawable likebelumlike = getResources().getDrawable(R.drawable.before_recommended);
+        final Drawable sudahpernahlike = getResources().getDrawable(R.drawable.ic_after_recomended);
+        apiInterface.saveLike(menuid,useridUser).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try{
+                    JSONObject jsonResult = new JSONObject(response.body().string());
+                    String like = jsonResult.getString("result");
+                    if (jsonResult.getString("status").equals("200")){
+                        ivLike.setImageDrawable(sudahpernahlike);
+                        tvLike.setText(like);
+                        Toast.makeText(dm, "Menu ini telah anda rekomendasikan, dan ditambahkan ke list menu favorit", Toast.LENGTH_LONG).show();
+                    }if (jsonResult.getString("status").equals("204")){
+                        ivLike.setImageDrawable(likebelumlike);
+                        tvLike.setText(like);
+                        Toast.makeText(dm, "Menu ini telah dihapus dari daftar favorit anda", Toast.LENGTH_LONG).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
+    }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -106,6 +160,33 @@ public class DetailMenu extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void cekPernahLike(String menuid, String useridUser) {
+        final Drawable likebelumlike = getResources().getDrawable(R.drawable.before_recommended);
+        final Drawable sudahpernahlike = getResources().getDrawable(R.drawable.ic_after_recomended);
+        apiInterface.cekLike(menuid,useridUser).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try {
+                    JSONObject jsonResult = new JSONObject(response.body().string());
+                    if (jsonResult.getString("status").equals("204")){
+                        ivLike.setImageDrawable(likebelumlike);
+                    }else {
+                        ivLike.setImageDrawable(sudahpernahlike);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
     }
 
     public void setisi(String isi) {
@@ -137,7 +218,7 @@ public class DetailMenu extends AppCompatActivity {
                     tvKategoriRm.setText(kategorirm);
                     tvDilihat.setText("dilihat : "+dilihat);
                     tvTagMenu.setText(tag);
-                    tvHarga.setText(hargamenu);
+                    tvHarga.setText("Rp. "+hargamenu);
 
                     tvNamaRm.setOnClickListener(new View.OnClickListener() {
                         @Override

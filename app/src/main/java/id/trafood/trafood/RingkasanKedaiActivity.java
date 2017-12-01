@@ -171,7 +171,9 @@ public class RingkasanKedaiActivity extends AppCompatActivity  {
                         rating3d = Double.parseDouble(rating3);
                         rating4d = Double.parseDouble(rating4);
                         Double total = rating1d+rating2d+rating3d+rating4d;
-                        tvRating.setText(Double.toString(total));
+                        DecimalFormat dfs = new DecimalFormat("#.#");
+                        String dx = dfs.format(total);
+                        tvRating.setText(dx);
                       //  tvRating.setText("ss");
                     }
 

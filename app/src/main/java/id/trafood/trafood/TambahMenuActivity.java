@@ -178,6 +178,10 @@ public class TambahMenuActivity extends AppCompatActivity {
                 public void onResponse(Call<PostPutDelMenu> call, Response<PostPutDelMenu> response) {
                     loading.dismiss();
                     Toast.makeText(TambahMenuActivity.this, "Sukses Input Menu", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(mContext, RingkasanKedaiActivity.class);
+                    intent.putExtra("RMID",getIntent().getStringExtra("RMID"));
+                    intent.putExtra("TITLE","Ringkasan Kedai");
+                    mContext.startActivity(intent);
                 }
 
                 @Override

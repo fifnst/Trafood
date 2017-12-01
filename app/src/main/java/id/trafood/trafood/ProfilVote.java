@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import java.util.List;
@@ -28,6 +29,7 @@ public class ProfilVote extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     public static ProfilVote pv;
     ProgressBar progressBar;
+    LinearLayout linearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,19 +43,27 @@ public class ProfilVote extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.rvUserVote);
         progressBar = (ProgressBar) findViewById(R.id.pbVote);
+        linearLayout = (LinearLayout) findViewById(R.id.LinearVote) ;
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
         pv = this;
+        linearLayout.setVisibility(View.GONE);
 
         Call<GetUserVote> votingCall = apiInterface.getVote(userid);
         votingCall.enqueue(new Callback<GetUserVote>() {
             @Override
             public void onResponse(Call<GetUserVote> call, Response<GetUserVote> response) {
-                progressBar.setVisibility(View.GONE);
-                List<UserVote> uservote = response.body().getListUserVote();
-                adapter = new VoteAdapter(uservote);
-                recyclerView.setAdapter(adapter);
+                if(response.body().getStatus().equals("200")){
+                    progressBar.setVisibility(View.GONE);
+                    List<UserVote> uservote = response.body().getListUserVote();
+                    adapter = new VoteAdapter(uservote);
+                    recyclerView.setAdapter(adapter);
+                }else {
+                    linearLayout.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
+                }
+
             }
 
             @Override

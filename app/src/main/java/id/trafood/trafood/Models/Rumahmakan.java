@@ -97,8 +97,19 @@ public class Rumahmakan {
     @SerializedName("distance")
     private String distance;
 
+    @SerializedName("rating1")
+    private String rating1;
 
-    public Rumahmakan(String rmid, String namarm, String alamat, String fotosampul, String fotorm, int fasilitas, int fsatu, int fdua, int ftiga, int fempat, int flima, String url, String deskripsirm, String kota, String userid, String kategorirm, String latitude, String longitude, int sunday, int monday, int tuesday, int wednesday, int thursday, int friday, int saturday, String notelp, String buka, String tutup, String kecamatan, String distance) {
+    @SerializedName("rating2")
+    private String rating2;
+
+    @SerializedName("rating3")
+    private String rating3;
+
+    @SerializedName("rating4")
+    private String rating4;
+
+    public Rumahmakan(String rmid, String namarm, String alamat, String fotosampul, String fotorm, int fasilitas, int fsatu, int fdua, int ftiga, int fempat, int flima, String url, String deskripsirm, String kota, String userid, String kategorirm, String latitude, String longitude, int sunday, int monday, int tuesday, int wednesday, int thursday, int friday, int saturday, String notelp, String buka, String tutup, String kecamatan, String distance, String rating1, String rating2, String rating3, String rating4) {
         this.rmid = rmid;
         this.namarm = namarm;
         this.alamat = alamat;
@@ -129,14 +140,10 @@ public class Rumahmakan {
         this.tutup = tutup;
         this.kecamatan = kecamatan;
         this.distance = distance;
-    }
-
-    public String getKecamatan() {
-        return kecamatan;
-    }
-
-    public void setKecamatan(String kecamatan) {
-        this.kecamatan = kecamatan;
+        this.rating1 = rating1;
+        this.rating2 = rating2;
+        this.rating3 = rating3;
+        this.rating4 = rating4;
     }
 
     public String getRmid() {
@@ -363,11 +370,51 @@ public class Rumahmakan {
         this.tutup = tutup;
     }
 
+    public String getKecamatan() {
+        return kecamatan;
+    }
+
+    public void setKecamatan(String kecamatan) {
+        this.kecamatan = kecamatan;
+    }
+
     public String getDistance() {
         return distance;
     }
 
     public void setDistance(String distance) {
         this.distance = distance;
+    }
+
+    public String getRating1() {
+        return rating1;
+    }
+
+    public void setRating1(String rating1) {
+        this.rating1 = rating1;
+    }
+
+    public String getRating2() {
+        return rating2;
+    }
+
+    public void setRating2(String rating2) {
+        this.rating2 = rating2;
+    }
+
+    public String getRating3() {
+        return rating3;
+    }
+
+    public void setRating3(String rating3) {
+        this.rating3 = rating3;
+    }
+
+    public String getRating4() {
+        return rating4;
+    }
+
+    public void setRating4(String rating4) {
+        this.rating4 = rating4;
     }
 }

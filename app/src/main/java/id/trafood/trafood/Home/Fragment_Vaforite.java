@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -39,14 +40,15 @@ public class Fragment_Vaforite extends Fragment {
 
     SharedPrefManager sharedPrefManager;
     Button login;
-    ImageView searchbar;
+    ImageView searchbar,awas;
     LinearLayout linearLayoutlogin;
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
     ApiInterface apiInterface;
+    LinearLayout pengumuman;
     public static  Fragment_Vaforite fva;
-    TextView location,lat,lng,pengumuman;
+    TextView location,lat,lng;
 
     public Fragment_Vaforite() {
         // Required empty public constructor
@@ -70,7 +72,8 @@ public class Fragment_Vaforite extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.rvListLike);
         lat = (TextView) view.findViewById(R.id.lats);
         lng = (TextView) view.findViewById(R.id.lngs);
-        pengumuman = (TextView) view.findViewById(R.id.pengumumanFavorit);
+        awas = (ImageView) view.findViewById(R.id.btnawas);
+        pengumuman = (LinearLayout) view.findViewById(R.id.pengumumanFavorit);
         location = (TextView) view.findViewById(R.id.locations);
         Bundle bundle = this.getArguments();
         final String name = bundle.getString("NAME");
@@ -90,6 +93,13 @@ public class Fragment_Vaforite extends Fragment {
                 intent.putExtra("NAME", location.getText().toString());
                 // Toast.makeText(view.getContext(), "Select location first", Toast.LENGTH_LONG).show();
                 view.getContext().startActivity(intent);
+            }
+        });
+
+        awas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(view.getContext(), "Ceuk saya ge tekan tombol 'maknyuss' nya di menu jangan disini", Toast.LENGTH_LONG).show();
             }
         });
 

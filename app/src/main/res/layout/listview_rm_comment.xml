@@ -24,6 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <TextView
+                android:text="nama"
                 android:textStyle="bold"
                 android:scrollbarSize="@dimen/font_judul_fasilitas"
                 android:textColor="@color/radablack"
@@ -31,6 +32,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
+                android:text="kota"
+                android:id="@+id/tvKotaComment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginTop="5dp"
+                android:text="body"
                 android:id="@+id/tvBodyComment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -41,6 +49,37 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
-    </LinearLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/ivNilaiComment"
+                        android:src="@mipmap/ic_launcher"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp" />
+                    <TextView
 
+                        android:id="@+id/tvNilai"
+                        android:layout_marginLeft="3dp"
+                        android:textSize="20sp"
+                        android:text="7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+<View
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:background="@color/cloud"
+    android:layout_width="match_parent"
+    android:layout_height="2dp"/>
 </LinearLayout>

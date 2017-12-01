@@ -1,5 +1,7 @@
 package id.trafood.trafood.Profil;
 
+import android.content.Intent;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,8 +11,10 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
+import id.trafood.trafood.DetailRm;
 import id.trafood.trafood.Models.UserVote;
 import id.trafood.trafood.R;
 import id.trafood.trafood.Rest.Connect;
@@ -35,7 +39,7 @@ public class VoteAdapter extends RecyclerView.Adapter<VoteAdapter.MyHolder>{
     }
 
     @Override
-    public void onBindViewHolder(MyHolder holder, int position) {
+    public void onBindViewHolder(MyHolder holder, final int position) {
         Picasso.with(holder.ivFoto.getContext()).load(Connect.IMAGE_RM_URL+uVotes.get(position).getFotosampul())
                 .error(R.mipmap.ic_launcher).into(holder.ivFoto);
         holder.namarm.setText(uVotes.get(position).getNamarm());
@@ -53,7 +57,36 @@ public class VoteAdapter extends RecyclerView.Adapter<VoteAdapter.MyHolder>{
         Double doubler4 = Double.parseDouble(r4);
         double vote = (doubler1+doubler2+doubler3+doubler4);
         String review = String.valueOf(vote);
-        holder.tvVote.setText(review);
+        DecimalFormat dfs = new DecimalFormat("#.#");
+        String dx = dfs.format(vote);
+        holder.tvVote.setText(dx);
+
+        if (vote >= 0 && vote <=2 ){
+            holder.ivEmot.setImageResource(R.drawable.nol_duapuluh);
+            holder.tvVote.setTextColor(ContextCompat.getColor(holder.tvVote.getContext(), R.color.blue));
+        }if (vote > 2 && vote <=4 ){
+            holder.ivEmot.setImageResource(R.drawable.duapuluhpatpuluh);
+            holder.tvVote.setTextColor(ContextCompat.getColor(holder.tvVote.getContext(), R.color.jad));
+        }if (vote > 4 && vote <=6 ){
+            holder.ivEmot.setImageResource(R.drawable.patpuluh);
+            holder.tvVote.setTextColor(ContextCompat.getColor(holder.tvVote.getContext(), R.color.yellow));
+        }if (vote > 6 && vote <=8 ){
+            holder.ivEmot.setImageResource(R.drawable.nepuluh);
+            holder.tvVote.setTextColor(ContextCompat.getColor(holder.tvVote.getContext(), R.color.ectasy));
+        }if (vote > 8 && vote <=10 ){
+            holder.ivEmot.setImageResource(R.drawable.lapanpuluh);
+            holder.tvVote.setTextColor(ContextCompat.getColor(holder.tvVote.getContext(), R.color.red));
+        }
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), DetailRm.class);
+                intent.putExtra("RMID", uVotes.get(position).getRmid());
+                intent.putExtra("FOTO",uVotes.get(position).getFotosampul());
+                view.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override

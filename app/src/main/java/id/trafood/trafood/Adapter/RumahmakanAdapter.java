@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import id.trafood.trafood.DetailRm;
@@ -82,6 +84,30 @@ public class RumahmakanAdapter extends RecyclerView.Adapter<RumahmakanAdapter.My
             holder.imageViewFlima.setVisibility(View.VISIBLE);
         }
 
+        String rating1 = mRumahmakanList.get(position).getRating1();
+        String rating2 = mRumahmakanList.get(position).getRating2();
+        String rating3 = mRumahmakanList.get(position).getRating3();
+        String rating4 = mRumahmakanList.get(position).getRating4();
+
+        if (rating1 == null && rating2 ==null && rating3 == null && rating4==null ){
+            holder.tvRating.setText("");
+        }
+        else if (rating1 != null && rating2 != null && rating3 != null && rating4 != null ) {
+            Double rating1d;
+            Double rating2d;
+            Double rating3d;
+            Double rating4d;
+            rating1d = Double.parseDouble(rating1);
+            rating2d = Double.parseDouble(rating2);
+            rating3d = Double.parseDouble(rating3);
+            rating4d = Double.parseDouble(rating4);
+            Double total = rating1d+rating2d+rating3d+rating4d;
+            DecimalFormat dfs = new DecimalFormat("#.#");
+            String dx = dfs.format(total);
+            holder.tvRating.setText(dx);
+        }
+       // holder.tvRating.setText(rating1);
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -106,13 +132,14 @@ public class RumahmakanAdapter extends RecyclerView.Adapter<RumahmakanAdapter.My
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView  textViewNamarm, textViewAlamat,textViewKecamatan,textViewKategori;
+        public TextView  textViewNamarm, textViewAlamat,textViewKecamatan,textViewKategori,tvRating;
         public ImageView imageViewfotoRm, imageViewFasilitas, imageViewFSatu, imageViewFTiga;
         public  ImageView imageViewFEmpat, imageViewFlima, imageViewFDua;
         public MyViewHolder(View itemView) {
             super(itemView);
 
             textViewKategori = (TextView) itemView.findViewById(R.id.tvKategoriRm);
+            tvRating = (TextView) itemView.findViewById(R.id.tvRatingRmIni);
             textViewKecamatan = (TextView) itemView.findViewById(R.id.tvKecamatan);
             textViewNamarm = (TextView) itemView.findViewById(R.id.tvNamarm);
             textViewAlamat = (TextView) itemView.findViewById(R.id.tvAlamat);
