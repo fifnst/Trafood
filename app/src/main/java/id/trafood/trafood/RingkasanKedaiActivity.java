@@ -92,7 +92,7 @@ public class RingkasanKedaiActivity extends AppCompatActivity  {
 
 
     private void SetIsi() {
-        String rmid = getIntent().getStringExtra("RMID");
+        final String rmid = getIntent().getStringExtra("RMID");
         String userid = getIntent().getStringExtra("USERID");
         apiInterface.ringkasanRm(rmid).enqueue(new Callback<ResponseBody>() {
             @Override
@@ -141,7 +141,7 @@ public class RingkasanKedaiActivity extends AppCompatActivity  {
                     tvKota.setText(kota);
                     tvTutupSunday.setText(sunday);
                     tvVisit.setText(visit);
-                    tvUlasan.setText(review);
+                    tvUlasan.setText(visit);
                     tvOrangRating.setText(" /"+visit + " orang");
                     tvnoTelp.setText(telepon);
                     Picasso.with(RingkasanKedaiActivity.this).load(Connect.IMAGE_RM_URL+fotoSampul).into(ivFoto);
@@ -177,7 +177,14 @@ public class RingkasanKedaiActivity extends AppCompatActivity  {
                       //  tvRating.setText("ss");
                     }
 
-
+                    tvUlasan.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(mContext,ReviewKedaiActivity.class);
+                            intent.putExtra("RMID", rmid);
+                            mContext.startActivity(intent);
+                        }
+                    });
 
 
 
