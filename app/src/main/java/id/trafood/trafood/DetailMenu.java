@@ -8,7 +8,9 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,11 +35,21 @@ public class DetailMenu extends AppCompatActivity {
     ApiInterface apiInterface;
     Context dm;
     ProgressBar progressBar;
-    public TextView tvNamamenu, tvDeskrispisMenu, tvLike, tvNamaRm, tvAlamat,tvTagMenu,tvKategoriRm, tvDilihat;
+    public TextView tvNamamenu, tvDeskrispisMenu, tvLike, tvNamaRm, tvAlamat,tvKategoriRm, tvDilihat;
     String menuid,fotomenu,namamenu;
     TextView tvHarga, tvEditmenu;
     ImageView ivFoto,ivLike;
     SharedPrefManager sharedPrefManager;
+
+
+    //PERCOBAAN FAHRI
+    private String[] id;
+    private TextView[] textViewsTesTag = new TextView[6];
+
+
+
+    //String[] kata1;
+    //ListView a;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +65,28 @@ public class DetailMenu extends AppCompatActivity {
         tvNamaRm = (TextView) findViewById(R.id.tvNamaRmMenuDetail);
         tvAlamat = (TextView) findViewById(R.id.tvAlamatMenuDetail);
         tvKategoriRm = (TextView) findViewById(R.id.tvKategoriRmMenuDetail);
-        tvTagMenu = (TextView) findViewById(R.id.tvTagMenu);
+        //tvTagMenu = (TextView) findViewById(R.id.tvTagMenu);
         tvDilihat = (TextView) findViewById(R.id.tvdilihatDetail);
         ivLike = (ImageView) findViewById(R.id.ivLike);
+
+        //pERCOBAAN FAHRI
+        int temp;
+        id = new String[]{"tvTagMenu1", "tvTagMenu2", "tvTagMenu3", "tvTagMenu4", "tvTagMenu5", "tvTagMenu6"};
+
+        for(int i=0; i<id.length; i++){
+            temp = getResources().getIdentifier(id[i], "id", getPackageName());
+            textViewsTesTag[i] = (TextView)findViewById(temp);
+            textViewsTesTag[i].setVisibility(View.GONE);
+            //textViewsTesTag[i].setText("tes");
+        }
+
+
+
+
+        //ArrayAdapter adapter = new ArrayAdapter(this,R.layout.activity_detail_menu,kata);
+        //ArrayAdapter adapter = new ArrayAdapter(this,R.layout.activity_detail_menu,kata1);
+        //ListView listview =(ListView) findViewById(R.id.listView);
+        //listview.setAdapter(adapter);
 
 
         Intent mIntent = getIntent();
@@ -210,6 +241,9 @@ public class DetailMenu extends AppCompatActivity {
                     final String lat = jsonResult.getJSONObject("result").getString("latitude");
                     final String lng = jsonResult.getJSONObject("result").getString("longitude");
 
+                    String kalimat = tag;
+                    String[] kata = kalimat.split(" ");
+
                     tvNamamenu.setText(nama);
                     tvDeskrispisMenu.setText(deskripsimenu);
                     tvLike.setText(like);
@@ -217,7 +251,16 @@ public class DetailMenu extends AppCompatActivity {
                     tvAlamat.setText(alamat);
                     tvKategoriRm.setText(kategorirm);
                     tvDilihat.setText("dilihat : "+dilihat);
-                    tvTagMenu.setText(tag);
+
+
+                    for(int i=0; i<kata.length; i++){
+                        textViewsTesTag[i].setText(kata [i]);
+                        if(kata [i] != ""){
+                            textViewsTesTag[i].setVisibility(View.VISIBLE);
+                        }
+                    }
+
+
                     tvHarga.setText("Rp. "+hargamenu);
 
                     tvNamaRm.setOnClickListener(new View.OnClickListener() {
