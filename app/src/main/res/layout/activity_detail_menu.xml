@@ -270,6 +270,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -280,11 +284,45 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:id="@+id/tvTagMenu"
-                        android:layout_marginRight="30dp"
+                        android:id="@+id/tvTagMenu1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/Widget.AppCompat.Button"/>
+                    <TextView
+                        android:id="@+id/tvTagMenu2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.AppCompat.Button"/>
+                    <TextView
+                        android:id="@+id/tvTagMenu3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.AppCompat.Button"/>
+                </LinearLayout>
+
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginLeft="35dp">
+                    <TextView
+                        android:id="@+id/tvTagMenu4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.AppCompat.Button"/>
+                    <TextView
+                        android:id="@+id/tvTagMenu5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.AppCompat.Button"/>
+                    <TextView
+                        android:id="@+id/tvTagMenu6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.AppCompat.Button"/>
+
+                </LinearLayout>
                 </LinearLayout>
                 <LinearLayout
                     android:orientation="horizontal"
