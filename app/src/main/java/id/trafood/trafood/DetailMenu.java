@@ -252,9 +252,6 @@ public class DetailMenu extends AppCompatActivity {
                     tvKategoriRm.setText(kategorirm);
                     tvDilihat.setText("dilihat : "+dilihat);
 
-                    //pERCOBAAN FAHRI
-                    //int temp;
-                    //id = new String[]{"tvTagMenu1", "tvTagMenu2", "tvTagMenu3", "tvTagMenu4", "tvTagMenu5", "tvTagMenu6"};
 
                     for(int i=0; i<kata.length; i++){
                         textViewsTesTag[i].setText(kata [i]);
