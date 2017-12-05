@@ -135,6 +135,12 @@
         <activity
             android:name=".TesLoginGoogle"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ReviewKedaiActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".RatingActivity"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>
