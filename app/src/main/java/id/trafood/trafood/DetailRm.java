@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -70,7 +71,7 @@ public class DetailRm extends AppCompatActivity {
         textViewAlamat = (TextView) findViewById(R.id.tvAlamatrms);
         iVfotoRm = (ImageView) findViewById(R.id.ivFotoRmDetails);
         tableLayout = (TabLayout) findViewById(R.id.tlListMenuRM);
-        tvRating = (TextView) findViewById(R.id.tvRatingrm) ;
+        tvRating = (TextView) findViewById(R.id.tvRatingrm);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -78,7 +79,7 @@ public class DetailRm extends AppCompatActivity {
         mContext = this;
         apiInterface = UtilsApi.getApiServive();
 
-        Intent mIntent = getIntent();
+        final Intent mIntent = getIntent();
         //getSupportActionBar().setTitle(getNamaRM);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
@@ -94,13 +95,13 @@ public class DetailRm extends AppCompatActivity {
 
         setRating(rmid); //set rating rumah makan
 
-
-
-
-
-
-
-
+        tvRating.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext,RatingActivity.class);
+                mContext.startActivity(intent);
+            }
+        });
 
     }
 
