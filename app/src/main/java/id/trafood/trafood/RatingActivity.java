@@ -54,7 +54,7 @@ public class RatingActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 double a = 0.5;
-                rubahwarna(a);
+                //rubahwarna(a);
             }
 
             @Override
@@ -64,7 +64,7 @@ public class RatingActivity extends AppCompatActivity {
         });
     }
 
-    private void rubahwarna(double a) {
+    /*private void rubahwarna(double a) {
         if (a> 0 && rating <=1 ){
             ekspresi.setImageResource(R.drawable.nol_duapuluh);
             tvSetRating.setTextColor(ContextCompat.getColor(tvSetRating.getContext(), R.color.blue));
@@ -81,7 +81,7 @@ public class RatingActivity extends AppCompatActivity {
             ekspresi.setImageResource(R.drawable.lapanpuluh);
             tvSetRating.setTextColor(ContextCompat.getColor(tvSetRating.getContext(), R.color.red));
         }
-    }
+    }*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
