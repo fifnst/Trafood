@@ -26,6 +26,9 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.List;
 
+import id.trafood.trafood.Home.GetModelMenu;
+import id.trafood.trafood.Home.ModelMenu;
+import id.trafood.trafood.Home.SuggestionMenuAdapater;
 import id.trafood.trafood.Models.GetMenu;
 import id.trafood.trafood.Rest.ApiClient;
 import id.trafood.trafood.Rest.ApiInterface;
@@ -293,15 +296,15 @@ public class DetailMenu extends AppCompatActivity {
     }
 
     private void setHorizontal(String rmid) {
-        Call<GetMenu> menuCall = apiInterface.getMenu(rmid);
-        menuCall.enqueue(new Callback<GetMenu>() {
+        Call<GetModelMenu> menuCall = apiInterface.getMenuLimitRm(rmid);
+        menuCall.enqueue(new Callback<GetModelMenu>() {
             @Override
-            public void onResponse(Call<GetMenu> call, Response<GetMenu> response) {
+            public void onResponse(Call<GetModelMenu> call, Response<GetModelMenu> response) {
                 if (response.body().getStatus().equals("200")) {
                     progressBar.setVisibility(View.GONE);
                     recyclerView.setVisibility(View.VISIBLE);
-                    List<id.trafood.trafood.Models.Menu> Menulist = response.body().getListDataMenu();
-                    adapter = new MenuListAdapter(Menulist);
+                    List<ModelMenu> Menulist = response.body().getLisModelmenu();
+                    adapter = new SuggestionMenuAdapater(Menulist);
                     recyclerView.setAdapter(adapter);
                 }else {
                     progressBar.setVisibility(View.GONE);
@@ -309,7 +312,7 @@ public class DetailMenu extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<GetMenu> call, Throwable t) {
+            public void onFailure(Call<GetModelMenu> call, Throwable t) {
                 //   Log.e("Retrofit get " , t.toString());
             }
         });
@@ -333,6 +336,8 @@ public class DetailMenu extends AppCompatActivity {
                 finish();
                 break;
             case R.id.action_cart:
+                Intent intent = new Intent(DetailMenu.this, CartActivity.class);
+                DetailMenu.this.startActivity(intent);
                 break;
 
         }

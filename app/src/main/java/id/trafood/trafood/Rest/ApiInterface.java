@@ -49,6 +49,9 @@ public interface ApiInterface {
     @GET("index.php/menudirm")
     Call<GetMenu> getMenu (@Query("rmid") String rmid);
 
+    @GET("index.php/menudirm/menulimit")
+    Call<GetModelMenu> getMenuLimitRm (@Query("rmid") String rmid);
+
    // @GET("index.php/menurm")s
    // Call<GetMenu> menu();
 
