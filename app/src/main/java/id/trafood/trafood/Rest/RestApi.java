@@ -4,6 +4,7 @@ import id.trafood.trafood.Home.GetModelMenu;
 import id.trafood.trafood.Models.GetMenu;
 import id.trafood.trafood.Models.Menu;
 import id.trafood.trafood.Models.PostPutDelMenu;
+import id.trafood.trafood.Models.PostPutDelOrder;
 import id.trafood.trafood.Models.PostPutDelRm;
 import id.trafood.trafood.Models.PostPutDelUser;
 import retrofit2.Call;
@@ -153,6 +154,11 @@ public interface RestApi {
                              @Field("flima") String flima,
                              @Field("userid") String userid);
 
+    @FormUrlEncoded
+    @POST("index.php/transaction/cart")
+    Call<PostPutDelOrder> postCart(@Field("menuid") String menuid,
+                                   @Field("userid") String userid,
+                                   @Field("qty") String qty);
 
 
 

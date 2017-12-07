@@ -9,10 +9,12 @@ import id.trafood.trafood.Models.GetLike;
 import id.trafood.trafood.Models.GetLocation;
 import id.trafood.trafood.Models.GetMenu;
 import id.trafood.trafood.Models.GetMenuDetail;
+import id.trafood.trafood.Models.GetOrder;
 import id.trafood.trafood.Models.GetRumahmakan;
 import id.trafood.trafood.Models.GetUserView;
 import id.trafood.trafood.Models.GetUserVote;
 import id.trafood.trafood.Models.PostPutDelMenu;
+import id.trafood.trafood.Models.PostPutDelOrder;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -32,7 +34,7 @@ public interface ApiInterface {
                                     @Query("password") String password);
 
     @GET("index.php/rm/rmbydistance")
-     Call<GetRumahmakan> getRumahmakan(@Query("lat") String lat,
+    Call<GetRumahmakan> getRumahmakan(@Query("lat") String lat,
                                        @Query("lng") String lng,
                                        @Query("cari") String cari,
                                        @Query("fasilitas") String fasilitas,
@@ -60,9 +62,6 @@ public interface ApiInterface {
 
     @GET("index.php/comment")
     Call<GetComment> getComment (@Query("rmid") String rmid);
-
-    @GET("index.php/menudetail")
-    Call<GetMenuDetail> getDetailMenu (@Query("menuid") String menuid);
 
     @GET("index.php/profil")
     Call<GetUserView> getProfil (@Query("userid") String userid );
@@ -158,5 +157,14 @@ public interface ApiInterface {
     @GET("index.php/like/savelikes")
     Call<ResponseBody> saveLike(@Query("menuid") String menuid,
                                @Query("userid") String userid);
+
+    @GET("index.php/transaction/cart")
+    Call<GetOrder> getCart(@Query("userid") String userid);
+
+    @GET("index.php/order")
+    Call<ResponseBody> getOrder(@Query("trans_id") String trans_id);
+
+    @GET("index.php/order/detail")
+    Call<GetOrder> getOrderDetail(@Query("trans_id") String trans_id);
 
 }
