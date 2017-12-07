@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="id.trafood.viewpager.MainActivity">
+
+    <item
+        android:id="@+id/action_report"
+        android:orderInCategory="100"
+        android:title="@string/report"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_copy"
+        android:orderInCategory="100"
+        android:title="@string/copylink"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_sharefb"
+        android:orderInCategory="100"
+        android:title="@string/sharefb"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_shareig"
+        android:orderInCategory="100"
+        android:title="@string/shareig"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_sharetw"
+        android:orderInCategory="100"
+        android:title="@string/sharetwitter"
+        app:showAsAction="never" />
+
+
+</menu>

@@ -84,7 +84,7 @@ public class RmCommentAdapter extends RecyclerView.Adapter<RmCommentAdapter.MyHo
                 holder.tvNilai.setTextColor(ContextCompat.getColor(holder.tvNilai.getContext(), R.color.ectasy));
             }if (total > 8 && total <=10 ){
                 holder.ivNilai.setImageResource(R.drawable.lapanpuluh);
-                holder.tvNilai.setTextColor(ContextCompat.getColor(holder.tvNilai.getContext(), R.color.red));
+                holder.tvNilai.setTextColor(ContextCompat.getColor(holder.tvNilai.getContext(), R.color.alizarin));
             }
 
         }

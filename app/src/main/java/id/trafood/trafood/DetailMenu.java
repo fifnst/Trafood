@@ -5,7 +5,10 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -21,11 +24,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.List;
 
+import id.trafood.trafood.Models.GetMenu;
 import id.trafood.trafood.Rest.ApiClient;
 import id.trafood.trafood.Rest.ApiInterface;
 import id.trafood.trafood.Rest.Connect;
 import id.trafood.trafood.Rest.UtilsApi;
+import id.trafood.trafood.Rumahmakan.Adapter.MenuListAdapter;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,6 +46,9 @@ public class DetailMenu extends AppCompatActivity {
     TextView tvHarga, tvEditmenu;
     ImageView ivFoto,ivLike;
     SharedPrefManager sharedPrefManager;
+    RecyclerView recyclerView;
+    RecyclerView.Adapter adapter;
+    RecyclerView.LayoutManager layoutManager;
 
 
     //PERCOBAAN FAHRI
@@ -68,6 +77,7 @@ public class DetailMenu extends AppCompatActivity {
         //tvTagMenu = (TextView) findViewById(R.id.tvTagMenu);
         tvDilihat = (TextView) findViewById(R.id.tvdilihatDetail);
         ivLike = (ImageView) findViewById(R.id.ivLike);
+        recyclerView = (RecyclerView) findViewById(R.id.rvMenuHorizontal);
 
         //pERCOBAAN FAHRI
         int temp;
@@ -80,14 +90,14 @@ public class DetailMenu extends AppCompatActivity {
             //textViewsTesTag[i].setText("tes");
         }
 
-
+        layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(layoutManager);
 
 
         //ArrayAdapter adapter = new ArrayAdapter(this,R.layout.activity_detail_menu,kata);
         //ArrayAdapter adapter = new ArrayAdapter(this,R.layout.activity_detail_menu,kata1);
         //ListView listview =(ListView) findViewById(R.id.listView);
         //listview.setAdapter(adapter);
-
 
         Intent mIntent = getIntent();
         namamenu = mIntent.getStringExtra("NAMAMENU");
@@ -110,7 +120,6 @@ public class DetailMenu extends AppCompatActivity {
 
         setisi(menuid);
 
-
         tvEditmenu.setVisibility(View.GONE);
 
 
@@ -127,7 +136,6 @@ public class DetailMenu extends AppCompatActivity {
                 tvEditmenu.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        String menuids=  getIntent().getStringExtra("MENUID");
                         Intent intent = new Intent(DetailMenu.this, EditMenuActivity.class);
                         intent.putExtra("MENUID",menuid);
                         intent.putExtra("USERID",useridMenu);
@@ -183,15 +191,7 @@ public class DetailMenu extends AppCompatActivity {
 
 
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case android.R.id.home:
-                finish();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+
 
     private void cekPernahLike(String menuid, String useridUser) {
         final Drawable likebelumlike = getResources().getDrawable(R.drawable.before_recommended);
@@ -260,6 +260,7 @@ public class DetailMenu extends AppCompatActivity {
                         }
                     }
 
+                    setHorizontal(rmid);
 
                     tvHarga.setText("Rp. "+hargamenu);
 
@@ -290,4 +291,53 @@ public class DetailMenu extends AppCompatActivity {
             }
         });
     }
+
+    private void setHorizontal(String rmid) {
+        Call<GetMenu> menuCall = apiInterface.getMenu(rmid);
+        menuCall.enqueue(new Callback<GetMenu>() {
+            @Override
+            public void onResponse(Call<GetMenu> call, Response<GetMenu> response) {
+                if (response.body().getStatus().equals("200")) {
+                    progressBar.setVisibility(View.GONE);
+                    recyclerView.setVisibility(View.VISIBLE);
+                    List<id.trafood.trafood.Models.Menu> Menulist = response.body().getListDataMenu();
+                    adapter = new MenuListAdapter(Menulist);
+                    recyclerView.setAdapter(adapter);
+                }else {
+                    progressBar.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GetMenu> call, Throwable t) {
+                //   Log.e("Retrofit get " , t.toString());
+            }
+        });
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_cart, menu);
+        getMenuInflater().inflate(R.menu.menu_main,menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        final String useridMenu = getIntent().getStringExtra("USERID");
+        final String useridUser = sharedPrefManager.getSpUserid();
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+                break;
+            case R.id.action_cart:
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
 }

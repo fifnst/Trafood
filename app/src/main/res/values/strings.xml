@@ -55,6 +55,7 @@
     <string name="namamenu">Nama Menu</string>
     <string name="deksripsimenu">Deskripsi Menu</string>
     <string name="tambah">tambah</string>
+    <string name="pesan">Pesan</string>
 
 
     <!-- User -->
@@ -104,6 +105,12 @@
     <string name="kategori_filter">Kategori</string>
     <string name="fasilitas">Fasilitas</string>
 
+    <!-- navigation -->
+    <string name="sharefb">Bagikan ke facebook</string>
+    <string name="shareig">Bagikan ke instagram</string>
+    <string name="sharetwitter">Bagikan ke twitter</string>
+    <string name="report">Laporkan..</string>
+    <string name="copylink">Salin Link</string>
 
     <!-- harga -->
     <string-array name="mulai_harga">

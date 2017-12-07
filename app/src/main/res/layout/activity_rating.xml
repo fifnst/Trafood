@@ -6,169 +6,180 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="id.trafood.trafood.RatingActivity">
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <ImageView
-            android:layout_centerInParent="true"
-            android:src="@mipmap/ic_launcher"
-            android:id="@+id/ivEmoticon"
-            android:layout_width="100dp"
-            android:layout_height="100dp" />
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_centerInParent="true"
-            android:text="3.2"
-            android:textSize="30dp"
-            android:layout_marginTop="20dp"
-            android:id="@+id/tvSetRating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </RelativeLayout>
-
-    <!-- -rating- -->
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:layout_gravity="center">
         <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:text="Rasa"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_marginTop="@dimen/margin_activity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/nol_duapuluh"
+                    android:id="@+id/ivEmoticon"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_centerInParent="true"
+                    android:textSize="30dp"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/tvSetRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
 
-            <TextView
-                android:id="@+id/tvRating1"
-                android:layout_marginLeft="140dp"
+            <!-- -rating- -->
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"/>
-        </LinearLayout>
-        <RatingBar
-            android:layout_gravity="center_horizontal"
-            android:id="@+id/rating1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:numStars="5"
-            android:stepSize="0.5"/>
-    </LinearLayout>
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_gravity="center">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:text="Rasa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
 
-    <!-- -rating- -->
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:layout_gravity="center">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:text="Pelayanan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/tvRating1"
+                        android:layout_marginLeft="140dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"/>
+                </LinearLayout>
+                <RatingBar
+                    android:layout_gravity="center_horizontal"
+                    android:id="@+id/rating1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:numStars="5"
+                    android:stepSize="0.5"/>
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/tvRating2"
-                android:layout_marginLeft="140dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"/>
-        </LinearLayout>
-        <RatingBar
-            android:layout_gravity="center_horizontal"
-            android:id="@+id/rating2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:numStars="5"
-            android:stepSize="0.5"/>
-    </LinearLayout>
-
-    <!-- -rating- -->
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:layout_gravity="center">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:text="Fasilitas"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/tvRating3"
-                android:layout_marginLeft="140dp"
+            <!-- -rating- -->
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"/>
-        </LinearLayout>
-        <RatingBar
-            android:layout_gravity="center_horizontal"
-            android:id="@+id/rating3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:numStars="5"
-            android:stepSize="0.5"/>
-    </LinearLayout>
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_gravity="center">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:text="Pelayanan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
 
-    <!-- -rating- -->
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:layout_gravity="center">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:text="Worth it"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/tvRating2"
+                        android:layout_marginLeft="140dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"/>
+                </LinearLayout>
+                <RatingBar
+                    android:layout_gravity="center_horizontal"
+                    android:id="@+id/rating2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:numStars="5"
+                    android:stepSize="0.5"/>
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/tvRating4"
-                android:layout_marginLeft="140dp"
+            <!-- -rating- -->
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center" />
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_gravity="center">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:text="Fasilitas"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/tvRating3"
+                        android:layout_marginLeft="140dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"/>
+                </LinearLayout>
+                <RatingBar
+                    android:layout_gravity="center_horizontal"
+                    android:id="@+id/rating3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:numStars="5"
+                    android:stepSize="0.5"/>
+            </LinearLayout>
+
+            <!-- -rating- -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_gravity="center">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:text="Worth it"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/tvRating4"
+                        android:layout_marginLeft="140dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center" />
+                </LinearLayout>
+                <RatingBar
+                    android:layout_gravity="center_horizontal"
+                    android:id="@+id/rating4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:numStars="5"
+                    android:stepSize="0.5"/>
+            </LinearLayout>
+
+            <EditText
+                android:inputType="textMultiLine"
+                android:id="@+id/ETInputComment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <Button
+                android:onClick="btnSaveRating"
+                android:id="@+id/btnSaveRating"
+                android:text="Save"
+                android:textColor="@color/white"
+                android:background="@color/green"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
         </LinearLayout>
-        <RatingBar
-            android:layout_gravity="center_horizontal"
-            android:id="@+id/rating4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:numStars="5"
-            android:stepSize="0.5"/>
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:layout_alignParentBottom="true"
-            android:text="Save"
-            android:textColor="@color/white"
-            android:background="@color/green"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </RelativeLayout>
-
+    </ScrollView>
 
 
 </LinearLayout>
