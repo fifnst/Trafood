@@ -1,8 +1,10 @@
 package id.trafood.trafood;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -30,9 +33,12 @@ import id.trafood.trafood.Home.GetModelMenu;
 import id.trafood.trafood.Home.ModelMenu;
 import id.trafood.trafood.Home.SuggestionMenuAdapater;
 import id.trafood.trafood.Models.GetMenu;
+import id.trafood.trafood.Models.PostPutDelMenu;
+import id.trafood.trafood.Models.PostPutDelOrder;
 import id.trafood.trafood.Rest.ApiClient;
 import id.trafood.trafood.Rest.ApiInterface;
 import id.trafood.trafood.Rest.Connect;
+import id.trafood.trafood.Rest.RestApi;
 import id.trafood.trafood.Rest.UtilsApi;
 import id.trafood.trafood.Rumahmakan.Adapter.MenuListAdapter;
 import okhttp3.ResponseBody;
@@ -52,7 +58,8 @@ public class DetailMenu extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
-
+    Button btnPesan;
+    RestApi restApi;
 
     //PERCOBAAN FAHRI
     private String[] id;
@@ -120,7 +127,7 @@ public class DetailMenu extends AppCompatActivity {
 
         dm = this;
         apiInterface = UtilsApi.getApiServive();
-
+        restApi = ApiClient.getClient().create(RestApi.class);
         setisi(menuid);
 
         tvEditmenu.setVisibility(View.GONE);
@@ -159,6 +166,8 @@ public class DetailMenu extends AppCompatActivity {
 
 
     }
+
+
 
     private void saveLike(String menuid, String useridUser) {
         final Drawable likebelumlike = getResources().getDrawable(R.drawable.before_recommended);
@@ -281,6 +290,14 @@ public class DetailMenu extends AppCompatActivity {
                             view.getContext().startActivity(mIntent);
                         }
                     });
+
+                    btnPesan.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            String useridUser = sharedPrefManager.getSpUserid();
+                            pesan(useridUser,menuid);
+                        }
+                    });
                 } catch (JSONException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
@@ -316,6 +333,18 @@ public class DetailMenu extends AppCompatActivity {
                 //   Log.e("Retrofit get " , t.toString());
             }
         });
+    }
+
+
+    private void pesan(String useridUser, String menuid) {
+        if (sharedPrefManager.getSPSudahLogin()){
+            this.menuid = menuid;
+
+
+
+        }else {
+            Toast.makeText(dm, "Kami harus login dulu untuk memesan makanan", Toast.LENGTH_SHORT).show();
+        }
     }
 
 
