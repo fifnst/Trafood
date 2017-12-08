@@ -22,4 +22,5 @@
     <dimen name="font_judul_profil">17dp</dimen>
     <dimen name="margin_logo_kecil">2dp</dimen>
     <dimen name="margin_activity">15dp</dimen>
+    <dimen name="margin_activity2">30dp</dimen>
 </resources>
