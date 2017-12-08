@@ -53,6 +53,8 @@ public class EditKedaiActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_kedai);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Edit Kedai");
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_green_24dp);
+        getSupportActionBar().setElevation(0);
         sharedPrefManager = new SharedPrefManager(this);
         mContext = this;
         restApi = ApiClient.getClient().create(RestApi.class);

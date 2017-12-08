@@ -64,6 +64,8 @@ public class TambahMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tambah_menu);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Tambah Menu");
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_green_24dp);
+        getSupportActionBar().setElevation(0);
 
         rmid = (EditText) findViewById(R.id.etRmIDMenuInput);
         kodemenu =(EditText)findViewById(R.id.tvKodeMenu);

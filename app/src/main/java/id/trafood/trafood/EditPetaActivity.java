@@ -52,6 +52,8 @@ public class EditPetaActivity extends AppCompatActivity implements OnMapReadyCal
         setContentView(R.layout.activity_edit_peta);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Ganti Lokasi");
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_green_24dp);
+        getSupportActionBar().setElevation(0);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map3);
         mapFragment.getMapAsync(this);

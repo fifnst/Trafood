@@ -40,6 +40,8 @@ public class ProfilVote extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Review");
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_green_24dp);
+        getSupportActionBar().setElevation(0);
 
         recyclerView = (RecyclerView) findViewById(R.id.rvUserVote);
         progressBar = (ProgressBar) findViewById(R.id.pbVote);

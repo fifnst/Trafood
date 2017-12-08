@@ -47,6 +47,8 @@ public class DaftarKedaiPeta extends AppCompatActivity implements OnMapReadyCall
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daftar_kedai_peta);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_green_24dp);
+        getSupportActionBar().setElevation(0);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map4);
         mapFragment.getMapAsync(this);
         sharedPrefManager = new SharedPrefManager(this);

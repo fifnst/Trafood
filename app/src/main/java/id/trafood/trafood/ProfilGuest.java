@@ -36,6 +36,9 @@ public class ProfilGuest extends AppCompatActivity {
         Intent mIntent = getIntent();
         userid = mIntent.getStringExtra("USERID");
         namauser = mIntent.getStringExtra("NAMAUSER");
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_green_24dp);
+        getSupportActionBar().setElevation(0);
+
         tvNamaUser.setText(namauser);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(namauser);

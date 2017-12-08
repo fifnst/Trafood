@@ -40,6 +40,8 @@ public class SettingProfilActivity extends AppCompatActivity implements GoogleAp
         setContentView(R.layout.activity_setting_profil);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Pengaturan Akun");
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_green_24dp);
+        getSupportActionBar().setElevation(0);
 
         sharedPrefManager = new SharedPrefManager(this);
 

@@ -13,11 +13,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -88,6 +91,7 @@ public class DetailMenu extends AppCompatActivity {
         tvDilihat = (TextView) findViewById(R.id.tvdilihatDetail);
         ivLike = (ImageView) findViewById(R.id.ivLike);
         recyclerView = (RecyclerView) findViewById(R.id.rvMenuHorizontal);
+        btnPesan = (Button) findViewById(R.id.btnPesan);
 
         //pERCOBAAN FAHRI
         int temp;
@@ -241,7 +245,7 @@ public class DetailMenu extends AppCompatActivity {
                     JSONObject jsonResult = new JSONObject(response.body().string());
                     String nama = jsonResult.getJSONObject("result").getString("namamenu");
                     String deskripsimenu = jsonResult.getJSONObject("result").getString("deskripsi");
-                    String hargamenu = jsonResult.getJSONObject("result").getString("harga");
+                    final String hargamenu = jsonResult.getJSONObject("result").getString("harga");
                     String tag = jsonResult.getJSONObject("result").getString("tag");
                     String like = jsonResult.getJSONObject("result").getString("likes");
                     final String namarm = jsonResult.getJSONObject("result").getString("namarm");
@@ -295,7 +299,7 @@ public class DetailMenu extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
                             String useridUser = sharedPrefManager.getSpUserid();
-                            pesan(useridUser,menuid);
+                            pesan(useridUser,menuid,fotomenu,hargamenu,namamenu,namarm);
                         }
                     });
                 } catch (JSONException e) {
@@ -336,16 +340,100 @@ public class DetailMenu extends AppCompatActivity {
     }
 
 
-    private void pesan(String useridUser, String menuid) {
+    private void pesan(final String useridUser, final String menuid, final String fotomenu, final String hargamenu, final String namamenu, final String namarm) {
         if (sharedPrefManager.getSPSudahLogin()){
             this.menuid = menuid;
+            final Dialog dialog = new Dialog(DetailMenu.this);
+            dialog.setContentView(R.layout.dialog_pesan);
+            dialog.setTitle("Rincian Pesanan");
+            //mengeset untuk dialog
+            TextView tvNamaRmD = (TextView) dialog.findViewById(R.id.tvNamaRmDialog);
+            ImageView imageView = (ImageView) dialog.findViewById(R.id.imageDialog);
+            TextView tvHargaD = (TextView) dialog.findViewById(R.id.tvHargaDialog);
+            TextView tvNamamemuD = (TextView) dialog.findViewById(R.id.tvNamaMenuDialog);
+            TextView tvLanjutkan = (TextView) dialog.findViewById(R.id.btnPilihDialog);
+            Button btnNext = (Button) dialog.findViewById(R.id.btnNextDialog);
+            ImageButton imageButton = (ImageButton) dialog.findViewById(R.id.deleteDialog);
+            final TextView totalharga = (TextView) dialog.findViewById(R.id.tvTotalpriceDialog);
+            final Spinner spinner = (Spinner) dialog.findViewById(R.id.spinnerDialog);
 
+            tvHargaD.setText("Rp "+hargamenu);
+            tvNamamemuD.setText(namamenu);
+            tvNamaRmD.setText(namarm);
+            totalharga.setText("Rp."+hargamenu);
+            Picasso.with(DetailMenu.this).load(Connect.IMAGE_MENU_URL+fotomenu).into(imageView);
+
+
+
+            imageButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                }
+            });
+
+            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    int angka = Integer.parseInt(spinner.getSelectedItem().toString());
+                    int harga = Integer.parseInt(hargamenu);
+                    totalharga.setText("Rp. "+String.valueOf(angka*harga));
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+
+                }
+            });
+            tvLanjutkan.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String jumlah = spinner.getSelectedItem().toString();
+                    Call<PostPutDelOrder> postPutDelOrderCall = restApi.postCart(menuid,useridUser,jumlah);
+                    postPutDelOrderCall.enqueue(new Callback<PostPutDelOrder>() {
+                        @Override
+                        public void onResponse(Call<PostPutDelOrder> call, Response<PostPutDelOrder> response) {
+                            Toast.makeText(dm, "Pesanan berhasil masuk", Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onFailure(Call<PostPutDelOrder> call, Throwable t) {
+                            Toast.makeText(dm, "Pesanan berhasil masuk Tapi jangan pindah hanya keluarkan dialog ini", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    dialog.dismiss();
+                }
+            });
+            btnNext.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    String jumlah = spinner.getSelectedItem().toString();
+                    Call<PostPutDelOrder> postPutDelOrderCall = restApi.postCart(menuid,useridUser,jumlah);
+                    postPutDelOrderCall.enqueue(new Callback<PostPutDelOrder>() {
+                        @Override
+                        public void onResponse(Call<PostPutDelOrder> call, Response<PostPutDelOrder> response) {
+                            Toast.makeText(dm, "Pesanan berhasil masuk", Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onFailure(Call<PostPutDelOrder> call, Throwable t) {
+                            Toast.makeText(dm, "Pesanan berhasil masuk dan harusnya pindah ke activity cart", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    dialog.dismiss();
+                }
+            });
+            dialog.show();
 
 
         }else {
             Toast.makeText(dm, "Kami harus login dulu untuk memesan makanan", Toast.LENGTH_SHORT).show();
         }
     }
+
+
 
 
     @Override

@@ -34,6 +34,8 @@ public class LocationSearch extends AppCompatActivity {
         setContentView(R.layout.activity_location_search);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Select Location");
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_green_24dp);
+        getSupportActionBar().setElevation(0);
 
         recyclerView = (RecyclerView) findViewById(R.id.rvLocationSearch);
         layoutManager = new LinearLayoutManager(this);

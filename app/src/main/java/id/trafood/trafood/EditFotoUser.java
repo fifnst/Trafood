@@ -50,7 +50,8 @@ public class EditFotoUser extends AppCompatActivity {
         setContentView(R.layout.activity_edit_foto_user);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Edit Profil");
-
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_green_24dp);
+        getSupportActionBar().setElevation(0);
         sharedPrefManager = new SharedPrefManager(this);
 
         restApi = ApiClient.getClient().create(RestApi.class);

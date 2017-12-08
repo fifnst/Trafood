@@ -70,6 +70,8 @@ public class EditProfilActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_profil);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Edit Profil");
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_green_24dp);
+        getSupportActionBar().setElevation(0);
 
         sharedPrefManager = new SharedPrefManager(this);
 

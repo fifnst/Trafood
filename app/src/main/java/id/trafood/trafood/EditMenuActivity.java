@@ -46,6 +46,8 @@ public class EditMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_menu);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Edit Menu");
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_green_24dp);
+        getSupportActionBar().setElevation(0);
 
         tvnamamenu = (EditText) findViewById(R.id.etNamaMenuEdit);
         tvharga = (EditText) findViewById(R.id.etHargaMenuEdit);

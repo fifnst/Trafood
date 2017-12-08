@@ -24,6 +24,8 @@ public class FilterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_filter);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Filter");
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_green_24dp);
+        getSupportActionBar().setElevation(0);
 
        // tabLayout = (TabLayout) findViewById(R.id.tlFilter);
         viewPager = (ViewPager) findViewById(R.id.vpFilter);

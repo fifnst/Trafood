@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context="id.trafood.trafood.Home_Restaurant_Fragment">
+    tools:context="id.trafood.trafood.Home_Restaurant_Fragment"
+    android:background="@color/cloud">
     <LinearLayout
         android:layout_margin="@dimen/margin_activity"
         android:orientation="vertical"

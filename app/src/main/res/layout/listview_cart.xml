@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_margin="@dimen/margin_activity">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <View
 
@@ -22,17 +21,26 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <ImageView
-            android:layout_width="60dp"
+            android:scaleType="centerCrop"
+            android:layout_width="90dp"
             android:layout_height="60dp"
             android:id="@+id/imageCart"
             android:src="@drawable/view_kedai"/>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="Qty "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/spinner_cart"
+                    android:id="@+id/spinnerCart"/>
 
-        <Spinner
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:entries="@array/spinner_cart"
-            android:id="@+id/spinnerCart"/>
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -41,18 +49,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginLeft="20dp">
+            android:layout_marginLeft="10dp">
             <TextView
+                android:textSize="@dimen/font_judul_profil"
+                android:textColor="@color/radablack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nama Menu"
                 android:id="@+id/tvNamaMenuCart"/>
             <TextView
+                android:textColor="@color/blue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/tvHargaCart"
-                android:text="Harga"
-                android:layout_marginTop="55dp" />
+                android:text="Harga" />
+            <TextView
+                android:id="@+id/tvSubtotalCart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <RelativeLayout

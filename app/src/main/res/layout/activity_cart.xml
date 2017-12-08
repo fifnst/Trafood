@@ -1,46 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="id.trafood.trafood.CartActivity"
-    android:orientation="vertical"
-    android:layout_margin="15dp">
+    android:orientation="vertical">
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvCartKedai"
-        android:text="Contoh Kedai"
-        android:textSize="30dp"
-        style="@style/Base.ThemeOverlay.AppCompat.Dark"/>
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/LinearCart"
+            android:layout_margin="15dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvCartKedai"
+                android:text="Contoh Kedai"
+                android:textSize="30dp"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvCartLokasiKedai"
-        android:text="Contoh lokasi"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvCartLokasiKedai"
+                android:text="Contoh lokasi"/>
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/rvCart">
-    </android.support.v7.widget.RecyclerView>
+            <android.support.v7.widget.RecyclerView
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rvCart">
+            </android.support.v7.widget.RecyclerView>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey"
+                android:layout_marginBottom="70dp"/>
+
+        </LinearLayout>
+    </ScrollView>
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-    <Button
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonCart"
-        android:text="PILIH KURIR"/>
+        <Button
+            android:textColor="@color/white"
+            android:background="@color/blue"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonCart"
+            android:text="PILIH KURIR"/>
 
     </RelativeLayout>
 
 
 
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

@@ -54,6 +54,8 @@ public class EditFotoMenuActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Ganti Foto");
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_green_24dp);
+        getSupportActionBar().setElevation(0);
 
         ivfoto = (ImageView) findViewById(R.id.ivFotoMenuEdit);
         button = (Button) findViewById(R.id.btnSaveEditFotoMenu);

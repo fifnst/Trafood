@@ -43,6 +43,8 @@ public class KedaiEditPetaActivity extends AppCompatActivity implements OnMapRea
         setContentView(R.layout.activity_kedai_edit_peta);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Edit Peta");
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_green_24dp);
+        getSupportActionBar().setElevation(0);
 
         etkecamatan = (EditText) findViewById(R.id.etKecamatanKedaiEdit);
         tvkota = (EditText) findViewById(R.id.etKotaKedaiEdit);

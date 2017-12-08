@@ -1,8 +1,8 @@
 package id.trafood.trafood.OrderP;
 
+
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +18,7 @@ import id.trafood.trafood.DetailMenu;
 import id.trafood.trafood.Models.Order;
 import id.trafood.trafood.R;
 import id.trafood.trafood.Rest.Connect;
+
 
 /**
  * Created by TRAFOOD on 12/7/2017.
@@ -42,7 +43,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
         Picasso.with(holder.ivCart.getContext()).load(Connect.IMAGE_MENU_URL+orders.get(position).getFoto())
                 .into(holder.ivCart);
         holder.tvNamaMenuCart.setText(orders.get(position).getNamamenu());
-        holder.tvHargaCart.setText(orders.get(position).getHarga());
+        holder.tvHargaCart.setText("Rp. " +orders.get(position).getHarga());
+        holder.tvSubtotal.setText("Sub total Rp. ");
         holder.tvDeleteCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,24 +61,25 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
                 view.getContext().startActivity(i);
             }
         });
-
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return orders.size();
     }
 
+
     public class Holder extends RecyclerView.ViewHolder {
-        public ImageView ivCart;
-        public TextView tvNamaMenuCart, tvHargaCart, tvDeleteCart;
-        public Spinner spBanyakPesan;
+        ImageView ivCart;
+        TextView tvNamaMenuCart, tvHargaCart, tvDeleteCart,tvSubtotal;
+        Spinner spBanyakPesan;
         public Holder(View itemView) {
             super(itemView);
             ivCart = (ImageView) itemView.findViewById(R.id.imageCart);
             tvNamaMenuCart = (TextView) itemView.findViewById(R.id.tvNamaMenuCart);
             tvHargaCart = (TextView) itemView.findViewById(R.id.tvHargaCart);
             tvDeleteCart = (TextView) itemView.findViewById(R.id.tvDeleteCart);
+            tvSubtotal = (TextView) itemView.findViewById(R.id.tvSubtotalCart);
         }
     }
 }

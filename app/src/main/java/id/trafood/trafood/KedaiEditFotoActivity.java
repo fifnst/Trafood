@@ -50,6 +50,8 @@ public class KedaiEditFotoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_kedai_edit_foto);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Rubah Foto");
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_green_24dp);
+        getSupportActionBar().setElevation(0);
 
         imageView = (ImageView) findViewById(R.id.ivFotoKedaiEdit);
         btnSave = (Button) findViewById(R.id.btnSaveEditFotoKedai);

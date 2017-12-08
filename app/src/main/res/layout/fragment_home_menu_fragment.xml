@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="id.trafood.trafood.Home_menu_fragment">
+    tools:context="id.trafood.trafood.Home_menu_fragment"
+    android:background="@color/cloud">
     <LinearLayout
         android:layout_margin="@dimen/margin_activity"
         android:orientation="vertical"
@@ -23,7 +24,6 @@
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/rvMenu"
-        />
+        android:id="@+id/rvMenu" />
 
 </LinearLayout>

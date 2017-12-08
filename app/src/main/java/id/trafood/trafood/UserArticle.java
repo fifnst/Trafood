@@ -39,6 +39,9 @@ public class UserArticle extends AppCompatActivity {
         String userid = intent.getStringExtra("USERID");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Article");
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_green_24dp);
+        getSupportActionBar().setElevation(0);
+
         recyclerView = (RecyclerView) findViewById(R.id.rvArticleUser);
         progressBar = (ProgressBar) findViewById(R.id.pbArticleUser);
         linearLayout = (LinearLayout) findViewById(R.id.LinearArticleUser) ;

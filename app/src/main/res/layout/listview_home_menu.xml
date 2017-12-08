@@ -5,8 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/jarak_antar_gridview"
-    android:background="@color/white">
+    android:background="@color/grey">
     <LinearLayout
+        android:layout_margin="1dp"
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">

@@ -164,6 +164,9 @@ public interface ApiInterface {
     @GET("index.php/order")
     Call<ResponseBody> getOrder(@Query("trans_id") String trans_id);
 
+    @GET("index.php/transaction/cart/cart")
+    Call<ResponseBody> getCartDetail(@Query("userid") String userid);
+
     @GET("index.php/order/detail")
     Call<GetOrder> getOrderDetail(@Query("trans_id") String trans_id);
 

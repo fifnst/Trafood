@@ -21,10 +21,9 @@ public class Order {
     private String foto;
     @SerializedName("qty")
     private String qty;
-    @SerializedName("tarns_id")
-    private String tarns_id;
 
-    public Order(String menuid, String namamenu, String harga, String namarm, String rmid, String foto, String qty, String tarns_id) {
+
+    public Order(String menuid, String namamenu, String harga, String namarm, String rmid, String foto, String qty) {
         this.menuid = menuid;
         this.namamenu = namamenu;
         this.harga = harga;
@@ -32,7 +31,7 @@ public class Order {
         this.rmid = rmid;
         this.foto = foto;
         this.qty = qty;
-        this.tarns_id = tarns_id;
+
     }
 
     public String getMenuid() {
@@ -91,11 +90,4 @@ public class Order {
         this.qty = qty;
     }
 
-    public String getTarns_id() {
-        return tarns_id;
-    }
-
-    public void setTarns_id(String tarns_id) {
-        this.tarns_id = tarns_id;
-    }
 }

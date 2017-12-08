@@ -28,6 +28,8 @@ public class GalleryRm extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Gallery");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_green_24dp);
+        getSupportActionBar().setElevation(0);
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

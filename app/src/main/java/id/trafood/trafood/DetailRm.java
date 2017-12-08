@@ -51,10 +51,10 @@ public class DetailRm extends AppCompatActivity {
     TabLayout tableLayout;
     private int[] tabIcons = {
             R.drawable.ic_menu,
-            R.drawable.ic_location2,
+            R.drawable.location,
             R.drawable.ic_galery,
             R.drawable.ic_review,
-            R.drawable.ic_info
+            R.drawable.info
     };
 
 
@@ -67,7 +67,6 @@ public class DetailRm extends AppCompatActivity {
         setContentView(R.layout.activity_detail_rm);
 
         textViewnamaRM = (TextView) findViewById(R.id.tvnamarms);
-        textViewkategori = (TextView) findViewById(R.id.tvKategoriRms);
         textViewAlamat = (TextView) findViewById(R.id.tvAlamatrms);
         iVfotoRm = (ImageView) findViewById(R.id.ivFotoRmDetails);
         tableLayout = (TabLayout) findViewById(R.id.tlListMenuRM);
@@ -125,7 +124,6 @@ public class DetailRm extends AppCompatActivity {
 
                     textViewnamaRM.setText(namarm);
                     textViewAlamat.setText(alamat);
-                    textViewkategori.setText(kategori);
 
                     if (rating1.equals("null") && rating2 .equals("null") && rating3 .equals("null") && rating4 .equals("null") ){
                         tvRating.setText("");
