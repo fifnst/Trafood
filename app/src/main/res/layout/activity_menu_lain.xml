@@ -36,7 +36,7 @@
             android:layout_height="50dp"
             android:src="@mipmap/ic_launcher"/>
         <Spinner
-            android:layout_marginLeft="21dp"
+            android:layout_marginLeft="22dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:entries="@array/spinner_menu_lain"
