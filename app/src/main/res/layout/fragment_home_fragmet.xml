@@ -57,6 +57,7 @@
     android:layout_height="wrap_content"
     android:fillViewport="true">
 
+
     <LinearLayout
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -67,6 +68,10 @@
 
         <!-- TODO: Update blank fragment layout -->
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/cloud"/>
         <TextView
             android:layout_marginTop="10dp"
             android:textStyle="bold"
@@ -126,6 +131,10 @@
             android:text="View More   >"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/cloud"/>
         <TextView
             android:layout_marginTop="10dp"
             android:textColor="@color/radablack"
@@ -141,6 +150,10 @@
             android:id="@+id/rvHomeArticle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/cloud"/>
         <TextView
             android:textColor="@color/green"
             android:padding="10dp"
