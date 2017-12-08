@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@color/cloud">
+    android:background="@color/white">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -97,8 +97,12 @@
             android:text="View More   >"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/cloud"/>
+
         <TextView
-            android:layout_marginTop="10dp"
             android:textStyle="bold"
             android:textColor="@color/radablack"
             android:padding="10dp"
