@@ -6,10 +6,12 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -38,7 +40,7 @@ public class CartActivity extends AppCompatActivity {
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
 
-    LinearLayout linearcart;
+    LinearLayout linearcart,linearBelumLogin;
     ApiInterface apiInterface;
     public  static CartActivity ca;
     SharedPrefManager sharedPrefManager;
@@ -55,7 +57,7 @@ public class CartActivity extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_green_24dp);
         getSupportActionBar().setElevation(0);
         recyclerView = (RecyclerView) findViewById(R.id.rvCart);
-
+        linearBelumLogin = (LinearLayout) findViewById(R.id.linearCartBelumlogin);
         tvCartKedai = (TextView) findViewById(R.id.tvCartKedai);
         tvCartLokasiKedai = (TextView) findViewById(R.id.tvCartLokasiKedai);
         buttonCart = (Button) findViewById(R.id.buttonCart);
@@ -65,13 +67,22 @@ public class CartActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         apiInterface = UtilsApi.getApiServive();
 
+        buttonCart.setVisibility(View.GONE);
+        linearcart.setVisibility(View.GONE);
+        linearBelumLogin.setVisibility(View.GONE);
         sharedPrefManager = new SharedPrefManager(this);
         final String userId = sharedPrefManager.getSpUserid();
         mContext = this;
         ca= this;
+        if (sharedPrefManager.getSPSudahLogin()){
+            linearcart.setVisibility(View.VISIBLE);
+            buttonCart.setVisibility(View.VISIBLE);
+            isiRv(userId);
+            isiDetail(userId);
+        }else {
+            linearBelumLogin.setVisibility(View.VISIBLE);
+        }
 
-        isiRv(userId);
-        isiDetail(userId);
     }
 
     private void isiDetail(final String userId) {
@@ -123,5 +134,15 @@ public class CartActivity extends AppCompatActivity {
             public void onFailure(Call<ResponseBody> call, Throwable t) {
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

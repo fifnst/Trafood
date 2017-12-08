@@ -345,7 +345,8 @@ public class DetailMenu extends AppCompatActivity {
             this.menuid = menuid;
             final Dialog dialog = new Dialog(DetailMenu.this);
             dialog.setContentView(R.layout.dialog_pesan);
-            dialog.setTitle("Rincian Pesanan");
+            dialog.setCancelable(false);
+            //dialog.setTitle("Rincian Pesanan");
             //mengeset untuk dialog
             TextView tvNamaRmD = (TextView) dialog.findViewById(R.id.tvNamaRmDialog);
             ImageView imageView = (ImageView) dialog.findViewById(R.id.imageDialog);

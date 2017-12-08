@@ -7,6 +7,8 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class Order {
+    @SerializedName("cart_id")
+    private String cart_id;
     @SerializedName("menuid")
     private String menuid;
     @SerializedName("namamenu")
@@ -22,8 +24,8 @@ public class Order {
     @SerializedName("qty")
     private String qty;
 
-
-    public Order(String menuid, String namamenu, String harga, String namarm, String rmid, String foto, String qty) {
+    public Order(String cart_id, String menuid, String namamenu, String harga, String namarm, String rmid, String foto, String qty) {
+        this.cart_id = cart_id;
         this.menuid = menuid;
         this.namamenu = namamenu;
         this.harga = harga;
@@ -31,7 +33,14 @@ public class Order {
         this.rmid = rmid;
         this.foto = foto;
         this.qty = qty;
+    }
 
+    public String getCart_id() {
+        return cart_id;
+    }
+
+    public void setCart_id(String cart_id) {
+        this.cart_id = cart_id;
     }
 
     public String getMenuid() {
@@ -89,5 +98,4 @@ public class Order {
     public void setQty(String qty) {
         this.qty = qty;
     }
-
 }

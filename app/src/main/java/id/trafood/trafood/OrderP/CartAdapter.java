@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -45,6 +46,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
         holder.tvNamaMenuCart.setText(orders.get(position).getNamamenu());
         holder.tvHargaCart.setText("Rp. " +orders.get(position).getHarga());
         holder.tvSubtotal.setText("Sub total Rp. ");
+        String cartid = orders.get(position).getCart_id();
         holder.tvDeleteCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,14 +73,15 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
 
     public class Holder extends RecyclerView.ViewHolder {
         ImageView ivCart;
-        TextView tvNamaMenuCart, tvHargaCart, tvDeleteCart,tvSubtotal;
+        TextView tvNamaMenuCart, tvHargaCart,tvSubtotal;
+        ImageButton tvDeleteCart;
         Spinner spBanyakPesan;
         public Holder(View itemView) {
             super(itemView);
             ivCart = (ImageView) itemView.findViewById(R.id.imageCart);
             tvNamaMenuCart = (TextView) itemView.findViewById(R.id.tvNamaMenuCart);
             tvHargaCart = (TextView) itemView.findViewById(R.id.tvHargaCart);
-            tvDeleteCart = (TextView) itemView.findViewById(R.id.tvDeleteCart);
+            tvDeleteCart = (ImageButton) itemView.findViewById(R.id.tvDeleteCart);
             tvSubtotal = (TextView) itemView.findViewById(R.id.tvSubtotalCart);
         }
     }
