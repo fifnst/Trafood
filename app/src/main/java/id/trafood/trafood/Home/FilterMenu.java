@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,7 +33,7 @@ public class FilterMenu extends Fragment {
     Button buttonApply;
     TextView location,kaku,sort,jarak,rating, harga;
     Spinner mulai,sampai;
-    ImageButton ibJarak, ibRating, ibHarga;
+    ImageView ibJarak, ibRating, ibHarga;
     CheckBox cbWifi, cbParkir, cbMusic, cbMushola, cbSmoking, cbWc;
     public FilterMenu() {
         // Required empty public constructor
@@ -58,9 +59,9 @@ public class FilterMenu extends Fragment {
         harga = (TextView) view.findViewById(R.id.tvHarga);
         mulai = (Spinner) view.findViewById(R.id.spCheapestPrice);
         sampai = (Spinner) view.findViewById(R.id.spExpensivePrice);
-        ibJarak = (ImageButton) view.findViewById(R.id.ibJarak);
-        ibRating = (ImageButton) view.findViewById(R.id.ibRating);
-        ibHarga = (ImageButton) view.findViewById(R.id.ibHarga);
+        ibJarak = (ImageView) view.findViewById(R.id.ibJarak);
+        ibRating = (ImageView) view.findViewById(R.id.ibRating);
+        ibHarga = (ImageView) view.findViewById(R.id.ibHarga);
         cbWifi = (CheckBox) view.findViewById(R.id.cbWifi);
         cbParkir = (CheckBox) view.findViewById(R.id.cbParki);
         cbMusic = (CheckBox) view.findViewById(R.id.cbMusic);
