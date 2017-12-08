@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="id.trafood.trafood.Home.Fragment_Vaforite">
+    tools:context="id.trafood.trafood.Home.Fragment_Vaforite"
+    android:background="@color/white">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

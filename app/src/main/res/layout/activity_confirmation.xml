@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context="id.trafood.trafood.ConfirmationActivity"
     android:orientation="vertical"
-    android:layout_margin="@dimen/margin_activity">
+    android:layout_margin="@dimen/margin_activity"
+    android:background="@color/white">
     <ScrollView
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -134,7 +135,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Subtotal"
-            android:layout_marginTop="@dimen/margin_activity"
             android:textColor="@color/radablack"/>
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -144,7 +144,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="subtotal"
-            android:layout_marginTop="@dimen/margin_activity"
             android:textColor="@color/radablack"
             android:id="@+id/tvConfSubtotal"/>
         </RelativeLayout>
@@ -158,7 +157,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Biaya Kirim"
-            android:layout_marginTop="@dimen/margin_activity"
             android:textColor="@color/radablack"/>
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -168,7 +166,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="biaya kirim"
-                android:layout_marginTop="@dimen/margin_activity"
                 android:textColor="@color/radablack"
                 android:id="@+id/tvConfBiayaKirim"/>
         </RelativeLayout>
@@ -182,7 +179,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Biaya Parkir"
-            android:layout_marginTop="@dimen/margin_activity"
             android:textColor="@color/radablack"/>
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -192,17 +188,45 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="biaya parkir"
-                android:layout_marginTop="@dimen/margin_activity"
                 android:textColor="@color/radablack"
                 android:id="@+id/tvConfBiayaParkir"/>
         </RelativeLayout>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/margin_activity">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total"
+            android:textColor="@color/radablack"/>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="total"
+                android:textColor="@color/radablack"
+                android:id="@+id/tvConfTotal"/>
+        </RelativeLayout>
+    </LinearLayout>
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:id="@+id/btnConf"
+            android:text="SELESAI"/>
 
-
-
-
+    </RelativeLayout>
 
     </LinearLayout>
 </ScrollView>
