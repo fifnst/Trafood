@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="id.trafood.trafood.Home_menu_fragment"
-    android:background="@color/cloud">
+    android:background="@color/white">
     <LinearLayout
         android:layout_margin="@dimen/margin_activity"
         android:orientation="vertical"
