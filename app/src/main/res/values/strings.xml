@@ -58,6 +58,13 @@
         <item>10</item>
     </string-array>
 
+    <string-array name="spinner_menu_lain">
+        <item>Bantuan</item>
+        <item>Sebagai User</item>
+        <item>Sebagai Penjual</item>
+        <item>Penulisan Artikel</item>
+    </string-array>
+
     <!-- info menu -->
     <string name="rekomendasi">Rekomendasi</string>
     <string name="kunjungi">Kunjungi Kedai</string>

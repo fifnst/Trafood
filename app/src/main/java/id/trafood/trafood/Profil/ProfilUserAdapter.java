@@ -17,6 +17,7 @@ import java.util.zip.Inflater;
 import de.hdodenhof.circleimageview.CircleImageView;
 import id.trafood.trafood.DaftarKedaiActivity;
 import id.trafood.trafood.DetailRm;
+import id.trafood.trafood.MenuLainActivity;
 import id.trafood.trafood.Models.UserView;
 import id.trafood.trafood.ProfilVote;
 import id.trafood.trafood.R;
@@ -136,6 +137,14 @@ public class ProfilUserAdapter extends RecyclerView.Adapter<ProfilUserAdapter.My
             }
         });
 
+        holder.tvMenuLain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), MenuLainActivity.class);
+                view.getContext().startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -145,7 +154,7 @@ public class ProfilUserAdapter extends RecyclerView.Adapter<ProfilUserAdapter.My
 
     public class MyHolders extends RecyclerView.ViewHolder {
         LinearLayout linearsudahlogin,linearPengaturanKedai,lineardaftarkedai;
-        TextView nama,tvkota, tvabout, tvpoint,tvartikel, tvulasan;
+        TextView nama,tvkota, tvabout, tvpoint,tvartikel, tvulasan, tvMenuLain;
         CircleImageView fotoprofil;
 
         ImageView btnTambahMenu,btneditkedai,btnRingkasankedai,btnReviewProfil, btnArticleProfil, btnPengaturanProfil,btnTambahKedai;
@@ -161,6 +170,7 @@ public class ProfilUserAdapter extends RecyclerView.Adapter<ProfilUserAdapter.My
             tvpoint = (TextView) itemView.findViewById(R.id.tvPointProfil);
             tvartikel = (TextView) itemView.findViewById(R.id.tvArtikelProfil);
             tvulasan = (TextView) itemView.findViewById(R.id.tvUlasanProfil);
+            tvMenuLain = (TextView) itemView.findViewById(R.id.tvMenuLain);
 
             fotoprofil = (CircleImageView) itemView.findViewById(R.id.ciFotoProfil);
             btnTambahMenu = (ImageView) itemView.findViewById(R.id.btnTambahMenuProfil);

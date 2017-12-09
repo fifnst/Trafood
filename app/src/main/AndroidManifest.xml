@@ -143,17 +143,19 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".CartActivity"
-            android:theme="@style/AppTheme"/>
-
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".AddressActivity"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".CourierActivity"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".ConfirmationActivity"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".MenuLainActivity"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
