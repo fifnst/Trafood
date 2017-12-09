@@ -83,6 +83,35 @@ public class CartActivity extends AppCompatActivity {
             linearBelumLogin.setVisibility(View.VISIBLE);
         }
 
+        buttonCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                inputCart();
+            }
+        });
+
+    }
+
+    private void inputCart() {
+        apiInterface.getNomorOrder().enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try {
+                    JSONObject jsonResult = new JSONObject(response.body().string());
+                    String nomor = jsonResult.getString("result");
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
     }
 
     private void isiDetail(final String userId) {
@@ -97,6 +126,7 @@ public class CartActivity extends AppCompatActivity {
 
                     Log.d("Retrofit Get ", "Jumlah data Rumah makan: " +
                             String.valueOf(orders.size()));
+
                 }else {
                     tvCartKedai.setText(userId);
                 }

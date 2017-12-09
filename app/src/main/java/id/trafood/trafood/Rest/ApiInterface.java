@@ -170,4 +170,6 @@ public interface ApiInterface {
     @GET("index.php/order/detail")
     Call<GetOrder> getOrderDetail(@Query("trans_id") String trans_id);
 
+    @GET("index.php/transaction/order/nomor")
+    Call<ResponseBody> getNomorOrder();
 }

@@ -7,6 +7,7 @@ import id.trafood.trafood.Models.PostPutDelMenu;
 import id.trafood.trafood.Models.PostPutDelOrder;
 import id.trafood.trafood.Models.PostPutDelRm;
 import id.trafood.trafood.Models.PostPutDelUser;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -159,6 +160,14 @@ public interface RestApi {
     Call<PostPutDelOrder> postCart(@Field("menuid") String menuid,
                                    @Field("userid") String userid,
                                    @Field("qty") String qty);
+
+    @FormUrlEncoded
+    @POST("index.php/transaction/order/detail")
+    Call<ResponseBody> postOrderDetail
+            (@Field("trans_id") String menuid,
+             @Field("menuid") String userid,
+             @Field("qty") String qty,
+             @Field("price") String price);
 
 
 
