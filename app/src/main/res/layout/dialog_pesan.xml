@@ -96,7 +96,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/etCatatanDialog"
-            android:text="Pesan khusus"
+            android:hint="Pesan khusus"
             android:textSize="15dp"
             android:textColor="@color/grey"
             android:inputType="textMultiLine"/>
