@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -357,11 +358,13 @@ public class DetailMenu extends AppCompatActivity {
             ImageButton imageButton = (ImageButton) dialog.findViewById(R.id.deleteDialog);
             final TextView totalharga = (TextView) dialog.findViewById(R.id.tvTotalpriceDialog);
             final Spinner spinner = (Spinner) dialog.findViewById(R.id.spinnerDialog);
+            EditText etCatatanDialog = (EditText) dialog.findViewById(R.id.etCatatanDialog);
 
             tvHargaD.setText("Rp "+hargamenu);
             tvNamamemuD.setText(namamenu);
             tvNamaRmD.setText(namarm);
             totalharga.setText("Rp."+hargamenu);
+            final String notes = etCatatanDialog.getText().toString();
             Picasso.with(DetailMenu.this).load(Connect.IMAGE_MENU_URL+fotomenu).into(imageView);
 
 
@@ -390,7 +393,7 @@ public class DetailMenu extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     String jumlah = spinner.getSelectedItem().toString();
-                    Call<PostPutDelOrder> postPutDelOrderCall = restApi.postCart(menuid,useridUser,jumlah);
+                    Call<PostPutDelOrder> postPutDelOrderCall = restApi.postCart(menuid,useridUser,jumlah, notes);
                     postPutDelOrderCall.enqueue(new Callback<PostPutDelOrder>() {
                         @Override
                         public void onResponse(Call<PostPutDelOrder> call, Response<PostPutDelOrder> response) {
@@ -410,7 +413,7 @@ public class DetailMenu extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     String jumlah = spinner.getSelectedItem().toString();
-                    Call<PostPutDelOrder> postPutDelOrderCall = restApi.postCart(menuid,useridUser,jumlah);
+                    Call<PostPutDelOrder> postPutDelOrderCall = restApi.postCart(menuid,useridUser,jumlah, notes);
                     postPutDelOrderCall.enqueue(new Callback<PostPutDelOrder>() {
                         @Override
                         public void onResponse(Call<PostPutDelOrder> call, Response<PostPutDelOrder> response) {
