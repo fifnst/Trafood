@@ -2,10 +2,10 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_height="340dp"
     android:orientation="vertical">
     <View
-        android:layout_margin="10dp"
+        android:layout_marginTop="20dp"
         android:background="@color/grey"
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
@@ -26,6 +26,7 @@
                 android:id="@+id/imageDialog"
                 android:src="@drawable/view_kedai"/>
             <LinearLayout
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content">
@@ -67,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tvHargaDialog"
                 android:text="Harga"
-                android:layout_marginTop="22dp" />
+                android:layout_marginTop="35dp" />
         </LinearLayout>
 
         <RelativeLayout
@@ -91,10 +92,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/etCatatanDialog"
+            android:text="Pesan khusus"
+            android:textSize="15dp"
+            android:textColor="@color/grey"
+            android:inputType="textMultiLine"/>
+
         <View
             android:background="@color/grey"
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"/>
         <LinearLayout
             android:orientation="horizontal"
@@ -103,8 +114,10 @@
             <TextView
                 android:text="Total Harga :"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textSize="15dp"/>
             <TextView
+                android:textSize="15dp"
                 android:layout_marginLeft="5dp"
                 android:textColor="@color/radablack"
                 android:id="@+id/tvTotalpriceDialog"
@@ -114,10 +127,11 @@
         <TextView
             android:layout_marginBottom="5dp"
             android:textSize="10dp"
-            android:text="harga belum termasuk ongkir"
+            android:text="*harga belum termasuk ongkir"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <Button
+            android:layout_marginTop="20dp"
             android:textColor="@color/white"
             android:background="@color/green"
             android:id="@+id/btnNextDialog"

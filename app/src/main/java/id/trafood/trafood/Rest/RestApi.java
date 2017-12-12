@@ -159,7 +159,9 @@ public interface RestApi {
     @POST("index.php/transaction/cart")
     Call<PostPutDelOrder> postCart(@Field("menuid") String menuid,
                                    @Field("userid") String userid,
-                                   @Field("qty") String qty);
+                                   @Field("qty") String qty,
+                                   @Field("notes") String notes);
+
 
     @FormUrlEncoded
     @POST("index.php/transaction/order/detail")
