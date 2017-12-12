@@ -1,6 +1,7 @@
 package id.trafood.trafood;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -94,12 +95,14 @@ public class CartActivity extends AppCompatActivity {
     }
 
     private void inputCart() {
+        final Intent intent = new Intent(CartActivity.this, AlamatActivity.class);
         apiInterface.getNomorOrder().enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {
                     JSONObject jsonResult = new JSONObject(response.body().string());
                     String nomor = jsonResult.getString("result");
+                    intent.putExtra("ORDERID",nomor);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -113,6 +116,7 @@ public class CartActivity extends AppCompatActivity {
 
             }
         });
+        CartActivity.this.startActivity(intent);
     }
 
     private void isiDetail(final String userId) {
