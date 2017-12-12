@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Created by kulinerin 1 on 07/12/2017.
  */
-
+//
 public class Order {
     @SerializedName("cart_id")
     private String cart_id;
