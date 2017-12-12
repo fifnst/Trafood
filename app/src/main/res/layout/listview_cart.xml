@@ -69,7 +69,6 @@
                 android:text="Sub total "/>
             <TextView
                 android:layout_marginTop="10dp"
-                android:text="Pesan Khusus "
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/tvPesanKhusus"/>

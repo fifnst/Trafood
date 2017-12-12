@@ -29,9 +29,24 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tvCartLokasiKedai"
                 android:text="Contoh lokasi"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Total Harga Pesan: "/>
+            <TextView
+                android:id="@+id/tvTotalHargaCart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"/>
+            </LinearLayout>
 
             <android.support.v7.widget.RecyclerView
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/rvCart">
@@ -44,6 +59,8 @@
 
         </LinearLayout>
     </ScrollView>
+
+
 
     <RelativeLayout
         android:layout_width="wrap_content"

@@ -44,7 +44,7 @@ public class CartActivity extends AppCompatActivity {
     ApiInterface apiInterface;
     public  static CartActivity ca;
     SharedPrefManager sharedPrefManager;
-    TextView tvCartKedai, tvCartLokasiKedai;
+    TextView tvCartKedai, tvCartLokasiKedai, tvTotalHargaCart;
     Button buttonCart;
     Context mContext;
 
@@ -60,6 +60,7 @@ public class CartActivity extends AppCompatActivity {
         linearBelumLogin = (LinearLayout) findViewById(R.id.linearCartBelumlogin);
         tvCartKedai = (TextView) findViewById(R.id.tvCartKedai);
         tvCartLokasiKedai = (TextView) findViewById(R.id.tvCartLokasiKedai);
+        tvTotalHargaCart = (TextView) findViewById(R.id.tvTotalHargaCart);
         buttonCart = (Button) findViewById(R.id.buttonCart);
         linearcart = (LinearLayout) findViewById(R.id.LinearCart);
 
@@ -149,8 +150,12 @@ public class CartActivity extends AppCompatActivity {
                     JSONObject jsonResult = new JSONObject(response.body().string());
                     String namarm = jsonResult.getJSONObject("result").getString("namarm");
                     String alamatrm = jsonResult.getJSONObject("result").getString("alamatrm");
+
+                    //Belum selesai String totalhargacart
+
                     tvCartKedai.setText(namarm);
                     tvCartLokasiKedai.setText(alamatrm);
+                    //tvTotalHargaCart.setText(); Belum selesai String totalhargacart
                 } catch (JSONException e) {
                     e.printStackTrace();
                 } catch (IOException e) {

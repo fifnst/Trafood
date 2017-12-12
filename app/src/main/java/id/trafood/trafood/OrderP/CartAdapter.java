@@ -49,7 +49,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
         holder.tvQtyCart.setText(orders.get(position).getQty());
 
         //Tes Fahri
-        holder.tvPesanKhusus.setText("Pesan Khusus: "+orders.get(position).getNotes());
+        holder.tvPesanKhusus.setText("Catatan: "+orders.get(position).getNotes());
 
         String harga = orders.get(position).getHarga();
         int y = Integer.parseInt(harga);
