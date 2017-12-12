@@ -155,11 +155,11 @@ public class CartActivity extends AppCompatActivity {
                     String namarm = jsonResult.getJSONObject("result").getString("namarm");
                     String alamatrm = jsonResult.getJSONObject("result").getString("alamatrm");
 
-                    //Belum selesai String totalhargacart
+                    String totalhargacart = jsonResult.getString("total");
 
                     tvCartKedai.setText(namarm);
                     tvCartLokasiKedai.setText(alamatrm);
-                    //tvTotalHargaCart.setText(); Belum selesai String totalhargacart
+                    tvTotalHargaCart.setText(totalhargacart);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 } catch (IOException e) {

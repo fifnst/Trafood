@@ -9,4 +9,62 @@
     android:background="@color/white"
     android:layout_margin="@dimen/margin_activity">
 
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nama"
+        android:textColor="@color/grey"
+        android:textSize="@dimen/font_isi_menu"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_isi_menu"
+        android:id="@+id/etNamaPemesan"
+        android:inputType="text"/>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Telepon"
+        android:textColor="@color/grey"
+        android:textSize="@dimen/font_isi_menu"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_isi_menu"
+        android:id="@+id/etTeleponPemesan"
+        android:inputType="number"/>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Alamat"
+        android:textColor="@color/grey"
+        android:textSize="@dimen/font_isi_menu"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_isi_menu"
+        android:id="@+id/etAlamatPemesan"
+        android:inputType="textMultiLine"/>
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/mapAlamat"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="id.trafood.trafood.MapsActivity"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+
+
 </LinearLayout>
