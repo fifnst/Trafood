@@ -35,7 +35,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CartActivity extends AppCompatActivity {
-//
+////
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
