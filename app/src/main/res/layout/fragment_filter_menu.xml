@@ -161,19 +161,17 @@
                 android:text="@string/sort"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-            <RelativeLayout
-                android:layout_marginTop="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="horizontal">
                 <LinearLayout
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="30dp"
                     android:orientation="vertical"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
                     <ImageView
                         android:id="@+id/ibJarak"
                         app:srcCompat="@drawable/location_sort"
@@ -187,17 +185,18 @@
                         android:layout_height="wrap_content" />
                 </LinearLayout>
                 <LinearLayout
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="30dp"
                     android:orientation="vertical"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
                     <ImageView
                         android:id="@+id/ibRating"
                         app:srcCompat="@drawable/recommended_sort"
                         android:layout_width="40dp"
                         android:layout_height="40dp" />
                     <TextView
+                        android:gravity="center_horizontal"
                         android:id="@+id/tvRating"
                         android:textColor="@color/radablack"
                         android:text="@string/penilaian"
@@ -205,11 +204,12 @@
                         android:layout_height="wrap_content" />
                 </LinearLayout>
                 <LinearLayout
+                    android:layout_marginLeft="30dp"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dp"
                     android:orientation="vertical"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
                     <ImageView
                         android:id="@+id/ibHarga"
                         app:srcCompat="@drawable/price_sort"
@@ -223,23 +223,25 @@
                         android:layout_height="wrap_content" />
                 </LinearLayout>
                 <LinearLayout
+                    android:layout_marginLeft="30dp"
                     android:orientation="vertical"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
                     <ImageView
-                        android:id="@+id/ibHarga"
-                        app:srcCompat="@drawable/price_sort"
+                        android:id="@+id/ibBintang"
+                        app:srcCompat="@drawable/rating_sort"
                         android:layout_width="40dp"
                         android:layout_height="40dp" />
                     <TextView
-                        android:id="@+id/tvHarga"
+                        android:id="@+id/tvBintang"
                         android:textColor="@color/radablack"
                         android:text="@string/harga"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
                 </LinearLayout>
-            </RelativeLayout>
+
         </LinearLayout>
     </RelativeLayout>
     <RelativeLayout
