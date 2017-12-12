@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="id.trafood.trafood.CartActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/white">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -49,7 +50,7 @@
         android:layout_height="wrap_content">
         <Button
             android:textColor="@color/white"
-            android:background="@color/blue"
+            android:background="@color/green"
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -61,7 +62,8 @@
         android:id="@+id/linearCartBelumlogin"
         android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_activity">
         <TextView
             android:text="Kamu belum login. silakan login dulu dan mulai pesan makanan"
             android:layout_width="wrap_content"
