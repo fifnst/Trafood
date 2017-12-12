@@ -358,13 +358,13 @@ public class DetailMenu extends AppCompatActivity {
             ImageButton imageButton = (ImageButton) dialog.findViewById(R.id.deleteDialog);
             final TextView totalharga = (TextView) dialog.findViewById(R.id.tvTotalpriceDialog);
             final Spinner spinner = (Spinner) dialog.findViewById(R.id.spinnerDialog);
-            EditText etCatatanDialog = (EditText) dialog.findViewById(R.id.etCatatanDialog);
+            final EditText etCatatanDialog = (EditText) dialog.findViewById(R.id.etCatatanDialog);
 
             tvHargaD.setText("Rp "+hargamenu);
             tvNamamemuD.setText(namamenu);
             tvNamaRmD.setText(namarm);
             totalharga.setText("Rp."+hargamenu);
-            final String notes = etCatatanDialog.getText().toString();
+
             Picasso.with(DetailMenu.this).load(Connect.IMAGE_MENU_URL+fotomenu).into(imageView);
 
 
@@ -393,6 +393,7 @@ public class DetailMenu extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     String jumlah = spinner.getSelectedItem().toString();
+                    String notes = etCatatanDialog.getText().toString();
                     Call<PostPutDelOrder> postPutDelOrderCall = restApi.postCart(menuid,useridUser,jumlah, notes);
                     postPutDelOrderCall.enqueue(new Callback<PostPutDelOrder>() {
                         @Override
@@ -412,6 +413,7 @@ public class DetailMenu extends AppCompatActivity {
 
                 @Override
                 public void onClick(View view) {
+                    String notes = etCatatanDialog.getText().toString();
                     String jumlah = spinner.getSelectedItem().toString();
                     Call<PostPutDelOrder> postPutDelOrderCall = restApi.postCart(menuid,useridUser,jumlah, notes);
                     postPutDelOrderCall.enqueue(new Callback<PostPutDelOrder>() {
