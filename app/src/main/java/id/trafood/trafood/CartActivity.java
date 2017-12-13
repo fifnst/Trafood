@@ -1,6 +1,7 @@
 package id.trafood.trafood;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -44,7 +45,7 @@ public class CartActivity extends AppCompatActivity {
     ApiInterface apiInterface;
     public  static CartActivity ca;
     SharedPrefManager sharedPrefManager;
-    TextView tvCartKedai, tvCartLokasiKedai;
+    TextView tvCartKedai, tvCartLokasiKedai, tvTotalHargaCart;
     Button buttonCart;
     Context mContext;
 
@@ -60,6 +61,7 @@ public class CartActivity extends AppCompatActivity {
         linearBelumLogin = (LinearLayout) findViewById(R.id.linearCartBelumlogin);
         tvCartKedai = (TextView) findViewById(R.id.tvCartKedai);
         tvCartLokasiKedai = (TextView) findViewById(R.id.tvCartLokasiKedai);
+        tvTotalHargaCart = (TextView) findViewById(R.id.tvTotalHargaCart);
         buttonCart = (Button) findViewById(R.id.buttonCart);
         linearcart = (LinearLayout) findViewById(R.id.LinearCart);
 
@@ -93,12 +95,14 @@ public class CartActivity extends AppCompatActivity {
     }
 
     private void inputCart() {
+        final Intent intent = new Intent(CartActivity.this, AlamatActivity.class);
         apiInterface.getNomorOrder().enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {
                     JSONObject jsonResult = new JSONObject(response.body().string());
                     String nomor = jsonResult.getString("result");
+                    intent.putExtra("ORDERID",nomor);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -112,6 +116,7 @@ public class CartActivity extends AppCompatActivity {
 
             }
         });
+        CartActivity.this.startActivity(intent);
     }
 
     private void isiDetail(final String userId) {
@@ -149,8 +154,12 @@ public class CartActivity extends AppCompatActivity {
                     JSONObject jsonResult = new JSONObject(response.body().string());
                     String namarm = jsonResult.getJSONObject("result").getString("namarm");
                     String alamatrm = jsonResult.getJSONObject("result").getString("alamatrm");
+
+                    String totalhargacart = jsonResult.getString("total");
+
                     tvCartKedai.setText(namarm);
                     tvCartLokasiKedai.setText(alamatrm);
+                    tvTotalHargaCart.setText(totalhargacart);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 } catch (IOException e) {

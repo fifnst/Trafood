@@ -27,21 +27,20 @@
             android:id="@+id/imageCart"
             android:src="@drawable/view_kedai"/>
             <LinearLayout
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:text="Qty "
+                    android:text="Banyak: "
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-                <Spinner
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:entries="@array/spinner_cart"
-                    android:id="@+id/spinnerCart"/>
-
+                    android:id="@+id/tvQtyCart"
+                    android:text="Tes"/>
             </LinearLayout>
-
         </LinearLayout>
 
 
@@ -66,7 +65,13 @@
             <TextView
                 android:id="@+id/tvSubtotalCart"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="Sub total "/>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvPesanKhusus"/>
         </LinearLayout>
 
         <RelativeLayout

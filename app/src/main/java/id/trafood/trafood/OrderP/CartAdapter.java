@@ -45,7 +45,20 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
                 .into(holder.ivCart);
         holder.tvNamaMenuCart.setText(orders.get(position).getNamamenu());
         holder.tvHargaCart.setText("Rp. " +orders.get(position).getHarga());
-        holder.tvSubtotal.setText("Sub total Rp. ");
+
+        holder.tvQtyCart.setText(orders.get(position).getQty());
+
+        //Tes Fahri
+        holder.tvPesanKhusus.setText("Catatan: "+orders.get(position).getNotes());
+
+        String harga = orders.get(position).getHarga();
+        int y = Integer.parseInt(harga);
+        String qty = orders.get(position).getQty();
+        int x = Integer.parseInt(qty);
+
+        int total = y*x;
+        holder.tvSubtotal.setText("Sub total Rp. "+String.valueOf(total));
+
         String cartid = orders.get(position).getCart_id();
         holder.tvDeleteCart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,7 +86,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
 
     public class Holder extends RecyclerView.ViewHolder {
         ImageView ivCart;
-        TextView tvNamaMenuCart, tvHargaCart,tvSubtotal;
+        TextView tvNamaMenuCart, tvHargaCart,tvSubtotal, tvPesanKhusus, tvQtyCart;
         ImageButton tvDeleteCart;
         Spinner spBanyakPesan;
         public Holder(View itemView) {
@@ -83,6 +96,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
             tvHargaCart = (TextView) itemView.findViewById(R.id.tvHargaCart);
             tvDeleteCart = (ImageButton) itemView.findViewById(R.id.tvDeleteCart);
             tvSubtotal = (TextView) itemView.findViewById(R.id.tvSubtotalCart);
+
+            tvSubtotal = (TextView) itemView.findViewById(R.id.tvSubtotalCart);
+            tvPesanKhusus = (TextView) itemView.findViewById(R.id.tvPesanKhusus);
+            tvQtyCart = (TextView) itemView.findViewById(R.id.tvQtyCart);
         }
     }
 }
