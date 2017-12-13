@@ -145,9 +145,6 @@
             android:name=".CartActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".AddressActivity"
-            android:theme="@style/AppTheme" />
-        <activity
             android:name=".CourierActivity"
             android:theme="@style/AppTheme" />
         <activity
@@ -159,6 +156,9 @@
         <activity
             android:name=".AlamatActivity"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".InputMapActivity"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>
