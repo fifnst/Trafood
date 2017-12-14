@@ -158,7 +158,9 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".InputMapActivity"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".RiwayatAlamatActivity"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
