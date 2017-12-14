@@ -100,6 +100,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
             tvSubtotal = (TextView) itemView.findViewById(R.id.tvSubtotalCart);
             tvPesanKhusus = (TextView) itemView.findViewById(R.id.tvPesanKhusus);
             tvQtyCart = (TextView) itemView.findViewById(R.id.tvQtyCart);
+
+            tvDeleteCart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
         }
     }
 }

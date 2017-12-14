@@ -32,7 +32,6 @@ import retrofit2.Response;
 public class AlamatActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap map;
-    private Button submit;
     private Marker marker;
     EditText etNamaPemesan, etTeleponPemesan, etAlamatPemesan, etNamaAlamat, etKotaPemesan;
     Button buttonAlamat;
@@ -112,9 +111,9 @@ public class AlamatActivity extends AppCompatActivity implements OnMapReadyCallb
         String teleponpemesan = etTeleponPemesan.getText().toString();
         String namaalamat = etNamaAlamat.getText().toString();
         String kotapemesan = etKotaPemesan.getText().toString();
-       String alamatpemesan = etAlamatPemesan.getText().toString();
-       String lat = "-6.914744";
-       String lng = "107.609810";
+        String alamatpemesan = etAlamatPemesan.getText().toString();
+        String lat = "-6.914744";
+        String lng = "107.609810";
 
        Call<PostPutDelAddress> postMenuCall = restApi.postAddress(userid, namaalamat, namapemesan,
                alamatpemesan, teleponpemesan, kotapemesan, lat, lng);

@@ -173,7 +173,7 @@ public interface RestApi {
              @Field("price") String price);
 
     @FormUrlEncoded
-    @PUT("index.php/transacstion/address")
+    @PUT("index.php/transaction/address")
     Call<PostPutDelAddress> postAddress(@Field("userid") String userid,
                                        @Field("address_name") String address_name,
                                        @Field("recipient_name") String recipient_name,
