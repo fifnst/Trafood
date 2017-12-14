@@ -95,7 +95,7 @@ public class CartActivity extends AppCompatActivity {
     }
 
     private void inputCart() {
-        final Intent intent = new Intent(CartActivity.this, AlamatActivity.class);
+        final Intent intent = new Intent(CartActivity.this, RiwayatAlamatActivity.class);
         apiInterface.getNomorOrder().enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
