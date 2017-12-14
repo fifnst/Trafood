@@ -173,4 +173,9 @@ public interface ApiInterface {
     @GET("index.php/transaction/order/nomor")
     Call<ResponseBody> getNomorOrder();
 
+    @GET("index.php/transaction/cart/cekrm")
+    Call<ResponseBody> cekRm (@Query("userid") String userid,
+                              @Query("menuid") String menuid);
+
+
 }
