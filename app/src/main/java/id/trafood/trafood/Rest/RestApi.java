@@ -10,11 +10,13 @@ import id.trafood.trafood.Models.PostPutDelRm;
 import id.trafood.trafood.Models.PostPutDelUser;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -182,6 +184,7 @@ public interface RestApi {
                                        @Field("city") String city,
                                        @Field("lat") String lat,
                                        @Field("lng") String lng);
-
-
+    @DELETE("index.php/transaction/cart")
+    Call<ResponseBody> deletecart
+            (@Path("cart_id") String cart_id);
 }
