@@ -219,7 +219,7 @@ public class InputMapActivity extends AppCompatActivity implements OnMapReadyCal
     @Override
     public void onMapReady(GoogleMap googleMap) { //ini ambil get intent dari lat lng rumah makan
         map = googleMap;
-        //lt lng rumah makan atau asalnya, rumah makan kirim barang
+        //lt lng rumah makan atau asalnya, rumah makan kirim barang/
         double lat = -6.9290627;
         double lng = 107.7170812;
         LatLng pp = new LatLng(lat,lng);
