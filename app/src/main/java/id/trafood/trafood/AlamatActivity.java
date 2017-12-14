@@ -77,15 +77,8 @@ public class AlamatActivity extends AppCompatActivity implements OnMapReadyCallb
         map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(final LatLng latLng) {
-                if (marker != null){
-                    marker.remove();
-                }
-                marker = map.addMarker(new MarkerOptions().position(latLng));
-                Toast.makeText(AlamatActivity.this, "Lat"+latLng.latitude
-                        +"long"+latLng.longitude, Toast.LENGTH_SHORT).show();
-
-
-
+                Intent intent = new Intent(AlamatActivity.this, InputMapActivity.class);
+                AlamatActivity.this.startActivity(intent);
             }
         });
     }
