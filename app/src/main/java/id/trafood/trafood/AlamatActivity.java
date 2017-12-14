@@ -35,7 +35,7 @@ public class AlamatActivity extends AppCompatActivity implements OnMapReadyCallb
     private Button submit;
     private Marker marker;
     EditText etNamaPemesan, etTeleponPemesan, etAlamatPemesan, etNamaAlamat, etKotaPemesan;
-    Button
+    Button buttonAlamat;
     RestApi restApi;
 
     SharedPrefManager sharedPrefManager;
@@ -56,12 +56,22 @@ public class AlamatActivity extends AppCompatActivity implements OnMapReadyCallb
         etNamaAlamat = (EditText) findViewById(R.id.etNamaPemesan);
         etKotaPemesan = (EditText) findViewById(R.id.etKotaPemesan);
 
+        buttonAlamat = (Button) findViewById(R.id.buttonAlamat);
+
 
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapAlamat);
         mapFragment.getMapAsync(this);
         restApi = ApiClient.getClient().create(RestApi.class);
         sharedPrefManager = new SharedPrefManager(this);
+
+        buttonAlamat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Upload();
+                Toast.makeText(AlamatActivity.this, "Alamat telah ditambahkan", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
