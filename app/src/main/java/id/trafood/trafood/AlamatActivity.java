@@ -20,7 +20,11 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import id.trafood.trafood.Models.PostPutDelAddress;
+import id.trafood.trafood.Models.PostPutDelMenu;
 import id.trafood.trafood.Models.PostPutDelRm;
+import id.trafood.trafood.Rest.ApiClient;
+import id.trafood.trafood.Rest.RestApi;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -30,7 +34,9 @@ public class AlamatActivity extends AppCompatActivity implements OnMapReadyCallb
     private GoogleMap map;
     private Button submit;
     private Marker marker;
-    EditText etNamaPemesan, etTeleponPemesan, etAlamatPemesan;
+    EditText etNamaPemesan, etTeleponPemesan, etAlamatPemesan, etNamaAlamat, etKotaPemesan;
+    Button
+    RestApi restApi;
 
     SharedPrefManager sharedPrefManager;
     @Override
@@ -42,12 +48,19 @@ public class AlamatActivity extends AppCompatActivity implements OnMapReadyCallb
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_green_24dp);
         getSupportActionBar().setElevation(0);
 
+
+
         etNamaPemesan = (EditText) findViewById(R.id.etNamaPemesan);
         etTeleponPemesan = (EditText) findViewById(R.id.etTeleponPemesan);
         etAlamatPemesan = (EditText) findViewById(R.id.etAlamatPemesan);
+        etNamaAlamat = (EditText) findViewById(R.id.etNamaPemesan);
+        etKotaPemesan = (EditText) findViewById(R.id.etKotaPemesan);
+
+
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapAlamat);
         mapFragment.getMapAsync(this);
+        restApi = ApiClient.getClient().create(RestApi.class);
         sharedPrefManager = new SharedPrefManager(this);
     }
 
@@ -81,6 +94,37 @@ public class AlamatActivity extends AppCompatActivity implements OnMapReadyCallb
                 AlamatActivity.this.startActivity(intent);
             }
         });
+    }
+
+   private void Upload(){
+        String userid = sharedPrefManager.getSpUserid();
+        String namapemesan = etNamaPemesan.getText().toString();
+        String teleponpemesan = etTeleponPemesan.getText().toString();
+        String namaalamat = etNamaAlamat.getText().toString();
+        String kotapemesan = etKotaPemesan.getText().toString();
+       String alamatpemesan = etAlamatPemesan.getText().toString();
+       String lat = "-6.914744";
+       String lng = "107.609810";
+
+       Call<PostPutDelAddress> postMenuCall = restApi.postAddress(userid, namaalamat, namapemesan,
+               alamatpemesan, teleponpemesan, kotapemesan, lat, lng);
+       postMenuCall.enqueue(new Callback<PostPutDelAddress>() {
+           @Override
+           public void onResponse(Call<PostPutDelAddress> call, Response<PostPutDelAddress> response) {
+               //loading.dismiss();
+               Toast.makeText(AlamatActivity.this, "Sukses Input Menu", Toast.LENGTH_SHORT).show();
+           }
+
+           @Override
+           public void onFailure(Call<PostPutDelAddress> call, Throwable t) {
+               Toast.makeText(AlamatActivity.this, "Gagal Input", Toast.LENGTH_SHORT).show();
+           }
+       });
+
+
+
+
+
     }
 
     @Override

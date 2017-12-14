@@ -3,6 +3,7 @@ package id.trafood.trafood.Rest;
 import id.trafood.trafood.Home.GetModelMenu;
 import id.trafood.trafood.Models.GetMenu;
 import id.trafood.trafood.Models.Menu;
+import id.trafood.trafood.Models.PostPutDelAddress;
 import id.trafood.trafood.Models.PostPutDelMenu;
 import id.trafood.trafood.Models.PostPutDelOrder;
 import id.trafood.trafood.Models.PostPutDelRm;
@@ -171,6 +172,16 @@ public interface RestApi {
              @Field("qty") String qty,
              @Field("price") String price);
 
+    @FormUrlEncoded
+    @PUT("index.php/transacstion/address")
+    Call<PostPutDelAddress> postAddress(@Field("userid") String userid,
+                                       @Field("address_name") String address_name,
+                                       @Field("recipient_name") String recipient_name,
+                                       @Field("address") String address,
+                                       @Field("telp") String telp,
+                                       @Field("city") String city,
+                                       @Field("lat") String lat,
+                                       @Field("lng") String lng);
 
 
 }
