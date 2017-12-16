@@ -163,25 +163,56 @@ public interface RestApi {
                                    @Field("qty") String qty,
                                    @Field("notes") String notes);
 
+    @FormUrlEncoded
+    @POST("index.php/transaction/address")
+    Call<ResponseBody> postAddress(@Field("userid") String userid,
+                                  @Field("address_name") String address_name,
+                                  @Field("recipient_name") String recipient_name,
+                                  @Field("address") String address,
+                                  @Field("telp") String telp,
+                                  @Field("city") String city,
+                                  @Field("lat") String lat,
+                                  @Field("lng") String lng);
+
+    @FormUrlEncoded
+    @POST("index.php/transaction/order")
+    Call<ResponseBody> postOrder(@Field("trans_id") String trans_id,
+                                 @Field("address_id") String address_id,
+                                 @Field("totalprice") String totalprice,
+                                 @Field("gdistance") String gdistance,
+                                 @Field("distance") String distance,
+                                 @Field("userid") String userid,
+                                 @Field("rmid") String rmid);
+
+    @FormUrlEncoded
+    @PUT("index.php/transaction/order")
+    Call<ResponseBody> putOrder(@Field("courier_id") String courier_id,
+                                 @Field("unit") String unit,
+                                 @Field("status") String status,
+                                 @Field("trans_id") String trans_id,
+                                 @Field("shippingcharge") String shippingcharge);
+
+    @GET("index.php/transaction/address/nomor")
+    Call<ResponseBody> getNomor();
+
+    @FormUrlEncoded
+    @POST("index.php/transaction/address/input")
+    Call<ResponseBody> inputAddress(@Field("userid") String userid,
+                                   @Field("address_id") String address_id,
+                                   @Field("recipient_name") String recipient_name,
+                                   @Field("address") String address,
+                                   @Field("telp") String telp,
+                                   @Field("lat") String lat,
+                                   @Field("lng") String lng);
 
     @FormUrlEncoded
     @POST("index.php/transaction/order/detail")
-    Call<ResponseBody> postOrderDetail
-            (@Field("trans_id") String menuid,
-             @Field("menuid") String userid,
-             @Field("qty") String qty,
-             @Field("price") String price);
+    Call<ResponseBody> postOrderDetail(@Field("userid") String userid,
+                                       @Field("trans_id") String trans_id);
 
-    @FormUrlEncoded
-    @PUT("index.php/transaction/address")
-    Call<PostPutDelAddress> postAddress(@Field("userid") String userid,
-                                       @Field("address_name") String address_name,
-                                       @Field("recipient_name") String recipient_name,
-                                       @Field("address") String address,
-                                       @Field("telp") String telp,
-                                       @Field("city") String city,
-                                       @Field("lat") String lat,
-                                       @Field("lng") String lng);
+
+
+
 
 
 }

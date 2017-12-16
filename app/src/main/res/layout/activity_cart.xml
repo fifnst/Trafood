@@ -7,7 +7,10 @@
     tools:context="id.trafood.trafood.CartActivity"
     android:orientation="vertical"
     android:background="@color/white">
-
+<View
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:background="@color/cloud"/>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -18,11 +21,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
+                android:textColor="@color/radablack"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/tvCartKedai"
-                android:text="Contoh Kedai"
-                android:textSize="30dp"/>
+                android:textSize="20dp"/>
 
             <TextView
                 android:layout_width="match_parent"

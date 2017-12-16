@@ -2,16 +2,18 @@ package id.trafood.trafood.Models;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
- * Created by TRAFOOD on 12/14/2017.
+ * Created by kulinerin 1 on 15/12/2017.
  */
 
-public class PostPutDelAddress {
+public class GetCourier {
     @SerializedName("status")
     String status;
 
     @SerializedName("result")
-    AddressP mAddress;
+    List<Courier> ListDataCourier;
 
     @SerializedName("message")
     String message;
@@ -24,12 +26,12 @@ public class PostPutDelAddress {
         this.status = status;
     }
 
-    public AddressP getmAddress() {
-        return mAddress;
+    public List<Courier> getListDataCourier() {
+        return ListDataCourier;
     }
 
-    public void setmAddress(AddressP mAddress) {
-        this.mAddress = mAddress;
+    public void setListDataCourier(List<Courier> listDataCourier) {
+        ListDataCourier = listDataCourier;
     }
 
     public String getMessage() {

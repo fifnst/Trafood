@@ -4,6 +4,7 @@ import id.trafood.trafood.Home.GetModelMenu;
 import id.trafood.trafood.Home.ModelMenu;
 import id.trafood.trafood.Models.GetArticle;
 import id.trafood.trafood.Models.GetComment;
+import id.trafood.trafood.Models.GetCourier;
 import id.trafood.trafood.Models.GetGalery;
 import id.trafood.trafood.Models.GetLike;
 import id.trafood.trafood.Models.GetLocation;
@@ -161,14 +162,8 @@ public interface ApiInterface {
     @GET("index.php/transaction/cart")
     Call<GetOrder> getCart(@Query("userid") String userid);
 
-    @GET("index.php/order")
-    Call<ResponseBody> getOrder(@Query("trans_id") String trans_id);
-
     @GET("index.php/transaction/cart/cart")
     Call<ResponseBody> getCartDetail(@Query("userid") String userid);
-
-    @GET("index.php/order/detail")
-    Call<GetOrder> getOrderDetail(@Query("trans_id") String trans_id);
 
     @GET("index.php/transaction/order/nomor")
     Call<ResponseBody> getNomorOrder();
@@ -176,6 +171,22 @@ public interface ApiInterface {
     @GET("index.php/transaction/cart/cekrm")
     Call<ResponseBody> cekRm (@Query("userid") String userid,
                               @Query("menuid") String menuid);
+
+    @GET("index.php/transaction/corier")
+    Call<GetCourier> getKurir (@Query("lat") String lat,
+                               @Query("lng") String lng,
+                               @Query("latu") String latu,
+                               @Query("lngu") String lngu);
+
+    @GET("index.php/transaction/order/order")
+    Call<ResponseBody> getOrder (@Query("userid") String userid);
+
+    @GET("index.php/transaction/corier/kurir")
+    Call<ResponseBody> getHargaKurir (@Query("courier_id") String courier_id);
+
+    @GET("index.php/transaction/order/detail")
+    Call<GetOrder> getOrderDetail(@Query("trans_id") String trans_id);
+
 
 
 }

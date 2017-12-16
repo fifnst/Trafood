@@ -1,6 +1,8 @@
 package id.trafood.trafood;
 
 import android.*;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
@@ -25,6 +27,7 @@ import id.trafood.trafood.Models.PostPutDelMenu;
 import id.trafood.trafood.Models.PostPutDelRm;
 import id.trafood.trafood.Rest.ApiClient;
 import id.trafood.trafood.Rest.RestApi;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -36,6 +39,8 @@ public class AlamatActivity extends AppCompatActivity implements OnMapReadyCallb
     EditText etNamaPemesan, etTeleponPemesan, etAlamatPemesan, etNamaAlamat, etKotaPemesan;
     Button buttonAlamat;
     RestApi restApi;
+    ProgressDialog loading;
+    Context mContext;
 
     SharedPrefManager sharedPrefManager;
     @Override
@@ -47,28 +52,25 @@ public class AlamatActivity extends AppCompatActivity implements OnMapReadyCallb
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_green_24dp);
         getSupportActionBar().setElevation(0);
 
-
-
         etNamaPemesan = (EditText) findViewById(R.id.etNamaPemesan);
         etTeleponPemesan = (EditText) findViewById(R.id.etTeleponPemesan);
         etAlamatPemesan = (EditText) findViewById(R.id.etAlamatPemesan);
-        etNamaAlamat = (EditText) findViewById(R.id.etNamaPemesan);
+        etNamaAlamat = (EditText) findViewById(R.id.etNamaAlamat);
         etKotaPemesan = (EditText) findViewById(R.id.etKotaPemesan);
-
         buttonAlamat = (Button) findViewById(R.id.buttonAlamat);
-
-
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapAlamat);
         mapFragment.getMapAsync(this);
+
         restApi = ApiClient.getClient().create(RestApi.class);
         sharedPrefManager = new SharedPrefManager(this);
+        mContext = this;
 
         buttonAlamat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                loading = ProgressDialog.show(mContext, null, "Please wait.... Uploading Image", true, false);
                 Upload();
-                Toast.makeText(AlamatActivity.this, "Alamat telah ditambahkan", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -115,24 +117,30 @@ public class AlamatActivity extends AppCompatActivity implements OnMapReadyCallb
         String lat = "-6.914744";
         String lng = "107.609810";
 
-       Call<PostPutDelAddress> postMenuCall = restApi.postAddress(userid, namaalamat, namapemesan,
-               alamatpemesan, teleponpemesan, kotapemesan, lat, lng);
-       postMenuCall.enqueue(new Callback<PostPutDelAddress>() {
-           @Override
-           public void onResponse(Call<PostPutDelAddress> call, Response<PostPutDelAddress> response) {
-               //loading.dismiss();
-               Toast.makeText(AlamatActivity.this, "Sukses Input Menu", Toast.LENGTH_SHORT).show();
-           }
 
-           @Override
-           public void onFailure(Call<PostPutDelAddress> call, Throwable t) {
-               Toast.makeText(AlamatActivity.this, "Gagal Input", Toast.LENGTH_SHORT).show();
-           }
-       });
+        restApi.postAddress(userid,namaalamat,namapemesan,alamatpemesan,teleponpemesan,kotapemesan,lat,lng).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                loading.dismiss();
+                Toast.makeText(AlamatActivity.this, "s input alamat", Toast.LENGTH_SHORT).show();
+            }
 
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(AlamatActivity.this, "Gagal input alamat", Toast.LENGTH_SHORT).show();
+            }
+        });
+       /* restApi.postAddress().enqueue(new Callback<PostPutDelAddress>() {
+            @Override
+            public void onResponse(Call<PostPutDelAddress> call, Response<PostPutDelAddress> response) {
 
+            }
 
-
+            @Override
+            public void onFailure(Call<PostPutDelAddress> call, Throwable t) {
+                Toast.makeText(AlamatActivity.this, "Gagal input alamat", Toast.LENGTH_SHORT).show();
+            }
+        });*/
 
     }
 

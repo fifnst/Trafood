@@ -48,6 +48,7 @@ public class CartActivity extends AppCompatActivity {
     TextView tvCartKedai, tvCartLokasiKedai, tvTotalHargaCart;
     Button buttonCart;
     Context mContext;
+    String namarm,alamatrm, latitude,longitude,rmid,nomor,telp,totalhargacart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,35 +76,32 @@ public class CartActivity extends AppCompatActivity {
         sharedPrefManager = new SharedPrefManager(this);
         final String userId = sharedPrefManager.getSpUserid();
         mContext = this;
-        ca= this;
+        ca = this;
         if (sharedPrefManager.getSPSudahLogin()){
             linearcart.setVisibility(View.VISIBLE);
             buttonCart.setVisibility(View.VISIBLE);
+            getNomor();
             isiRv(userId);
             isiDetail(userId);
+            buttonCart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    inputCart();
+                }
+            });
         }else {
             linearBelumLogin.setVisibility(View.VISIBLE);
         }
 
-        buttonCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                inputCart();
-            }
-        });
-
     }
 
-    private void inputCart() {
-        final Intent intent = new Intent(CartActivity.this, RiwayatAlamatActivity.class);
+    private void getNomor() {
         apiInterface.getNomorOrder().enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {
                     JSONObject jsonResult = new JSONObject(response.body().string());
-                    String nomor = jsonResult.getString("result");
-                    intent.putExtra("ORDERID",nomor);
-
+                    nomor = jsonResult.getString("result");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
@@ -116,6 +114,38 @@ public class CartActivity extends AppCompatActivity {
 
             }
         });
+
+        String userid = sharedPrefManager.getSpUserid();
+        apiInterface.userGet(userid).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response.body().string());
+                    telp = jsonObject.getJSONObject("result").getString("telp");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+    private void inputCart() {
+        final Intent intent = new Intent(CartActivity.this, RiwayatAlamatActivity.class);
+        intent.putExtra("NAMARM",namarm);
+        intent.putExtra("LAT",latitude);
+        intent.putExtra("LNG",longitude);
+        intent.putExtra("RMID",rmid);
+        intent.putExtra("NOMOR",nomor);
+        intent.putExtra("TELP",telp);
+        intent.putExtra("TOTAL",totalhargacart);
         CartActivity.this.startActivity(intent);
     }
 
@@ -152,14 +182,16 @@ public class CartActivity extends AppCompatActivity {
 
                 try {
                     JSONObject jsonResult = new JSONObject(response.body().string());
-                    String namarm = jsonResult.getJSONObject("result").getString("namarm");
-                    String alamatrm = jsonResult.getJSONObject("result").getString("alamatrm");
-
-                    String totalhargacart = jsonResult.getString("total");
+                    namarm = jsonResult.getJSONObject("result").getString("namarm");
+                    alamatrm = jsonResult.getJSONObject("result").getString("alamatrm");
+                    latitude = jsonResult.getJSONObject("result").getString("latitude");
+                    longitude = jsonResult.getJSONObject("result").getString("longitude");
+                    rmid = jsonResult.getJSONObject("result").getString("rmid");
+                    totalhargacart = jsonResult.getString("total");
 
                     tvCartKedai.setText(namarm);
                     tvCartLokasiKedai.setText(alamatrm);
-                    tvTotalHargaCart.setText(totalhargacart);
+                    tvTotalHargaCart.setText("Rp. "+totalhargacart);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 } catch (IOException e) {

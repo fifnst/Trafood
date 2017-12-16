@@ -6,13 +6,19 @@
     android:layout_height="match_parent"
     tools:context="id.trafood.trafood.ConfirmationActivity"
     android:orientation="vertical"
-    android:layout_margin="@dimen/margin_activity"
+
     android:background="@color/white">
+    <View
+        android:background="@color/cloud"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
     <ScrollView
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <LinearLayout
+        android:layout_marginRight="@dimen/margin_activity"
+        android:layout_marginLeft="@dimen/margin_activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -35,7 +41,7 @@
         android:layout_height="wrap_content"
         android:text="Ini nama"
         android:textColor="@color/grey"
-        android:id="@+id/tvNamaPemesan"/>
+        android:id="@+id/tvNamaPememasanConfirmation"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -48,7 +54,7 @@
         android:layout_height="wrap_content"
         android:text="082300000"
         android:textColor="@color/grey"
-        android:id="@+id/tvTeleponPemesan"/>
+        android:id="@+id/tvTelpPemesanConfirmation"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -61,7 +67,7 @@
         android:layout_height="wrap_content"
         android:text="Contoh Alamat"
         android:textColor="@color/grey"
-        android:id="@+id/tvAlamatPemesan"/>
+        android:id="@+id/tvAlamatPemesanConfirmation"/>
 
     <View
         android:layout_marginTop="@dimen/margin_activity"
@@ -83,20 +89,20 @@
         android:text="Nama Kedai"
         android:layout_marginTop="@dimen/margin_activity"
         android:textColor="@color/radablack"
-        android:id="@+id/tvConfKedai"/>
+        android:id="@+id/tvNameKedaiConfirmation"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ini alamat kedai"
         android:textColor="@color/grey"
-        android:id="@+id/tvConfAlamatKedai"/>
+        android:id="@+id/tvAlamatKedaiConfirmation"/>
 
     <android.support.v7.widget.RecyclerView
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/rvConf">
+        android:id="@+id/rvConfirmation">
     </android.support.v7.widget.RecyclerView>
 
     <View
@@ -119,7 +125,7 @@
         android:text="Nama Kurir"
         android:layout_marginTop="@dimen/margin_activity"
         android:textColor="@color/radablack"
-        android:id="@+id/tvConfKurir"/>
+        android:id="@+id/tvKurirConfirmation"/>
 
     <View
         android:layout_marginTop="@dimen/margin_activity"
@@ -145,7 +151,7 @@
             android:layout_height="wrap_content"
             android:text="subtotal"
             android:textColor="@color/radablack"
-            android:id="@+id/tvConfSubtotal"/>
+            android:id="@+id/tvSubtotalConfirmation"/>
         </RelativeLayout>
     </LinearLayout>
 
@@ -156,7 +162,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Biaya Kirim"
+            android:text="Jarak Kirim"
             android:textColor="@color/radablack"/>
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -165,11 +171,32 @@
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="biaya kirim"
                 android:textColor="@color/radablack"
-                android:id="@+id/tvConfBiayaKirim"/>
+                android:id="@+id/tvJarakKirim"/>
         </RelativeLayout>
     </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Biaya Kirim"
+                android:textColor="@color/radablack"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="biaya kirim"
+                    android:textColor="@color/radablack"
+                    android:id="@+id/tvBiayaKirimConfirmation"/>
+            </RelativeLayout>
+        </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -189,7 +216,7 @@
                 android:layout_height="wrap_content"
                 android:text="biaya parkir"
                 android:textColor="@color/radablack"
-                android:id="@+id/tvConfBiayaParkir"/>
+                android:id="@+id/tvBiayaParkirConfirmation"/>
         </RelativeLayout>
     </LinearLayout>
 
@@ -212,7 +239,7 @@
                 android:layout_height="wrap_content"
                 android:text="total"
                 android:textColor="@color/radablack"
-                android:id="@+id/tvConfTotal"/>
+                android:id="@+id/tvTotalConfirmation"/>
         </RelativeLayout>
     </LinearLayout>
 

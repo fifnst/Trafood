@@ -12,5 +12,6 @@ public class Connect {
     public static final String IMAGE_GALERY = "http://trafood.id/uploads/files/";
     public static final String IMAGE_USER = "http://trafood.id/uploads/user/";
     public static  final String IMAGE_ARTICLE = "http://trafood.id/uploads/article/";
+    public static  final String IMAGE_COURIER = "http://trafood.id/uploads/courier/";
 
 }

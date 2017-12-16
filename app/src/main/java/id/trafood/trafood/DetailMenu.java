@@ -181,7 +181,7 @@ public class DetailMenu extends AppCompatActivity {
 
     private void saveLike(String menuid, String useridUser) {
         final Drawable likebelumlike = getResources().getDrawable(R.drawable.before_recommended);
-        final Drawable sudahpernahlike = getResources().getDrawable(R.drawable.ic_after_recomended);
+        final Drawable sudahpernahlike = getResources().getDrawable(R.drawable.after_recommended);
         apiInterface.saveLike(menuid,useridUser).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -217,7 +217,7 @@ public class DetailMenu extends AppCompatActivity {
 
     private void cekPernahLike(String menuid, String useridUser) {
         final Drawable likebelumlike = getResources().getDrawable(R.drawable.before_recommended);
-        final Drawable sudahpernahlike = getResources().getDrawable(R.drawable.ic_after_recomended);
+        final Drawable sudahpernahlike = getResources().getDrawable(R.drawable.after_recommended);
         apiInterface.cekLike(menuid,useridUser).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -490,7 +490,8 @@ public class DetailMenu extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<PostPutDelOrder> call, Throwable t) {
-                        Toast.makeText(dm, "Pesanan berhasil masuk dan harusnya pindah ke activity cart", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(DetailMenu.this,CartActivity.class);
+                        DetailMenu.this.startActivity(intent);
                     }
                 });
 
