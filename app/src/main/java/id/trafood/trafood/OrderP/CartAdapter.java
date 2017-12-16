@@ -18,7 +18,9 @@ import java.util.List;
 import id.trafood.trafood.DetailMenu;
 import id.trafood.trafood.Models.Order;
 import id.trafood.trafood.R;
+import id.trafood.trafood.Rest.ApiClient;
 import id.trafood.trafood.Rest.Connect;
+import id.trafood.trafood.Rest.RestApi;
 
 
 /**
@@ -88,6 +90,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
         ImageView ivCart;
         TextView tvNamaMenuCart, tvHargaCart,tvSubtotal, tvPesanKhusus, tvQtyCart;
         ImageButton tvDeleteCart;
+        RestApi restApi;
         Spinner spBanyakPesan;
         public Holder(View itemView) {
             super(itemView);
@@ -100,7 +103,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
             tvSubtotal = (TextView) itemView.findViewById(R.id.tvSubtotalCart);
             tvPesanKhusus = (TextView) itemView.findViewById(R.id.tvPesanKhusus);
             tvQtyCart = (TextView) itemView.findViewById(R.id.tvQtyCart);
-
+            restApi = ApiClient.getClient().create(RestApi.class);
             tvDeleteCart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

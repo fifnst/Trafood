@@ -210,9 +210,4 @@ public interface RestApi {
     Call<ResponseBody> postOrderDetail(@Field("userid") String userid,
                                        @Field("trans_id") String trans_id);
 
-
-
-
-
-
 }
