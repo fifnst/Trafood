@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -63,7 +64,7 @@ public class Fragment_ListMenu extends Fragment {
         pengumuman = (TextView) view.findViewById(R.id.pengumumanMenu);
         recyclerView = (RecyclerView) view.findViewById(R.id.rvListMenuBuatRM);
         progressBar = (ProgressBar) view.findViewById(R.id.pbRMListmenu);
-        layoutManager = new GridLayoutManager(this.getActivity(),2);
+        layoutManager = new LinearLayoutManager(this.getActivity());
         recyclerView.setLayoutManager(layoutManager);
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
         fl=this;

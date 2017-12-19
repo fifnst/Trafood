@@ -6,52 +6,151 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/jarak_antar_gridview">
+    android:padding="10dp"
+    android:layout_margin="@dimen/jarak_antar_gridview"
+
+    android:background="@color/white">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/white">
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                <ImageView
-                    android:id="@+id/ivMenuRM"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/ic_launcher"/>
-                    <LinearLayout
-                        android:alpha="0.80"
-                        android:background="@color/red"
-                        android:orientation="horizontal"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="2dp">
-                        <ImageView
-                            android:layout_marginRight="3dp"
-                            app:srcCompat="@drawable/ic_recomended"
-                            android:layout_width="19dp"
-                            android:layout_height="19dp" />
-                        <TextView
-                            android:text="80"
-                            android:id="@+id/tvLikeMenus"
-                            android:textColor="@color/white"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                </LinearLayout>
-            </RelativeLayout>
+            android:orientation="vertical">
+            <ImageView
+                android:layout_marginTop="4dp"
+                android:id="@+id/ivMenuRM"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_launcher"/>
             <TextView
                 android:id="@+id/tvHargaMenuRm"
                 android:textAlignment="center"
                 android:text="tes"
                 android:textSize="@dimen/font_pricesize"
                 android:textColor="@color/white"
-                android:background="@color/green"
+                android:background="@color/colorPrimary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
+        <LinearLayout
+            android:layout_marginLeft="5dp"
+            android:orientation="vertical"
+            android:layout_weight="1.5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:maxLines="1"
+                    android:maxLength="50"
+                    android:textColor="@color/radablack"
+                    android:text="Wc"
+                    android:textSize="@dimen/font_pricesize"
+                    android:id="@+id/tvNamaMenuRm"
+                    android:layout_weight="4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+                <RelativeLayout
+                    android:layout_weight="1.7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:orientation="horizontal"
+                        android:padding="2dp">
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginRight="3dp"
+                            app:srcCompat="@drawable/after_recommended" />
+                        <TextView
+                            android:id="@+id/tvLikeMenus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="80"
+                            android:textColor="@color/pink_trf"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_marginTop="22dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tvQtyMenu"
+                        android:textColor="@color/blue"
+                        android:text="Qty : 80"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/tvSubtotalMenu"
+                        android:text="Subtotal : 80500"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_marginTop="38dp"
+                        android:id="@+id/tvBtnPesanMenu"
+                        android:textAlignment="center"
+                        android:text="Pesan"
+                        android:textSize="@dimen/font_pricesize"
+                        android:textColor="@color/white"
+                        android:background="@color/pink_trf"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <LinearLayout
+                        android:id="@+id/linearPesan"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/tvBatalPesan"
+                            android:textAlignment="center"
+                            android:text="Batal"
+                            android:textSize="@dimen/font_pricesize"
+                            android:textColor="@color/white"
+                            android:background="@drawable/bg_rectangle_button_grey"
+                            android:layout_weight="1"
+                            android:layout_marginRight="3dp"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:id="@+id/tvJadiPesan"
+                            android:textAlignment="center"
+                            android:text="Pesan"
+                            android:textSize="@dimen/font_pricesize"
+                            android:textColor="@color/grey"
+                            android:background="@drawable/bg_edittext_grey"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="3dp"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+
+
 
     </LinearLayout>
