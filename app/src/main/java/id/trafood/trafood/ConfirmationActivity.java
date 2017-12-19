@@ -56,8 +56,8 @@ public class ConfirmationActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Confrimation");
         getSupportActionBar().setElevation(0);
         findView();
-       // kuririd = getIntent().getStringExtra("COURIERID");
-        kuririd ="12548514402178";
+        kuririd = getIntent().getStringExtra("COURIERID");
+        //kuririd ="12548514402178";
         sharedPrefManager = new SharedPrefManager(this);
         userid = sharedPrefManager.getSpUserid();
 
@@ -98,7 +98,7 @@ public class ConfirmationActivity extends AppCompatActivity {
     }
 
     private void simpan() {
-        restApi.putOrder(kuririd,unit,"1",transid,totall).enqueue(new Callback<ResponseBody>() {
+        restApi.putOrder(kuririd,unit,"1",transid,totall,subtotal).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 Intent intent = new Intent(mContext,ThanksActivity.class);
