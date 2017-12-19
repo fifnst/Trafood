@@ -31,6 +31,7 @@ import java.util.Locale;
 
 import id.trafood.trafood.Home.Fragment_Profil;
 import id.trafood.trafood.Home.Fragment_Vaforite;
+import id.trafood.trafood.Home.NotificationFragment;
 
 public class MainActivity extends AppCompatActivity  implements LocationListener {
 
@@ -171,6 +172,9 @@ public class MainActivity extends AppCompatActivity  implements LocationListener
                         break;
                     case R.id.navigation_favorite:
                         fragment = fragrit;
+                        break;
+                    case R.id.navigation_notification:
+                        fragment = new NotificationFragment();
                         break;
                     case R.id.navigation_profil:
                         fragment = new Fragment_Profil();
