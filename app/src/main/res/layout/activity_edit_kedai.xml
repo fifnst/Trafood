@@ -23,11 +23,9 @@
                 android:layout_marginRight="@dimen/margin_activity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <TextView
-                    android:text="@string/namarm"
-                    android:textColor="@color/grey"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
                 <EditText
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
@@ -36,14 +34,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColorHint="@color/grey"
-                    android:background="@drawable/bg_edittext_grey"
-                    android:textColor="@color/radablack" />
-                <TextView
-                    android:layout_marginTop="10dp"
-                    android:text="@string/url"
-                    android:textColor="@color/grey"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:textColor="@color/radablack"
+                    android:hint="Nama Kedai"/>
+                </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
                 <EditText
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
@@ -53,8 +49,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColorHint="@color/grey"
-                    android:background="@drawable/bg_edittext_grey"
+                    android:hint="url"
                     android:textColor="@color/radablack" />
+                </android.support.design.widget.TextInputLayout>
                 <TextView
                     android:id="@+id/WarningUrlEdit"
                     android:textSize="10dp"
