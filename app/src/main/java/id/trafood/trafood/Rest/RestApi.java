@@ -210,4 +210,14 @@ public interface RestApi {
     Call<ResponseBody> postOrderDetail(@Field("userid") String userid,
                                        @Field("trans_id") String trans_id);
 
+    @FormUrlEncoded
+    @POST("index.php/transaction/cart/delete")
+    Call<ResponseBody> deleteCart(@Field("cart_id") String cart_id);
+
+    @FormUrlEncoded
+    @PUT("index.php/transaction/cart")
+    Call<ResponseBody> putNotes(@Field("cart_id") String cart_id,
+                                @Field("qty") String qty,
+                                @Field("notes") String notes);
+
 }

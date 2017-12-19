@@ -1,95 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@color/white">
-
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/grey"/>
+    <TextView
+        android:id="@+id/idCart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <LinearLayout
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
-
-        <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <ImageView
-            android:scaleType="centerCrop"
-            android:layout_width="90dp"
-            android:layout_height="60dp"
-            android:id="@+id/imageCart"
-            android:src="@drawable/view_kedai"/>
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:text="Banyak: "
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tvQtyCart"
-                    android:text="Tes"/>
-            </LinearLayout>
-        </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="10dp">
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageCart"
+                android:layout_width="90dp"
+                android:layout_height="60dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/view_kedai" />
+            <RelativeLayout
+                android:layout_width="90dp"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/btnMinCart"
+                    android:textSize="10dp"
+                    android:text="-"
+                    android:layout_width="30dp"
+                    android:layout_height="34dp" />
+                <TextView
+                    android:layout_centerInParent="true"
+                    android:id="@+id/tvQtyCart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tes" />
+
+                <Button
+                    android:id="@+id/btnPlusCart"
+                    android:layout_alignParentRight="true"
+                    android:textSize="10dp"
+                    android:text="+"
+                    android:layout_width="30dp"
+                    android:layout_height="34dp"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical">
+
             <TextView
-                android:textSize="@dimen/font_judul_profil"
-                android:textColor="@color/radablack"
+                android:id="@+id/tvNamaMenuCart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nama Menu"
-                android:id="@+id/tvNamaMenuCart"/>
-            <TextView
-                android:textColor="@color/blue"
+                android:textColor="@color/radablack"
+                android:textSize="@dimen/font_judul_profil" />
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvHargaCart"
-                android:text="Harga" />
-            <TextView
-                android:id="@+id/tvSubtotalCart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sub total "/>
-            <TextView
-                android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvPesanKhusus"/>
-        </LinearLayout>
+                android:orientation="horizontal">
+                <TextView
+                    android:text="Rp. "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tvHargaCart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Harga"
+                    android:textColor="@color/blue" />
+            </LinearLayout>
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <ImageButton
-                android:layout_marginRight="5dp"
-                android:id="@+id/tvDeleteCart"
-                android:background="@color/white"
-                android:src="@android:drawable/ic_delete"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"/>
-        </RelativeLayout>
+                android:orientation="horizontal">
+                <TextView
+                    android:text="Sub total Rp. "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tvSubtotalCart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <TextView
+                android:text="Catatan:"
+                android:textSize="7dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:textSize="13dp"
+                    android:background="@color/white"
+                    android:id="@+id/tvPesanKhusus"
+                    android:layout_weight="4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Catatan" />
+            </LinearLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-
+        <ImageButton
+            android:layout_marginTop="10dp"
+            android:id="@+id/tvDeleteCart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            android:background="@color/white"
+            android:src="@android:drawable/ic_delete" />
+    </RelativeLayout>
+    </FrameLayout>
+    <LinearLayout
+        android:id="@+id/linearSimpan"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+        <Button
+            android:textColor="@color/white"
+            android:background="@color/colorPrimary"
+            android:layout_weight="1"
+            android:id="@+id/btnCancel"
+            android:text="BataL"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="3dp"/>
+        <Button
+            android:textColor="@color/white"
+            android:layout_marginLeft="3dp"
+            android:background="@color/colorPrimary"
+            android:layout_weight="1"
+            android:id="@+id/btnSaveCart"
+            android:text="Simpan"
+            android:layout_width="0dp"
+            android:layout_height="30dp" />
+    </LinearLayout>
 
 </LinearLayout>

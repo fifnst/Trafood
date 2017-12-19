@@ -80,9 +80,8 @@ public class CartActivity extends AppCompatActivity {
         if (sharedPrefManager.getSPSudahLogin()){
             linearcart.setVisibility(View.VISIBLE);
             buttonCart.setVisibility(View.VISIBLE);
-            getNomor();
-            isiRv(userId);
-            isiDetail(userId);
+            getSemua();
+
             buttonCart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -93,6 +92,13 @@ public class CartActivity extends AppCompatActivity {
             linearBelumLogin.setVisibility(View.VISIBLE);
         }
 
+    }
+
+    private void getSemua() {
+        String userId = sharedPrefManager.getSpUserid();
+        getNomor();
+        isiRv(userId);
+        isiDetail(userId);
     }
 
     private void getNomor() {
@@ -138,6 +144,7 @@ public class CartActivity extends AppCompatActivity {
     }
 
     private void inputCart() {
+
         final Intent intent = new Intent(CartActivity.this, RiwayatAlamatActivity.class);
         intent.putExtra("NAMARM",namarm);
         intent.putExtra("LAT",latitude);
