@@ -14,7 +14,9 @@ import android.widget.LinearLayout;
 
 import java.util.List;
 
+import id.trafood.trafood.CartActivity;
 import id.trafood.trafood.LoginActivity;
+import id.trafood.trafood.MainActivity;
 import id.trafood.trafood.Models.GetUserView;
 import id.trafood.trafood.Models.UserView;
 import id.trafood.trafood.Profil.ProfilUserAdapter;
@@ -22,6 +24,7 @@ import id.trafood.trafood.R;
 import id.trafood.trafood.Rest.ApiClient;
 import id.trafood.trafood.Rest.ApiInterface;
 import id.trafood.trafood.SharedPrefManager;
+import id.trafood.trafood.ThanksActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -52,7 +55,7 @@ public class NotificationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View  view = inflater.inflate(R.layout.fragment_notification, container, false);
+        final View  view = inflater.inflate(R.layout.fragment_notification, container, false);
         sharedPrefManager = new SharedPrefManager(this.getContext());
 
 
@@ -65,12 +68,14 @@ public class NotificationFragment extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.rvProfil);
 
         linearKeranjang.setOnClickListener(new View.OnClickListener(){
-
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(view.getContext(), CartActivity.class);
+                view.getContext().startActivity(intent);
             }
         });
+
+
 
         return view;
     }
