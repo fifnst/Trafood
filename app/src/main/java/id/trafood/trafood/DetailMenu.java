@@ -415,7 +415,7 @@ public class DetailMenu extends AppCompatActivity {
         dialog.setCancelable(false);
         dialog.setTitle("Rincian Pesanan");
         //mengeset untuk dialog
-        TextView tvNamaRmD = (TextView) dialog.findViewById(R.id.tvNamaRmDialog);
+        //TextView tvNamaRmD = (TextView) dialog.findViewById(R.id.tvNamaRmDialog);
         ImageView imageView = (ImageView) dialog.findViewById(R.id.imageDialog);
         TextView tvHargaD = (TextView) dialog.findViewById(R.id.tvHargaDialog);
         TextView tvNamamemuD = (TextView) dialog.findViewById(R.id.tvNamaMenuDialog);
@@ -432,7 +432,7 @@ public class DetailMenu extends AppCompatActivity {
         tvQtyDialogPesan.setText("1");
         tvHargaD.setText("Rp "+hargamenu);
         tvNamamemuD.setText(namamenu);
-        tvNamaRmD.setText(namarm);
+        //tvNamaRmD.setText(namarm);
         totalharga.setText("Rp."+hargamenu);
 
         Picasso.with(DetailMenu.this).load(Connect.IMAGE_MENU_URL+fotomenu).into(imageView);
