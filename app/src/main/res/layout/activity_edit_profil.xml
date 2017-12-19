@@ -22,9 +22,9 @@
                     android:id="@+id/ivFotoUserEdit"
                     android:scaleType="centerCrop"
                     android:layout_centerInParent="true"
-                    android:background="@drawable/bg_edittext_grey"
                     android:layout_width="150dp"
-                    android:layout_height="200dp" />
+                    android:layout_height="200dp"
+                    android:src="@mipmap/ic_launcher"/>
                 <TextView
                     android:id="@+id/path"
                     android:layout_width="wrap_content"
@@ -45,14 +45,12 @@
                 android:orientation="vertical"
                 android:layout_marginRight="@dimen/margin_activity"
                 android:layout_marginLeft="@dimen/margin_activity"
+                android:layout_marginBottom="25dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <TextView
-                    android:layout_marginTop="10dp"
-                    android:text="@string/nama"
-                    android:textColor="@color/grey"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
                 <EditText
                     android:inputType="text"
                     android:id="@+id/etNamaUserEdit"
@@ -60,9 +58,11 @@
                     android:layout_height="wrap_content"
                     android:textColorHint="@color/grey"
                     android:padding="5dp"
-                    android:background="@drawable/bg_edittext_grey"
-                    android:textColor="@color/radablack" />
+                    android:textColor="@color/radablack"
+                    android:hint="Nama"/>
+                </android.support.design.widget.TextInputLayout>
                 <TextView
+                    android:layout_marginLeft="5dp"
                     android:layout_marginTop="10dp"
                     android:text="@string/jk"
                     android:textColor="@color/grey"
@@ -73,12 +73,9 @@
                     android:id="@+id/spJkEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-                <TextView
-                    android:layout_marginTop="10dp"
-                    android:text="@string/dob"
-                    android:textColor="@color/grey"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
                 <EditText
                     android:padding="5dp"
                     android:inputType="date"
@@ -88,14 +85,12 @@
                     android:textColorHint="@color/grey"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
-                    android:background="@drawable/bg_edittext_grey"
-                    android:textColor="@color/radablack" />
-                <TextView
-                    android:layout_marginTop="10dp"
-                    android:text="@string/notelp"
-                    android:textColor="@color/grey"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:textColor="@color/radablack"
+                    android:hint="@string/dob"/>
+                </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
                 <EditText
                     android:padding="5dp"
                     android:inputType="phone"
@@ -105,14 +100,12 @@
                     android:textColorHint="@color/grey"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
-                    android:background="@drawable/bg_edittext_grey"
-                    android:textColor="@color/radablack" />
-                <TextView
-                    android:layout_marginTop="10dp"
-                    android:text="@string/kota"
-                    android:textColor="@color/grey"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:textColor="@color/radablack"
+                    android:hint="@string/notelp"/>
+                </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
                 <EditText
                     android:padding="5dp"
                     android:inputType="text"
@@ -122,14 +115,12 @@
                     android:textColorHint="@color/grey"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
-                    android:background="@drawable/bg_edittext_grey"
-                    android:textColor="@color/radablack" />
-                <TextView
-                    android:layout_marginTop="10dp"
-                    android:text="@string/alamat"
-                    android:textColor="@color/grey"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:textColor="@color/radablack"
+                    android:hint="@string/kota"/>
+                </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
                 <EditText
                     android:padding="5dp"
                     android:inputType="textMultiLine"
@@ -139,14 +130,12 @@
                     android:textColorHint="@color/grey"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
-                    android:background="@drawable/bg_edittext_grey"
-                    android:textColor="@color/radablack" />
-                <TextView
-                    android:layout_marginTop="10dp"
-                    android:text="@string/tentang"
-                    android:textColor="@color/grey"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:textColor="@color/radablack"
+                    android:hint="@string/alamat"/>
+                </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
                 <EditText
                     android:padding="5dp"
                     android:inputType="textMultiLine"
@@ -157,8 +146,8 @@
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
                     android:hint="Ceritakan sesuatu tentang anda"
-                    android:background="@drawable/bg_edittext_grey"
                     android:textColor="@color/radablack" />
+                </android.support.design.widget.TextInputLayout>
                 <Button
                     android:id="@+id/btnSimpan"
                     android:layout_marginTop="10dp"

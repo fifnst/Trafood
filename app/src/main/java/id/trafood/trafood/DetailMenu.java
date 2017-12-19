@@ -415,20 +415,24 @@ public class DetailMenu extends AppCompatActivity {
         dialog.setCancelable(false);
         dialog.setTitle("Rincian Pesanan");
         //mengeset untuk dialog
-        TextView tvNamaRmD = (TextView) dialog.findViewById(R.id.tvNamaRmDialog);
+        //TextView tvNamaRmD = (TextView) dialog.findViewById(R.id.tvNamaRmDialog);
         ImageView imageView = (ImageView) dialog.findViewById(R.id.imageDialog);
         TextView tvHargaD = (TextView) dialog.findViewById(R.id.tvHargaDialog);
         TextView tvNamamemuD = (TextView) dialog.findViewById(R.id.tvNamaMenuDialog);
-        TextView tvLanjutkan = (TextView) dialog.findViewById(R.id.btnPilihDialog);
-        Button btnNext = (Button) dialog.findViewById(R.id.btnNextDialog);
+        final TextView tvLanjutkan = (TextView) dialog.findViewById(R.id.btnPilihDialog);
+        final Button btnNext = (Button) dialog.findViewById(R.id.btnNextDialog);
         ImageButton imageButton = (ImageButton) dialog.findViewById(R.id.deleteDialog);
         final TextView totalharga = (TextView) dialog.findViewById(R.id.tvTotalpriceDialog);
-        final Spinner spinner = (Spinner) dialog.findViewById(R.id.spinnerDialog);
+        //final Spinner spinner = (Spinner) dialog.findViewById(R.id.spinnerDialog);
         final EditText etCatatanDialog = (EditText) dialog.findViewById(R.id.etCatatanDialog);
+        final Button plusCart = (Button) dialog.findViewById(R.id.btnPlusDialogPesan);
+        final Button minCart = (Button) dialog.findViewById(R.id.btnMinDialogPesan);
+        final TextView tvQtyDialogPesan = (TextView) dialog.findViewById(R.id.tvQtyDialogPesan);
 
+        tvQtyDialogPesan.setText("1");
         tvHargaD.setText("Rp "+hargamenu);
         tvNamamemuD.setText(namamenu);
-        tvNamaRmD.setText(namarm);
+        //tvNamaRmD.setText(namarm);
         totalharga.setText("Rp."+hargamenu);
 
         Picasso.with(DetailMenu.this).load(Connect.IMAGE_MENU_URL+fotomenu).into(imageView);
@@ -442,7 +446,7 @@ public class DetailMenu extends AppCompatActivity {
             }
         });
 
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        /*spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 int angka = Integer.parseInt(spinner.getSelectedItem().toString());
@@ -454,11 +458,80 @@ public class DetailMenu extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
+        });*/
+
+        String sumStr = tvQtyDialogPesan.getText().toString();
+        int sum = Integer.valueOf(sumStr);
+        if (sum <= 1){
+            minCart.setEnabled(false);
+        }
+
+        plusCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String sumStr = tvQtyDialogPesan.getText().toString();
+                int sum = Integer.valueOf(sumStr);
+                sum += 1;
+                String sumStra = String.valueOf(sum);
+                tvQtyDialogPesan.setText(sumStra);
+
+                int angka = Integer.parseInt(sumStra);
+                int harga = Integer.parseInt(hargamenu);
+                totalharga.setText("Rp. "+String.valueOf(angka*harga));
+
+
+                tvLanjutkan.setVisibility(View.VISIBLE);
+                btnNext.setVisibility(View.VISIBLE);
+
+                if (angka < 1){
+                    tvLanjutkan.setVisibility(View.GONE);
+                    btnNext.setVisibility(View.GONE);
+                }
+                if (sum > 1){
+                    minCart.setEnabled(true);
+                }
+                else if (sum <= 1){
+                    minCart.setEnabled(false);
+                }
+                //minCart.setEnabled(true);
+            }
         });
+
+        minCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String sumStr = tvQtyDialogPesan.getText().toString();
+                int sum = Integer.valueOf(sumStr);
+                sum -= 1;
+                String sumStra = String.valueOf(sum);
+                tvQtyDialogPesan.setText(sumStra);
+
+                int angka = Integer.parseInt(sumStra);
+                int harga = Integer.parseInt(hargamenu);
+                totalharga.setText("Rp. "+String.valueOf(angka*harga));
+
+                if (angka < 1){
+                    tvLanjutkan.setVisibility(View.GONE);
+                    btnNext.setVisibility(View.GONE);
+                }
+                if (sum > 1){
+                    minCart.setEnabled(true);
+                }
+                else if (sum <= 1){
+                    minCart.setEnabled(false);
+                }
+
+                tvLanjutkan.setVisibility(View.VISIBLE);
+                btnNext.setVisibility(View.VISIBLE);
+
+            }
+        });
+
+
         tvLanjutkan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String jumlah = spinner.getSelectedItem().toString();
+                String jumlah = tvQtyDialogPesan.getText().toString();
                 String notes = etCatatanDialog.getText().toString();
                 Call<PostPutDelOrder> postPutDelOrderCall = restApi.postCart(menuid,useridUser,jumlah, notes);
                 postPutDelOrderCall.enqueue(new Callback<PostPutDelOrder>() {
@@ -480,7 +553,7 @@ public class DetailMenu extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String notes = etCatatanDialog.getText().toString();
-                String jumlah = spinner.getSelectedItem().toString();
+                String jumlah = tvQtyDialogPesan.getText().toString();
                 Call<PostPutDelOrder> postPutDelOrderCall = restApi.postCart(menuid,useridUser,jumlah, notes);
                 postPutDelOrderCall.enqueue(new Callback<PostPutDelOrder>() {
                     @Override
