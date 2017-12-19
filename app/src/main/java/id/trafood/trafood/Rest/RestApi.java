@@ -190,7 +190,8 @@ public interface RestApi {
                                  @Field("unit") String unit,
                                  @Field("status") String status,
                                  @Field("trans_id") String trans_id,
-                                 @Field("shippingcharge") String shippingcharge);
+                                 @Field("shippingcharge") String shippingcharge,
+                                 @Field("totalprice") String totalprice);
 
     @GET("index.php/transaction/address/nomor")
     Call<ResponseBody> getNomor();
