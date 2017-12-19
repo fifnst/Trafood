@@ -24,6 +24,7 @@ import id.trafood.trafood.R;
 import id.trafood.trafood.Rest.ApiClient;
 import id.trafood.trafood.Rest.ApiInterface;
 import id.trafood.trafood.SharedPrefManager;
+import id.trafood.trafood.StatusPengirimanActivity;
 import id.trafood.trafood.ThanksActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -72,6 +73,14 @@ public class NotificationFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(view.getContext(), CartActivity.class);
                 view.getContext().startActivity(intent);
+            }
+        });
+
+        linearStatusPengiriman.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent2 = new Intent(view.getContext(), StatusPengirimanActivity.class);
+                view.getContext().startActivity(intent2);
             }
         });
 

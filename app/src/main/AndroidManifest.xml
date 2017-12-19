@@ -143,15 +143,13 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".CartActivity"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".CourierActivity"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".ConfirmationActivity"
-            android:theme="@style/AppTheme">
-
-        </activity>
+            android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".MenuLainActivity"
             android:theme="@style/AppTheme" />
@@ -163,9 +161,11 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".RiwayatAlamatActivity"
-            android:theme="@style/AppTheme"/>
-        <activity android:name=".ThanksActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ThanksActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".StatusPengirimanActivity"></activity>
     </application>
 
 </manifest>
