@@ -27,7 +27,7 @@
 
             android:textColor="@color/white"
             android:background="@color/green"
-            android:text="get direction 1"
+            android:text="get direction"
             android:layout_margin="3dp"
             android:id="@+id/btnDirection"
             android:layout_width="match_parent"
