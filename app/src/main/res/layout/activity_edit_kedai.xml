@@ -21,8 +21,6 @@
             android:background="@color/white">
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_marginLeft="@dimen/margin_activity"
-                android:layout_marginRight="@dimen/margin_activity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputLayout
