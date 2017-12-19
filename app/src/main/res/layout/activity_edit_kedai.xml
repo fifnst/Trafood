@@ -7,16 +7,18 @@
     android:background="@color/white"
     android:layout_height="match_parent"
     tools:context="id.trafood.trafood.EditKedaiActivity"
-    android:layout_margin="@dimen/margin_activity">
+    >
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
+            android:layout_margin="@dimen/margin_activity"
             android:layout_marginTop="@dimen/margin_activity"
             android:layout_marginBottom="@dimen/margin_activity"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/white">
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_marginLeft="@dimen/margin_activity"

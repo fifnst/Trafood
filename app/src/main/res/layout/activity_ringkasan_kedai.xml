@@ -9,14 +9,14 @@
     tools:context="id.trafood.trafood.RingkasanKedaiActivity">
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
     <LinearLayout
         android:layout_marginBottom="@dimen/margin_activity"
         android:layout_marginTop="@dimen/margin_activity"
 
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -25,14 +25,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp" />
             <TextView
+                android:gravity="center_vertical"
                 android:text="Ganti foto"
                 android:textAlignment="center"
                 android:id="@+id/tvEditFoto"
-                android:textColor="@color/radablack"
+                android:textColor="@color/white"
                 android:background="#7500a693"
                 android:layout_alignParentBottom="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="30dp" />
         </RelativeLayout>
 
         <LinearLayout
