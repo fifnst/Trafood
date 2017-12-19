@@ -56,7 +56,7 @@ public class ConfirmationActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Confrimation");
         getSupportActionBar().setElevation(0);
         findView();
-        //kuririd = getIntent().getStringExtra("COURIERID");
+       // kuririd = getIntent().getStringExtra("COURIERID");
         kuririd ="12548514402178";
         sharedPrefManager = new SharedPrefManager(this);
         userid = sharedPrefManager.getSpUserid();
@@ -72,11 +72,27 @@ public class ConfirmationActivity extends AppCompatActivity {
 
         getKurir(kuririd); //get kurir dan set harganya
         getTrans(); //get order
+        Log.d("TAG",userid+"ini pas diluar"+kuririd);
 
         btnConfirmation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                simpanorderDetail(); //untuk menyimpan order detail barang apa saja yang di order
                 simpan();
+            }
+        });
+    }
+
+    private void simpanorderDetail() {
+        restApi.postOrderDetail(userid,transid).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                loading.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
             }
         });
     }
@@ -99,7 +115,7 @@ public class ConfirmationActivity extends AppCompatActivity {
 
     private void getKurir(String kuririd) {
         this.kuririd = kuririd;
-        apiInterface.getHargaKurir(kuririd).enqueue(new Callback<ResponseBody>() {
+        apiInterface.getHargaKurir("12548514402178").enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {
@@ -121,13 +137,14 @@ public class ConfirmationActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-
+                Log.d("TAG", "gagal  dapat kurir");
             }
         });
 
     }
 
     private void getTrans() {
+
         apiInterface.getOrder(userid).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -139,12 +156,13 @@ public class ConfirmationActivity extends AppCompatActivity {
                     alamatpemesan = jsonResult.getJSONObject("result").getString("address");
                     namaKedai = jsonResult.getJSONObject("result").getString("namarm");
                     alamatKedai = jsonResult.getJSONObject("result").getString("alamatrm");
-                    subtotal = jsonResult.getJSONObject("result").getString("totalprice");
+                    //subtotal = jsonResult.getJSONObject("result").getString("totalprice");
                     distance = jsonResult.getJSONObject("result").getString("distance");
                     gdistance = jsonResult.getJSONObject("result").getString("gdistance");
-                    Log.d("TAG",transid+namaPemesan+teleponPemesan+alamatpemesan+namaKedai+alamatKedai+subtotal+distance+gdistance+"transaksi");
+                    Log.d("TAG",transid+namaPemesan+teleponPemesan+alamatpemesan+namaKedai+alamatKedai+distance+gdistance+"transaksi");
                     setDetailOrder();//set detail order
-                    setTex();
+
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
@@ -157,6 +175,36 @@ public class ConfirmationActivity extends AppCompatActivity {
 
             }
         });
+
+        apiInterface.getCartDetail(userid).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                try {
+                    JSONObject jsonResult = new JSONObject(response.body().string());
+                    /*namarm = jsonResult.getJSONObject("result").getString("namarm");
+                    alamatrm = jsonResult.getJSONObject("result").getString("alamatrm");
+                    latitude = jsonResult.getJSONObject("result").getString("latitude");
+                    longitude = jsonResult.getJSONObject("result").getString("longitude");
+                    rmid = jsonResult.getJSONObject("result").getString("rmid");*/
+                    subtotal = jsonResult.getString("total");
+                    Log.d("TAG","subtotal"+subtotal);
+                    setTex();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                // tvCartKedai.setText("11120170010asw");
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            }
+        });
+
+
     }
 
     private void setTex() {
@@ -167,7 +215,7 @@ public class ConfirmationActivity extends AppCompatActivity {
         tvNamaKedai.setText(namaKedai);
         tvAlamatKedai.setText(alamatKedai);
         tvJarak.setText(gdistance);
-        tvSubtotal.setText("Rp. "+subtotal);
+       // tvSubtotal.setText("Rp. "+subtotal);
         hitungOngkir(); //method untuk hitung ongkir
     }
 
@@ -192,6 +240,7 @@ public class ConfirmationActivity extends AppCompatActivity {
         formatRp.setGroupingSeparator('.');
         kursIndonesia.setDecimalFormatSymbols(formatRp);
 
+        tvSubtotal.setText(kursIndonesia.format(total));
         if (unit.equals("km")){
             tvOngkir.setText(kursIndonesia.format(ini*harga));
             tvTotal.setText(kursIndonesia.format(total+(ini*harga)));
@@ -226,7 +275,7 @@ public class ConfirmationActivity extends AppCompatActivity {
     }
 
     private void setDetailOrder() {
-        Call<GetOrder> getOrderCall = apiInterface.getOrderDetail(transid);
+        Call<GetOrder> getOrderCall = apiInterface.getCart(userid);
         getOrderCall.enqueue(new Callback<GetOrder>() {
             @Override
             public void onResponse(Call<GetOrder> call, Response<GetOrder> response) {

@@ -201,6 +201,7 @@ public interface RestApi {
                                    @Field("address_id") String address_id,
                                    @Field("recipient_name") String recipient_name,
                                    @Field("address") String address,
+                                   @Field("uniq_address") String uniq_address,
                                    @Field("telp") String telp,
                                    @Field("lat") String lat,
                                    @Field("lng") String lng);

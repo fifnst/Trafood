@@ -28,54 +28,58 @@ android:orientation="vertical">
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/cloud"/>
-        <TextView
-
+        <LinearLayout
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tujuan Pengiriman"
-            android:textColor="@color/radablack"
-            android:textSize="@dimen/font_isi_menu"/>
+            android:orientation="horizontal">
             <LinearLayout
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginTop="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/location_jingga"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginBottom="12dp"/>
+
+                <ImageView
+                    android:src="@drawable/location_pink"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginLeft="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@color/cloud"
                 android:padding="5dp">
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tvRiwayatNamaPemesan"
-                    android:textColor="@color/grey"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tvRiwayatTeleponPemesan"
-                    android:textColor="@color/grey"/>
-                <TextView
+                    android:maxLines="1"
+                    android:maxLength="50"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/tvRiwayatAlamatPemesan"
                     android:textColor="@color/grey"/>
+                <View
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey"/>
                 <TextView
+                    android:maxLines="1"
+                    android:maxLength="50"
                     android:id="@+id/tvNamaAlamat"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/grey"/>
             </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <Button
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Edit Alamat ini"
-                android:id="@+id/btnPilihAlamatLain"
-                android:textSize="13dp"/>
         </LinearLayout>
 
         <fragment xmlns:android="http://schemas.android.com/apk/res/android"
@@ -84,23 +88,46 @@ android:orientation="vertical">
             android:id="@+id/mapOrder"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="200dp"
             tools:context="net.simplifiedcoding.mymapapp.MapsActivity" />
-
+        <TextView
+            android:id="@+id/tvJarakAlamat"
+            android:textColor="@color/grey"
+            android:background="@color/cloud"
+            android:padding="10dp"
+            android:text="asdasd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_margin="@dimen/margin_activity"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:hint="No rumah, jalan, ciri rumah"
+                android:id="@+id/catatanAlamat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
 
     </LinearLayout>
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:orientation="horizontal">
+
         <Button
-            android:layout_alignParentBottom="true"
-            android:textColor="@color/white"
-            android:background="@color/green"
             android:id="@+id/btnNextFR"
-            android:text="Lanjutkan"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/green"
+            android:text="Lanjutkan"
+            android:textColor="@color/white" />
     </RelativeLayout>
 </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

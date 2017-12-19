@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.List;
 
 import id.trafood.trafood.Models.Order;
@@ -39,20 +41,29 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
         Picasso.with(holder.ivCart.getContext()).load(Connect.IMAGE_MENU_URL+orders.get(position).getFoto())
                 .into(holder.ivCart);
         holder.tvNamaMenuCart.setText(orders.get(position).getNamamenu());
-        holder.tvHargaCart.setText("Rp. " +orders.get(position).getHarga());
-
-        holder.tvQtyCart.setText(orders.get(position).getQty());
+        holder.tvQtyCart.setText("Qty "+orders.get(position).getQty());
 
         //Tes Fahri
-        holder.tvPesanKhusus.setText("Catatan: "+orders.get(position).getNotes());
+        holder.tvPesanKhusus.setText(orders.get(position).getNotes());
 
         String harga = orders.get(position).getHarga();
-        int y = Integer.parseInt(harga);
+        Double y = Double.parseDouble(harga);
         String qty = orders.get(position).getQty();
-        int x = Integer.parseInt(qty);
+        Double x = Double.parseDouble(qty);
+        Double total = y*x;
 
-        int total = y*x;
-        holder.tvSubtotal.setText("Sub total Rp. "+String.valueOf(total));
+        //bikin format rupiah
+        DecimalFormat kursIndonesia = (DecimalFormat) DecimalFormat.getCurrencyInstance();
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+        formatRp.setCurrencySymbol("Rp. ");
+        formatRp.setMonetaryDecimalSeparator(',');
+        formatRp.setGroupingSeparator('.');
+        kursIndonesia.setDecimalFormatSymbols(formatRp);
+
+        holder.tvSubtotal.setText(kursIndonesia.format(total));
+        if (orders.get(position).getNotes().equals("")){
+            holder.tvPesanKhusus.setVisibility(View.GONE);
+        }
 
     }
 
@@ -63,12 +74,11 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
 
     public class Holdes extends RecyclerView.ViewHolder {
         ImageView ivCart;
-        TextView tvNamaMenuCart, tvHargaCart,tvSubtotal, tvPesanKhusus, tvQtyCart;
+        TextView tvNamaMenuCart,tvSubtotal, tvPesanKhusus, tvQtyCart;
         public Holdes(View itemView) {
             super(itemView);
             ivCart = (ImageView) itemView.findViewById(R.id.imageConfrmation);
             tvNamaMenuCart = (TextView) itemView.findViewById(R.id.tvNamaMenuConfrmation);
-            tvHargaCart = (TextView) itemView.findViewById(R.id.tvHargaConfrmation);
             tvSubtotal = (TextView) itemView.findViewById(R.id.tvSubtotalConfrmation);
             tvPesanKhusus = (TextView) itemView.findViewById(R.id.tvPesanKhususConfrmation);
             tvQtyCart = (TextView) itemView.findViewById(R.id.tvQtyConfrmation);

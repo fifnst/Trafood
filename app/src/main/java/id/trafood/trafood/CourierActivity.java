@@ -2,6 +2,7 @@ package id.trafood.trafood;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.nfc.Tag;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -42,7 +43,7 @@ public class CourierActivity extends AppCompatActivity {
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
     String userLat,userLng,kLat,kLng,namarm,kodetrans,telp,namauser,real_distance,google_distance,
-            address,userid,kodeAlamar,total,rmid;
+            address,userid,kodeAlamar,total,rmid,custom;
     SharedPrefManager sharedPrefManager;
     ProgressDialog loading;
 
@@ -66,13 +67,14 @@ public class CourierActivity extends AppCompatActivity {
         kLat = getIntent().getStringExtra("LATK");
         kLng = getIntent().getStringExtra("LNGK");
         namarm = getIntent().getStringExtra("NAMARM");
-        kodetrans = getIntent().getStringExtra("KODE");
+       // kodetrans = getIntent().getStringExtra("KODE");
         telp = getIntent().getStringExtra("TELEPON");
         real_distance = getIntent().getStringExtra("RDISTANCE");
         google_distance = getIntent().getStringExtra("GDISTANCE");
         address = getIntent().getStringExtra("ADDRESS");
         total = getIntent().getStringExtra("TOTAL");
         rmid = getIntent().getStringExtra("RMID");
+        custom = getIntent().getStringExtra("CUSTOM");
         userid = sharedPrefManager.getSpUserid();
         namauser = sharedPrefManager.getSPNama();
 
@@ -91,12 +93,32 @@ public class CourierActivity extends AppCompatActivity {
     }
 
     private void bawanomer() {
+        apiInterface.getNomorOrder().enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try {
+                    JSONObject jsonResult = new JSONObject(response.body().string());
+                    kodetrans = jsonResult.getString("result");
+                    Log.d("TAG",kodetrans+" trans ");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
         restApi.getNomor().enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {
                     JSONObject jsonResult = new JSONObject(response.body().string());
                     kodeAlamar = jsonResult.getString("result");
+                    Log.d("TAG",kodeAlamar);
                 }catch (JSONException e){
                     e.printStackTrace();
                 } catch (IOException e){
@@ -116,28 +138,29 @@ public class CourierActivity extends AppCompatActivity {
         getCourierCall.enqueue(new Callback<GetCourier>() {
             @Override
             public void onResponse(Call<GetCourier> call, Response<GetCourier> response) {
-               if (response.body().getStatus().equals("204")){
-                   linearTidakAda.setVisibility(View.VISIBLE);
-                   pengumuman.setText("User berada di luar jangkuan kurir");
-                   loading.dismiss();
-               }if (response.body().getStatus().equals("201")){
+              if (response.body().getStatus().equals("201")){
                     linearTidakAda.setVisibility(View.VISIBLE);
                     pengumuman.setText("Kedai berada diluar jangkuan kurir");
                     loading.dismiss();
                }if (response.body().getStatus().equals("200")){
-                   masukanorder();
-                   masukanalamat();
+                    masukanorder();
+                    masukanalamat();
                     linearAda.setVisibility(View.VISIBLE);
                     List<Courier> couriers = response.body().getListDataCourier();
+                    Log.d("TAG",String.valueOf(couriers.size()));
                     adapter = new CourierAdapter(couriers);
                     recyclerView.setAdapter(adapter);
+                    loading.dismiss();
                 }
                 
             }
 
             @Override
             public void onFailure(Call<GetCourier> call, Throwable t) {
-
+                linearTidakAda.setVisibility(View.VISIBLE);
+                pengumuman.setText("Gagal mendapatkan Kurir");
+                loading.dismiss();
+                Log.d("TAG","gagal");
             }
         });
     }
@@ -146,7 +169,7 @@ public class CourierActivity extends AppCompatActivity {
         restApi.postOrder(kodetrans,kodeAlamar,total,google_distance,real_distance,userid,rmid).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                Log.d("TAG",response+"berhasil");
+                Log.d("TAG","input order berhasil"+"berhasil kode transaksi"+kodetrans);
             }
 
             @Override
@@ -154,26 +177,16 @@ public class CourierActivity extends AppCompatActivity {
             }
         });
 
-        restApi.postOrderDetail(userid,kodetrans).enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                loading.dismiss();
-            }
 
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-            }
-        });
     }
 
 
 
     private void masukanalamat() {
-        restApi.inputAddress(userid,kodeAlamar,namauser,address,telp,userLat,userLng).enqueue(new Callback<ResponseBody>() {
+        restApi.inputAddress(userid,kodeAlamar,namauser,address,custom,telp,userLat,userLng).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
+                Log.d("TAG","alama"+"berhasil kode alamat"+kodeAlamar+custom);
             }
 
             @Override

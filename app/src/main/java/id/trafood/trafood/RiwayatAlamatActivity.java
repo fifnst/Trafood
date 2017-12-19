@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
@@ -29,6 +30,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -54,7 +57,8 @@ public class RiwayatAlamatActivity extends AppCompatActivity implements
     GoogleMap map;
     Button btnEditAlamatini, btnLanjutkan;
     Context mContext;
-    TextView tvNamaAlamt, tvPenerima, tvTelp, tvAlamat;
+    TextView tvNamaAlamt, tvAlamat,tvJarak;
+    EditText alamatCustom;
     Marker marker;
     private double longitude, latitude, fromLongitude, fromLatitude, toLatitude, toLongitude;
 
@@ -87,13 +91,11 @@ public class RiwayatAlamatActivity extends AppCompatActivity implements
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapOrder);
         mapFragment.getMapAsync(this);
 
-        tvTelp = (TextView) findViewById(R.id.tvRiwayatTeleponPemesan);
         tvAlamat = (TextView) findViewById(R.id.tvRiwayatAlamatPemesan);
-        tvPenerima = (TextView) findViewById(R.id.tvRiwayatNamaPemesan);
         tvNamaAlamt = (TextView) findViewById(R.id.tvNamaAlamat);
-        btnEditAlamatini = (Button) findViewById(R.id.btnPilihAlamatLain);
         btnLanjutkan = (Button) findViewById(R.id.btnNextFR);
-
+        tvJarak = (TextView) findViewById(R.id.tvJarakAlamat);
+        alamatCustom = (EditText) findViewById(R.id.catatanAlamat);
         googleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
@@ -101,8 +103,6 @@ public class RiwayatAlamatActivity extends AppCompatActivity implements
                 .build();
 
         mContext = this;
-        tvTelp.setText(telp);
-        tvPenerima.setText(namauser);
 
         btnLanjutkan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,6 +116,7 @@ public class RiwayatAlamatActivity extends AppCompatActivity implements
     private void lanjutkan() {
         String latu = String.valueOf(toLatitude);
         String lngu = String.valueOf(toLongitude);
+        String catam = alamatCustom.getText().toString();
         Intent intent = new Intent(RiwayatAlamatActivity.this, CourierActivity.class);
         intent.putExtra("LATK",lat);
         intent.putExtra("LNGK",lng);
@@ -129,6 +130,7 @@ public class RiwayatAlamatActivity extends AppCompatActivity implements
         intent.putExtra("ADDRESS",address);
         intent.putExtra("TOTAL",total);
         intent.putExtra("RMID",rmid);
+        intent.putExtra("CUSTOM", catam);
         RiwayatAlamatActivity.this.startActivity(intent);
     }
 
@@ -205,6 +207,7 @@ public class RiwayatAlamatActivity extends AppCompatActivity implements
             String parsedDistance = distanceObj.getString("text");
             String parsedDistanceValue = distanceObj.getString("value");
             String userAddress = legs.getString("end_address");
+            String kedaiAddress = legs.getString("start_address");
             address = userAddress;
             Double distance = Double.parseDouble(parsedDistanceValue);
             Double jarak = distance * 0.001;
@@ -212,14 +215,15 @@ public class RiwayatAlamatActivity extends AppCompatActivity implements
             String ds = dfs.format(jarak);
             jauhh = parsedDistance;
             jauh = parsedDistanceValue;
-            tvNamaAlamt.setText("Jarak "+parsedDistance);
+            tvJarak.setText("Jarak ("+parsedDistance+")");
             tvAlamat.setText(userAddress);
+            tvNamaAlamt.setText(kedaiAddress);
             String encodedString = overviewPolylines.getString("points");
             List<LatLng> list = decodePoly(encodedString);
             Polyline line = map.addPolyline(new PolylineOptions()
                     .addAll(list)
                     .width(15)
-                    .color(Color.BLUE)
+                    .color(R.color.ectasy)
                     .geodesic(true)
             );
 
@@ -318,12 +322,15 @@ public class RiwayatAlamatActivity extends AppCompatActivity implements
     private void moveMap() {
         //user
         //Creating a LatLng Object to store Coordinates
+        BitmapDescriptor iconJingga = BitmapDescriptorFactory.fromResource(R.drawable.location_jingga10);
+        BitmapDescriptor iconPink = BitmapDescriptorFactory.fromResource(R.drawable.location_pink10);
 
         LatLng latLng = new LatLng(latitude, longitude);
         //Adding marker to map
         map.addMarker(new MarkerOptions()
                 .position(latLng) //setting position
-                .title("Your Location")); //Adding a title
+                .title("Your Location")
+                .icon(iconJingga)); //Adding a title
         //Moving the camera
         map.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         //Animating the camera
@@ -342,7 +349,11 @@ public class RiwayatAlamatActivity extends AppCompatActivity implements
         fromLatitude = latu;
         fromLongitude = lngu;
         LatLng posisiuser = new LatLng(latu, lngu);
-        map.addMarker(new MarkerOptions().position(posisiuser).draggable(true).title("Kedai "+namarm));
+        map.addMarker(new MarkerOptions()
+                .position(posisiuser)
+                .draggable(true)
+                .title("Kedai "+namarm)
+                .icon(iconPink));
 
         getDirection();
     }

@@ -149,7 +149,9 @@
             android:theme="@style/AppTheme"/>
         <activity
             android:name=".ConfirmationActivity"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme">
+
+        </activity>
         <activity
             android:name=".MenuLainActivity"
             android:theme="@style/AppTheme" />
