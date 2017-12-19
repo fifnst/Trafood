@@ -25,22 +25,32 @@
                 android:layout_height="60dp"
                 android:id="@+id/imageDialog"
                 android:src="@drawable/view_kedai"/>
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal"
+            <RelativeLayout
+                android:layout_marginTop="8dp"
                 android:layout_width="90dp"
                 android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/btnMinDialogPesan"
+                    android:textSize="10dp"
+                    android:text="-"
+                    android:layout_width="30dp"
+                    android:layout_height="34dp" />
                 <TextView
-                    android:text="Banyak: "
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <Spinner
-                    android:layout_marginLeft="5dp"
+                    android:layout_centerInParent="true"
+                    android:id="@+id/tvQtyDialogPesan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:entries="@array/spinner_cart"
-                    android:id="@+id/spinnerDialog"/>
-            </LinearLayout>
+                    android:text="Tes" />
+
+                <Button
+                    android:id="@+id/btnPlusDialogPesan"
+                    android:layout_alignParentRight="true"
+                    android:textSize="10dp"
+                    android:text="+"
+                    android:layout_width="30dp"
+                    android:layout_height="34dp"/>
+
+            </RelativeLayout>
 
 
         </LinearLayout>
