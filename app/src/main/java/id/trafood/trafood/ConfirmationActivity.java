@@ -71,7 +71,7 @@ public class ConfirmationActivity extends AppCompatActivity {
 
 
         getKurir(kuririd); //get kurir dan set harganya
-        getTrans(); //get order
+
         Log.d("TAG",userid+"ini pas diluar"+kuririd);
 
         btnConfirmation.setOnClickListener(new View.OnClickListener() {
@@ -79,6 +79,25 @@ public class ConfirmationActivity extends AppCompatActivity {
             public void onClick(View view) {
                 simpanorderDetail(); //untuk menyimpan order detail barang apa saja yang di order
                 simpan();
+            }
+        });
+
+
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        apiInterface.deleteSisa(userid).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
             }
         });
     }
@@ -115,7 +134,7 @@ public class ConfirmationActivity extends AppCompatActivity {
 
     private void getKurir(String kuririd) {
         this.kuririd = kuririd;
-        apiInterface.getHargaKurir("12548514402178").enqueue(new Callback<ResponseBody>() {
+        apiInterface.getHargaKurir(kuririd).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {
@@ -127,7 +146,7 @@ public class ConfirmationActivity extends AppCompatActivity {
                     priceplus = jsonResult.getJSONObject("result").getString("priceplus");
                     perplus = jsonResult.getJSONObject("result").getString("perplus");
                     Log.d("TAG",namaKurir+price+per+unit + "kurir");
-
+                    getTrans(); //get order
                 } catch (JSONException e) {
                     e.printStackTrace();
                 } catch (IOException e) {

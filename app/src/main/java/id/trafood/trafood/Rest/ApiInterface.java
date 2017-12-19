@@ -184,6 +184,9 @@ public interface ApiInterface {
     @GET("index.php/transaction/corier/kurir")
     Call<ResponseBody> getHargaKurir (@Query("courier_id") String courier_id);
 
+    @GET("index.php/transaction/order/cek")
+    Call<ResponseBody> deleteSisa (@Query("userid") String userid);
+
     @GET("index.php/transaction/order/detail")
     Call<GetOrder> getOrderDetail(@Query("trans_id") String trans_id);
 

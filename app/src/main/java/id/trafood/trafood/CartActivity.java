@@ -102,25 +102,6 @@ public class CartActivity extends AppCompatActivity {
     }
 
     private void getNomor() {
-        apiInterface.getNomorOrder().enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                try {
-                    JSONObject jsonResult = new JSONObject(response.body().string());
-                    nomor = jsonResult.getString("result");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-            }
-        });
-
         String userid = sharedPrefManager.getSpUserid();
         apiInterface.userGet(userid).enqueue(new Callback<ResponseBody>() {
             @Override
@@ -150,10 +131,26 @@ public class CartActivity extends AppCompatActivity {
         intent.putExtra("LAT",latitude);
         intent.putExtra("LNG",longitude);
         intent.putExtra("RMID",rmid);
-        intent.putExtra("NOMOR",nomor);
         intent.putExtra("TELP",telp);
         intent.putExtra("TOTAL",totalhargacart);
         CartActivity.this.startActivity(intent);
+
+        deletedulu();
+    }
+
+    private void deletedulu() {
+        String userid = sharedPrefManager.getSpUserid();
+        apiInterface.deleteSisa(userid).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
     }
 
     private void isiDetail(final String userId) {
