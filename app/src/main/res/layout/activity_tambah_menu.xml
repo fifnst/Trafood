@@ -39,7 +39,8 @@
                 android:layout_height="wrap_content" />
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_activity">
             <EditText
                 android:padding="5dp"
                 android:id="@+id/etNamaMenuInput"
@@ -90,6 +91,7 @@
                 android:textColorHint="@color/grey"
                 android:textColor="@color/radablack" />
             </android.support.design.widget.TextInputLayout>
+
             <Button
                 android:layout_marginTop="16dp"
                 android:textColor="@color/white"
