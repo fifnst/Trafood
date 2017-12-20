@@ -26,14 +26,35 @@
                 android:layout_height="80dp"
                 android:scaleType="centerCrop"
                 android:src="@mipmap/ic_launcher"/>
-            <TextView
-                android:id="@+id/tvHargaMenuRm"
-                android:textAlignment="center"
-                android:text="tes"
-                android:textSize="@dimen/font_pricesize"
-                android:textColor="@color/white"
+            <LinearLayout
                 android:background="@color/colorPrimary"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_pricesize"
+                    android:text="Rp. "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tvHargaMenuRm"
+                    android:textAlignment="center"
+                    android:text="tes"
+                    android:textSize="@dimen/font_pricesize"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tvIdMenurm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tvPathFotorm"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
         <LinearLayout
@@ -91,17 +112,52 @@
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <TextView
-                        android:id="@+id/tvQtyMenu"
-                        android:textColor="@color/blue"
-                        android:text="Qty : 80"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                    <TextView
-                        android:id="@+id/tvSubtotalMenu"
-                        android:text="Subtotal : 80500"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:id="@+id/linearHarga"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:textColor="@color/blue"
+                                android:text="Qty : "
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                            <TextView
+                                android:id="@+id/tvQtyMenu"
+                                android:textColor="@color/blue"
+                                android:text="1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:text="Subtotal Rp : "
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                                <TextView
+                                    android:id="@+id/tvSubtotalMenu"
+                                    android:text="0"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+                            <ImageView
+                                android:layout_alignParentRight="true"
+                                android:src="@drawable/notes"
+                                android:id="@+id/ivNotes"
+                                android:layout_width="15dp"
+                                android:layout_height="15dp" />
+                         </RelativeLayout>
+                    </LinearLayout>
                     <TextView
                         android:layout_marginTop="38dp"
                         android:id="@+id/tvBtnPesanMenu"

@@ -24,6 +24,7 @@ import id.trafood.trafood.R;
 import id.trafood.trafood.Rest.ApiClient;
 import id.trafood.trafood.Rest.Connect;
 import id.trafood.trafood.Rest.RestApi;
+import id.trafood.trafood.SharedPrefManager;
 
 /**
  * Created by kulinerin 1 on 18/10/2017.
@@ -47,8 +48,10 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyHold
     @Override
     public void onBindViewHolder(MyHolder holder, final int position) {
         holder.tvLike.setText(mMenu.get(position).getLikes());
-        holder.tvHargamenu.setText("Rp. " + mMenu.get(position).getHarga());
+        holder.tvHargamenu.setText(mMenu.get(position).getHarga());
         holder.tvNamamemu.setText(mMenu.get(position).getNamamenu());
+        holder.pathfoto.setText(mMenu.get(position).getFoto());
+        holder.idmenu.setText(mMenu.get(position).getMenuid());
         Picasso.with(holder.ivFotomenu.getContext()).load(Connect.IMAGE_MENU_URL+mMenu.get(position).getFoto())
                 .error(R.mipmap.ic_launcher).into(holder.ivFotomenu);
 
@@ -72,12 +75,13 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyHold
 
 
     public class MyHolder extends RecyclerView.ViewHolder {
-        public TextView tvHargamenu, tvNamamemu,tvLike;
+        public TextView tvHargamenu, tvNamamemu,tvLike,idmenu, pathfoto;
         public TextView qtymenu, subtotalmenu, btnPesanmenu, btnBatalpesan, btnJadipesan;
-        public LinearLayout linearLayout;
+        public LinearLayout linearLayout,linearHarga;
         public ImageView ivFotomenu;
         RestApi restApi;
-        public MyHolder(View itemView) {
+        SharedPrefManager sharedPrefManager;
+        public MyHolder(final View itemView) {
             super(itemView);
 
             tvLike = (TextView) itemView.findViewById(R.id.tvLikeMenus);
@@ -89,26 +93,35 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyHold
             btnPesanmenu = (TextView) itemView.findViewById(R.id.tvBtnPesanMenu);
             btnBatalpesan = (TextView) itemView.findViewById(R.id.tvBatalPesan);
             btnJadipesan = (TextView) itemView.findViewById(R.id.tvJadiPesan);
+            idmenu = (TextView) itemView.findViewById(R.id.tvIdMenurm);
+            pathfoto = (TextView) itemView.findViewById(R.id.tvPathFotorm);
+            sharedPrefManager = new SharedPrefManager(itemView.getContext());
+
             linearLayout = (LinearLayout) itemView.findViewById(R.id.linearPesan);
+            linearHarga = (LinearLayout) itemView.findViewById(R.id.linearHarga);
             restApi = ApiClient.getClient().create(RestApi.class);
 
-            qtymenu.setVisibility(View.GONE);
-            subtotalmenu.setVisibility(View.GONE);
+            //qtymenu.setVisibility(View.GONE);
+            linearHarga.setVisibility(View.GONE);
             linearLayout.setVisibility(View.GONE);
 
             btnPesanmenu.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    qtymenu.setVisibility(View.VISIBLE);
-                    subtotalmenu.setVisibility(View.VISIBLE);
-                    linearLayout.setVisibility(View.VISIBLE);
-                    btnPesanmenu.setVisibility(View.GONE);
+
+                }
+            });
+
+            btnPesanmenu.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+
                     final Dialog dialog = new Dialog(view.getContext());
                     dialog.setContentView(R.layout.dialog_pesan);
-                    dialog.setTitle("Rincian Pesanan");
-
+                    dialog.setCancelable(false);
                     ImageView imageView = (ImageView) dialog.findViewById(R.id.imageDialog);
-                    TextView tvHargaD = (TextView) dialog.findViewById(R.id.tvHargaDialog);
+                    final TextView tvHargaD = (TextView) dialog.findViewById(R.id.tvHargaDialog);
                     TextView tvNamamemuD = (TextView) dialog.findViewById(R.id.tvNamaMenuDialog);
                     final TextView tvLanjutkan = (TextView) dialog.findViewById(R.id.btnPilihDialog);
                     final Button btnNext = (Button) dialog.findViewById(R.id.btnNextDialog);
@@ -120,8 +133,103 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyHold
                     final Button minCart = (Button) dialog.findViewById(R.id.btnMinDialogPesan);
                     final TextView tvQtyDialogPesan = (TextView) dialog.findViewById(R.id.tvQtyDialogPesan);
 
+                    tvLanjutkan.setVisibility(View.GONE);
+                    btnNext.setText("Pesan");
+                    Picasso.with(view.getContext()).load(Connect.IMAGE_MENU_URL+pathfoto.getText().toString())
+                            .into(imageView);
+                    tvNamamemuD.setText(tvNamamemu.getText().toString());
+                    tvQtyDialogPesan.setText(qtymenu.getText().toString());
+                    tvHargaD.setText(tvHargamenu.getText().toString());
+
+                    String sumStr = tvQtyDialogPesan.getText().toString();
+                    int sum = Integer.valueOf(sumStr);
+                    if (sum <= 1){
+                        minCart.setEnabled(false);
+                    }
+
+                    plusCart.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            String sumStr = qtymenu.getText().toString();
+                            int sum = Integer.valueOf(sumStr);
+                            sum += 1;
+                            String sumStra = String.valueOf(sum);
+                            tvQtyDialogPesan.setText(sumStra);
+                            qtymenu.setText(sumStra);
+
+                            String harga = tvHargaD.getText().toString();
+                            int hargas = Integer.parseInt(harga);
+                            int kali = hargas*sum;
+                            subtotalmenu.setText(String.valueOf(kali));
+                            totalharga.setText(String.valueOf(kali));
+
+                            if (sumStra.equals(sumStr)){
+                                linearLayout.setVisibility(View.GONE);
+                            }
+                            minCart.setEnabled(true);
+                            if (sumStra.equals("1")){
+                                minCart.setEnabled(false);
+                            }
+                        }
+                    });
+
+                   minCart.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            String sumStr = qtymenu.getText().toString();
+                            int sum = Integer.valueOf(sumStr);
+                            sum -= 1;
+                            String sumStra = String.valueOf(sum);
+                            tvQtyDialogPesan.setText(sumStra);
+                            qtymenu.setText(sumStra);
+
+                            String harga = tvHargaD.getText().toString();
+                            int hargas = Integer.parseInt(harga);
+                            int kali = hargas*sum;
+                            subtotalmenu.setText(String.valueOf(kali));
+                            totalharga.setText(String.valueOf(kali));
+
+                            if (sumStra.equals(sumStr)){
+                                linearLayout.setVisibility(View.GONE);
+                            }
+                            if (sumStra.equals("1")){
+                                minCart.setEnabled(false);
+                            }
+
+                        }
+                    });
+
+                    imageButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            qtymenu.setText("1");
+                            dialog.dismiss();
+                        }
+                    });
+
+                    btnNext.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            String qty = tvQtyDialogPesan.getText().toString();
+                            String userid = sharedPrefManager.getSpUserid();
+                            String menuid = idmenu.getText().toString();
+                            String subtotal = totalharga.getText().toString();
+                            String notes = etCatatanDialog.getText().toString();
+
+                            linearHarga.setVisibility(View.VISIBLE);
+                            linearLayout.setVisibility(View.VISIBLE);
+                            btnPesanmenu.setVisibility(View.GONE);
+
+                            qtymenu.setText(qty);
+                            subtotalmenu.setText(subtotal);
+                            dialog.dismiss();
+
+                        }
+                    });
+
 
                     dialog.show();
+
 
 
                 }
@@ -130,10 +238,12 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyHold
             btnBatalpesan.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    qtymenu.setVisibility(View.GONE);
-                    subtotalmenu.setVisibility(View.GONE);
+                    linearHarga.setVisibility(View.GONE);
                     linearLayout.setVisibility(View.GONE);
                     btnPesanmenu.setVisibility(View.VISIBLE);
+                    qtymenu.setText("1");
+
+
                 }
             });
 
