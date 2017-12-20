@@ -63,6 +63,11 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/cloud"/>
         <LinearLayout
             android:id="@+id/linearTambahKedai"
             android:orientation="vertical"
@@ -211,7 +216,7 @@
                             android:layout_gravity="center"
                             android:layout_marginTop="10dp">
                             <TextView
-                                android:text="@string/review"
+                                android:text="Ulasan"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
                             <TextView
@@ -246,7 +251,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/article"
+                                android:text="Mari Bercerita"
                                 android:gravity="center"/>
                             <TextView
                                 android:layout_marginLeft="2dp"
@@ -269,8 +274,8 @@
                             android:layout_height="80dp" />
                         <TextView
                             android:layout_marginTop="10dp"
-                            android:text="@string/pengaturan"
-                            android:layout_marginLeft="20dp"
+                            android:text="Pengatuan"
+                            android:layout_marginLeft="4dp"
                             android:id="@+id/tvPengaturan"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
