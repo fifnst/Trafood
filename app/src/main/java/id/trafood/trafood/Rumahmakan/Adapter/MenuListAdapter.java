@@ -2,6 +2,7 @@ package id.trafood.trafood.Rumahmakan.Adapter;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,9 +13,14 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.List;
 
 import id.trafood.trafood.DetailMenu;
@@ -22,9 +28,14 @@ import id.trafood.trafood.Models.Menu;
 import id.trafood.trafood.Models.MenuDetail;
 import id.trafood.trafood.R;
 import id.trafood.trafood.Rest.ApiClient;
+import id.trafood.trafood.Rest.ApiInterface;
 import id.trafood.trafood.Rest.Connect;
 import id.trafood.trafood.Rest.RestApi;
 import id.trafood.trafood.SharedPrefManager;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by kulinerin 1 on 18/10/2017.
@@ -46,7 +57,7 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyHold
     }
 
     @Override
-    public void onBindViewHolder(MyHolder holder, final int position) {
+    public void onBindViewHolder(final MyHolder holder, final int position) {
         holder.tvLike.setText(mMenu.get(position).getLikes());
         holder.tvHargamenu.setText(mMenu.get(position).getHarga());
         holder.tvNamamemu.setText(mMenu.get(position).getNamamenu());
@@ -66,6 +77,78 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyHold
                 v.getContext().startActivity(intent);
             }
         });
+
+        final Drawable likebelumlike = holder.ivMenuLike.getContext().getResources().getDrawable(R.drawable.before_recommended);
+        final Drawable sudahpernahlike = holder.ivMenuLike.getContext().getResources().getDrawable(R.drawable.after_recommended);
+
+        if (holder.sharedPrefManager.getSPSudahLogin()){
+            final String menuid = mMenu.get(position).getMenuid();
+            final String userid = holder.sharedPrefManager.getSpUserid();
+
+            holder.apiInterface.cekLike(menuid,userid).enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    try {
+                        JSONObject jsonResult = new JSONObject(response.body().string());
+                        if (jsonResult.getString("status").equals("204")){
+                            holder.ivMenuLike.setImageDrawable(likebelumlike);
+                        }else {
+                            holder.ivMenuLike.setImageDrawable(sudahpernahlike);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                }
+            });
+            holder.ivMenuLike.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(final View view) {
+                    holder.apiInterface.saveLike(menuid,userid).enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            try{
+                                JSONObject jsonResult = new JSONObject(response.body().string());
+                                String like = jsonResult.getString("result");
+                                if (jsonResult.getString("status").equals("200")){
+                                    holder.ivMenuLike.setImageDrawable(sudahpernahlike);
+                                    holder.tvLike.setText(like);
+                                    Toast.makeText(view.getContext(), "Menu ini telah anda rekomendasikan, dan ditambahkan ke list menu favorit", Toast.LENGTH_LONG).show();
+                                }if (jsonResult.getString("status").equals("204")){
+                                    holder.ivMenuLike.setImageDrawable(likebelumlike);
+                                    holder.tvLike.setText(like);
+                                    Toast.makeText(view.getContext(), "Menu ini telah dihapus dari daftar favorit anda", Toast.LENGTH_LONG).show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                        }
+                    });
+                }
+            });
+            //Toast.makeText(itemView.getContext(), "Menu ini telah dihapus dari daftar favorit anda", Toast.LENGTH_LONG).show();
+        }else {
+            holder.ivMenuLike.setImageDrawable(likebelumlike);
+            holder.ivMenuLike.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(view.getContext(), "Anda harus login dulu untuk merekomendasikan menu ini", Toast.LENGTH_LONG).show();
+                }
+            });
+        }
     }
 
     @Override
@@ -78,8 +161,9 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyHold
         public TextView tvHargamenu, tvNamamemu,tvLike,idmenu, pathfoto;
         public TextView qtymenu, subtotalmenu, btnPesanmenu, btnBatalpesan, btnJadipesan;
         public LinearLayout linearLayout,linearHarga;
-        public ImageView ivFotomenu;
+        public ImageView ivFotomenu,ivNotes,ivMenuLike;
         RestApi restApi;
+        ApiInterface apiInterface;
         SharedPrefManager sharedPrefManager;
         public MyHolder(final View itemView) {
             super(itemView);
@@ -95,27 +179,24 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyHold
             btnJadipesan = (TextView) itemView.findViewById(R.id.tvJadiPesan);
             idmenu = (TextView) itemView.findViewById(R.id.tvIdMenurm);
             pathfoto = (TextView) itemView.findViewById(R.id.tvPathFotorm);
+            ivNotes = (ImageView) itemView.findViewById(R.id.ivNotes);
+            ivMenuLike = (ImageView) itemView.findViewById(R.id.ivMenuLikeRm);
             sharedPrefManager = new SharedPrefManager(itemView.getContext());
 
             linearLayout = (LinearLayout) itemView.findViewById(R.id.linearPesan);
             linearHarga = (LinearLayout) itemView.findViewById(R.id.linearHarga);
             restApi = ApiClient.getClient().create(RestApi.class);
+            apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
             //qtymenu.setVisibility(View.GONE);
             linearHarga.setVisibility(View.GONE);
             linearLayout.setVisibility(View.GONE);
 
-            btnPesanmenu.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
 
-                }
-            });
 
             btnPesanmenu.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
 
                     final Dialog dialog = new Dialog(view.getContext());
                     dialog.setContentView(R.layout.dialog_pesan);
@@ -132,6 +213,7 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyHold
                     final Button plusCart = (Button) dialog.findViewById(R.id.btnPlusDialogPesan);
                     final Button minCart = (Button) dialog.findViewById(R.id.btnMinDialogPesan);
                     final TextView tvQtyDialogPesan = (TextView) dialog.findViewById(R.id.tvQtyDialogPesan);
+
 
                     tvLanjutkan.setVisibility(View.GONE);
                     btnNext.setText("Pesan");
@@ -215,6 +297,11 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyHold
                             String menuid = idmenu.getText().toString();
                             String subtotal = totalharga.getText().toString();
                             String notes = etCatatanDialog.getText().toString();
+                            if (!notes.equals("")){
+                                ivNotes.setVisibility(View.VISIBLE);
+                            }else {
+                                ivNotes.setVisibility(View.GONE);
+                            }
 
                             linearHarga.setVisibility(View.VISIBLE);
                             linearLayout.setVisibility(View.VISIBLE);
@@ -227,11 +314,7 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyHold
                         }
                     });
 
-
                     dialog.show();
-
-
-
                 }
             });
 
@@ -242,7 +325,6 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyHold
                     linearLayout.setVisibility(View.GONE);
                     btnPesanmenu.setVisibility(View.VISIBLE);
                     qtymenu.setText("1");
-
 
                 }
             });
