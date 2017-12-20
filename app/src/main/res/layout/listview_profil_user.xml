@@ -64,6 +64,7 @@
             </LinearLayout>
         </LinearLayout>
         <View
+            android:layout_marginTop="-20dp"
             android:layout_width="match_parent"
             android:layout_height="3dp"
             android:layout_marginBottom="10dp"
@@ -283,12 +284,16 @@
                 </RelativeLayout>
             </LinearLayout>
         </LinearLayout>
+        <View
+            android:layout_marginTop="36dp"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/cloud"/>
         <LinearLayout
             android:background="@color/white"
             android:layout_margin="10dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal">
+            android:layout_height="match_parent">
             <RelativeLayout
                 android:layout_marginTop="11dp"
                 android:layout_width="wrap_content"
@@ -297,14 +302,7 @@
                     android:layout_marginLeft="10dp"
                     android:orientation="vertical"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal">
-                    <TextView
-                        android:id="@+id/tvHubungi"
-                        android:textSize="@dimen/font_judul_profil"
-                        android:text="@string/hubungi_trf"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content">
                     <TextView
                         android:id="@+id/tvMenuLain"
                         android:layout_marginTop="5dp"
@@ -313,6 +311,33 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"/>
+                    <TextView
+                        android:id="@+id/tvHubungi"
+                        android:textSize="@dimen/font_judul_profil"
+                        android:text="@string/hubungi_trf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginLeft="300dp"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:textSize="@dimen/font_judul_profil"
+                        android:text=">"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"/>
+                    <TextView
+                        android:textSize="@dimen/font_judul_profil"
+                        android:text=">"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
 
                 </LinearLayout>
             </RelativeLayout>
