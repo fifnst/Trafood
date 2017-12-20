@@ -75,8 +75,8 @@
                     android:src="@drawable/view_kedai"
                     android:layout_centerInParent="true"
                     android:id="@+id/btnBuatKedai"
-                    android:layout_width="90dp"
-                    android:layout_height="90dp" />
+                    android:layout_width="80dp"
+                    android:layout_height="80dp" />
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -107,16 +107,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <LinearLayout
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="15dp"
                         android:orientation="vertical"
-                        android:layout_width="wrap_content"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:gravity="center">
                         <ImageView
                             android:id="@+id/btnTambahMenuProfil"
                             android:src="@drawable/add_menu"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp" />
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            />
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
@@ -129,6 +131,7 @@
 
                     </LinearLayout>
                     <LinearLayout
+                        android:layout_marginTop="19dp"
                         android:layout_centerInParent="true"
                         android:orientation="vertical"
                         android:layout_width="wrap_content"
@@ -137,8 +140,8 @@
                         <ImageView
                             android:id="@+id/btnLihatProfil"
                             android:src="@drawable/view_kedai"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp" />
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"/>
                         <RelativeLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
@@ -150,17 +153,18 @@
                         </RelativeLayout>
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="15dp"
                         android:layout_alignParentRight="true"
                         android:orientation="vertical"
-                        android:layout_width="wrap_content"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:gravity="center">
                         <ImageView
                             android:id="@+id/btnRingkasankedai"
                             android:src="@drawable/summary"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp" />
+                            android:layout_width="80dp"
+                            android:layout_height="80dp" />
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
@@ -186,21 +190,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <LinearLayout
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="27dp"
                         android:orientation="vertical"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        >
+                        android:layout_height="wrap_content" >
                         <ImageView
                             android:id="@+id/btnReviewProfil"
                             android:src="@drawable/review"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp" />
+                            android:layout_width="80dp"
+                            android:layout_height="80dp" />
                         <LinearLayout
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginLeft="1dp"
                             android:orientation="horizontal"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center">
                             <TextView
                                 android:text="@string/review"
                                 android:layout_width="wrap_content"
@@ -218,23 +222,28 @@
                         android:orientation="vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center">
+                        android:layout_gravity="center">
                         <ImageView
                             android:id="@+id/btnArticleProfil"
                             android:src="@drawable/article"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp" />
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_gravity="center"/>
                         <LinearLayout
                             android:orientation="horizontal"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:gravity="center"
+                            android:layout_marginLeft="20dp">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/article"/>
+                                android:text="@string/article"
+                                android:gravity="center"/>
                             <TextView
-                                android:layout_marginLeft="16dp"
+                                android:layout_marginLeft="2dp"
                                 android:layout_marginRight="3dp"
                                 android:id="@+id/tvArtikelProfil"
                                 android:layout_width="wrap_content"
@@ -242,7 +251,7 @@
                         </LinearLayout>
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_marginRight="10dp"
+                        android:layout_marginRight="23dp"
                         android:layout_alignParentRight="true"
                         android:orientation="vertical"
                         android:layout_width="wrap_content"
@@ -250,8 +259,8 @@
                         <ImageView
                             android:id="@+id/btnPengaturanProfil"
                             android:src="@drawable/setting"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp" />
+                            android:layout_width="80dp"
+                            android:layout_height="80dp" />
                         <TextView
                             android:text="@string/pengaturan"
                             android:layout_marginLeft="20dp"
