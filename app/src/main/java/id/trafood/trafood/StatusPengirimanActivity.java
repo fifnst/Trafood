@@ -10,9 +10,8 @@ public class StatusPengirimanActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_status_pengiriman);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Status Pengiriman");
+        getSupportActionBar().setTitle("Keranjang");
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_green_24dp);
         getSupportActionBar().setElevation(0);
     }

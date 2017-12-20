@@ -165,7 +165,9 @@
         <activity
             android:name=".ThanksActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".StatusPengirimanActivity"></activity>
+        <activity
+            android:name=".StatusPengirimanActivity"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
