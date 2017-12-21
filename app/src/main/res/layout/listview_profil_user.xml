@@ -63,6 +63,12 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
         </LinearLayout>
+        <View
+            android:layout_marginTop="-20dp"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/cloud"/>
         <LinearLayout
             android:id="@+id/linearTambahKedai"
             android:orientation="vertical"
@@ -75,13 +81,14 @@
                     android:src="@drawable/view_kedai"
                     android:layout_centerInParent="true"
                     android:id="@+id/btnBuatKedai"
-                    android:layout_width="90dp"
-                    android:layout_height="90dp" />
+                    android:layout_width="80dp"
+                    android:layout_height="80dp" />
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:layout_marginTop="10dp"
                     android:layout_centerInParent="true"
                     android:text="Tambah Kedai"
                     android:layout_width="wrap_content"
@@ -107,20 +114,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <LinearLayout
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="15dp"
                         android:orientation="vertical"
-                        android:layout_width="wrap_content"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:gravity="center">
                         <ImageView
                             android:id="@+id/btnTambahMenuProfil"
                             android:src="@drawable/add_menu"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp" />
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            />
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
                             <TextView
+                                android:layout_marginTop="10dp"
                                 android:layout_centerInParent="true"
                                 android:text="@string/tambahmenu"
                                 android:layout_width="wrap_content"
@@ -129,6 +139,7 @@
 
                     </LinearLayout>
                     <LinearLayout
+                        android:layout_marginTop="19dp"
                         android:layout_centerInParent="true"
                         android:orientation="vertical"
                         android:layout_width="wrap_content"
@@ -137,12 +148,13 @@
                         <ImageView
                             android:id="@+id/btnLihatProfil"
                             android:src="@drawable/view_kedai"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp" />
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"/>
                         <RelativeLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <TextView
+                                android:layout_marginTop="10dp"
                                 android:layout_centerInParent="true"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -150,21 +162,23 @@
                         </RelativeLayout>
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="15dp"
                         android:layout_alignParentRight="true"
                         android:orientation="vertical"
-                        android:layout_width="wrap_content"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:gravity="center">
                         <ImageView
                             android:id="@+id/btnRingkasankedai"
                             android:src="@drawable/summary"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp" />
+                            android:layout_width="80dp"
+                            android:layout_height="80dp" />
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
                             <TextView
+                                android:layout_marginTop="10dp"
                                 android:layout_centerInParent="true"
                                 android:text="Ringkasan"
                                 android:layout_marginLeft="20dp"
@@ -186,23 +200,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <LinearLayout
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="27dp"
                         android:orientation="vertical"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        >
+                        android:layout_height="wrap_content" >
                         <ImageView
                             android:id="@+id/btnReviewProfil"
                             android:src="@drawable/review"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp" />
+                            android:layout_width="80dp"
+                            android:layout_height="80dp" />
                         <LinearLayout
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginLeft="1dp"
                             android:orientation="horizontal"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp">
                             <TextView
-                                android:text="@string/review"
+                                android:text="Ulasan"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
                             <TextView
@@ -218,23 +233,29 @@
                         android:orientation="vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center">
+                        android:layout_gravity="center">
                         <ImageView
                             android:id="@+id/btnArticleProfil"
                             android:src="@drawable/article"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp" />
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_gravity="center"/>
                         <LinearLayout
                             android:orientation="horizontal"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:gravity="center"
+                            android:layout_marginLeft="11dp"
+                            android:layout_marginTop="10dp">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/article"/>
+                                android:text="Mari Bercerita"
+                                android:gravity="center"/>
                             <TextView
-                                android:layout_marginLeft="16dp"
+                                android:layout_marginLeft="2dp"
                                 android:layout_marginRight="3dp"
                                 android:id="@+id/tvArtikelProfil"
                                 android:layout_width="wrap_content"
@@ -242,7 +263,7 @@
                         </LinearLayout>
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_marginRight="10dp"
+                        android:layout_marginRight="23dp"
                         android:layout_alignParentRight="true"
                         android:orientation="vertical"
                         android:layout_width="wrap_content"
@@ -250,11 +271,12 @@
                         <ImageView
                             android:id="@+id/btnPengaturanProfil"
                             android:src="@drawable/setting"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp" />
+                            android:layout_width="80dp"
+                            android:layout_height="80dp" />
                         <TextView
-                            android:text="@string/pengaturan"
-                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Pengatuan"
+                            android:layout_marginLeft="4dp"
                             android:id="@+id/tvPengaturan"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
@@ -262,12 +284,16 @@
                 </RelativeLayout>
             </LinearLayout>
         </LinearLayout>
+        <View
+            android:layout_marginTop="36dp"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/cloud"/>
         <LinearLayout
             android:background="@color/white"
             android:layout_margin="10dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal">
+            android:layout_height="match_parent">
             <RelativeLayout
                 android:layout_marginTop="11dp"
                 android:layout_width="wrap_content"
@@ -276,14 +302,7 @@
                     android:layout_marginLeft="10dp"
                     android:orientation="vertical"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal">
-                    <TextView
-                        android:id="@+id/tvHubungi"
-                        android:textSize="@dimen/font_judul_profil"
-                        android:text="@string/hubungi_trf"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content">
                     <TextView
                         android:id="@+id/tvMenuLain"
                         android:layout_marginTop="5dp"
@@ -292,6 +311,33 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"/>
+                    <TextView
+                        android:id="@+id/tvHubungi"
+                        android:textSize="@dimen/font_judul_profil"
+                        android:text="@string/hubungi_trf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginLeft="300dp"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:textSize="@dimen/font_judul_profil"
+                        android:text=">"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"/>
+                    <TextView
+                        android:textSize="@dimen/font_judul_profil"
+                        android:text=">"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
 
                 </LinearLayout>
             </RelativeLayout>
