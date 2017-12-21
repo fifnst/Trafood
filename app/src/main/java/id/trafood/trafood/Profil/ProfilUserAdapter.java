@@ -154,7 +154,8 @@ public class ProfilUserAdapter extends RecyclerView.Adapter<ProfilUserAdapter.My
 
     public class MyHolders extends RecyclerView.ViewHolder {
         LinearLayout linearsudahlogin,linearPengaturanKedai,lineardaftarkedai;
-        TextView nama,tvkota, tvabout, tvpoint,tvartikel, tvulasan, tvMenuLain;
+        TextView nama,tvkota, tvabout, tvpoint,tvartikel, tvulasan;
+        LinearLayout tvMenuLain;
         CircleImageView fotoprofil;
 
         ImageView btnTambahMenu,btneditkedai,btnRingkasankedai,btnReviewProfil, btnArticleProfil, btnPengaturanProfil,btnTambahKedai;
@@ -170,7 +171,7 @@ public class ProfilUserAdapter extends RecyclerView.Adapter<ProfilUserAdapter.My
             tvpoint = (TextView) itemView.findViewById(R.id.tvPointProfil);
             tvartikel = (TextView) itemView.findViewById(R.id.tvArtikelProfil);
             tvulasan = (TextView) itemView.findViewById(R.id.tvUlasanProfil);
-            tvMenuLain = (TextView) itemView.findViewById(R.id.tvMenuLain);
+            tvMenuLain = (LinearLayout) itemView.findViewById(R.id.tvMenuLain);
 
             fotoprofil = (CircleImageView) itemView.findViewById(R.id.ciFotoProfil);
             btnTambahMenu = (ImageView) itemView.findViewById(R.id.btnTambahMenuProfil);
