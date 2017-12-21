@@ -19,7 +19,7 @@ public class SplashScreen extends AppCompatActivity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_splash_screen);
 
-        tvSplash = (TextView) findViewById(R.id.tvSplash);
+        //tvSplash = (TextView) findViewById(R.id.tvSplash);
 
 
         final Handler handler = new Handler();
@@ -29,6 +29,6 @@ public class SplashScreen extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 finish();
             }
-        }, 3000L); //3000 L = 3 detik
+        }, 2000L); //3000 L = 3 detik
     }
 }

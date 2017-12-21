@@ -84,8 +84,8 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyHold
             }
         });
 
-        final Drawable likebelumlike = holder.ivMenuLike.getContext().getResources().getDrawable(R.drawable.before_recommended);
-        final Drawable sudahpernahlike = holder.ivMenuLike.getContext().getResources().getDrawable(R.drawable.after_recommended);
+        final Drawable likebelumlike = holder.ivMenuLike.getContext().getResources().getDrawable(R.drawable.love_before);
+        final Drawable sudahpernahlike = holder.ivMenuLike.getContext().getResources().getDrawable(R.drawable.love_after);
 
         if (holder.sharedPrefManager.getSPSudahLogin()){
             final String menuid = mMenu.get(position).getMenuid();

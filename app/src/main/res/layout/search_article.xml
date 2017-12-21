@@ -8,17 +8,21 @@
     android:layout_margin="5dp"
     android:background="@color/white"
     app:tabIndicatorHeight="2dp"
-    app:tabIndicatorColor="@color/colorPrimary"
-    app:tabSelectedTextColor="@color/colorPrimary"
-    app:tabTextColor="@color/colorPrimary">
+    app:tabIndicatorColor="@color/green"
+    app:tabSelectedTextColor="@color/green"
+    app:tabTextColor="@color/grey">
 
 
-
-    <TextView
-        android:layout_marginLeft="10dp"
+    <!--
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Artikel" />
+        app:srcCompat="@drawable/ic_search_article"/>
+    -->
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Artikel"/>
 
 </LinearLayout>

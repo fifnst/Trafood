@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:layout_marginBottom="50dp"/>
+            android:layout_marginBottom="90dp"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -51,29 +51,32 @@
                 android:layout_height="2dp"
                 android:background="@color/pink_trf"/>
             <LinearLayout
-                android:padding="7dp"
+                android:padding="10dp"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center">
                     <TextView
-                        android:layout_marginTop="1dp"
+                        android:layout_marginTop="-2dp"
                         android:background="@drawable/bg_notif_rounded"
                         android:textColor="@color/pink_trf"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginLeft="22dp"
                         android:textSize="7sp"
                         android:text="2"
+                        android:gravity="center"
                         android:id="@+id/tvQtyj"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_width="15dp"
+                        android:layout_height="15dp" />
                     <ImageView
-                        android:layout_marginTop="10dp"
-                        android:src="@drawable/cartred"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp" />
+                        android:layout_marginTop="7dp"
+                        android:src="@drawable/keranjang"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp" />
 
                 </RelativeLayout>
 
@@ -81,25 +84,30 @@
                     android:layout_marginLeft="15dp"
                     android:orientation="vertical"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp">
+
                     <TextView
-                        android:textSize="10dp"
-                        android:text="perkiraan Harga "
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:text="Perkiraan Harga "
+                        android:textSize="10dp" />
                     <LinearLayout
                         android:orientation="horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
                         <TextView
                             android:textColor="@color/colorPrimary"
-                            android:textSize="15dp"
+                            android:textSize="20dp"
                             android:text="Rp. "
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <TextView
                             android:textColor="@color/colorPrimary"
-                            android:textSize="15dp"
+                            android:textSize="20dp"
                             android:text="ww"
                             android:id="@+id/tvTotalhargaPerkiraan"
                             android:layout_width="wrap_content"
@@ -110,6 +118,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                     <RelativeLayout
+                        android:layout_marginTop="13dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
                         <ImageView

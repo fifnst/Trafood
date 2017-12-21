@@ -20,15 +20,14 @@
             android:id="@+id/map1"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
-            android:layout_height="240dp"
+            android:layout_height="211dp"
             tools:context="id.trafood.trafood.MapsActivity"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
         <Button
 
             android:textColor="@color/white"
-            android:background="@color/green"
+            android:background="@color/pink_trf"
             android:text="get direction"
-            android:layout_margin="3dp"
             android:id="@+id/btnDirection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
