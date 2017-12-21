@@ -32,7 +32,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * A simple {@link Fragment} subclass.
+ * A simple {@link Fragment} subclass...
  */
 public class NotificationFragment extends Fragment {
 
