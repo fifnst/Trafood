@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -52,6 +53,7 @@ public class Fragment_ListMenu extends Fragment {
     SharedPrefManager sharedPrefManager;
     RelativeLayout relativeLayout;
     TextView harga,rtr;
+    LinearLayout linearLayout;
 
 
     public Fragment_ListMenu() {
@@ -78,6 +80,7 @@ public class Fragment_ListMenu extends Fragment {
         relativeLayout = (RelativeLayout) view.findViewById(R.id.linearTotalHarga);
         harga = (TextView) view.findViewById(R.id.tvTotalhargaPerkiraan);
         rtr = (TextView) view.findViewById(R.id.tvQtyj);
+        linearLayout = (LinearLayout) view.findViewById(R.id.linearClick);
 
         relativeLayout.setVisibility(View.GONE);
         layoutManager = new LinearLayoutManager(this.getActivity());
@@ -153,13 +156,13 @@ public class Fragment_ListMenu extends Fragment {
             rtr.setText(String.valueOf(qts));
         }
 
-       /* relativeLayout.setOnClickListener(new View.OnClickListener() {
+        linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), CartActivity.class);
                 view.getContext().startActivity(intent);
             }
-        });*/
+        });
 
     }
 

@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -362,7 +363,7 @@ public class DetailMenu extends AppCompatActivity {
                                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                                     try {
                                         JSONObject jsonResult = new JSONObject(response.body().string());
-                                        String namarm = jsonResult.getJSONObject("result").getString("namarm");
+                                        final String namarm = jsonResult.getJSONObject("result").getString("namarm");
                                         String rmid = jsonResult.getJSONObject("result").getString("rmid");
                                         if (jsonResult.getString("status").equals("200")){
                                             dialog(useridUser,menuid,fotomenu,hargamenu,namamenu, namarm);
@@ -370,9 +371,43 @@ public class DetailMenu extends AppCompatActivity {
                                         } else {
                                             new AlertDialog.Builder(DetailMenu.this)
                                                     .setMessage("Kamu sudah pesan menu di kedai '"+namarm+
-                                                            "' kamu hanya boleh pesan menu di Kedai tersebut")
+                                                            "' Apa pesanan itu mau di hapus dulu?")
                                                     .setCancelable(false)
-                                                    .setNegativeButton("Mengerti", null)
+                                                    .setPositiveButton("Hapus", new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                                            restApi.hapusduluCart(useridUser).enqueue(new Callback<ResponseBody>() {
+                                                                @Override
+                                                                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                                                    try {
+                                                                        JSONObject jsonResult = new JSONObject(response.body().string());
+                                                                        if (jsonResult.getString("result").equals("201")){
+                                                                            dialog(useridUser,menuid,fotomenu,hargamenu,namamenu, namarm);
+                                                                            Log.d("TAG", "berhasil dihapus");
+                                                                        }
+                                                                    } catch (JSONException e) {
+                                                                        e.printStackTrace();
+                                                                    } catch (IOException e) {
+                                                                        e.printStackTrace();
+                                                                    }
+                                                                    Log.d("TAG", "berhasil dihapus tapi tidak di cek dulu");
+                                                                }
+
+                                                                @Override
+                                                                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                                                    dialog(useridUser,menuid,fotomenu,hargamenu,namamenu, namarm);
+                                                                    Log.d("TAG", "Cek dulu di database di hapus atau tidak");
+                                                                }
+                                                            });
+                                                        }
+                                                    })
+                                                    .setNegativeButton("Jangan, lanjut transaksi", new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                                            Intent intent = new Intent(DetailMenu.this, CartActivity.class);
+                                                            DetailMenu.this.startActivity(intent);
+                                                        }
+                                                    })
                                                     .show();
                                             Toast.makeText(dm, "204", Toast.LENGTH_SHORT).show();
                                         }

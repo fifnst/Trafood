@@ -1,9 +1,12 @@
 package id.trafood.trafood.Rumahmakan.Adapter;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,9 +26,11 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.List;
 
+import id.trafood.trafood.CartActivity;
 import id.trafood.trafood.DetailMenu;
 import id.trafood.trafood.Models.Menu;
 import id.trafood.trafood.Models.MenuDetail;
+import id.trafood.trafood.Models.PostPutDelOrder;
 import id.trafood.trafood.R;
 import id.trafood.trafood.Rest.ApiClient;
 import id.trafood.trafood.Rest.ApiInterface;
@@ -197,132 +202,235 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyHold
 
             btnPesanmenu.setOnClickListener(new View.OnClickListener() { //tombol pesan yang ini yang masukin ke database
                 @Override
-                public void onClick(View view) {
+                public void onClick(final View view) {
+                    final String userid = sharedPrefManager.getSpUserid();
+                    final String menuid = idmenu.getText().toString();
+                    Log.d("TAG", "pesan di klik"+userid+" "+menuid);
+                    if (sharedPrefManager.getSPSudahLogin()){
+                        apiInterface.getCartDetail(userid).enqueue(new Callback<ResponseBody>() {
+                            @Override
+                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                try {
+                                    JSONObject jsonResult = new JSONObject(response.body().string());
+                                    if (jsonResult.getString("status").equals("204")){ //cek dia pernah pesan atau belum
+                                        dialog();
+                                    }else{ //ternyata dia sudah pernah pesan di rumah makan lain
+                                        apiInterface.cekRm(userid,menuid).enqueue(new Callback<ResponseBody>() {
+                                            @Override
+                                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                                try {
+                                                    JSONObject jsonResult = new JSONObject(response.body().string());
+                                                    Log.d("TAG", "Dia cuma merespon");
+                                                    if (jsonResult.getString("status").equals("200")){ //ternyata pesanannya berada di kedai yang sama
+                                                        Log.d("TAG", "Yang ini bahwa dia belum pernah pesan ke rumah makan lain");
+                                                        dialog();
+                                                    }else { //ternyat pesanannya berbeda kedai dia diberi dua pilihan hapus dulu cart atau lanjut pembayaran
+                                                        new AlertDialog.Builder(view.getContext())
+                                                                .setMessage("Kamu sudah punya kerangjang di kedai lain. Apa pesanan itu mau di hapus dulu?")
+                                                                .setCancelable(false)
+                                                                .setPositiveButton("Hapus", new DialogInterface.OnClickListener() {
+                                                                    @Override
+                                                                    public void onClick(DialogInterface dialogInterface, int i) { //dia pilih mending hapus
+                                                                        restApi.hapusduluCart(userid).enqueue(new Callback<ResponseBody>() {
+                                                                            @Override
+                                                                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                                                                try {
+                                                                                    JSONObject jsonResult = new JSONObject(response.body().string());
+                                                                                    if (jsonResult.getString("result").equals("201")){
+                                                                                        dialog();
+                                                                                        Log.d("TAG", "berhasil dihapus");
+                                                                                    }
+                                                                                } catch (JSONException e) {
+                                                                                    e.printStackTrace();
+                                                                                } catch (IOException e) {
+                                                                                    e.printStackTrace();
+                                                                                }
+                                                                            }
 
-                    final Dialog dialog = new Dialog(view.getContext());
-                    dialog.setContentView(R.layout.dialog_pesan);
-                    dialog.setCancelable(false);
-                    ImageView imageView = (ImageView) dialog.findViewById(R.id.imageDialog);
-                    final TextView tvHargaD = (TextView) dialog.findViewById(R.id.tvHargaDialog);
-                    TextView tvNamamemuD = (TextView) dialog.findViewById(R.id.tvNamaMenuDialog);
-                    final TextView tvLanjutkan = (TextView) dialog.findViewById(R.id.btnPilihDialog);
-                    final Button btnNext = (Button) dialog.findViewById(R.id.btnNextDialog);
-                    ImageButton imageButton = (ImageButton) dialog.findViewById(R.id.deleteDialog);
-                    final TextView totalharga = (TextView) dialog.findViewById(R.id.tvTotalpriceDialog);
-                    //final Spinner spinner = (Spinner) dialog.findViewById(R.id.spinnerDialog);
-                    final EditText etCatatanDialog = (EditText) dialog.findViewById(R.id.etCatatanDialog);
-                    final Button plusCart = (Button) dialog.findViewById(R.id.btnPlusDialogPesan);
-                    final Button minCart = (Button) dialog.findViewById(R.id.btnMinDialogPesan);
-                    final TextView tvQtyDialogPesan = (TextView) dialog.findViewById(R.id.tvQtyDialogPesan);
+                                                                            @Override
+                                                                            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                                                                            }
+                                                                        });
+                                                                    }
+                                                                })
+                                                                .setNegativeButton("Jangan, lanjut transaksi", new DialogInterface.OnClickListener() {
+                                                                    @Override
+                                                                    public void onClick(DialogInterface dialogInterface, int i) { //dia pilih mending lanjutkan
+                                                                        Intent intent = new Intent(view.getContext(), CartActivity.class);
+                                                                        view.getContext().startActivity(intent);
+                                                                    }
+                                                                })
+                                                                .show();
+                                                    }
+                                                } catch (JSONException e) {
+                                                    e.printStackTrace();
+                                                } catch (IOException e) {
+                                                    e.printStackTrace();
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                                            }
+                                        });
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            private void dialog() {
+                                final Dialog dialog = new Dialog(view.getContext());
+                                dialog.setContentView(R.layout.dialog_pesan);
+                                dialog.setCancelable(false);
+                                ImageView imageView = (ImageView) dialog.findViewById(R.id.imageDialog);
+                                final TextView tvHargaD = (TextView) dialog.findViewById(R.id.tvHargaDialog);
+                                TextView tvNamamemuD = (TextView) dialog.findViewById(R.id.tvNamaMenuDialog);
+                                final TextView tvLanjutkan = (TextView) dialog.findViewById(R.id.btnPilihDialog);
+                                final Button btnNext = (Button) dialog.findViewById(R.id.btnNextDialog);
+                                ImageButton imageButton = (ImageButton) dialog.findViewById(R.id.deleteDialog);
+                                final TextView totalharga = (TextView) dialog.findViewById(R.id.tvTotalpriceDialog);
+                                //final Spinner spinner = (Spinner) dialog.findViewById(R.id.spinnerDialog);
+                                final EditText etCatatanDialog = (EditText) dialog.findViewById(R.id.etCatatanDialog);
+                                final Button plusCart = (Button) dialog.findViewById(R.id.btnPlusDialogPesan);
+                                final Button minCart = (Button) dialog.findViewById(R.id.btnMinDialogPesan);
+                                final TextView tvQtyDialogPesan = (TextView) dialog.findViewById(R.id.tvQtyDialogPesan);
 
 
-                    tvLanjutkan.setVisibility(View.GONE);
-                    btnNext.setText("Pesan");
-                    Picasso.with(view.getContext()).load(Connect.IMAGE_MENU_URL+pathfoto.getText().toString())
-                            .into(imageView);
-                    tvNamamemuD.setText(tvNamamemu.getText().toString());
-                    tvQtyDialogPesan.setText(qtymenu.getText().toString());
-                    tvHargaD.setText(tvHargamenu.getText().toString());
-                    totalharga.setText(tvHargamenu.getText().toString());
-                    String sumStr = tvQtyDialogPesan.getText().toString();
-                    int sum = Integer.valueOf(sumStr);
-                    if (sum <= 1){
-                        minCart.setEnabled(false);
+                                tvLanjutkan.setVisibility(View.GONE);
+                                btnNext.setText("Pesan");
+                                Picasso.with(view.getContext()).load(Connect.IMAGE_MENU_URL+pathfoto.getText().toString())
+                                        .into(imageView);
+                                tvNamamemuD.setText(tvNamamemu.getText().toString());
+                                tvQtyDialogPesan.setText(qtymenu.getText().toString());
+                                tvHargaD.setText(tvHargamenu.getText().toString());
+                                totalharga.setText(tvHargamenu.getText().toString());
+                                String sumStr = tvQtyDialogPesan.getText().toString();
+                                int sum = Integer.valueOf(sumStr);
+                                if (sum <= 1){
+                                    minCart.setEnabled(false);
+                                }
+
+                                plusCart.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        String sumStr = qtymenu.getText().toString();
+                                        int sum = Integer.valueOf(sumStr);
+                                        sum += 1;
+                                        String sumStra = String.valueOf(sum);
+                                        tvQtyDialogPesan.setText(sumStra);
+                                        qtymenu.setText(sumStra);
+
+                                        String harga = tvHargaD.getText().toString();
+                                        int hargas = Integer.parseInt(harga);
+                                        int kali = hargas*sum;
+                                        subtotalmenu.setText(String.valueOf(kali));
+                                        totalharga.setText(String.valueOf(kali));
+
+                                        if (sumStra.equals(sumStr)){
+                                            linearLayout.setVisibility(View.GONE);
+                                        }
+                                        minCart.setEnabled(true);
+                                        if (sumStra.equals("1")){
+                                            minCart.setEnabled(false);
+                                        }
+                                    }
+                                });
+
+                                minCart.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        String sumStr = qtymenu.getText().toString();
+                                        int sum = Integer.valueOf(sumStr);
+                                        sum -= 1;
+                                        String sumStra = String.valueOf(sum);
+                                        tvQtyDialogPesan.setText(sumStra);
+                                        qtymenu.setText(sumStra);
+
+                                        String harga = tvHargaD.getText().toString();
+                                        int hargas = Integer.parseInt(harga);
+                                        int kali = hargas*sum;
+                                        subtotalmenu.setText(String.valueOf(kali));
+                                        totalharga.setText(String.valueOf(kali));
+
+                                        if (sumStra.equals(sumStr)){
+                                            linearLayout.setVisibility(View.GONE);
+                                        }
+                                        if (sumStra.equals("1")){
+                                            minCart.setEnabled(false);
+                                        }
+
+                                    }
+                                });
+
+                                imageButton.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        qtymenu.setText("1");
+                                        dialog.dismiss();
+                                    }
+                                });
+
+                                btnNext.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        String qty = tvQtyDialogPesan.getText().toString();
+                                        String userid = sharedPrefManager.getSpUserid();
+                                        String menuid = idmenu.getText().toString();
+                                        String subtotal = totalharga.getText().toString();
+                                        String notes = etCatatanDialog.getText().toString();
+                                        restApi.postPesanan(menuid,userid,qty,notes).enqueue(new Callback<PostPutDelOrder>() {
+                                            @Override
+                                            public void onResponse(Call<PostPutDelOrder> call, Response<PostPutDelOrder> response) {
+                                                Log.d("TAG","Ini respon pas tambah ");
+                                            }
+
+                                            @Override
+                                            public void onFailure(Call<PostPutDelOrder> call, Throwable t) {
+
+                                            }
+                                        });
+
+                                        if (!notes.equals("")){
+                                            ivNotes.setVisibility(View.VISIBLE);
+                                        }else {
+                                            ivNotes.setVisibility(View.GONE);
+                                        }
+
+                                        linearHarga.setVisibility(View.VISIBLE);
+                                        linearLayout.setVisibility(View.VISIBLE);
+                                        btnPesanmenu.setVisibility(View.GONE);
+
+                                        qtymenu.setText(qty);
+                                        subtotalmenu.setText(subtotal);
+                                        dialog.dismiss();
+                                        String status = "0";//0 artinya dia harus tamab
+                                        Fragment_ListMenu.fl.cekdataapi(subtotal,status,qty);
+                                    }
+                                });
+
+                                dialog.show();
+                            }
+                            @Override
+                            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                            }
+                        });
+
+                    }else{
+                        Toast.makeText(view.getContext(), "Kamu harus login dulu untuk memesan makanan", Toast.LENGTH_SHORT).show();
                     }
-
-                    plusCart.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            String sumStr = qtymenu.getText().toString();
-                            int sum = Integer.valueOf(sumStr);
-                            sum += 1;
-                            String sumStra = String.valueOf(sum);
-                            tvQtyDialogPesan.setText(sumStra);
-                            qtymenu.setText(sumStra);
-
-                            String harga = tvHargaD.getText().toString();
-                            int hargas = Integer.parseInt(harga);
-                            int kali = hargas*sum;
-                            subtotalmenu.setText(String.valueOf(kali));
-                            totalharga.setText(String.valueOf(kali));
-
-                            if (sumStra.equals(sumStr)){
-                                linearLayout.setVisibility(View.GONE);
-                            }
-                            minCart.setEnabled(true);
-                            if (sumStra.equals("1")){
-                                minCart.setEnabled(false);
-                            }
-                        }
-                    });
-
-                   minCart.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            String sumStr = qtymenu.getText().toString();
-                            int sum = Integer.valueOf(sumStr);
-                            sum -= 1;
-                            String sumStra = String.valueOf(sum);
-                            tvQtyDialogPesan.setText(sumStra);
-                            qtymenu.setText(sumStra);
-
-                            String harga = tvHargaD.getText().toString();
-                            int hargas = Integer.parseInt(harga);
-                            int kali = hargas*sum;
-                            subtotalmenu.setText(String.valueOf(kali));
-                            totalharga.setText(String.valueOf(kali));
-
-                            if (sumStra.equals(sumStr)){
-                                linearLayout.setVisibility(View.GONE);
-                            }
-                            if (sumStra.equals("1")){
-                                minCart.setEnabled(false);
-                            }
-
-                        }
-                    });
-
-                    imageButton.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            qtymenu.setText("1");
-                            dialog.dismiss();
-                        }
-                    });
-
-                    btnNext.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            String qty = tvQtyDialogPesan.getText().toString();
-                            String userid = sharedPrefManager.getSpUserid();
-                            String menuid = idmenu.getText().toString();
-                            String subtotal = totalharga.getText().toString();
-                            String notes = etCatatanDialog.getText().toString();
-                            if (!notes.equals("")){
-                                ivNotes.setVisibility(View.VISIBLE);
-                            }else {
-                                ivNotes.setVisibility(View.GONE);
-                            }
-
-                            linearHarga.setVisibility(View.VISIBLE);
-                            linearLayout.setVisibility(View.VISIBLE);
-                            btnPesanmenu.setVisibility(View.GONE);
-
-                            qtymenu.setText(qty);
-                            subtotalmenu.setText(subtotal);
-                            dialog.dismiss();
-                            String status = "0";//0 artinya dia harus tamab
-                            Fragment_ListMenu.fl.cekdataapi(subtotal,status,qty);
-                        }
-                    });
-
-                    dialog.show();
                 }
             });
 
             btnBatalpesan.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    String userid = sharedPrefManager.getSpUserid();
+                    String menuid = idmenu.getText().toString();
                     linearHarga.setVisibility(View.GONE);
                     linearLayout.setVisibility(View.GONE);
                     btnPesanmenu.setVisibility(View.VISIBLE);
@@ -332,6 +440,17 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyHold
 
                     String status = "1"; // 1 artinya dia harus di kurangi
                     Fragment_ListMenu.fl.cekdataapi(subtoyals,status,qty);
+                    restApi.hapussatu(userid,menuid).enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            Log.d("TAG","Respon ketika dia me delete");
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                        }
+                    });
 
                 }
             });
@@ -443,6 +562,18 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyHold
                             String menuid = idmenu.getText().toString();
                             String subtotal = totalharga.getText().toString();
                             String notes = etCatatanDialog.getText().toString();
+
+                            restApi.putPesanan(menuid,userid,qty,notes).enqueue(new Callback<PostPutDelOrder>() {
+                                @Override
+                                public void onResponse(Call<PostPutDelOrder> call, Response<PostPutDelOrder> response) {
+                                    Log.d("TAG", "ini respon ketika mengupdate menu");
+                                }
+
+                                @Override
+                                public void onFailure(Call<PostPutDelOrder> call, Throwable t) {
+
+                                }
+                            });
                             if (!notes.equals("")){
                                 ivNotes.setVisibility(View.VISIBLE);
                             }if (notes.equals("")) {

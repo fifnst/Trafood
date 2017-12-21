@@ -217,9 +217,32 @@ public interface RestApi {
     Call<ResponseBody> deleteCart(@Field("cart_id") String cart_id);
 
     @FormUrlEncoded
-    @PUT("index.php/transaction/cart")
+    @PUT("index.php/transaction/cart")//update yang langusung dari cartmya
     Call<ResponseBody> putNotes(@Field("cart_id") String cart_id,
                                 @Field("qty") String qty,
                                 @Field("notes") String notes);
+
+
+    @GET("index.php/transaction/cart/deleteall")
+    Call<ResponseBody> hapusduluCart(@Query("userid") String userid);
+
+    @GET("index.php/transaction/cart/deletesatu")
+    Call<ResponseBody> hapussatu(@Query("userid") String userid,
+                                 @Query("menuid") String menuid);
+
+
+    @FormUrlEncoded
+    @PUT("index.php/transaction/cart/update")
+    Call<PostPutDelOrder> putPesanan(@Field("menuid") String menuid,
+                                   @Field("userid") String userid,
+                                   @Field("qty") String qty,
+                                   @Field("notes") String notes);
+
+    @FormUrlEncoded
+    @POST("index.php/transaction/cart/input")//update yang langusung dari cartmya
+    Call<PostPutDelOrder> postPesanan(@Field("menuid") String menuid,
+                                   @Field("userid") String userid,
+                                   @Field("qty") String qty,
+                                   @Field("notes") String notes);
 
 }
