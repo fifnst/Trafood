@@ -10,75 +10,82 @@
         android:background="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="match_parent">
-    <LinearLayout
-        android:id="@+id/isi"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:id="@+id/ivFotorm"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:scaleType="centerCrop"
-                android:src="@mipmap/ic_launcher"
-                android:layout_marginTop="@dimen/margin_rm"
-                android:layout_marginRight="@dimen/margin_rm"
-                android:layout_marginLeft="@dimen/margin_rm"/>
-            <LinearLayout
-                android:alpha="0.80"
-                android:background="@color/red"
-                android:orientation="horizontal"
-                android:layout_marginRight="@dimen/margin_rm"
-                android:layout_marginTop="@dimen/margin_rm"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="2dp">
-                <ImageView
-                    android:layout_marginLeft="@dimen/margin_rm"
-                    android:src="@drawable/ic_star"
-                    android:layout_width="19dp"
-                    android:layout_height="19dp" />
-                <TextView
-                    android:id="@+id/tvRatingRmIni"
-                    android:text="80"
-                    android:layout_marginTop="@dimen/margin_logo_kecil"
-                    android:layout_marginLeft="@dimen/margin_logo_kecil"
-                    android:layout_marginRight="@dimen/margin_rm"
-                    android:textColor="@color/white"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="13dp"/>
-            </LinearLayout>
 
-
-        </RelativeLayout>
-
-        <TextView
-            android:textColor="@color/radablack"
-            android:textSize="@dimen/font_namerm_size"
-            android:id="@+id/tvNamarm"
+        <LinearLayout
+            android:id="@+id/isi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_rm"
-            android:layout_marginRight="@dimen/margin_rm"/>
-        <TextView
-            android:textSize="@dimen/font_kategori_rm"
-            android:text="tes"
+            android:orientation="vertical">
 
-            android:textColor="@color/green"
-            android:id="@+id/tvKategoriRm"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/jarak_katgorike_lamat"
-            android:layout_marginLeft="@dimen/margin_rm"
-            android:layout_marginRight="@dimen/margin_rm"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/ivFotorm"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="@dimen/margin_rm"
+                    android:layout_marginRight="@dimen/margin_rm"
+                    android:layout_marginTop="@dimen/margin_rm"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/ic_launcher" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginRight="@dimen/margin_rm"
+                    android:layout_marginTop="@dimen/margin_rm"
+                    android:alpha="0.80"
+                    android:background="@color/red"
+                    android:orientation="horizontal"
+                    android:padding="2dp">
+
+                    <ImageView
+                        android:layout_width="19dp"
+                        android:layout_height="19dp"
+                        android:layout_marginLeft="@dimen/margin_rm"
+                        android:src="@drawable/ic_star" />
+
+                    <TextView
+                        android:id="@+id/tvRatingRmIni"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_logo_kecil"
+                        android:layout_marginRight="@dimen/margin_rm"
+                        android:layout_marginTop="@dimen/margin_logo_kecil"
+                        android:text="80"
+                        android:textColor="@color/white"
+                        android:textSize="13dp" />
+                </LinearLayout>
 
 
-    </LinearLayout>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tvNamarm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_rm"
+                android:layout_marginRight="@dimen/margin_rm"
+                android:textColor="@color/radablack"
+                android:textSize="@dimen/font_namerm_size" />
+
+            <TextView
+                android:id="@+id/tvKategoriRm"
+                android:layout_width="wrap_content"
+
+                android:layout_height="@dimen/jarak_katgorike_lamat"
+                android:layout_marginLeft="@dimen/margin_rm"
+                android:layout_marginRight="@dimen/margin_rm"
+                android:text="Les"
+                android:textColor="@color/green"
+                android:textSize="@dimen/font_kategori_rm" />
+
+
+        </LinearLayout>
         <LinearLayout
             android:layout_below="@+id/isi"
             android:id="@+id/alamat"
@@ -99,6 +106,7 @@
                 android:textSize="@dimen/font_alamat_size"/>
         </LinearLayout>
         <LinearLayout
+            android:layout_marginTop="2dp"
             android:layout_below="@+id/alamat"
             android:id="@+id/fasilitas"
             android:layout_marginLeft="8dp"
@@ -109,42 +117,42 @@
             <ImageView
                 android:layout_marginRight="2dp"
                 android:id="@+id/ivFasilitas"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24.8dp"
+                android:layout_height="24.8dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/wifi" />
             <ImageView
                 android:layout_marginRight="2dp"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24.8dp"
+                android:layout_height="24.8dp"
                 android:id="@+id/ivFSatu"
                 android:scaleType="fitXY"
                 android:src="@drawable/mosque"/>
             <ImageView
                 android:layout_marginRight="2dp"
                 android:id="@+id/ivFDua"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24.8dp"
+                android:layout_height="24.8dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/parking_area"/>
             <ImageView
                 android:layout_marginRight="2dp"
                 android:id="@+id/ivFTiga"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24.8dp"
+                android:layout_height="24.8dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/live_music"/>
             <ImageView
                 android:layout_marginRight="2dp"
                 android:id="@+id/ivFEmpat"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24.8dp"
+                android:layout_height="24.8dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/toilet"/>
             <ImageView
                 android:id="@+id/ivFLima"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24.8dp"
+                android:layout_height="24.8dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/smoking_area"/>
 
