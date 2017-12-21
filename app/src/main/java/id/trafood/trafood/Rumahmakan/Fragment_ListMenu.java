@@ -1,7 +1,9 @@
 package id.trafood.trafood.Rumahmakan;
 
 
+import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -19,6 +21,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import id.trafood.trafood.CartActivity;
 import id.trafood.trafood.DetailRm;
 import id.trafood.trafood.Models.Galery;
 import id.trafood.trafood.Models.GetMenu;
@@ -141,11 +144,22 @@ public class Fragment_ListMenu extends Fragment {
             qts -= sums;
             harga.setText(String.valueOf(hrafs));
             rtr.setText(String.valueOf(qts));
+            if (qts == 0){ //untuk menghide keterangan harga
+                relativeLayout.setVisibility(View.GONE);
+            }
         }if (status.equals("2")){// 2 artinya sama
            // hrafs -= sum;
             harga.setText(String.valueOf(hrafs));
             rtr.setText(String.valueOf(qts));
         }
+
+       /* relativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), CartActivity.class);
+                view.getContext().startActivity(intent);
+            }
+        });*/
 
     }
 
