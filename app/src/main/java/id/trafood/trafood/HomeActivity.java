@@ -40,7 +40,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
     private int[] tabIcons = {
             R.layout.search_menu,
             R.layout.search_kedai,
-            R.layout.search_article
+            //R.layout.search_article
     };
 
 
@@ -73,7 +73,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
     private void setupTabIcons() {
         tableLayout.getTabAt(0).setCustomView(tabIcons[0]);
         tableLayout.getTabAt(1).setCustomView(tabIcons[1]);
-        tableLayout.getTabAt(2).setCustomView(tabIcons[2]);
+      //  tableLayout.getTabAt(2).setCustomView(tabIcons[2]);
     }
 
     /*public void setupTabLayout(TabLayout tabLayout) {
@@ -200,13 +200,13 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
             ArrayList<Fragment> fragments = new ArrayList<>();
             fragments.add(homemenu);
             fragments.add(homresto);
-            fragments.add(homart);
+            //fragments.add(homart);
 
 
             ArrayList<String> titles = new ArrayList<>();
             titles.add("MENU");
             titles.add("KEDAI");
-            titles.add("ARTIKEL");
+           // titles.add("ARTIKEL");
 
             HomePagerAdapater adapater = new HomePagerAdapater(getSupportFragmentManager(), fragments, titles);
 
