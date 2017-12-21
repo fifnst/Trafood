@@ -3,6 +3,60 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardElevation="@dimen/jarak_fasilitas"
+        android:layout_marginTop="@dimen/jarak_fasilitas"
+        android:layout_marginBottom="@dimen/jarak_fasilitas">
+        <LinearLayout
+            android:layout_margin="15dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textStyle="bold"
+                android:textSize="@dimen/font_judul_fasilitas"
+                android:textColor="@color/radablack"
+                android:text="@string/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/tvDeskripsiInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"/>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+                <TextView
+                    android:layout_marginRight="5dp"
+                    android:text="84"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_marginRight="30dp"
+                    android:text="@string/ulasn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_marginRight="5dp"
+                    android:text="84"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:text="@string/menandai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
     <!-- this is for waktu buka -->
         <android.support.v7.widget.CardView
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -178,7 +232,7 @@
                         android:src="@drawable/wifi" />
 
                     <ImageView
-
+                        android:layout_marginTop="3dp"
                         android:id="@+id/ivFSatuInfo"
                         android:layout_width="@dimen/fasilitysize"
                         android:layout_height="@dimen/fasilitysize"
@@ -186,7 +240,7 @@
                         android:src="@drawable/mosque" />
 
                     <ImageView
-
+                        android:layout_marginTop="3dp"
                         android:id="@+id/ivFDuaInfo"
                         android:layout_width="@dimen/fasilitysize"
                         android:layout_height="@dimen/fasilitysize"
@@ -208,12 +262,14 @@
                         android:text="@string/wifi" />
 
                     <TextView
+                        android:layout_marginTop="3dp"
                         android:id="@+id/tvFSatu"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/mosque" />
 
                     <TextView
+                        android:layout_marginTop="6dp"
                         android:id="@+id/tvFDua"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -228,7 +284,6 @@
                     android:orientation="vertical">
 
                     <ImageView
-
                         android:id="@+id/ivFTigaInfo"
                         android:layout_width="@dimen/fasilitysize"
                         android:layout_height="@dimen/fasilitysize"
@@ -236,7 +291,7 @@
                         android:src="@drawable/live_music" />
 
                     <ImageView
-
+                        android:layout_marginTop="3dp"
                         android:id="@+id/ivFEmpatInfo"
                         android:layout_width="@dimen/fasilitysize"
                         android:layout_height="@dimen/fasilitysize"
@@ -244,6 +299,7 @@
                         android:src="@drawable/toilet" />
 
                     <ImageView
+                        android:layout_marginTop="3dp"
                         android:id="@+id/ivFLimaInfo"
                         android:layout_width="@dimen/fasilitysize"
                         android:layout_height="@dimen/fasilitysize"
@@ -268,9 +324,11 @@
                         android:id="@+id/tvFEmpat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/toilet" />
+                        android:text="@string/toilet"
+                        android:layout_marginTop="3dp"/>
 
                     <TextView
+                        android:layout_marginTop="6dp"
                         android:id="@+id/tvFLima"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -310,58 +368,6 @@
         </android.support.v7.widget.CardView>
 
     <!-- this is for Deskripsi -->
-        <android.support.v7.widget.CardView
-            xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            card_view:cardElevation="@dimen/jarak_fasilitas"
-            android:layout_marginTop="@dimen/jarak_fasilitas"
-            android:layout_marginBottom="@dimen/jarak_fasilitas">
-            <LinearLayout
-                android:layout_margin="15dp"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:textStyle="bold"
-                    android:textSize="@dimen/font_judul_fasilitas"
-                    android:textColor="@color/radablack"
-                    android:text="@string/description"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/tvDeskripsiInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"/>
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp">
-                    <TextView
-                        android:layout_marginRight="5dp"
-                        android:text="84"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:layout_marginRight="30dp"
-                        android:text="@string/ulasn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:layout_marginRight="5dp"
-                        android:text="84"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:text="@string/menandai"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                </LinearLayout>
 
-
-            </LinearLayout>
-        </android.support.v7.widget.CardView>
     </LinearLayout>
 

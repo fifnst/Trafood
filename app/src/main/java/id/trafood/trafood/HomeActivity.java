@@ -37,11 +37,11 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
     TextView editText,latitude, longitude,location;
     LocationManager locationManager;
 
-    private int[] tabIcons = {
+    /*private int[] tabIcons = {
             R.layout.search_menu,
             R.layout.search_kedai,
             //R.layout.search_article
-    };
+    };*/
 
 
     @Override
@@ -64,28 +64,18 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
 
             //tabLayout = (TabLayout) findViewById(R.id.tlHome);
             //tableLayout.setupWithViewPager(viewPager);
-            setupTabIcons();
+            //setupTabIcons();
         }
 
 
     }
 
-    private void setupTabIcons() {
+    /*private void setupTabIcons() {
         tableLayout.getTabAt(0).setCustomView(tabIcons[0]);
         tableLayout.getTabAt(1).setCustomView(tabIcons[1]);
       //  tableLayout.getTabAt(2).setCustomView(tabIcons[2]);
-    }
-
-    /*public void setupTabLayout(TabLayout tabLayout) {
-        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
-        tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
-        //tabLayout.setupWithViewPager(ViewPager);
-        tabLayout.getTabAt(0).setIcon(R.drawable.ic_tabbar_library);
-        tabLayout.getTabAt(1).setIcon(R.drawable.ic_tabbar_recents);
-        tabLayout.getTabAt(2).setIcon(R.drawable.ic_tabbar_favorites);
-        tabLayout.getTabAt(3).setIcon(R.drawable.ic_tabbar_notifications);
-        tabLayout.getTabAt(4).setIcon(R.drawable.ic_tabbar_settings);
     }*/
+
 
 
     void getLocation() {
