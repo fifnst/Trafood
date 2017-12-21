@@ -3,6 +3,7 @@ package id.trafood.trafood.Rumahmakan;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,7 +13,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -25,6 +28,7 @@ import id.trafood.trafood.Rest.ApiClient;
 import id.trafood.trafood.Rest.ApiInterface;
 import id.trafood.trafood.Rumahmakan.Adapter.MenuListAdapter;
 import id.trafood.trafood.Rumahmakan.Adapter.RmGaleryAdapter;
+import id.trafood.trafood.SharedPrefManager;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -35,13 +39,17 @@ import retrofit2.Response;
 public class Fragment_ListMenu extends Fragment {
 
     TextView tvContoh,pengumuman;
-    String rmid;
+    //String rmid;
     ApiInterface apiInterface;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     public static Fragment_ListMenu fl;
     ProgressBar progressBar;
+    SharedPrefManager sharedPrefManager;
+    RelativeLayout relativeLayout;
+    TextView harga,rtr;
+
 
     public Fragment_ListMenu() {
         // Required empty public constructor
@@ -56,19 +64,37 @@ public class Fragment_ListMenu extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_rm_listmenu, container, false);
         tvContoh = (TextView) view.findViewById(R.id.tvjh);
-        Bundle bundle = this.getArguments();
-        rmid = bundle.getString("rmid");
+
+
         pengumuman = (TextView) view.findViewById(R.id.pengumumanMenu);
         recyclerView = (RecyclerView) view.findViewById(R.id.rvListMenuBuatRM);
         progressBar = (ProgressBar) view.findViewById(R.id.pbRMListmenu);
+        relativeLayout = (RelativeLayout) view.findViewById(R.id.linearTotalHarga);
+        harga = (TextView) view.findViewById(R.id.tvTotalhargaPerkiraan);
+        rtr = (TextView) view.findViewById(R.id.tvQtyj);
+
+        relativeLayout.setVisibility(View.GONE);
         layoutManager = new LinearLayoutManager(this.getActivity());
         recyclerView.setLayoutManager(layoutManager);
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
         fl=this;
+        sharedPrefManager = new SharedPrefManager(view.getContext());
 
+        isi();
+        setRetainInstance(true);
+
+
+       // cekdataapi();
+
+        return view;
+    }
+
+    private void isi() {
+        Bundle bundle = this.getArguments();
+        String rmid = bundle.getString("rmid");
         Call<GetMenu> menuCall = apiInterface.getMenu(rmid);
         menuCall.enqueue(new Callback<GetMenu>() {
             @Override
@@ -88,11 +114,70 @@ public class Fragment_ListMenu extends Fragment {
 
             @Override
             public void onFailure(Call<GetMenu> call, Throwable t) {
-             //   Log.e("Retrofit get " , t.toString());
+                //   Log.e("Retrofit get " , t.toString());
             }
         });
+        rtr.setText("0");
+        harga.setText("0");
+    }
 
-        return view;
+    public void cekdataapi(String jumlah, String status,String qty) {
+        String userid = sharedPrefManager.getSpUserid();
+        relativeLayout.setVisibility(View.VISIBLE);
+
+        int qts = Integer.valueOf(rtr.getText().toString());
+        int sums = Integer.valueOf(qty);
+
+        int hrafs = Integer.valueOf(harga.getText().toString());
+        int sum = Integer.valueOf(jumlah);
+
+        if (status.equals("0")){//0 artinya dia harus tamab
+            hrafs += sum;
+            qts += sums;
+            harga.setText(String.valueOf(hrafs));
+            rtr.setText(String.valueOf(qts));
+        }if (status.equals("1")){ // 1 artinya dia harus di kurangi
+            hrafs -= sum;
+            qts -= sums;
+            harga.setText(String.valueOf(hrafs));
+            rtr.setText(String.valueOf(qts));
+        }if (status.equals("2")){// 2 artinya sama
+           // hrafs -= sum;
+            harga.setText(String.valueOf(hrafs));
+            rtr.setText(String.valueOf(qts));
+        }
+
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+        Log.d("LOG", "onStart");
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("LOG", "onResume");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d("LOG", "onPause");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.d("LOG", "onStop");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d("LOG", "onDestroy");
     }
 
 

@@ -211,6 +211,36 @@ public class Home_fragmet extends Fragment {
 
     }
 
+    @Override
+    public void onStart(){
+        super.onStart();
+        Log.d("LOG", "onStart");
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("LOG", "onResume");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d("LOG", "onPause");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.d("LOG", "onStop");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d("LOG", "onDestroy");
+    }
 
 
 }

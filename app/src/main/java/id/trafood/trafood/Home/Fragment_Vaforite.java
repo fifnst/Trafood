@@ -129,6 +129,13 @@ public class Fragment_Vaforite extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        setTulisan();
+
+    }
+
     private void setTulisan() {
         String userid = sharedPrefManager.getSpUserid();
         Call<GetModelMenu> getLikeCall = apiInterface.userLike(userid);

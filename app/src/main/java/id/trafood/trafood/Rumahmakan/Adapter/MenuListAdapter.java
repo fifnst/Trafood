@@ -31,6 +31,7 @@ import id.trafood.trafood.Rest.ApiClient;
 import id.trafood.trafood.Rest.ApiInterface;
 import id.trafood.trafood.Rest.Connect;
 import id.trafood.trafood.Rest.RestApi;
+import id.trafood.trafood.Rumahmakan.Fragment_ListMenu;
 import id.trafood.trafood.SharedPrefManager;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -119,11 +120,11 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyHold
                                 if (jsonResult.getString("status").equals("200")){
                                     holder.ivMenuLike.setImageDrawable(sudahpernahlike);
                                     holder.tvLike.setText(like);
-                                    Toast.makeText(view.getContext(), "Menu ini telah anda rekomendasikan, dan ditambahkan ke list menu favorit", Toast.LENGTH_LONG).show();
+                                   // Toast.makeText(view.getContext(), "Menu ini telah anda rekomendasikan, dan ditambahkan ke list menu favorit", Toast.LENGTH_LONG).show();
                                 }if (jsonResult.getString("status").equals("204")){
                                     holder.ivMenuLike.setImageDrawable(likebelumlike);
                                     holder.tvLike.setText(like);
-                                    Toast.makeText(view.getContext(), "Menu ini telah dihapus dari daftar favorit anda", Toast.LENGTH_LONG).show();
+                                  //  Toast.makeText(view.getContext(), "Menu ini telah dihapus dari daftar favorit anda", Toast.LENGTH_LONG).show();
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -194,7 +195,7 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyHold
 
 
 
-            btnPesanmenu.setOnClickListener(new View.OnClickListener() {
+            btnPesanmenu.setOnClickListener(new View.OnClickListener() { //tombol pesan yang ini yang masukin ke database
                 @Override
                 public void onClick(View view) {
 
@@ -222,7 +223,7 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyHold
                     tvNamamemuD.setText(tvNamamemu.getText().toString());
                     tvQtyDialogPesan.setText(qtymenu.getText().toString());
                     tvHargaD.setText(tvHargamenu.getText().toString());
-
+                    totalharga.setText(tvHargamenu.getText().toString());
                     String sumStr = tvQtyDialogPesan.getText().toString();
                     int sum = Integer.valueOf(sumStr);
                     if (sum <= 1){
@@ -310,7 +311,8 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyHold
                             qtymenu.setText(qty);
                             subtotalmenu.setText(subtotal);
                             dialog.dismiss();
-
+                            String status = "0";//0 artinya dia harus tamab
+                            Fragment_ListMenu.fl.cekdataapi(subtotal,status,qty);
                         }
                     });
 
@@ -324,8 +326,163 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyHold
                     linearHarga.setVisibility(View.GONE);
                     linearLayout.setVisibility(View.GONE);
                     btnPesanmenu.setVisibility(View.VISIBLE);
+                    String subtoyals = subtotalmenu.getText().toString();
+                    String qty = qtymenu.getText().toString();
                     qtymenu.setText("1");
 
+                    String status = "1"; // 1 artinya dia harus di kurangi
+                    Fragment_ListMenu.fl.cekdataapi(subtoyals,status,qty);
+
+                }
+            });
+
+
+            btnJadipesan.setOnClickListener(new View.OnClickListener() { //tombol rubah pesanan yang ini tugasnya put ke database
+                @Override
+                public void onClick(View view) {
+                    final Dialog dialog = new Dialog(view.getContext());
+                    dialog.setContentView(R.layout.dialog_pesan);
+                    dialog.setCancelable(false);
+                    ImageView imageView = (ImageView) dialog.findViewById(R.id.imageDialog);
+                    final TextView tvHargaD = (TextView) dialog.findViewById(R.id.tvHargaDialog);
+                    TextView tvNamamemuD = (TextView) dialog.findViewById(R.id.tvNamaMenuDialog);
+                    final TextView tvLanjutkan = (TextView) dialog.findViewById(R.id.btnPilihDialog);
+                    final Button btnNext = (Button) dialog.findViewById(R.id.btnNextDialog);
+                    ImageButton imageButton = (ImageButton) dialog.findViewById(R.id.deleteDialog);
+                    final TextView totalharga = (TextView) dialog.findViewById(R.id.tvTotalpriceDialog);
+                    //final Spinner spinner = (Spinner) dialog.findViewById(R.id.spinnerDialog);
+                    final EditText etCatatanDialog = (EditText) dialog.findViewById(R.id.etCatatanDialog);
+                    final Button plusCart = (Button) dialog.findViewById(R.id.btnPlusDialogPesan);
+                    final Button minCart = (Button) dialog.findViewById(R.id.btnMinDialogPesan);
+                    final TextView tvQtyDialogPesan = (TextView) dialog.findViewById(R.id.tvQtyDialogPesan);
+
+
+                    tvLanjutkan.setVisibility(View.GONE);
+                    btnNext.setText("Rubah Pesanan");
+                    Picasso.with(view.getContext()).load(Connect.IMAGE_MENU_URL+pathfoto.getText().toString())
+                            .into(imageView);
+                    tvNamamemuD.setText(tvNamamemu.getText().toString());
+                    tvQtyDialogPesan.setText(qtymenu.getText().toString());
+                    tvHargaD.setText(tvHargamenu.getText().toString());
+                    totalharga.setText(tvHargamenu.getText().toString());
+
+                    final String sumStr = qtymenu.getText().toString();
+                    final String subtoyals = subtotalmenu.getText().toString();
+
+                    int sum = Integer.valueOf(sumStr);
+                    if (sum <= 1){
+                        minCart.setEnabled(false);
+                    }
+
+                    plusCart.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            String sumStr = qtymenu.getText().toString();
+                            int sum = Integer.valueOf(sumStr);
+                            sum += 1;
+                            String sumStra = String.valueOf(sum);
+                            tvQtyDialogPesan.setText(sumStra);
+                            qtymenu.setText(sumStra);
+
+                            String harga = tvHargaD.getText().toString();
+                            int hargas = Integer.parseInt(harga);
+                            int kali = hargas*sum;
+                            subtotalmenu.setText(String.valueOf(kali));
+                            totalharga.setText(String.valueOf(kali));
+
+                            if (sumStra.equals(sumStr)){
+                                linearLayout.setVisibility(View.GONE);
+                            }
+                            minCart.setEnabled(true);
+                            if (sumStra.equals("1")){
+                                minCart.setEnabled(false);
+                            }
+                        }
+                    });
+
+                    minCart.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            String sumStr = qtymenu.getText().toString();
+                            int sum = Integer.valueOf(sumStr);
+                            sum -= 1;
+                            String sumStra = String.valueOf(sum);
+                            tvQtyDialogPesan.setText(sumStra);
+                            qtymenu.setText(sumStra);
+
+                            String harga = tvHargaD.getText().toString();
+                            int hargas = Integer.parseInt(harga);
+                            int kali = hargas*sum;
+                            subtotalmenu.setText(String.valueOf(kali));
+                            totalharga.setText(String.valueOf(kali));
+
+                            if (sumStra.equals(sumStr)){
+                                linearLayout.setVisibility(View.GONE);
+                            }
+                            if (sumStra.equals("1")){
+                                minCart.setEnabled(false);
+                            }
+
+                        }
+                    });
+
+                    imageButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            qtymenu.setText(sumStr);
+                            subtotalmenu.setText(subtoyals);
+                            dialog.dismiss();
+                        }
+                    });
+
+                    btnNext.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            String qty = tvQtyDialogPesan.getText().toString();
+                            String userid = sharedPrefManager.getSpUserid();
+                            String menuid = idmenu.getText().toString();
+                            String subtotal = totalharga.getText().toString();
+                            String notes = etCatatanDialog.getText().toString();
+                            if (!notes.equals("")){
+                                ivNotes.setVisibility(View.VISIBLE);
+                            }if (notes.equals("")) {
+                                ivNotes.setVisibility(View.GONE);
+                            }
+                            if (subtotal.equals("")){
+                                subtotalmenu.setText(subtoyals);
+                            }else {
+                                subtotalmenu.setText(subtotal);
+                            }
+
+                            int jumlahnya = Integer.valueOf(sumStr); //jumlah asli
+                            int jumlahs = Integer.valueOf(qty); //jumlah ketika sudah di edit
+                            int sub = Integer.valueOf(subtotal); //sub sudah di kali
+                            int sac = Integer.valueOf(subtoyals); //sub asli
+                            qtymenu.setText(qty);
+
+                            dialog.dismiss();
+
+                            if (jumlahnya<jumlahs){
+                                int hs = jumlahs-jumlahnya;
+                                int subd = sub-sac;
+                                String status = "0";//0 artinya dia harus tamab
+                                Fragment_ListMenu.fl.cekdataapi(String.valueOf(subd),status,String.valueOf(hs));
+
+                            }if (jumlahnya>jumlahs){
+                                int hs = jumlahnya-jumlahs;
+                                int subd = sac-sub;
+                                String status = "1"; // 1 artinya dia harus di kurangi
+                                Fragment_ListMenu.fl.cekdataapi(String.valueOf(subd),status,String.valueOf(hs));
+
+                            }if (jumlahnya == jumlahs){
+                                String status = "2"; // 2 artinya sama
+                                Fragment_ListMenu.fl.cekdataapi(subtoyals,status,sumStr);
+                            }
+
+                        }
+                    });
+
+                    dialog.show();
                 }
             });
 

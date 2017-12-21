@@ -90,6 +90,7 @@ public class DetailRm extends AppCompatActivity {
         Picasso.with(this).load(Connect.IMAGE_RM_URL+foto).error(R.mipmap.ic_launcher).into(iVfotoRm);
 
         myViewPager = (ViewPager) findViewById(R.id.vpMenuRM);
+        myViewPager.setOffscreenPageLimit(5);
         mytabLayout = (TabLayout) findViewById(R.id.tlListMenuRM);
 
         setRating(rmid); //set rating rumah makan
