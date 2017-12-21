@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="id.trafood.trafood.Home.Fragment_Vaforite"
+    tools:context="id.trafood.trafood.Home.NotificationFragment"
     android:background="@color/white">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -27,7 +27,7 @@
         </LinearLayout>
     </RelativeLayout>
     <LinearLayout
-        android:id="@+id/linearLoginLike"
+        android:id="@+id/linearLoginNotifikasi"
         android:layout_margin="30dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -49,7 +49,7 @@
             android:layout_height="wrap_content">
             <Button
                 android:layout_centerInParent="true"
-                android:id="@+id/btnLoginLike"
+                android:id="@+id/btnLoginNotification"
                 android:textColor="@color/white"
                 android:background="@color/pink_trf"
                 android:text="@string/login"
@@ -58,6 +58,7 @@
         </RelativeLayout>
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/linearSudahLoginNotifikasi"
         android:layout_marginTop="@dimen/margin_activity"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"

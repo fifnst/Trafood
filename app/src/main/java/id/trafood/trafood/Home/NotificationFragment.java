@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import java.util.List;
 
 import id.trafood.trafood.CartActivity;
+import id.trafood.trafood.HistoryActivity;
 import id.trafood.trafood.LoginActivity;
 import id.trafood.trafood.MainActivity;
 import id.trafood.trafood.Models.GetUserView;
@@ -38,13 +39,8 @@ public class NotificationFragment extends Fragment {
     LinearLayout linearKeranjang, linearStatusPengiriman, linearPesanMasuk;
 
     Button login;
-    LinearLayout linearLayoutlogin;
+    LinearLayout linearLayoutlogin,linearBelumLogin;
     RecyclerView recyclerView;
-    RecyclerView.Adapter adapter;
-    RecyclerView.LayoutManager layoutManager;
-    public static  NotificationFragment fp;
-    ApiInterface apiInterface;
-
 
     public NotificationFragment() {
         // Required empty public constructor
@@ -64,9 +60,9 @@ public class NotificationFragment extends Fragment {
         linearPesanMasuk = (LinearLayout) view.findViewById(R.id.linearPesanMasuk);
         linearStatusPengiriman = (LinearLayout) view.findViewById(R.id.linearStatusPengiriman);
 
-        login = (Button) view.findViewById(R.id.btnLoginView);
-        linearLayoutlogin = (LinearLayout) view.findViewById(R.id.linearLogin);
-        recyclerView = (RecyclerView) view.findViewById(R.id.rvProfil);
+        login = (Button) view.findViewById(R.id.btnLoginNotification);
+        linearLayoutlogin = (LinearLayout) view.findViewById(R.id.linearSudahLoginNotifikasi);
+        linearBelumLogin = (LinearLayout) view.findViewById(R.id.linearLoginNotifikasi);
 
         linearKeranjang.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -76,13 +72,36 @@ public class NotificationFragment extends Fragment {
             }
         });
 
-        linearStatusPengiriman.setOnClickListener(new View.OnClickListener(){
+        /*linearStatusPengiriman.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 Intent intent2 = new Intent(view.getContext(), StatusPengirimanActivity.class);
                 view.getContext().startActivity(intent2);
             }
+        });*/
+
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(),LoginActivity.class);
+                view.getContext().startActivity(intent);
+            }
         });
+
+        linearStatusPengiriman.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent2 = new Intent(view.getContext(), HistoryActivity.class);
+                view.getContext().startActivity(intent2);
+            }
+        });
+
+        if (sharedPrefManager.getSPSudahLogin()){
+
+            linearBelumLogin.setVisibility(View.GONE);
+        }else {
+            linearLayoutlogin.setVisibility(View.GONE);
+        }
 
 
 
