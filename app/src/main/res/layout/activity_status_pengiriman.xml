@@ -7,82 +7,35 @@
     android:background="@color/white"
     android:layout_height="match_parent"
     tools:context="id.trafood.trafood.StatusPengirimanActivity">
-        <LinearLayout
-            android:layout_margin="@dimen/margin_activity"
-            android:layout_marginTop="@dimen/margin_activity"
-            android:layout_marginBottom="@dimen/margin_activity"
-            android:orientation="vertical"
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/cloud"/>
+    <LinearLayout
+        android:layout_marginTop="2dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tlStatus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:gravity="center_horizontal">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"
-                android:id="@+id/imgStatus1" />
-            <TextView
-                android:layout_marginTop="@dimen/margin_activity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pesanan Anda sedang"
-                android:textSize="17dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Kami Siapkan"
-                android:textSize="17dp"/>
-            <ImageView
-                android:layout_marginTop="@dimen/margin_activity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"
-                android:id="@+id/imgStatus2" />
-            <TextView
-                android:layout_marginTop="@dimen/margin_activity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pesanan Anda sudah tersedia"
-                android:textSize="17dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="dan siap di antar kurir"
-                android:textSize="17dp"/>
-            <ImageView
-                android:layout_marginTop="@dimen/margin_activity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"
-                android:id="@+id/imgStatus3" />
-            <TextView
-                android:layout_marginTop="@dimen/margin_activity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pesanan Anda sedang"
-                android:textSize="17dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="dalam perjalanan"
-                android:textSize="17dp"/>
-            <ImageView
-                android:layout_marginTop="@dimen/margin_activity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"
-                android:id="@+id/imgStatus4" />
-            <TextView
-                android:layout_marginTop="@dimen/margin_activity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pesanan Anda sudah sampai"
-                android:textSize="17dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="di tempat tujuan"
-                android:textSize="17dp"/>
+            app:tabIndicatorHeight="2dp"
+            app:tabIndicatorColor="@color/colorPrimary"
+            app:tabSelectedTextColor="@color/colorPrimary"
+            app:tabTextColor="@color/grey"
+            app:tabMode="fixed"
+            app:tabGravity="fill">
+        </android.support.design.widget.TabLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/cloud"/>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vpStatus"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
 
-        </LinearLayout>
 </LinearLayout>

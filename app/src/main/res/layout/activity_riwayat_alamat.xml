@@ -90,16 +90,30 @@ android:orientation="vertical">
             android:layout_width="match_parent"
             android:layout_height="200dp"
             tools:context="net.simplifiedcoding.mymapapp.MapsActivity" />
-        <TextView
-            android:id="@+id/tvJarakAlamat"
-            android:textColor="@color/grey"
-            android:background="@color/cloud"
-            android:padding="10dp"
-            android:text="asdasd"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
         <LinearLayout
-            android:layout_margin="@dimen/margin_activity"
+            android:padding="10dp"
+            android:background="@color/cloud"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tvJarakAlamat"
+                android:textColor="@color/grey"
+                android:text="jarak"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginLeft="2dp"
+                android:id="@+id/tvHargaOngkir"
+                android:textColor="@color/grey"
+                android:text="harga"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginRight="@dimen/margin_activity"
+            android:layout_marginLeft="@dimen/margin_activity"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -110,6 +124,36 @@ android:orientation="vertical">
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_marginRight="@dimen/margin_activity"
+            android:layout_marginLeft="@dimen/margin_activity"
+            android:orientation="vertical"
+            android:id="@+id/LnTidakAdaKurirMap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tvPengumumanKurirMap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/LnAdaKurirMap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textColor="@color/radablack"
+                android:textSize="15dp"
+                android:textAlignment="center"
+                android:text="Silakan Pilih Kurir"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvKurirMap"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
     </LinearLayout>
 
     <RelativeLayout
@@ -125,7 +169,7 @@ android:orientation="vertical">
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:background="@color/green"
+            android:background="@color/colorPrimary"
             android:text="Lanjutkan"
             android:textColor="@color/white" />
     </RelativeLayout>

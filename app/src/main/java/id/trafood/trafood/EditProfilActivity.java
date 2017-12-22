@@ -129,6 +129,8 @@ public class EditProfilActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<PostPutDelUser> call, Response<PostPutDelUser> response) {
                 loading.dismiss();
+                Intent intent = new Intent(mContext,MainActivity.class);
+                mContext.startActivity(intent);
                 Toast.makeText(mContext, "Berhasil.. ", Toast.LENGTH_SHORT).show();
             }
 
@@ -136,6 +138,8 @@ public class EditProfilActivity extends AppCompatActivity {
             public void onFailure(Call<PostPutDelUser> call, Throwable t) {
                 loading.dismiss();
                 Toast.makeText(mContext, "Berhasil..", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mContext,MainActivity.class);
+                mContext.startActivity(intent);
             }
         });
     }

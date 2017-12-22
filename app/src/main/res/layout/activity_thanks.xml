@@ -12,10 +12,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <TextView
+            android:layout_margin="30dp"
             android:textAlignment="center"
-            android:textSize="40dp"
-            android:textColor="@color/green"
-            android:text="Terimakasih anda telah menggunakan layanan kami silakan tunggu, kami sedang mencarikan kurir untuk anda"
+            android:textSize="20dp"
+            android:textColor="@color/colorPrimary"
+            android:text="Terimakasih, mohon tunggu... pesenanan kamu sedang dalam proses. silakan cek menu status pengiriman untuk melihat status pemesanan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <Button

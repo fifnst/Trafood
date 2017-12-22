@@ -16,6 +16,7 @@ import id.trafood.trafood.ConfirmationActivity;
 import id.trafood.trafood.Models.Courier;
 import id.trafood.trafood.R;
 import id.trafood.trafood.Rest.Connect;
+import id.trafood.trafood.RiwayatAlamatActivity;
 
 /**
  * Created by kulinerin 1 on 15/12/2017.
@@ -43,9 +44,18 @@ public class CourierAdapter extends RecyclerView.Adapter<CourierAdapter.MuHolder
         holder.logo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), ConfirmationActivity.class);
+                /*Intent intent = new Intent(view.getContext(), ConfirmationActivity.class);
                 intent.putExtra("COURIERID",mCourier.get(position).getCourier_id());
-                view.getContext().startActivity(intent);
+                view.getContext().startActivity(intent);*/
+                String price = mCourier.get(position).getPrice();
+                String per = mCourier.get(position).getPer();
+                String hargaplus = mCourier.get(position).getPriceplus();
+                String perplus = mCourier.get(position).getPerplus();
+                String unit = mCourier.get(position).getUnit();
+                String kuririd = mCourier.get(position).getCourier_id();
+                String namKu = mCourier.get(position).getC_name();
+
+                RiwayatAlamatActivity.ra.iniHargaKurir(price,per,hargaplus,perplus,unit,kuririd,namKu);
             }
         });
 

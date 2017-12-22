@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="3dp"
-    android:padding="10dp">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_margin="3dp"
+        android:padding="10dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
-                android:textSize="@dimen/font_judul_menu"
-                android:id="@+id/tvNamaListProgress"
+                android:textColor="@color/radablack"
+                android:textSize="@dimen/margin_activity"
+                android:id="@+id/tvNamaRmListProgress"
                 android:text="nama rm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -26,13 +28,14 @@
                     android:orientation="horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
-                    <TextView
+                    <!--<TextView
                         android:textSize="@dimen/font_judul_menu"
                         android:text="Rp. "
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content" /> -->
                     <TextView
-                        android:textSize="@dimen/font_judul_menu"
+                        android:textColor="@color/blue"
+                        android:textSize="@dimen/margin_activity"
                         android:id="@+id/tvHargaListProgress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -49,28 +52,44 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <ImageView
+                    android:id="@+id/ivListProgress1"
                     android:layout_marginRight="20dp"
                     android:src="@mipmap/ic_launcher"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="30dp"
+                    android:layout_height="30dp" />
                 <ImageView
+                    android:id="@+id/ivListProgress2"
                     android:layout_marginRight="20dp"
                     android:src="@mipmap/ic_launcher"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="30dp"
+                    android:layout_height="30dp" />
                 <ImageView
+                    android:id="@+id/ivListProgress3"
                     android:layout_marginRight="20dp"
                     android:src="@mipmap/ic_launcher"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="30dp"
+                    android:layout_height="30dp" />
                 <ImageView
+                    android:id="@+id/ivListProgress4"
                     android:layout_marginRight="20dp"
                     android:src="@mipmap/ic_launcher"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="30dp"
+                    android:layout_height="30dp" />
 
             </LinearLayout>
         </RelativeLayout>
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/cloud"/>
+        <TextView
+            android:textSize="12sp"
+            android:id="@+id/tvAlamatUserListProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/cloud"/>
+</LinearLayout>

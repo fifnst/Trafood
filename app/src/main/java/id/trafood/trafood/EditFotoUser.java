@@ -97,7 +97,7 @@ public class EditFotoUser extends AppCompatActivity {
             public void onResponse(Call<PostPutDelUser> call, Response<PostPutDelUser> response) {
                 loading.dismiss();
                 Toast.makeText(mContext, "Berhasil", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(mContext, EditProfilActivity.class);
+                Intent intent = new Intent(mContext, MainActivity.class);
                 mContext.startActivity(intent);
             }
 
@@ -105,7 +105,7 @@ public class EditFotoUser extends AppCompatActivity {
             public void onFailure(Call<PostPutDelUser> call, Throwable t) {
                 loading.dismiss();
                 Toast.makeText(mContext, "Berhasil", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(mContext, EditProfilActivity.class);
+                Intent intent = new Intent(mContext, MainActivity.class);
                 mContext.startActivity(intent);
             }
         });

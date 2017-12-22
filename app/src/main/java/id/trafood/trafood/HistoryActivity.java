@@ -24,7 +24,7 @@ public class HistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Edit Profil");
+        getSupportActionBar().setTitle("Riwayat Pemesanan");
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_green_24dp);
         getSupportActionBar().setElevation(0);
 

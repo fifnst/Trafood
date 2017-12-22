@@ -81,7 +81,7 @@ public class CartActivity extends AppCompatActivity {
             linearcart.setVisibility(View.VISIBLE);
             buttonCart.setVisibility(View.VISIBLE);
             getSemua();
-
+            //isi();
             buttonCart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -92,6 +92,23 @@ public class CartActivity extends AppCompatActivity {
             linearBelumLogin.setVisibility(View.VISIBLE);
         }
 
+    }
+
+    private void isi(String jumlah, String status) {
+
+        int hrafs = Integer.valueOf(tvTotalHargaCart.getText().toString());
+        int sum = Integer.valueOf(jumlah);
+
+        if (status.equals("0")){//0 artinya dia harus tamab
+            hrafs += sum;
+            tvTotalHargaCart.setText(String.valueOf(hrafs));
+        }if (status.equals("1")){ // 1 artinya dia harus di kurangi
+            hrafs -= sum;
+            tvTotalHargaCart.setText(String.valueOf(hrafs));
+        }if (status.equals("2")){// 2 artinya sama
+            // hrafs -= sum;
+            tvTotalHargaCart.setText(String.valueOf(hrafs));
+        }
     }
 
     private void getSemua() {
@@ -133,6 +150,7 @@ public class CartActivity extends AppCompatActivity {
         intent.putExtra("RMID",rmid);
         intent.putExtra("TELP",telp);
         intent.putExtra("TOTAL",totalhargacart);
+        intent.putExtra("ALAMATRM",alamatrm);
         CartActivity.this.startActivity(intent);
 
         deletedulu();
@@ -165,9 +183,13 @@ public class CartActivity extends AppCompatActivity {
 
                     Log.d("Retrofit Get ", "Jumlah data Rumah makan: " +
                             String.valueOf(orders.size()));
-
-                }else {
-                    tvCartKedai.setText(userId);
+                    linearcart.setVisibility(View.VISIBLE);
+                    linearBelumLogin.setVisibility(View.GONE);
+                    buttonCart.setVisibility(View.VISIBLE);
+                }else{
+                    linearcart.setVisibility(View.GONE);
+                    linearBelumLogin.setVisibility(View.VISIBLE);
+                    buttonCart.setVisibility(View.GONE);
                 }
             }
 
@@ -186,16 +208,26 @@ public class CartActivity extends AppCompatActivity {
 
                 try {
                     JSONObject jsonResult = new JSONObject(response.body().string());
-                    namarm = jsonResult.getJSONObject("result").getString("namarm");
-                    alamatrm = jsonResult.getJSONObject("result").getString("alamatrm");
-                    latitude = jsonResult.getJSONObject("result").getString("latitude");
-                    longitude = jsonResult.getJSONObject("result").getString("longitude");
-                    rmid = jsonResult.getJSONObject("result").getString("rmid");
-                    totalhargacart = jsonResult.getString("total");
+                    if (jsonResult.getString("status").equals("200")){ //jika ada
+                        namarm = jsonResult.getJSONObject("result").getString("namarm");
+                        alamatrm = jsonResult.getJSONObject("result").getString("alamatrm");
+                        latitude = jsonResult.getJSONObject("result").getString("latitude");
+                        longitude = jsonResult.getJSONObject("result").getString("longitude");
+                        rmid = jsonResult.getJSONObject("result").getString("rmid");
+                        totalhargacart = jsonResult.getString("total");
 
-                    tvCartKedai.setText(namarm);
-                    tvCartLokasiKedai.setText(alamatrm);
-                    tvTotalHargaCart.setText("Rp. "+totalhargacart);
+                        tvCartKedai.setText(namarm);
+                        tvCartLokasiKedai.setText(alamatrm);
+                        tvTotalHargaCart.setText(totalhargacart);
+                        linearcart.setVisibility(View.VISIBLE);
+                        linearBelumLogin.setVisibility(View.GONE);
+                        buttonCart.setVisibility(View.VISIBLE);
+                    }else{
+                        linearcart.setVisibility(View.GONE);
+                        linearBelumLogin.setVisibility(View.VISIBLE);
+                        buttonCart.setVisibility(View.GONE);
+                    }
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 } catch (IOException e) {

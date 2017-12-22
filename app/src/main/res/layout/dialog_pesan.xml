@@ -131,14 +131,14 @@
         <Button
             android:layout_marginTop="20dp"
             android:textColor="@color/white"
-            android:background="@color/green"
+            android:background="@color/colorPrimary"
             android:id="@+id/btnNextDialog"
-            android:text="Pesan, dan Lanjut transaksi"
+            android:text="Pesan, Lanjut transaksi"
             android:layout_width="match_parent"
             android:layout_height="30dp" />
         <Button
             android:background="@color/cloud"
-            android:textColor="@color/green"
+            android:textColor="@color/colorPrimary"
             android:textAlignment="center"
             android:id="@+id/btnPilihDialog"
             android:text="Pesan, tapi pilih menu lagi"

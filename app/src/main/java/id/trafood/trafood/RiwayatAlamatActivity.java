@@ -12,10 +12,14 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
@@ -43,10 +47,17 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import id.trafood.trafood.Models.Courier;
+import id.trafood.trafood.Models.GetCourier;
+import id.trafood.trafood.OrderP.CourierAdapter;
+import id.trafood.trafood.Rest.ApiClient;
+import id.trafood.trafood.Rest.ApiInterface;
+import retrofit2.Call;
+import retrofit2.Callback;
 
 
 public class RiwayatAlamatActivity extends AppCompatActivity implements
@@ -57,13 +68,22 @@ public class RiwayatAlamatActivity extends AppCompatActivity implements
     GoogleMap map;
     Button btnEditAlamatini, btnLanjutkan;
     Context mContext;
-    TextView tvNamaAlamt, tvAlamat,tvJarak;
+    TextView tvNamaAlamt, tvAlamat,tvJarak,tvHargaOngkir;
     EditText alamatCustom;
     Marker marker;
+    public static RiwayatAlamatActivity ra;
+    ApiInterface apiInterface;
+
+    RecyclerView recyclerView;
+    RecyclerView.Adapter adapter;
+    RecyclerView.LayoutManager layoutManager;
+    LinearLayout linearTidakAda,linearAda;
+    TextView pengumuman;
+
     private double longitude, latitude, fromLongitude, fromLatitude, toLatitude, toLongitude;
 
     private GoogleApiClient googleApiClient;
-    String lat,lng,rmid,namarm,kodetrans,userid,telp,namauser,jauh,jauhh,address,total;
+    String lat,lng,rmid,namarm,kodetrans,userid,telp,namauser,jauh,jauhh,address,total,ongkir,idKurir, kuriNama,alamatrm;
     SharedPrefManager sharedPrefManager;
 
     @Override
@@ -82,11 +102,14 @@ public class RiwayatAlamatActivity extends AppCompatActivity implements
         kodetrans = intent.getStringExtra("NOMOR");
         telp = intent.getStringExtra("TELP");
         total = intent.getStringExtra("TOTAL");
+        alamatrm = intent.getStringExtra("ALAMATRM");
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Form Pengiriman");
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_green_24dp);
         getSupportActionBar().setElevation(0);
+
+        apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapOrder);
         mapFragment.getMapAsync(this);
@@ -96,6 +119,19 @@ public class RiwayatAlamatActivity extends AppCompatActivity implements
         btnLanjutkan = (Button) findViewById(R.id.btnNextFR);
         tvJarak = (TextView) findViewById(R.id.tvJarakAlamat);
         alamatCustom = (EditText) findViewById(R.id.catatanAlamat);
+        recyclerView = (RecyclerView) findViewById(R.id.rvKurirMap);
+        linearAda = (LinearLayout) findViewById(R.id.LnAdaKurirMap);
+        linearTidakAda = (LinearLayout) findViewById(R.id.LnTidakAdaKurirMap);
+        pengumuman = (TextView) findViewById(R.id.tvPengumumanKurirMap);
+        tvHargaOngkir = (TextView) findViewById(R.id.tvHargaOngkir);
+
+        linearTidakAda.setVisibility(View.GONE);
+        linearAda.setVisibility(View.GONE);
+
+        layoutManager = new GridLayoutManager(this,4);
+        recyclerView.setLayoutManager(layoutManager);
+
+
         googleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
@@ -103,6 +139,60 @@ public class RiwayatAlamatActivity extends AppCompatActivity implements
                 .build();
 
         mContext = this;
+        ra = this;
+
+        btnLanjutkan.setVisibility(View.GONE);
+
+
+
+    }
+
+    public void iniHargaKurir(String price, String per, String hargaplus, String perplus,String unit,String kuririd, String namaKurir) {
+        Double harga = Double.parseDouble(price);
+        Double perr = Double.parseDouble(per);
+        Double hargapluss = Double.parseDouble(hargaplus);
+        Double perrplus = Double.parseDouble(perplus);
+
+        Double jarak = Double.valueOf(jauh);
+        Double realdistance = Math.ceil(jarak / 1000.0); //bulatkan angka nya dulu ke atas
+        Double disper = realdistance / perr;
+        Double ini = Math.ceil(disper / 1.0);
+        btnLanjutkan.setVisibility(View.VISIBLE);
+        DecimalFormat kursIndonesia = (DecimalFormat) DecimalFormat.getCurrencyInstance();
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+        formatRp.setCurrencySymbol("Rp. ");
+        formatRp.setMonetaryDecimalSeparator(',');
+        formatRp.setGroupingSeparator('.');
+        kursIndonesia.setDecimalFormatSymbols(formatRp);
+        idKurir = kuririd;
+        kuriNama = namaKurir;
+        if (unit.equals("km")) {
+            tvHargaOngkir.setText(kursIndonesia.format(ini * harga));
+            ongkir = String.valueOf(harga * ini);
+            Log.d("TAG", "ongkir = " + String.valueOf(ini * perr));
+        }
+        if (unit.equals("transaction")) {
+            tvHargaOngkir.setText(kursIndonesia.format(harga * perr));
+            ongkir = String.valueOf(harga * perr);
+            Log.d("TAG", "ongkir = " + String.valueOf(harga * perr));
+        }//untuk menghitung yang kilometer pertama dan keduanya berbeda
+        if (unit.equals("kmplus")) {
+            if (realdistance < perr) {
+                tvHargaOngkir.setText(kursIndonesia.format(harga * 1));
+                ongkir = String.valueOf(harga);
+                Log.d("TAG", "ongkir = " + String.valueOf(harga));
+            }
+            if (realdistance > perr) {
+                Double sisa = realdistance - perr;
+                Double bagi = sisa / perrplus;
+                Double hasill = Math.ceil(bagi / 1.0);
+                Double nyaan = hasill * hargapluss;
+                tvHargaOngkir.setText(kursIndonesia.format(harga + nyaan));
+                Double tambah = harga + nyaan;
+                ongkir = String.valueOf(harga + nyaan);
+                Log.d("TAG", "ongkir = " + String.valueOf(harga + nyaan));
+            }
+        }
 
         btnLanjutkan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,14 +200,13 @@ public class RiwayatAlamatActivity extends AppCompatActivity implements
                 lanjutkan();
             }
         });
-
     }
 
     private void lanjutkan() {
         String latu = String.valueOf(toLatitude);
         String lngu = String.valueOf(toLongitude);
         String catam = alamatCustom.getText().toString();
-        Intent intent = new Intent(RiwayatAlamatActivity.this, CourierActivity.class);
+        Intent intent = new Intent(RiwayatAlamatActivity.this, ConfirmationActivity.class);
         intent.putExtra("LATK",lat);
         intent.putExtra("LNGK",lng);
         intent.putExtra("LATU",latu);
@@ -130,8 +219,14 @@ public class RiwayatAlamatActivity extends AppCompatActivity implements
         intent.putExtra("ADDRESS",address);
         intent.putExtra("TOTAL",total);
         intent.putExtra("RMID",rmid);
+        intent.putExtra("ONGKIR",ongkir);
+        intent.putExtra("ALAMATRM",alamatrm);
+        intent.putExtra("NAMAKURIR",kuriNama);
         intent.putExtra("CUSTOM", catam);
+        intent.putExtra("KURIRID", idKurir);
         RiwayatAlamatActivity.this.startActivity(intent);
+        Log.d("TAG", ongkir);
+
     }
 
     @Override
@@ -173,6 +268,8 @@ public class RiwayatAlamatActivity extends AppCompatActivity implements
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
+
+
 
     private String makeUrl(double fromLatitude, double fromLongitude, double toLatitude, double toLongitude) {
         StringBuilder urlString = new StringBuilder();
@@ -356,6 +453,37 @@ public class RiwayatAlamatActivity extends AppCompatActivity implements
                 .icon(iconPink));
 
         getDirection();
+        getKurir();
+    }
+
+    private void getKurir() {
+        String rmLat = String.valueOf(fromLatitude);
+        String rmLng = String.valueOf(fromLongitude);
+        String uLat = String.valueOf(toLatitude);
+        String uLng = String.valueOf(toLongitude);
+        Call<GetCourier> getCourierCall = apiInterface.getKurir(rmLat,rmLng,uLat,uLng);
+        getCourierCall.enqueue(new Callback<GetCourier>() {
+            @Override
+            public void onResponse(Call<GetCourier> call, retrofit2.Response<GetCourier> response) {
+                if (response.body().getStatus().equals("201")){
+                    linearTidakAda.setVisibility(View.VISIBLE);
+                    pengumuman.setText("Kedai berada diluar jangkuan kurir");
+                    //loading.dismiss();
+                }if (response.body().getStatus().equals("200")){
+                    linearAda.setVisibility(View.VISIBLE);
+                    List<Courier> couriers = response.body().getListDataCourier();
+                    Log.d("TAG",String.valueOf(couriers.size()));
+                    adapter = new CourierAdapter(couriers);
+                    recyclerView.setAdapter(adapter);
+                    //loading.dismiss();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GetCourier> call, Throwable t) {
+
+            }
+        });
     }
 
     @Override

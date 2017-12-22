@@ -371,7 +371,7 @@ public class DetailMenu extends AppCompatActivity {
                                         } else {
                                             new AlertDialog.Builder(DetailMenu.this)
                                                     .setMessage("Kamu sudah pesan menu di kedai '"+namarm+
-                                                            "' Apa pesanan itu mau di hapus dulu?")
+                                                            "' Hapus pesanan sebelumnya?")
                                                     .setCancelable(false)
                                                     .setPositiveButton("Hapus", new DialogInterface.OnClickListener() {
                                                         @Override
@@ -447,7 +447,7 @@ public class DetailMenu extends AppCompatActivity {
     private void dialog(final String useridUser, final String menuid, String fotomenu, final String hargamenu, String namamenu, String namarm) {
         final Dialog dialog = new Dialog(DetailMenu.this);
         dialog.setContentView(R.layout.dialog_pesan);
-        dialog.setCancelable(false);
+        dialog.setCancelable(true);
         dialog.setTitle("Rincian Pesanan");
         //mengeset untuk dialog
         //TextView tvNamaRmD = (TextView) dialog.findViewById(R.id.tvNamaRmDialog);
@@ -572,12 +572,12 @@ public class DetailMenu extends AppCompatActivity {
                 postPutDelOrderCall.enqueue(new Callback<PostPutDelOrder>() {
                     @Override
                     public void onResponse(Call<PostPutDelOrder> call, Response<PostPutDelOrder> response) {
-                        Toast.makeText(dm, "Pesanan berhasil masuk", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(dm, "Pesanan berhasil masuk", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onFailure(Call<PostPutDelOrder> call, Throwable t) {
-                        Toast.makeText(dm, "Pesanan berhasil masuk Tapi jangan pindah hanya keluarkan dialog ini", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(dm, "pesanan berhasil ditambahkan, kamu hanya bisa menambah pesanan di kedai yang sama", Toast.LENGTH_SHORT).show();
                     }
                 });
                 dialog.dismiss();

@@ -216,6 +216,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
                     String cartid = idCart.getText().toString();
                     String notes = tvPesanKhusus.getText().toString();
                     String qty = tvQtyCart.getText().toString();
+                    String subtotal = tvSubtotal.getText().toString();
+
                     restApi.putNotes(cartid,qty,notes).enqueue(new Callback<ResponseBody>() {
                         @Override
                         public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

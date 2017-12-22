@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:text="Total Harga Pesan: "/>
+                android:text="Total Harga Pesan Rp : "/>
             <TextView
                 android:id="@+id/tvTotalHargaCart"
                 android:layout_width="wrap_content"
@@ -70,7 +70,7 @@
         android:layout_height="wrap_content">
         <Button
             android:textColor="@color/white"
-            android:background="@color/green"
+            android:background="@color/colorPrimary"
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -85,7 +85,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_activity">
         <TextView
-            android:text="Kamu belum login. silakan login dulu dan mulai pesan makanan"
+            android:text="Kamu belum pernah memesan makanan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>

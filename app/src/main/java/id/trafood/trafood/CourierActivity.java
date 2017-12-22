@@ -18,6 +18,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Random;
 
 import id.trafood.trafood.Models.Article;
 import id.trafood.trafood.Models.Courier;
@@ -35,7 +36,6 @@ public class CourierActivity extends AppCompatActivity {
 
     ApiInterface apiInterface;
     RestApi restApi;
-    CourierActivity ca;
     Context mContext;
     LinearLayout linearTidakAda,linearAda;
     TextView pengumuman;
@@ -46,6 +46,8 @@ public class CourierActivity extends AppCompatActivity {
             address,userid,kodeAlamar,total,rmid,custom;
     SharedPrefManager sharedPrefManager;
     ProgressDialog loading;
+
+    public static  CourierActivity ca;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,11 +86,22 @@ public class CourierActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         mContext = this;
         ca = this;
+        loading = ProgressDialog.show(mContext, null, "Please wait.... ", true, false);
+        thissa();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        thissa();
+    }
+
+    public void thissa() {
 
         bawanomer();
         cekKurir();
 
-        loading = ProgressDialog.show(mContext, null, "Please wait.... ", true, false);
+
 
     }
 
@@ -99,6 +112,7 @@ public class CourierActivity extends AppCompatActivity {
                 try {
                     JSONObject jsonResult = new JSONObject(response.body().string());
                     kodetrans = jsonResult.getString("result");
+
                     Log.d("TAG",kodetrans+" trans ");
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -118,6 +132,7 @@ public class CourierActivity extends AppCompatActivity {
                 try {
                     JSONObject jsonResult = new JSONObject(response.body().string());
                     kodeAlamar = jsonResult.getString("result");
+
                     Log.d("TAG",kodeAlamar);
                 }catch (JSONException e){
                     e.printStackTrace();

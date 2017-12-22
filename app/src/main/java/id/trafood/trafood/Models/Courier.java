@@ -46,7 +46,22 @@ public class Courier {
     @SerializedName("c_range")
     private String c_range;
 
-    public Courier(String courier_id, String c_name, String c_logo, String c_userid, String c_email, String c_telp, String c_address, String c_open, String c_close, String c_region, String c_lat, String c_lng, String c_range) {
+    @SerializedName("price")
+    private String price;
+
+    @SerializedName("per")
+    private String per;
+
+    @SerializedName("unit")
+    private String unit;
+
+    @SerializedName("priceplus")
+    private String priceplus;
+
+    @SerializedName("perplus")
+    private String perplus;
+
+    public Courier(String courier_id, String c_name, String c_logo, String c_userid, String c_email, String c_telp, String c_address, String c_open, String c_close, String c_region, String c_lat, String c_lng, String c_range, String price, String per, String unit, String priceplus, String perplus) {
         this.courier_id = courier_id;
         this.c_name = c_name;
         this.c_logo = c_logo;
@@ -60,6 +75,11 @@ public class Courier {
         this.c_lat = c_lat;
         this.c_lng = c_lng;
         this.c_range = c_range;
+        this.price = price;
+        this.per = per;
+        this.unit = unit;
+        this.priceplus = priceplus;
+        this.perplus = perplus;
     }
 
     public String getCourier_id() {
@@ -164,5 +184,45 @@ public class Courier {
 
     public void setC_range(String c_range) {
         this.c_range = c_range;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getPer() {
+        return per;
+    }
+
+    public void setPer(String per) {
+        this.per = per;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public String getPriceplus() {
+        return priceplus;
+    }
+
+    public void setPriceplus(String priceplus) {
+        this.priceplus = priceplus;
+    }
+
+    public String getPerplus() {
+        return perplus;
+    }
+
+    public void setPerplus(String perplus) {
+        this.perplus = perplus;
     }
 }

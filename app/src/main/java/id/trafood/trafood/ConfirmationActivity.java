@@ -35,7 +35,7 @@ import retrofit2.Response;
 public class ConfirmationActivity extends AppCompatActivity {
 
     TextView tvNamaPemesan, tvTeleponPemesan, tvAlamatpemesan,tvNamaKedai,tvAlamatKedai,tvNamaKurir,tvSubtotal,
-                tvOngkir,tvParkir, tvTotal,tvJarak;
+                tvOngkir,tvParkir, tvTotal,tvJarak,tvCustom;
     Button btnConfirmation;
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
@@ -48,6 +48,7 @@ public class ConfirmationActivity extends AppCompatActivity {
     ProgressDialog loading;
     String namaPemesan, teleponPemesan, alamatpemesan,namaKedai,alamatKedai,namaKurir,subtotal,gdistance,
             ongkir,parkir, totall,kuririd,userid,transid,distance,price,per,unit,priceplus,perplus;
+    String userLat,userLng,kLat,kLng,rmid,custom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,10 +57,28 @@ public class ConfirmationActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Confrimation");
         getSupportActionBar().setElevation(0);
         findView();
-        kuririd = getIntent().getStringExtra("COURIERID");
+       // kuririd = getIntent().getStringExtra("COURIERID");
         //kuririd ="12548514402178";
         sharedPrefManager = new SharedPrefManager(this);
         userid = sharedPrefManager.getSpUserid();
+        namaPemesan = sharedPrefManager.getSPNama();
+        userLat = getIntent().getStringExtra("LATU");
+        userLng = getIntent().getStringExtra("LNGU");
+        kLat = getIntent().getStringExtra("LATK");
+        kLng = getIntent().getStringExtra("LNGK");
+        namaKedai = getIntent().getStringExtra("NAMARM");
+        // kodetrans = getIntent().getStringExtra("KODE");
+        teleponPemesan = getIntent().getStringExtra("TELEPON");
+        distance = getIntent().getStringExtra("RDISTANCE");
+        gdistance = getIntent().getStringExtra("GDISTANCE");
+        alamatpemesan = getIntent().getStringExtra("ADDRESS");
+        subtotal = getIntent().getStringExtra("TOTAL");
+        rmid = getIntent().getStringExtra("RMID");
+        custom = getIntent().getStringExtra("CUSTOM");
+        ongkir = getIntent().getStringExtra("ONGKIR");
+        alamatKedai = getIntent().getStringExtra("ALAMATRM");
+        namaKurir = getIntent().getStringExtra("NAMAKURIR");
+        kuririd = getIntent().getStringExtra("KURIRID");
 
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -67,32 +86,36 @@ public class ConfirmationActivity extends AppCompatActivity {
         restApi = ApiClient.getClient().create(RestApi.class);
         mContext = this;
         ca = this;
-        loading = ProgressDialog.show(mContext,null,"Please Wait...", true,false);
 
 
-        getKurir(kuririd); //get kurir dan set harganya
 
-        Log.d("TAG",userid+"ini pas diluar"+kuririd);
+       // getKurir(kuririd); //get kurir dan set harganya
+
+        Log.d("TAG",userid+"ini pas diluar");
+        setTex();
+        getTrans();
 
         btnConfirmation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                simpanorderDetail(); //untuk menyimpan order detail barang apa saja yang di order
+               // simpanorderDetail(); //untuk menyimpan order detail barang apa saja yang di order
+
                 simpan();
             }
         });
 
 
+
     }
 
 
-    @Override
+  /*  @Override
     public void onBackPressed() {
         super.onBackPressed();
         apiInterface.deleteSisa(userid).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
+            Log.d("TAG","didelte ku aing !!");
             }
 
             @Override
@@ -100,13 +123,14 @@ public class ConfirmationActivity extends AppCompatActivity {
 
             }
         });
-    }
+    } */
 
-    private void simpanorderDetail() {
+   /* private void simpanorderDetail() {
         restApi.postOrderDetail(userid,transid).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 loading.dismiss();
+
             }
 
             @Override
@@ -114,25 +138,30 @@ public class ConfirmationActivity extends AppCompatActivity {
 
             }
         });
-    }
+    } */
 
     private void simpan() {
-        restApi.putOrder(kuririd,unit,"1",transid,totall,subtotal).enqueue(new Callback<ResponseBody>() {
+        loading = ProgressDialog.show(mContext,null,"Please Wait...", true,false);
+        restApi.megaInput(userid,namaPemesan,alamatpemesan,custom,teleponPemesan,userLat,userLng,subtotal,gdistance,distance,rmid,kuririd,ongkir).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                loading.dismiss();
                 Intent intent = new Intent(mContext,ThanksActivity.class);
                 mContext.startActivity(intent);
-                Log.d("TAG","SUKSES");
+                Log.d("TAG", "Berhasil");
+                Log.d("TAG", subtotal+gdistance+distance+rmid+kuririd+ongkir);
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-
+                Intent intent = new Intent(mContext,ThanksActivity.class);
+                mContext.startActivity(intent);
+                Log.d("TAG", "Gagal");
             }
         });
     }
 
-    private void getKurir(String kuririd) {
+   /* private void getKurir(String kuririd) {
         this.kuririd = kuririd;
         apiInterface.getHargaKurir(kuririd).enqueue(new Callback<ResponseBody>() {
             @Override
@@ -157,14 +186,15 @@ public class ConfirmationActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Log.d("TAG", "gagal  dapat kurir");
+                loading.dismiss();
             }
         });
 
-    }
+    }*/
 
     private void getTrans() {
 
-        apiInterface.getOrder(userid).enqueue(new Callback<ResponseBody>() {
+        /*apiInterface.getOrder(userid).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {
@@ -191,9 +221,9 @@ public class ConfirmationActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-
+                Log.d("TAG", "tidak ada transaksi");
             }
-        });
+        }); */
 
         apiInterface.getCartDetail(userid).enqueue(new Callback<ResponseBody>() {
             @Override
@@ -208,7 +238,22 @@ public class ConfirmationActivity extends AppCompatActivity {
                     rmid = jsonResult.getJSONObject("result").getString("rmid");*/
                     subtotal = jsonResult.getString("total");
                     Log.d("TAG","subtotal"+subtotal);
-                    setTex();
+                    Double subs = Double.parseDouble(subtotal);
+                    Double ong = Double.parseDouble(ongkir);
+
+                    DecimalFormat kursIndonesia = (DecimalFormat) DecimalFormat.getCurrencyInstance();
+                    DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+                    formatRp.setCurrencySymbol("Rp. ");
+                    formatRp.setMonetaryDecimalSeparator(',');
+                    formatRp.setGroupingSeparator('.');
+                    kursIndonesia.setDecimalFormatSymbols(formatRp);
+
+                    tvOngkir.setText(kursIndonesia.format(ong+0));
+                    tvSubtotal.setText(kursIndonesia.format(subs + 0));
+                    tvTotal.setText(kursIndonesia.format(ong+subs));
+
+
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
@@ -234,64 +279,13 @@ public class ConfirmationActivity extends AppCompatActivity {
         tvNamaKedai.setText(namaKedai);
         tvAlamatKedai.setText(alamatKedai);
         tvJarak.setText(gdistance);
+        tvCustom.setText(custom);
+        setDetailOrder();
        // tvSubtotal.setText("Rp. "+subtotal);
-        hitungOngkir(); //method untuk hitung ongkir
+        //hitungOngkir(); //method untuk hitung ongkir
     }
 
-    private void hitungOngkir() {
-        Double jarak = Double.parseDouble(distance);//*0.001
-        Double harga = Double.parseDouble(price);
-        Double perr = Double.parseDouble(per);
-        Double hargapluss = Double.parseDouble(priceplus);
-        Double perrplus = Double.parseDouble(perplus);
-        //untuk menghitung yang satuan per km
-        Double realdistance = Math.ceil(jarak/1000.0); //bulatkan angka nya dulu ke atas
-        Double disper = realdistance/perr;
-        Double ini = Math.ceil(disper/1.0); //dibulatkan lagi angkanya
-        tvParkir.setText(" ");
-        Double total = Double.parseDouble(subtotal);
 
-        //bikin format rupiah
-        DecimalFormat kursIndonesia = (DecimalFormat) DecimalFormat.getCurrencyInstance();
-        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
-        formatRp.setCurrencySymbol("Rp. ");
-        formatRp.setMonetaryDecimalSeparator(',');
-        formatRp.setGroupingSeparator('.');
-        kursIndonesia.setDecimalFormatSymbols(formatRp);
-
-        tvSubtotal.setText(kursIndonesia.format(total));
-        if (unit.equals("km")){
-            tvOngkir.setText(kursIndonesia.format(ini*harga));
-            tvTotal.setText(kursIndonesia.format(total+(ini*harga)));
-            totall = String.valueOf(harga*ini);
-            loading.dismiss();
-        }if (unit.equals("transaction")){
-            tvOngkir.setText(kursIndonesia.format(harga*perr));
-            tvTotal.setText(kursIndonesia.format((harga*perr)+total));
-            totall = String.valueOf(harga*perr);
-            loading.dismiss();
-        }//untuk menghitung yang kilometer pertama dan keduanya berbeda
-        if (unit.equals("kmplus")){
-            if (realdistance < perr){
-                tvOngkir.setText(kursIndonesia.format(harga*1));
-                tvTotal.setText(kursIndonesia.format(harga+total));
-                totall = String.valueOf(harga);
-                loading.dismiss();
-            }if (realdistance > perr){
-                Double sisa = realdistance-perr;
-                Double bagi = sisa/perrplus;
-                Double hasill = Math.ceil(bagi/1.0);
-                Double nyaan = hasill*hargapluss;
-                tvOngkir.setText(kursIndonesia.format(harga+nyaan));
-                tvTotal.setText(kursIndonesia.format((harga+nyaan)+total));
-                Double tambah = harga+nyaan;
-                totall = String.valueOf(harga+nyaan);
-                loading.dismiss();
-            }
-        }
-
-
-    }
 
     private void setDetailOrder() {
         Call<GetOrder> getOrderCall = apiInterface.getCart(userid);
@@ -319,12 +313,70 @@ public class ConfirmationActivity extends AppCompatActivity {
         tvAlamatKedai = (TextView) findViewById(R.id.tvAlamatKedaiConfirmation);
         tvNamaKurir = (TextView) findViewById(R.id.tvKurirConfirmation);
         tvOngkir = (TextView) findViewById(R.id.tvBiayaKirimConfirmation);
-        tvParkir = (TextView) findViewById(R.id.tvBiayaParkirConfirmation);
         tvSubtotal = (TextView) findViewById(R.id.tvSubtotalConfirmation);
         tvTotal = (TextView) findViewById(R.id.tvTotalConfirmation);
         tvJarak = (TextView) findViewById(R.id.tvJarakKirim);
         btnConfirmation = (Button) findViewById(R.id.btnConf);
         recyclerView = (RecyclerView) findViewById(R.id.rvConfirmation);
+        tvCustom = (TextView) findViewById(R.id.tvAlamatCustomConfirmation);
 
     }
+
+     /* private void hitungOngkir() {
+        Double jarak = Double.parseDouble(distance);//*0.001
+        Double harga = Double.parseDouble(price);
+        Double perr = Double.parseDouble(per);
+        Double hargapluss = Double.parseDouble(priceplus);
+        Double perrplus = Double.parseDouble(perplus);
+        //untuk menghitung yang satuan per km
+        Double realdistance = Math.ceil(jarak/1000.0); //bulatkan angka nya dulu ke atas
+        Double disper = realdistance/perr;
+        Double ini = Math.ceil(disper/1.0); //dibulatkan lagi angkanya
+        tvParkir.setText(" ");
+        Double total = Double.parseDouble(subtotal);
+
+        //bikin format rupiah
+        DecimalFormat kursIndonesia = (DecimalFormat) DecimalFormat.getCurrencyInstance();
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+        formatRp.setCurrencySymbol("Rp. ");
+        formatRp.setMonetaryDecimalSeparator(',');
+        formatRp.setGroupingSeparator('.');
+        kursIndonesia.setDecimalFormatSymbols(formatRp);
+
+        tvSubtotal.setText(kursIndonesia.format(total));
+        if (unit.equals("km")){
+            tvOngkir.setText(kursIndonesia.format(ini*harga));
+            tvTotal.setText(kursIndonesia.format(total+(ini*harga)));
+            totall = String.valueOf(harga*ini);
+            Log.d("TAG", "ongkir = "+String.valueOf(ini*perr));
+            loading.dismiss();
+        }if (unit.equals("transaction")){
+            tvOngkir.setText(kursIndonesia.format(harga*perr));
+            tvTotal.setText(kursIndonesia.format((harga*perr)+total));
+            totall = String.valueOf(harga*perr);
+            Log.d("TAG", "ongkir = "+String.valueOf(harga*perr));
+            loading.dismiss();
+        }//untuk menghitung yang kilometer pertama dan keduanya berbeda
+        if (unit.equals("kmplus")){
+            if (realdistance < perr){
+                tvOngkir.setText(kursIndonesia.format(harga*1));
+                tvTotal.setText(kursIndonesia.format(harga+total));
+                totall = String.valueOf(harga);
+                Log.d("TAG", "ongkir = "+String.valueOf(harga));
+                loading.dismiss();
+            }if (realdistance > perr){
+                Double sisa = realdistance-perr;
+                Double bagi = sisa/perrplus;
+                Double hasill = Math.ceil(bagi/1.0);
+                Double nyaan = hasill*hargapluss;
+                tvOngkir.setText(kursIndonesia.format(harga+nyaan));
+                tvTotal.setText(kursIndonesia.format((harga+nyaan)+total));
+                Double tambah = harga+nyaan;
+                totall = String.valueOf(harga+nyaan);
+                loading.dismiss();
+                Log.d("TAG", "ongkir = "+String.valueOf(harga+nyaan));
+            }
+
+        }
+    } */
 }

@@ -226,7 +226,7 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyHold
                                                         dialog();
                                                     }else { //ternyat pesanannya berbeda kedai dia diberi dua pilihan hapus dulu cart atau lanjut pembayaran
                                                         new AlertDialog.Builder(view.getContext())
-                                                                .setMessage("Kamu sudah punya kerangjang di kedai lain. Apa pesanan itu mau di hapus dulu?")
+                                                                .setMessage("Kamu sudah memilih menu pesanan di kedai lain, hapus pesanan sebelumnya?")
                                                                 .setCancelable(false)
                                                                 .setPositiveButton("Hapus", new DialogInterface.OnClickListener() {
                                                                     @Override
@@ -285,7 +285,7 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.MyHold
                             private void dialog() {
                                 final Dialog dialog = new Dialog(view.getContext());
                                 dialog.setContentView(R.layout.dialog_pesan);
-                                dialog.setCancelable(false);
+                                dialog.setCancelable(true);
                                 ImageView imageView = (ImageView) dialog.findViewById(R.id.imageDialog);
                                 final TextView tvHargaD = (TextView) dialog.findViewById(R.id.tvHargaDialog);
                                 TextView tvNamamemuD = (TextView) dialog.findViewById(R.id.tvNamaMenuDialog);

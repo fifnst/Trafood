@@ -11,6 +11,7 @@ import id.trafood.trafood.Models.GetLocation;
 import id.trafood.trafood.Models.GetMenu;
 import id.trafood.trafood.Models.GetMenuDetail;
 import id.trafood.trafood.Models.GetOrder;
+import id.trafood.trafood.Models.GetOrderHistory;
 import id.trafood.trafood.Models.GetRumahmakan;
 import id.trafood.trafood.Models.GetUserView;
 import id.trafood.trafood.Models.GetUserVote;
@@ -189,6 +190,18 @@ public interface ApiInterface {
 
     @GET("index.php/transaction/order/detail")
     Call<GetOrder> getOrderDetail(@Query("trans_id") String trans_id);
+
+    @GET("index.php/transaction/history")
+    Call<GetOrderHistory> getOrderProgress(@Query("userid") String userid);
+
+    @GET("index.php/transaction/history/history")
+    Call<GetOrderHistory> getOrderHistory(@Query("userid") String userid);
+
+    @GET("index.php/transaction/history/item")
+    Call<GetOrder> getHistoryItem(@Query("trans_id") String trans_id);
+
+    @GET("index.php/transaction/history/detail")
+    Call<ResponseBody> getHistoryDetail (@Query("trans_id") String trans_id);
 
 
 

@@ -245,4 +245,22 @@ public interface RestApi {
                                    @Field("qty") String qty,
                                    @Field("notes") String notes);
 
+    @FormUrlEncoded
+    @POST("index.php/transaction/order/megainput")
+    Call<ResponseBody> megaInput(@Field("userid") String userid,
+                                 @Field("recipient_name") String recipient_name,
+                                 @Field("address") String address,
+                                 @Field("uniq_address") String uniq_address,
+                                 @Field("telp") String telp,
+                                 @Field("lat") String lat,
+                                 @Field("lng") String lng,
+                                 @Field("totalprice") String totalprice,
+                                 @Field("gdistance") String gdistance,
+                                 @Field("distance") String distance,
+                                 @Field("rmid") String rmid,
+                                 @Field("courier_id") String courier_id,
+                                 @Field("shippingcharge") String shippingcharge);
+
+
+
 }

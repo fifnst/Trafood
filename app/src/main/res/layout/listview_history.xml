@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_margin="1dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/linearAtas"
+            android:padding="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/ivRmListHistory"
+                android:scaleType="centerCrop"
+                android:src="@drawable/add_pict_kedai"
+                android:layout_width="80dp"
+                android:layout_height="80dp" />
+            <LinearLayout
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvnamaRmListHistory"
+                    android:text="nama rm"
+                    android:textSize="15sp"
+                    android:textColor="@color/radablack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textSize="12sp"
+                    android:id="@+id/tvAlamatRmListHistory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:text="1745"
+                    android:textSize="12sp"
+                    android:textColor="@color/blue"
+                    android:id="@+id/tvTglListHistory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey"/>
+        <LinearLayout
+            android:background="@color/cloud"
+            android:padding="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginTop="5dp"
+                android:textSize="15sp"
+                android:text="656"
+                android:id="@+id/tvHargaListHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_alignParentRight="true"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:id="@+id/btnDetailListHistory"
+                        android:textColor="@color/colorPrimary"
+                        android:background="@drawable/bg_button_border_primary"
+                        android:text="Detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginRight="5dp"/>
+                  <!--  <Button
+                        android:id="@+id/btnBeliListHistory"
+                        android:textColor="@color/white"
+                        android:background="@drawable/bg_rectangle_button"
+                        android:text="Pesan Lagi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp" /> -->
+                </LinearLayout>
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/grey"/>
+
+</LinearLayout>

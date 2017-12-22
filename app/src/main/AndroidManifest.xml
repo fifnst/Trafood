@@ -154,7 +154,9 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".ConfirmationActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme" >
+
+        </activity>
         <activity
             android:name=".MenuLainActivity"
             android:theme="@style/AppTheme" />
@@ -172,9 +174,15 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".StatusPengirimanActivity"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".HistoryActivity"
             android:theme="@style/AppTheme"/>
+        <activity
+            android:name=".HistoryActivity"
+            android:theme="@style/AppTheme"/>
+        <activity
+            android:name=".DetailHistoryTransaksi"
+            android:theme="@style/AppTheme">
+
+        </activity>
     </application>
 
 </manifest>
